@@ -12,8 +12,10 @@ class ToDoViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //UI
     var todoList: [String] = []
-
-    @IBOutlet weak var addTextField: UITextField!
+    var todoMemo: [String] = []
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var memoTextField: UITextField!
     @IBOutlet weak var toDoTableView: UITableView!
     
     override func viewDidLoad() {
@@ -24,8 +26,8 @@ class ToDoViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func addButton(_ sender: UIButton) {
-        todoList.append(addTextField.text ?? "0")
-        print(todoList)
+        todoList.append(titleTextField.text ?? "0")
+        todoMemo.append(memoTextField.text ?? "0" )
         self.toDoTableView.reloadData()
     }
     
@@ -35,8 +37,10 @@ class ToDoViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "toDoTableCell", for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
-        let todo = todoList[indexPath.row]
-        cell.toDoTitle.text = todo
+        let title = todoList[indexPath.row]
+        let memo = todoMemo[indexPath.row]
+        cell.toDoTitle.text = title
+        cell.toDoMemo.text = memo
         return cell
     }
     

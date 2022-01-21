@@ -212,15 +212,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1jF-m5-UtI">
-                                <rect key="frame" x="10" y="88" width="394" height="34"/>
+                                <rect key="frame" x="10" y="88" width="394" height="73"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DbC-Vb-6re">
-                                        <rect key="frame" x="0.0" y="0.0" width="339" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GkG-I6-zXT">
+                                        <rect key="frame" x="0.0" y="0.0" width="339" height="73"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DbC-Vb-6re">
+                                                <rect key="frame" x="0.0" y="0.0" width="339" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Memo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="44b-52-Ft7">
+                                                <rect key="frame" x="0.0" y="39" width="339" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyf-0U-MzS">
-                                        <rect key="frame" x="344" y="0.0" width="50" height="34"/>
+                                        <rect key="frame" x="344" y="0.0" width="50" height="73"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Add"/>
                                         <connections>
@@ -230,16 +240,13 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="DbC-Vb-6re" firstAttribute="top" secondItem="1jF-m5-UtI" secondAttribute="top" id="4tr-7g-g5O"/>
                                     <constraint firstItem="hyf-0U-MzS" firstAttribute="top" secondItem="1jF-m5-UtI" secondAttribute="top" id="944-rJ-fdj"/>
-                                    <constraint firstAttribute="bottom" secondItem="DbC-Vb-6re" secondAttribute="bottom" id="AoD-yS-a8P"/>
-                                    <constraint firstItem="DbC-Vb-6re" firstAttribute="leading" secondItem="1jF-m5-UtI" secondAttribute="leading" id="H4x-iY-Xb8"/>
                                     <constraint firstAttribute="trailing" secondItem="hyf-0U-MzS" secondAttribute="trailing" id="UQ8-W9-orL"/>
                                     <constraint firstAttribute="bottom" secondItem="hyf-0U-MzS" secondAttribute="bottom" id="b8x-n6-8h8"/>
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ols-Mt-Ap1">
-                                <rect key="frame" x="10" y="127" width="394" height="735"/>
+                                <rect key="frame" x="10" y="166" width="394" height="696"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toDoTableCell" rowHeight="96" id="Z5j-BD-POR" customClass="ToDoTableViewCell" customModule="diary" customModuleProvider="target">
@@ -260,13 +267,13 @@
                                                         <action selector="checkButton:" destination="YM9-9q-6Ha" eventType="touchUpInside" id="H3S-lT-7zN"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="과제" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywN-pn-azd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywN-pn-azd">
                                                     <rect key="frame" x="106" y="0.0" width="288" height="59"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IOS Programming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ML-rz-oYX">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ML-rz-oYX">
                                                     <rect key="frame" x="106" y="69" width="288" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -318,7 +325,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="addTextField" destination="DbC-Vb-6re" id="p3g-DT-uWO"/>
+                        <outlet property="memoTextField" destination="44b-52-Ft7" id="ZQb-2e-aV6"/>
+                        <outlet property="titleTextField" destination="DbC-Vb-6re" id="01w-MI-CfX"/>
                         <outlet property="toDoTableView" destination="ols-Mt-Ap1" id="80M-CL-fnb"/>
                     </connections>
                 </viewController>
