@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--mainVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="mainVC" id="BYZ-38-t0r" customClass="ViewController" customModule="diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="1037.68115942029" y="326.78571428571428"/>
         </scene>
-        <!--Diary-->
+        <!--diaryListVC-->
         <scene sceneID="wu5-de-Qoq">
             <objects>
-                <viewController id="l5B-Nh-jQA" sceneMemberID="viewController">
+                <viewController title="diaryListVC" id="l5B-Nh-jQA" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pfF-da-Wbc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="2224.6376811594205" y="-378.34821428571428"/>
         </scene>
-        <!--Diary Add-->
+        <!--addDiaryVC-->
         <scene sceneID="nzw-lr-aQM">
             <objects>
-                <viewController id="7eh-vZ-LFl" sceneMemberID="viewController">
+                <viewController title="addDiaryVC" id="7eh-vZ-LFl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zmO-kB-4wB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,10 +203,10 @@
             </objects>
             <point key="canvasLocation" x="3286.9565217391305" y="-378.34821428571428"/>
         </scene>
-        <!--To Do List-->
+        <!--toDoListVC-->
         <scene sceneID="XLp-H7-RO0">
             <objects>
-                <viewController id="cHg-qZ-IsK" customClass="ToDoViewController" customModule="diary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="toDoListVC" id="cHg-qZ-IsK" customClass="ToDoViewController" customModule="diary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qOT-Cw-mpD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -321,7 +321,7 @@
                                     <segue destination="p2p-Eq-O1x" kind="show" id="pKz-qq-aim"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="calendar" catalog="system" style="plain" id="ELe-GM-lww"/>
+                            <barButtonItem title="calendar" image="calendar" catalog="system" style="plain" id="ELe-GM-lww"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -335,10 +335,10 @@
             </objects>
             <point key="canvasLocation" x="2224.6376811594205" y="326.78571428571428"/>
         </scene>
-        <!--To Do List Add-->
+        <!--addToDoList-->
         <scene sceneID="llc-Pc-27e">
             <objects>
-                <viewController id="p2p-Eq-O1x" sceneMemberID="viewController">
+                <viewController title="addToDoList" id="p2p-Eq-O1x" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gyp-dS-rvw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -382,17 +382,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="To Do List Add" id="DEw-Xs-PKH">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="915-UF-uPr"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="plain" id="915-UF-uPr"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAE-5H-Uq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3287" y="327"/>
         </scene>
-        <!--Setting-->
+        <!--setting-->
         <scene sceneID="aT1-ce-eAo">
             <objects>
-                <viewController id="AaT-wg-JpB" sceneMemberID="viewController">
+                <viewController title="setting" id="AaT-wg-JpB" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u1k-TH-lbk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -453,10 +453,10 @@
             </objects>
             <point key="canvasLocation" x="2224.6376811594205" y="1078.7946428571429"/>
         </scene>
-        <!--Date Format-->
+        <!--setDateFormatVC-->
         <scene sceneID="ilg-DJ-3zL">
             <objects>
-                <viewController id="eu7-cl-l7C" sceneMemberID="viewController">
+                <viewController title="setDateFormatVC" id="eu7-cl-l7C" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HFW-XT-JBf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -546,23 +546,27 @@
                             <constraint firstItem="SO2-PZ-OXf" firstAttribute="top" secondItem="Vq6-h6-l8L" secondAttribute="bottom" constant="10" id="opy-EX-L9p"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Date Format" id="4JE-yX-Fhf"/>
+                    <navigationItem key="navigationItem" title="Date Format" id="4JE-yX-Fhf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bgX-Wa-wfR"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3f8-uX-zgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3095.6521739130435" y="1078.7946428571429"/>
         </scene>
-        <!--Text Size / Font-->
+        <!--setTextAttributeVC-->
         <scene sceneID="hfq-fi-RrZ">
             <objects>
-                <viewController id="AC8-Nd-Zvn" sceneMemberID="viewController">
+                <viewController title="setTextAttributeVC" id="AC8-Nd-Zvn" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BhE-Ui-Mey">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="UzQ-3u-iYU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Text Size / Font" id="k4S-vv-Iad"/>
+                    <navigationItem key="navigationItem" title="Text Size / Font" id="k4S-vv-Iad">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="CEg-D6-s8g"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2lk-He-Zdp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
