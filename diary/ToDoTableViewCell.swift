@@ -2,7 +2,7 @@
 //  ToDoTableViewCell.swift
 //  diary
 //
-//  Created by Chae_Haram on 2022/01/19.
+//  Created by Chae_Haram on 2022/01/26.
 //
 
 import UIKit
@@ -10,7 +10,10 @@ import UIKit
 class ToDoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var checkButton: UIButton!
-    @IBOutlet weak var toDoTitle: UILabel!
-    @IBOutlet weak var toDoMemo: UILabel!
+    @IBOutlet weak var toDoTitleLabel: UILabel!
+    @IBOutlet weak var toDoMemoLabel: UILabel!
+    @IBOutlet weak var toDoStartTimeLabel: UILabel!
+    @IBOutlet weak var toDoEndTimeLabel: UILabel!
     
+
 }
