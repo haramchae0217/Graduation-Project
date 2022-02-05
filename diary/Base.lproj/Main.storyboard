@@ -254,7 +254,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Diary Add" id="qzt-kl-CNE">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="arb-z1-19B">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="arb-z1-19B">
                             <connections>
                                 <action selector="addDiaryButton:" destination="7eh-vZ-LFl" id="H3N-hC-FR7"/>
                             </connections>
@@ -470,7 +470,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="To Do List Add" id="DEw-Xs-PKH">
-                        <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="915-UF-uPr">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="915-UF-uPr">
                             <connections>
                                 <action selector="addToDoButton:" destination="p2p-Eq-O1x" id="8D8-1D-FhA"/>
                             </connections>
