@@ -11,8 +11,6 @@ class AddToDoViewController: UIViewController {
 
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addMemoTextField: UITextField!
-    @IBOutlet weak var addStartTimeTextField: UITextField!
-    @IBOutlet weak var addEndTimeTextField: UITextField!
     
     var addToDo: ToDo?
     var row: Int?
@@ -21,21 +19,19 @@ class AddToDoViewController: UIViewController {
         super.viewDidLoad()
         addTitleTextField.text = addToDo?.title
         addMemoTextField.text = addToDo?.memo
-        //addStartTimeTextField.text = addToDo?.startTime
-        //addEndTimeTextField.text = addToDo?.endTime
         
     }
-    @IBAction func addToDoButton(_ sender: Any) {
+    
+    @IBAction func addToDoButton(_ sender: UIButton) {
+        let addTitle = addTitleTextField.text!
+        let addMemo = addMemoTextField.text!
         
-        //guard let todo = addToDo else { return }
-        if addTitleTextField.text == "" {
-            UIAlertController.showAlert(message: "제목을 입력해주세요", vc: self)
-            return
-        } else if addMemoTextField.text == "" {
-            UIAlertController.showAlert(message: "메모를 입력해주세요", vc: self)
+        if addTitle.isEmpty, addMemo.isEmpty {
+            UIAlertController.showAlert(message: "내용을 입력해주세요", vc: self)
             return
         }
-        let newToDo = ToDo(title: addTitleTextField.text!, memo: addMemoTextField.text!)
+        
+        let newToDo = ToDo(title: addTitle, memo: addMemo)
         ToDo.toDoList.append(newToDo)
         
         self.navigationController?.popViewController(animated: true)

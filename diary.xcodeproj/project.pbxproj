@@ -12,6 +12,11 @@
 		837BB9E027ACB854000DDAB8 /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9DF27ACB854000DDAB8 /* ToDoList.swift */; };
 		837BB9E227ACB929000DDAB8 /* UIAlertController++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9E127ACB929000DDAB8 /* UIAlertController++Extension.swift */; };
 		837BB9E427ACC0F4000DDAB8 /* EditToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9E327ACC0F4000DDAB8 /* EditToDoViewController.swift */; };
+		837BB9E627AD8617000DDAB8 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9E527AD8617000DDAB8 /* DiaryViewController.swift */; };
+		837BB9E827AD8D75000DDAB8 /* DiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9E727AD8D75000DDAB8 /* DiaryTableViewCell.swift */; };
+		837BB9EA27AD8FF8000DDAB8 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9E927AD8FF8000DDAB8 /* Diary.swift */; };
+		837BB9EE27AD9232000DDAB8 /* EditDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9ED27AD9232000DDAB8 /* EditDiaryViewController.swift */; };
+		837BB9F027AE0C02000DDAB8 /* AddDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9EF27AE0C02000DDAB8 /* AddDiaryViewController.swift */; };
 		839A23F2278E54AC00BF040D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23F1278E54AC00BF040D /* AppDelegate.swift */; };
 		839A23F4278E54AC00BF040D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23F3278E54AC00BF040D /* SceneDelegate.swift */; };
 		839A23F6278E54AC00BF040D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23F5278E54AC00BF040D /* ViewController.swift */; };
@@ -28,6 +33,11 @@
 		837BB9DF27ACB854000DDAB8 /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
 		837BB9E127ACB929000DDAB8 /* UIAlertController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController++Extension.swift"; sourceTree = "<group>"; };
 		837BB9E327ACC0F4000DDAB8 /* EditToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoViewController.swift; sourceTree = "<group>"; };
+		837BB9E527AD8617000DDAB8 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
+		837BB9E727AD8D75000DDAB8 /* DiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewCell.swift; sourceTree = "<group>"; };
+		837BB9E927AD8FF8000DDAB8 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		837BB9ED27AD9232000DDAB8 /* EditDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiaryViewController.swift; sourceTree = "<group>"; };
+		837BB9EF27AE0C02000DDAB8 /* AddDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryViewController.swift; sourceTree = "<group>"; };
 		839A23EE278E54AC00BF040D /* diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839A23F1278E54AC00BF040D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839A23F3278E54AC00BF040D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +80,10 @@
 		839A23F0278E54AC00BF040D /* diary */ = {
 			isa = PBXGroup;
 			children = (
+				837BB9E527AD8617000DDAB8 /* DiaryViewController.swift */,
+				837BB9ED27AD9232000DDAB8 /* EditDiaryViewController.swift */,
+				837BB9EF27AE0C02000DDAB8 /* AddDiaryViewController.swift */,
+				837BB9E727AD8D75000DDAB8 /* DiaryTableViewCell.swift */,
 				839A23F1278E54AC00BF040D /* AppDelegate.swift */,
 				839A23F3278E54AC00BF040D /* SceneDelegate.swift */,
 				8316F8E127984BF300882DCE /* ToDoViewController.swift */,
@@ -77,6 +91,7 @@
 				83BA855327A047AA00853783 /* AddToDoViewController.swift */,
 				83D2A92727A0C1B700EA6E87 /* ToDoTableViewCell.swift */,
 				839A23F5278E54AC00BF040D /* ViewController.swift */,
+				837BB9E927AD8FF8000DDAB8 /* Diary.swift */,
 				837BB9DF27ACB854000DDAB8 /* ToDoList.swift */,
 				837BB9DD27ACB823000DDAB8 /* DateFormatter++Extension.swift */,
 				837BB9E127ACB929000DDAB8 /* UIAlertController++Extension.swift */,
@@ -161,7 +176,10 @@
 			files = (
 				837BB9E427ACC0F4000DDAB8 /* EditToDoViewController.swift in Sources */,
 				83D2A92827A0C1B700EA6E87 /* ToDoTableViewCell.swift in Sources */,
+				837BB9EE27AD9232000DDAB8 /* EditDiaryViewController.swift in Sources */,
 				8316F8E227984BF300882DCE /* ToDoViewController.swift in Sources */,
+				837BB9EA27AD8FF8000DDAB8 /* Diary.swift in Sources */,
+				837BB9E627AD8617000DDAB8 /* DiaryViewController.swift in Sources */,
 				839A23F6278E54AC00BF040D /* ViewController.swift in Sources */,
 				837BB9E027ACB854000DDAB8 /* ToDoList.swift in Sources */,
 				837BB9E227ACB929000DDAB8 /* UIAlertController++Extension.swift in Sources */,
@@ -169,6 +187,8 @@
 				839A23F4278E54AC00BF040D /* SceneDelegate.swift in Sources */,
 				83BA855427A047AA00853783 /* AddToDoViewController.swift in Sources */,
 				837BB9DE27ACB823000DDAB8 /* DateFormatter++Extension.swift in Sources */,
+				837BB9F027AE0C02000DDAB8 /* AddDiaryViewController.swift in Sources */,
+				837BB9E827AD8D75000DDAB8 /* DiaryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
