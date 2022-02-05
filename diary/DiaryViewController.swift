@@ -30,9 +30,9 @@ extension DiaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let diaryCell = tableView.dequeueReusableCell(withIdentifier: "diaryTableCell", for: indexPath) as? DiaryTableViewCell else { return UITableViewCell() }
         let diary = Diary.diaryList[indexPath.row]
-        diaryCell.diaryContentTextView.text = diary.content
+        diaryCell.diaryContentLabel.text = diary.content
         diaryCell.diaryHashTagLabel.text = diary.hashTag
-        diaryCell.diaryDateTextField.text = diary.date
+        diaryCell.diaryDateLabel.text = DateFormatter.customDateFormatter.string(from: Date())
         
         return diaryCell
         
@@ -46,7 +46,7 @@ extension DiaryViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let editDiaryVC = self.storyboard?.instantiateViewController(withIdentifier: "editDiaryVC") as? EditDiaryViewController else {return }
+        guard let editDiaryVC = self.storyboard?.instantiateViewController(withIdentifier: "editDiaryVC") as? EditDiaryViewController else { return }
         editDiaryVC.editDiary = Diary.diaryList[indexPath.row]
         editDiaryVC.row = indexPath.row
         self.navigationController?.pushViewController(editDiaryVC, animated: true)

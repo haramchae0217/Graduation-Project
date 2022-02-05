@@ -96,22 +96,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="9wB-0w-s2I">
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="9wB-0w-s2I">
                                                     <rect key="frame" x="0.0" y="0.0" width="301" height="108"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Jan 2022" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-wH-vuP">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="12 Jan 2022" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-wH-vuP">
                                                             <rect key="frame" x="0.0" y="0.0" width="301" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Content" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uRM-zc-1TD">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itd-4U-QLc">
                                                             <rect key="frame" x="0.0" y="24" width="301" height="63.5"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <color key="textColor" systemColor="labelColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        </textView>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HashTag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1t-jZ-vNM">
                                                             <rect key="frame" x="0.0" y="87.5" width="301" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -122,14 +121,13 @@
                                                     <constraints>
                                                         <constraint firstItem="wmp-wH-vuP" firstAttribute="leading" secondItem="9wB-0w-s2I" secondAttribute="leading" id="8JT-rO-f0a"/>
                                                         <constraint firstItem="W1t-jZ-vNM" firstAttribute="leading" secondItem="9wB-0w-s2I" secondAttribute="leading" id="8l9-Gv-uKB"/>
-                                                        <constraint firstItem="uRM-zc-1TD" firstAttribute="top" secondItem="wmp-wH-vuP" secondAttribute="bottom" id="FUR-Jo-10A"/>
                                                         <constraint firstAttribute="trailing" secondItem="W1t-jZ-vNM" secondAttribute="trailing" id="R0n-XB-eeT"/>
-                                                        <constraint firstAttribute="trailing" secondItem="uRM-zc-1TD" secondAttribute="trailing" id="TW4-r4-uvr"/>
-                                                        <constraint firstItem="W1t-jZ-vNM" firstAttribute="top" secondItem="uRM-zc-1TD" secondAttribute="bottom" id="Vlg-aa-5dD"/>
-                                                        <constraint firstItem="wmp-wH-vuP" firstAttribute="top" secondItem="9wB-0w-s2I" secondAttribute="top" id="XvN-Kk-yWn"/>
-                                                        <constraint firstAttribute="bottom" secondItem="W1t-jZ-vNM" secondAttribute="bottom" id="peb-Gj-YiY"/>
+                                                        <constraint firstItem="wmp-wH-vuP" firstAttribute="top" secondItem="9wB-0w-s2I" secondAttribute="top" id="era-Wu-nCp"/>
+                                                        <constraint firstItem="Itd-4U-QLc" firstAttribute="leading" secondItem="9wB-0w-s2I" secondAttribute="leading" id="jHk-iW-Inw"/>
+                                                        <constraint firstItem="W1t-jZ-vNM" firstAttribute="top" secondItem="Itd-4U-QLc" secondAttribute="bottom" id="ooA-2I-UN2"/>
                                                         <constraint firstAttribute="trailing" secondItem="wmp-wH-vuP" secondAttribute="trailing" id="q1m-4W-bAB"/>
-                                                        <constraint firstItem="uRM-zc-1TD" firstAttribute="leading" secondItem="9wB-0w-s2I" secondAttribute="leading" id="tjk-Fh-VDp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Itd-4U-QLc" secondAttribute="trailing" id="zVj-r5-wcH"/>
+                                                        <constraint firstItem="Itd-4U-QLc" firstAttribute="top" secondItem="wmp-wH-vuP" secondAttribute="bottom" id="ze7-RK-bMf"/>
                                                     </constraints>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zik-u0-Val">
@@ -150,8 +148,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="diaryContentTextView" destination="uRM-zc-1TD" id="bW5-fr-cLD"/>
-                                            <outlet property="diaryDateTextField" destination="wmp-wH-vuP" id="O4q-AC-9eL"/>
+                                            <outlet property="diaryContentLabel" destination="Itd-4U-QLc" id="sdG-Zk-agh"/>
+                                            <outlet property="diaryDateLabel" destination="wmp-wH-vuP" id="Gjg-s3-Bsj"/>
                                             <outlet property="diaryHashTagLabel" destination="W1t-jZ-vNM" id="UeE-ru-B9r"/>
                                             <outlet property="diaryPictureImageView" destination="zik-u0-Val" id="Nc8-on-IwH"/>
                                         </connections>

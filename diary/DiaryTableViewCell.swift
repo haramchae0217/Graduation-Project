@@ -9,10 +9,12 @@ import UIKit
 
 class DiaryTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var diaryContentTextView: UITextView!
+    
+    @IBOutlet weak var diaryContentLabel: UILabel!
     @IBOutlet weak var diaryHashTagLabel: UILabel!
     @IBOutlet weak var diaryPictureImageView: UIImageView!
-    @IBOutlet weak var diaryDateTextField: UILabel!
+    @IBOutlet weak var diaryDateLabel: UILabel!
+    
     
 
 }

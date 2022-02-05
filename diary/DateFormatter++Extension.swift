@@ -11,7 +11,7 @@ extension DateFormatter{
     static let customDateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.locale = Locale(identifier: "ko-KR")
-        df.dateFormat = "yyyy/MM/dd EEEE HH:mm"
+        df.dateFormat = "yyyy/MM/dd"
         return df
     }()
 }
