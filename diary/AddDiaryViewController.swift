@@ -32,6 +32,7 @@ class AddDiaryViewController: UIViewController {
             UIAlertController.showAlert(message: "내용을 입력해주세요", vc: self)
             return
         }
+    
         let newDiary = Diary(content: addContent, hashTag: addHashTag, date: addDate)
         Diary.diaryList.append(newDiary)
         
