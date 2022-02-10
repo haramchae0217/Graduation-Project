@@ -21,7 +21,7 @@ class AddToDoViewController: UIViewController {
         addMemoTextField.text = addToDo?.memo
         
     }
-    //sdasdasdasdasdada
+    
     @IBAction func addToDoButton(_ sender: UIButton) {
         let addTitle = addTitleTextField.text!
         let addMemo = addMemoTextField.text!
