@@ -59,6 +59,19 @@ extension ToDoViewController: UITableViewDataSource {
         
         return toDoCell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            ToDo.toDoList.remove(at: indexPath.row)
+            // 실제 배열 안의 값을 지움
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            // 사라지는 방향
+        } else {
+            print("insert")
+        }
+        // 어디에 있는 줄을 지울것인가
+    }
+    
 }
 
 extension ToDoViewController: UITableViewDelegate {

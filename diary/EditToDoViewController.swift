@@ -33,17 +33,19 @@ class EditToDoViewCoantroller: UIViewController {
         let editMemo = editMemoTextField.text!
         // 1. 변경되었는지 체크
         guard let todo = editToDo else { return }
-        if todo.title == editTitle || todo.memo == editMemo {
+        if todo.memo == editMemo {
             UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
             return
         }
         // 3. 변경할 메모 추가하기
         // 새로운 메모 정보를 담을 변수 선언
-        let editToDo = ToDo(title: editTitle, memo: editMemo)
+        // let editToDo = ToDo(title: editTitle, memo: editMemo)
         // 2. row번째의 해당하는 메모리스트의 메모를 삭제
         if let row = row {
-            ToDo.toDoList.remove(at: row)
-            ToDo.toDoList.append(editToDo)
+            ToDo.toDoList[row].title = editTitle
+            ToDo.toDoList[row].memo = editMemo
+            // ToDo.toDoList.remove(at: row)
+            // ToDo.toDoList.append(editToDo)
         }
         
         self.navigationController?.popViewController(animated: true)

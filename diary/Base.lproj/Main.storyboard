@@ -65,7 +65,9 @@
                             <constraint firstItem="r9B-cs-Yjr" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="qlY-qp-EVo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="m0L-th-0ak"/>
+                    <navigationItem key="navigationItem" id="m0L-th-0ak">
+                        <barButtonItem key="backBarButtonItem" title="Main" id="0st-cB-b9e"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
