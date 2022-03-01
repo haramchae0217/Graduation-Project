@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension DateFormatter{
+extension DateFormatter {
     static let customDateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.locale = Locale(identifier: "ko-KR")

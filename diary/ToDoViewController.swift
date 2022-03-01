@@ -42,7 +42,6 @@ class ToDoViewController: UIViewController {
 }
 
 extension ToDoViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ToDo.toDoList.count // 몇개의 줄을 보여줄지 반환
     }
