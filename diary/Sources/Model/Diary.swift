@@ -10,7 +10,7 @@ import Foundation
 struct Diary {
     var content: String
     var hashTag: String
-    var date: String
+    var date: Date = Date()
     
     static var diaryList: [Diary] = []
 }
