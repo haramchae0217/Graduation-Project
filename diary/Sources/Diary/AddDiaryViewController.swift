@@ -21,8 +21,8 @@ class AddDiaryViewController: UIViewController {
         addDiaryDateTextField.text = addDiary?.date
         addDiaryContentTextView.text = addDiary?.content
         addDiaryHashTagTextField.text = addDiary?.hashTag
-
     }
+    
     @IBAction func addDiaryButton(_ sender: UIButton) {
         let addDate = addDiaryDateTextField.text!
         let addContent = addDiaryContentTextView.text!
@@ -40,3 +40,4 @@ class AddDiaryViewController: UIViewController {
     }
 
 }
+// 해시태그 배열로 : 글자수의 제한 10자리, 총 해시태그 수 제한 5개 이하

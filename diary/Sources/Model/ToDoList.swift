@@ -16,3 +16,4 @@ struct ToDo {
     static var toDoList: [ToDo] = []
 }
 
+// 파일명이랑 모델명 일치시키기

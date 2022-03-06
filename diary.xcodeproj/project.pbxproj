@@ -19,7 +19,6 @@
 		837BB9F027AE0C02000DDAB8 /* AddDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BB9EF27AE0C02000DDAB8 /* AddDiaryViewController.swift */; };
 		839A23F2278E54AC00BF040D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23F1278E54AC00BF040D /* AppDelegate.swift */; };
 		839A23F4278E54AC00BF040D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23F3278E54AC00BF040D /* SceneDelegate.swift */; };
-		839A23F6278E54AC00BF040D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839A23F5278E54AC00BF040D /* ViewController.swift */; };
 		839A23F9278E54AC00BF040D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839A23F7278E54AC00BF040D /* Main.storyboard */; };
 		839A23FB278E54AF00BF040D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839A23FA278E54AF00BF040D /* Assets.xcassets */; };
 		839A23FE278E54AF00BF040D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839A23FC278E54AF00BF040D /* LaunchScreen.storyboard */; };
@@ -41,7 +40,6 @@
 		839A23EE278E54AC00BF040D /* diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839A23F1278E54AC00BF040D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839A23F3278E54AC00BF040D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		839A23F5278E54AC00BF040D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		839A23F8278E54AC00BF040D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		839A23FA278E54AF00BF040D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		839A23FD278E54AF00BF040D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,27 +78,74 @@
 		839A23F0278E54AC00BF040D /* diary */ = {
 			isa = PBXGroup;
 			children = (
+				83DB92B127D4B52E00001562 /* Sources */,
+				83DB92B027D4B51800001562 /* Resources */,
+				839A23FF278E54AF00BF040D /* Info.plist */,
+			);
+			path = diary;
+			sourceTree = "<group>";
+		};
+		83DB92AE27D4B4F700001562 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
 				837BB9E527AD8617000DDAB8 /* DiaryViewController.swift */,
 				837BB9ED27AD9232000DDAB8 /* EditDiaryViewController.swift */,
 				837BB9EF27AE0C02000DDAB8 /* AddDiaryViewController.swift */,
 				837BB9E727AD8D75000DDAB8 /* DiaryTableViewCell.swift */,
-				839A23F1278E54AC00BF040D /* AppDelegate.swift */,
-				839A23F3278E54AC00BF040D /* SceneDelegate.swift */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		83DB92AF27D4B50F00001562 /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
 				8316F8E127984BF300882DCE /* ToDoViewController.swift */,
 				837BB9E327ACC0F4000DDAB8 /* EditToDoViewController.swift */,
 				83BA855327A047AA00853783 /* AddToDoViewController.swift */,
 				83D2A92727A0C1B700EA6E87 /* ToDoTableViewCell.swift */,
-				839A23F5278E54AC00BF040D /* ViewController.swift */,
-				837BB9E927AD8FF8000DDAB8 /* Diary.swift */,
-				837BB9DF27ACB854000DDAB8 /* ToDoList.swift */,
-				837BB9DD27ACB823000DDAB8 /* DateFormatter++Extension.swift */,
-				837BB9E127ACB929000DDAB8 /* UIAlertController++Extension.swift */,
+			);
+			path = ToDo;
+			sourceTree = "<group>";
+		};
+		83DB92B027D4B51800001562 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				839A23F7278E54AC00BF040D /* Main.storyboard */,
 				839A23FA278E54AF00BF040D /* Assets.xcassets */,
 				839A23FC278E54AF00BF040D /* LaunchScreen.storyboard */,
-				839A23FF278E54AF00BF040D /* Info.plist */,
 			);
-			path = diary;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		83DB92B127D4B52E00001562 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				839A23F1278E54AC00BF040D /* AppDelegate.swift */,
+				839A23F3278E54AC00BF040D /* SceneDelegate.swift */,
+				83DB92AE27D4B4F700001562 /* Diary */,
+				83DB92AF27D4B50F00001562 /* ToDo */,
+				83DB92B327D4B56400001562 /* Model */,
+				83DB92B227D4B55600001562 /* Extension */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		83DB92B227D4B55600001562 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				837BB9DD27ACB823000DDAB8 /* DateFormatter++Extension.swift */,
+				837BB9E127ACB929000DDAB8 /* UIAlertController++Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		83DB92B327D4B56400001562 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				837BB9DF27ACB854000DDAB8 /* ToDoList.swift */,
+				837BB9E927AD8FF8000DDAB8 /* Diary.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,7 +225,6 @@
 				8316F8E227984BF300882DCE /* ToDoViewController.swift in Sources */,
 				837BB9EA27AD8FF8000DDAB8 /* Diary.swift in Sources */,
 				837BB9E627AD8617000DDAB8 /* DiaryViewController.swift in Sources */,
-				839A23F6278E54AC00BF040D /* ViewController.swift in Sources */,
 				837BB9E027ACB854000DDAB8 /* ToDoList.swift in Sources */,
 				837BB9E227ACB929000DDAB8 /* UIAlertController++Extension.swift in Sources */,
 				839A23F2278E54AC00BF040D /* AppDelegate.swift in Sources */,

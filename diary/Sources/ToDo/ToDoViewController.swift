@@ -9,15 +9,16 @@ import UIKit
 
 class ToDoViewController: UIViewController {
     
-    //UI
+    // UI
     @IBOutlet weak var toDoListTableView: UITableView!
-    var toDoList: [ToDo] = []
+    
+    // Property
+    var toDoList: [ToDo] = [] // 이름 변경
     
     override func viewDidLoad() {
         super.viewDidLoad()
         toDoListTableView.delegate = self
         toDoListTableView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
