@@ -11,6 +11,7 @@ class EditToDoViewCoantroller: UIViewController {
 
     @IBOutlet weak var editTitleTextField: UITextField!
     @IBOutlet weak var editMemoTextField: UITextField!
+    @IBOutlet weak var editExpireDatePicker: UIDatePicker!
     
     var editToDo: ToDo?
     var row: Int?
@@ -18,8 +19,11 @@ class EditToDoViewCoantroller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createRightBarButtonItem()
-        editTitleTextField.text = editToDo?.title
-        editMemoTextField.text = editToDo?.memo
+        if let editToDo = editToDo {
+            editTitleTextField.text = editToDo.title
+            editMemoTextField.text = editToDo.memo
+            editExpireDatePicker.date = editToDo.expireDate
+        }
 
     }
     
@@ -31,6 +35,7 @@ class EditToDoViewCoantroller: UIViewController {
     @objc func updateButtonClicked() {
         let editTitle = editTitleTextField.text!
         let editMemo = editMemoTextField.text!
+        let editDate = editExpireDatePicker.date
         // 1. 변경되었는지 체크
         guard let todo = editToDo else { return }
         if todo.memo == editMemo {
@@ -44,6 +49,8 @@ class EditToDoViewCoantroller: UIViewController {
         if let row = row {
             ToDo.toDoList[row].title = editTitle
             ToDo.toDoList[row].memo = editMemo
+            ToDo.toDoList[row].expireDate = editDate
+            ToDo.toDoList[row].expireTime = editDate
             // ToDo.toDoList.remove(at: row)
             // ToDo.toDoList.append(editToDo)
         }

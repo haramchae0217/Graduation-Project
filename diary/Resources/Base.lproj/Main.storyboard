@@ -461,7 +461,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="u0i-OE-dEZ">
-                                        <rect key="frame" x="39.5" y="0.0" width="334.5" height="216"/>
+                                        <rect key="frame" x="40" y="0.0" width="334" height="216"/>
                                     </datePicker>
                                 </subviews>
                                 <constraints>
@@ -521,17 +521,39 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="o2P-i6-RRq">
+                                <rect key="frame" x="20" y="162" width="374" height="216"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POR-QS-Gfk">
+                                        <rect key="frame" x="0.0" y="0.0" width="29.5" height="216"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="D6F-ag-6O1">
+                                        <rect key="frame" x="39.5" y="0.0" width="334.5" height="216"/>
+                                    </datePicker>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="POR-QS-Gfk" firstAttribute="centerY" secondItem="o2P-i6-RRq" secondAttribute="centerY" id="9X7-8Y-Vp1"/>
+                                    <constraint firstItem="D6F-ag-6O1" firstAttribute="centerY" secondItem="o2P-i6-RRq" secondAttribute="centerY" id="C5W-Xg-gsF"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MVl-X4-pHi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="o2P-i6-RRq" firstAttribute="leading" secondItem="MVl-X4-pHi" secondAttribute="leading" constant="20" id="8hQ-T6-4e1"/>
                             <constraint firstItem="T4R-4g-vOx" firstAttribute="top" secondItem="MVl-X4-pHi" secondAttribute="top" constant="20" id="fHj-Nc-3Y4"/>
+                            <constraint firstItem="MVl-X4-pHi" firstAttribute="trailing" secondItem="o2P-i6-RRq" secondAttribute="trailing" constant="20" id="jbF-ZQ-vKO"/>
                             <constraint firstItem="T4R-4g-vOx" firstAttribute="leading" secondItem="MVl-X4-pHi" secondAttribute="leading" constant="20" id="ojB-LF-9EX"/>
+                            <constraint firstItem="o2P-i6-RRq" firstAttribute="top" secondItem="T4R-4g-vOx" secondAttribute="bottom" constant="20" id="omk-ST-cc7"/>
                             <constraint firstItem="MVl-X4-pHi" firstAttribute="trailing" secondItem="T4R-4g-vOx" secondAttribute="trailing" constant="20" id="umr-ne-7CO"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="qB6-Bp-Qrq"/>
                     <connections>
+                        <outlet property="editExpireDatePicker" destination="D6F-ag-6O1" id="Uc1-rh-tdq"/>
                         <outlet property="editMemoTextField" destination="bWO-UM-RTf" id="KPa-gV-zNH"/>
                         <outlet property="editTitleTextField" destination="Agc-vq-pNC" id="CkJ-hm-oOi"/>
                     </connections>
