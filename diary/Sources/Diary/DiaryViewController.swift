@@ -25,6 +25,8 @@ class DiaryViewController: UIViewController {
         super.viewDidLoad()
         diaryTableView.delegate = self
         diaryTableView.dataSource = self
+        diaryTableView.contentMode = .scaleAspectFill
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         diaryTableView.reloadData()
