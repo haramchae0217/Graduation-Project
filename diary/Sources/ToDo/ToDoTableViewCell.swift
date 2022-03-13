@@ -11,7 +11,9 @@ class ToDoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var toDoCheckButton: UIButton!
     @IBOutlet weak var toDoTitleLabel: UILabel!
-    @IBOutlet weak var toDoMemoLabel: UILabel!
+    @IBOutlet weak var toDoExpireDateLabel: UILabel!
+    @IBOutlet weak var toDoExpireTimeLabel: UILabel!
+    
     
 
 }

@@ -393,6 +393,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="toDoCheckButton" destination="2bu-o2-35T" id="CtG-C1-VRW"/>
+                                            <outlet property="toDoExpireDateLabel" destination="Y6P-HE-KVm" id="XSU-19-lq5"/>
+                                            <outlet property="toDoExpireTimeLabel" destination="T6a-ZJ-qrM" id="ccY-bl-4aU"/>
                                             <outlet property="toDoTitleLabel" destination="ywN-pn-azd" id="zwu-w3-2NM"/>
                                         </connections>
                                     </tableViewCell>
@@ -449,13 +451,34 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ki0-SI-zjI">
+                                <rect key="frame" x="20" y="206" width="374" height="216"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dkb-Sz-8Rp">
+                                        <rect key="frame" x="0.0" y="0.0" width="29.5" height="216"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="u0i-OE-dEZ">
+                                        <rect key="frame" x="39.5" y="0.0" width="334.5" height="216"/>
+                                    </datePicker>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="u0i-OE-dEZ" firstAttribute="centerY" secondItem="ki0-SI-zjI" secondAttribute="centerY" id="Rmf-Ge-qI5"/>
+                                    <constraint firstItem="Dkb-Sz-8Rp" firstAttribute="centerY" secondItem="ki0-SI-zjI" secondAttribute="centerY" id="smz-2n-FYY"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vAU-Ix-Qci"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ngG-8K-sVj" firstAttribute="top" secondItem="vAU-Ix-Qci" secondAttribute="top" constant="20" id="5yp-x7-FYP"/>
+                            <constraint firstItem="ki0-SI-zjI" firstAttribute="leading" secondItem="vAU-Ix-Qci" secondAttribute="leading" constant="20" id="Jqt-OI-qvh"/>
+                            <constraint firstItem="ki0-SI-zjI" firstAttribute="top" secondItem="ngG-8K-sVj" secondAttribute="bottom" constant="20" id="KzO-oD-e2K"/>
                             <constraint firstItem="ngG-8K-sVj" firstAttribute="leading" secondItem="vAU-Ix-Qci" secondAttribute="leading" constant="20" id="WLj-bU-I51"/>
                             <constraint firstItem="vAU-Ix-Qci" firstAttribute="trailing" secondItem="ngG-8K-sVj" secondAttribute="trailing" constant="20" id="gVD-if-B86"/>
+                            <constraint firstItem="vAU-Ix-Qci" firstAttribute="trailing" secondItem="ki0-SI-zjI" secondAttribute="trailing" constant="20" id="ill-LL-WgR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="To Do List Add" id="DEw-Xs-PKH">
@@ -466,6 +489,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addExpireDatePicker" destination="u0i-OE-dEZ" id="CPT-Vy-3cJ"/>
                         <outlet property="addMemoTextField" destination="Vb2-gz-tSZ" id="8Cp-H9-T1R"/>
                         <outlet property="addTitleTextField" destination="syy-F2-PQu" id="ScM-Xh-EsY"/>
                     </connections>

@@ -44,7 +44,7 @@ extension DiaryViewController: UITableViewDataSource {
         let diary = Diary.diaryList[indexPath.row]
         diaryCell.diaryContentLabel.text = diary.content
         diaryCell.diaryHashTagLabel.text = diary.hashTag
-        diaryCell.diaryDateLabel.text = dateFormatter.toString(target: diary.date)
+        diaryCell.diaryDateLabel.text = dateFormatter.toStringFromDate(target: diary.date)
         return diaryCell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

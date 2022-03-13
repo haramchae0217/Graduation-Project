@@ -17,15 +17,25 @@ extension DateFormatter {
 //        df.timeStyle = .medium
 //        return df
 //    }()
-    func toDate(target: String) -> Date {
+    func toDateFromString(target: String) -> Date {
         self.dateFormat = "yyyy/MM/dd"
         return self.date(from: target)!
     }
     
     
     // 날짜 -> 문자열
-    func toString(target: Date) -> String {
+    func toStringFromDate(target: Date) -> String {
         self.dateFormat = "yyyy/MM/dd"
+        return self.string(from: target)
+    }
+    
+    func toTimeFromString(target: String) -> Date {
+        self.dateFormat = "a hh:mm"
+        return self.date(from: target)!
+    }
+    
+    func toStringFromTime(target: Date) -> String {
+        self.dateFormat = "a hh:mm"
         return self.string(from: target)
     }
 
