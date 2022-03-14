@@ -13,6 +13,7 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         diaryTableView.delegate = self
         diaryTableView.dataSource = self
         diaryTableView.contentMode = .scaleAspectFill
@@ -21,6 +22,11 @@ class DiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         diaryTableView.reloadData()
     }
+    @IBAction func addDiaryBarButtonItem(_ sender: UIBarButtonItem) {
+        guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: "addDiaryVC") as? AddDiaryViewController else { return }
+        self.navigationController?.pushViewController(addVC, animated: true)
+    }
+    
 
 }
 

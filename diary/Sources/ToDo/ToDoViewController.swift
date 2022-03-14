@@ -40,6 +40,11 @@ class ToDoViewController: UIViewController {
         }
         print(ToDo.toDoList[sender.tag].isChecked)
     }
+    @IBAction func addToDoBarButtonItem(_ sender: UIBarButtonItem) {
+        guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: "addToDoVC") as? AddToDoViewController else { return }
+        self.navigationController?.pushViewController(addToDo, animated: true)
+    }
+    
 }
 
 extension ToDoViewController: UITableViewDataSource {
