@@ -8,15 +8,15 @@
 import UIKit
 
 extension DateFormatter {
-//    static let customDateFormatter: DateFormatter = {
-//        let df = DateFormatter()
-//        df.dateFormat = "yyyy/MM/dd"
-//        df.locale = Locale(identifier: "ko-KR")
-//        df.timeZone = TimeZone(abbreviation: "KST")
-//        df.dateStyle = .medium
-//        df.timeStyle = .medium
-//        return df
-//    }()
+    static let customDateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy/MM/dd"
+        df.locale = Locale(identifier: "ko-KR")
+        df.timeZone = TimeZone(abbreviation: "KST")
+        df.dateStyle = .medium
+        df.timeStyle = .medium
+        return df
+    }()
     func toDateFromString(target: String) -> Date {
         self.dateFormat = "yyyy/MM/dd"
         return self.date(from: target)!

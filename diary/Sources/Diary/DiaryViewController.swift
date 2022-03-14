@@ -11,16 +11,6 @@ class DiaryViewController: UIViewController {
     
     @IBOutlet weak var diaryTableView: UITableView!
     
-    let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy/MM/dd"
-        df.locale = Locale(identifier: "ko-KR")
-        df.timeZone = TimeZone(abbreviation: "KST")
-        df.dateStyle = .medium
-        df.timeStyle = .medium
-        return df
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         diaryTableView.delegate = self
@@ -44,7 +34,7 @@ extension DiaryViewController: UITableViewDataSource {
         let diary = Diary.diaryList[indexPath.row]
         diaryCell.diaryContentLabel.text = diary.content
         diaryCell.diaryHashTagLabel.text = diary.hashTag
-        diaryCell.diaryDateLabel.text = dateFormatter.toStringFromDate(target: diary.date)
+        diaryCell.diaryDateLabel.text = DateFormatter.customDateFormatter.toStringFromDate(target: diary.date)
         return diaryCell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

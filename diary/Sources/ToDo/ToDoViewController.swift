@@ -11,16 +11,6 @@ class ToDoViewController: UIViewController {
     
     // UI
     @IBOutlet weak var toDoListTableView: UITableView!
-    
-    let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy/MM/dd"
-        df.locale = Locale(identifier: "ko-KR")
-        df.timeZone = TimeZone(abbreviation: "KST")
-        df.dateStyle = .medium
-        df.timeStyle = .medium
-        return df
-    }()
 
     // Property
     var toDoList: [ToDo] = [] // 이름 변경
@@ -63,8 +53,8 @@ extension ToDoViewController: UITableViewDataSource {
         toDoCell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         toDoCell.toDoTitleLabel.text = todo.title
         toDoCell.toDoCheckButton.tag = indexPath.row
-        toDoCell.toDoExpireDateLabel.text = dateFormatter.toStringFromDate(target: todo.expireDate)
-        toDoCell.toDoExpireTimeLabel.text = dateFormatter.toStringFromTime(target: todo.expireTime)
+        toDoCell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.toStringFromDate(target: todo.expireDate)
+        toDoCell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.toStringFromTime(target: todo.expireTime)
         
         toDoCell.selectionStyle = .none
         
