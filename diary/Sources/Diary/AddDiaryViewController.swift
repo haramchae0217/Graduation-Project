@@ -84,7 +84,6 @@ class AddDiaryViewController: UIViewController {
         let newDiary = Diary(content: addContent, hashTag: addHashTag, date: addDate, picture: addPicture)
         Diary.diaryList.append(newDiary)
         
-        
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -109,7 +108,7 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             addDiaryImageView.image = image
-            Diary.diaryList[row!].picture = image
+            
         } else {
             print("이미지 선택 실패")
         }
