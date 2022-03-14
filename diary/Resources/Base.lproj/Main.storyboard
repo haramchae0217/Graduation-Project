@@ -318,7 +318,6 @@
                                     <constraint firstItem="746-5Q-Lmc" firstAttribute="leading" secondItem="3cH-tV-m8e" secondAttribute="leading" constant="20" id="BoF-Wi-Ru7"/>
                                     <constraint firstItem="B4b-Jm-e7e" firstAttribute="leading" secondItem="3cH-tV-m8e" secondAttribute="leading" constant="20" id="CIk-xm-yfP"/>
                                     <constraint firstItem="dXt-jE-MEJ" firstAttribute="top" secondItem="B4b-Jm-e7e" secondAttribute="bottom" id="DLt-w4-BXz"/>
-                                    <constraint firstItem="CyN-RP-RK7" firstAttribute="top" secondItem="Idq-BZ-Sea" secondAttribute="bottom" constant="20" id="GLh-QK-dTz"/>
                                     <constraint firstItem="CyN-RP-RK7" firstAttribute="leading" secondItem="3cH-tV-m8e" secondAttribute="leading" constant="20" id="GNk-4x-2Pn"/>
                                     <constraint firstItem="Mbc-ME-JUb" firstAttribute="leading" secondItem="3cH-tV-m8e" secondAttribute="leading" constant="20" id="JLT-C1-BRn"/>
                                     <constraint firstAttribute="trailing" secondItem="B4b-Jm-e7e" secondAttribute="trailing" constant="20" id="TEb-7U-BSq"/>
@@ -329,7 +328,6 @@
                                     <constraint firstAttribute="trailing" secondItem="Mbc-ME-JUb" secondAttribute="trailing" constant="20" id="mRr-rT-Hi3"/>
                                     <constraint firstItem="746-5Q-Lmc" firstAttribute="top" secondItem="CyN-RP-RK7" secondAttribute="bottom" id="nKV-Is-ETx"/>
                                     <constraint firstAttribute="trailing" secondItem="CyN-RP-RK7" secondAttribute="trailing" constant="20" id="rlO-WU-18s"/>
-                                    <constraint firstItem="Idq-BZ-Sea" firstAttribute="top" secondItem="3cH-tV-m8e" secondAttribute="top" constant="20" id="t3q-Na-bhK"/>
                                 </constraints>
                             </stackView>
                         </subviews>

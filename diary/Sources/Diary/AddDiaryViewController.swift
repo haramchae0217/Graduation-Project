@@ -14,7 +14,6 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDatePicker: UIDatePicker!
     @IBOutlet weak var addDiaryImageView: UIImageView!
     
-    var addDiary: Diary?
     var row: Int?
     let imagePicker = UIImagePickerController()
     
@@ -30,12 +29,7 @@ class AddDiaryViewController: UIViewController {
             addDiaryContentTextView.text = "내용을 입력해주세요."
             addDiaryContentTextView.textColor = .lightGray
         }
-        
-//        if let addDiary = addDiary {
-//            addDatePicker.date = addDiary.date
-//            addDiaryContentTextView.text = addDiary.content
-//            addDiaryHashTagTextField.text = addDiary.hashTag
-//        }
+    
     }
     
     func showAlertSheet() {
@@ -108,6 +102,7 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             addDiaryImageView.image = image
+            Diary.diaryList[row!].picture = image
             
         } else {
             print("이미지 선택 실패")
