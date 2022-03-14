@@ -14,8 +14,6 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDatePicker: UIDatePicker!
     @IBOutlet weak var addDiaryImageView: UIImageView!
     
-    var addDiary: Diary?
-    var row: Int?
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -103,7 +101,6 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             addDiaryImageView.image = image
-            //Diary.diaryList[].picture = image
             
         } else {
             print("이미지 선택 실패")

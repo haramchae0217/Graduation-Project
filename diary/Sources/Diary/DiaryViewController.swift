@@ -13,10 +13,8 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         diaryTableView.delegate = self
         diaryTableView.dataSource = self
-        diaryTableView.contentMode = .scaleAspectFill
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -24,7 +22,8 @@ class DiaryViewController: UIViewController {
     }
     @IBAction func addDiaryBarButtonItem(_ sender: UIBarButtonItem) {
         guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: "addDiaryVC") as? AddDiaryViewController else { return }
-        self.navigationController?.pushViewController(addVC, animated: true)
+        self.present(addVC, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(addVC, animated: true)
     }
     
 
@@ -40,6 +39,8 @@ extension DiaryViewController: UITableViewDataSource {
         let diary = Diary.diaryList[indexPath.row]
         diaryCell.diaryContentLabel.text = diary.content
         diaryCell.diaryHashTagLabel.text = diary.hashTag
+        diaryCell.diaryPictureImageView.image = diary.picture
+        diaryCell.diaryPictureImageView.contentMode = .scaleAspectFill
         diaryCell.diaryDateLabel.text = DateFormatter.customDateFormatter.toStringFromDate(target: diary.date)
         return diaryCell
     }
