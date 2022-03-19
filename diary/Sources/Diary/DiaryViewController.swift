@@ -44,6 +44,7 @@ extension DiaryViewController: UITableViewDataSource {
         diaryCell.diaryDateLabel.text = DateFormatter.customDateFormatter.toStringFromDate(target: diary.date)
         return diaryCell
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             Diary.diaryList.remove(at: indexPath.row)
