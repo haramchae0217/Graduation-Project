@@ -105,6 +105,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Diary" id="nRr-vS-kkS">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="XQg-sy-jZ2">
+                            <color key="tintColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addDiaryBarButtonItem:" destination="l5B-Nh-jQA" id="doY-KP-DED"/>
                             </connections>
@@ -144,6 +145,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="+">
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="40"/>
+                                            <color key="baseForegroundColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="addPictureButton:" destination="7eh-vZ-LFl" eventType="touchUpInside" id="QLd-QW-EKZ"/>
@@ -437,11 +439,14 @@
                     <navigationItem key="navigationItem" title="To Do" id="fW2-Dh-Vrc">
                         <rightBarButtonItems>
                             <barButtonItem style="plain" systemItem="add" id="SU5-SA-CXj">
+                                <color key="tintColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="addToDoBarButtonItem:" destination="cHg-qZ-IsK" id="c2a-j2-1cR"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="calendar" image="calendar" catalog="system" style="plain" id="ELe-GM-lww"/>
+                            <barButtonItem title="calendar" image="calendar" catalog="system" style="plain" id="ELe-GM-lww">
+                                <color key="tintColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -610,6 +615,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Date Format">
                                             <color key="baseForegroundColor" systemColor="systemPinkColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="eu7-cl-l7C" kind="show" id="q20-9K-3od"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5C-wf-wjV">
                                         <rect key="frame" x="0.0" y="91.5" width="314" height="31"/>
@@ -653,13 +661,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜형식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vq6-h6-l8L">
-                                <rect key="frame" x="20" y="54" width="374" height="21"/>
+                                <rect key="frame" x="20" y="98" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SO2-PZ-OXf">
-                                <rect key="frame" x="20" y="85" width="374" height="777"/>
+                                <rect key="frame" x="20" y="129" width="374" height="684"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="E22-q6-qn3">

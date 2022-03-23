@@ -22,8 +22,8 @@ class DiaryViewController: UIViewController {
     }
     @IBAction func addDiaryBarButtonItem(_ sender: UIBarButtonItem) {
         guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: "addDiaryVC") as? AddDiaryViewController else { return }
-        self.present(addVC, animated: true, completion: nil)
-        //self.navigationController?.pushViewController(addVC, animated: true)
+        //self.present(addVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(addVC, animated: true)
     }
     
 
