@@ -89,8 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				837BB9E527AD8617000DDAB8 /* DiaryViewController.swift */,
-				837BB9ED27AD9232000DDAB8 /* EditDiaryViewController.swift */,
 				837BB9EF27AE0C02000DDAB8 /* AddDiaryViewController.swift */,
+				837BB9ED27AD9232000DDAB8 /* EditDiaryViewController.swift */,
 				837BB9E727AD8D75000DDAB8 /* DiaryTableViewCell.swift */,
 			);
 			path = Diary;

@@ -104,6 +104,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Diary" id="nRr-vS-kkS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="wGr-ta-nWl">
+                            <connections>
+                                <action selector="searchBarButton:" destination="l5B-Nh-jQA" id="HBN-1y-L8o"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="XQg-sy-jZ2">
                             <color key="tintColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
