@@ -10,6 +10,7 @@ import Foundation
 struct ToDo {
     var title: String
     var memo: String
+    var isChecked: Bool = false
     var expireDate: Date = Date()
     var expireTime: Date = Date()
     

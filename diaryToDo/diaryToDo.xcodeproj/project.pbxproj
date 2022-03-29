@@ -17,6 +17,10 @@
 		837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */; };
 		837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0F27DC360000FC46A7 /* ToDo.swift */; };
 		83D86A8827E3532500B7E5DC /* DateFormatter++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */; };
+		83FDF01E27F2EA33008E45E3 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF01D27F2EA33008E45E3 /* Diary.swift */; };
+		83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */; };
+		83FDF02227F317AD008E45E3 /* AddDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF02127F317AD008E45E3 /* AddDiaryViewController.swift */; };
+		83FDF02427F3547F008E45E3 /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837C4F0F27DC360000FC46A7 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extension.swift"; sourceTree = "<group>"; };
+		83FDF01D27F2EA33008E45E3 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController++Extension.swift"; sourceTree = "<group>"; };
+		83FDF02127F317AD008E45E3 /* AddDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryViewController.swift; sourceTree = "<group>"; };
+		83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToDoViewController.swift; path = diaryToDo/Source/ToDo/AddToDoViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,19 +72,79 @@
 		83354D9827DB51AE0096C7B5 /* diaryToDo */ = {
 			isa = PBXGroup;
 			children = (
-				83354D9927DB51AE0096C7B5 /* AppDelegate.swift */,
-				83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */,
-				83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */,
-				83354D9F27DB51AE0096C7B5 /* Main.storyboard */,
-				837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */,
-				83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */,
-				837C4F0F27DC360000FC46A7 /* ToDo.swift */,
-				837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */,
-				83354DA227DB51AF0096C7B5 /* Assets.xcassets */,
-				83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */,
+				83FDF01427F2D7A8008E45E3 /* Source */,
+				83FDF01527F2D7AE008E45E3 /* Resource */,
 				83354DA727DB51AF0096C7B5 /* Info.plist */,
 			);
 			path = diaryToDo;
+			sourceTree = "<group>";
+		};
+		83FDF01427F2D7A8008E45E3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				83354D9927DB51AE0096C7B5 /* AppDelegate.swift */,
+				83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */,
+				83FDF01A27F2D7EE008E45E3 /* Model */,
+				83FDF01927F2D7E9008E45E3 /* Extension */,
+				83FDF01827F2D7E4008E45E3 /* Setting */,
+				83FDF01727F2D7DF008E45E3 /* ToDo */,
+				83FDF01627F2D7D0008E45E3 /* Diary */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		83FDF01527F2D7AE008E45E3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				83354D9F27DB51AE0096C7B5 /* Main.storyboard */,
+				83354DA227DB51AF0096C7B5 /* Assets.xcassets */,
+				83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		83FDF01627F2D7D0008E45E3 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */,
+				83FDF02127F317AD008E45E3 /* AddDiaryViewController.swift */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		83FDF01727F2D7DF008E45E3 /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */,
+				83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */,
+				837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */,
+			);
+			path = ToDo;
+			sourceTree = "<group>";
+		};
+		83FDF01827F2D7E4008E45E3 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		83FDF01927F2D7E9008E45E3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */,
+				83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		83FDF01A27F2D7EE008E45E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				837C4F0F27DC360000FC46A7 /* ToDo.swift */,
+				83FDF01D27F2EA33008E45E3 /* Diary.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +222,10 @@
 				83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */,
 				83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */,
 				837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */,
+				83FDF02227F317AD008E45E3 /* AddDiaryViewController.swift in Sources */,
+				83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */,
+				83FDF02427F3547F008E45E3 /* AddToDoViewController.swift in Sources */,
+				83FDF01E27F2EA33008E45E3 /* Diary.swift in Sources */,
 				83354D9C27DB51AE0096C7B5 /* SceneDelegate.swift in Sources */,
 				837C4F0C27DC349B00FC46A7 /* ToDoTableViewCell.swift in Sources */,
 				83D86A8827E3532500B7E5DC /* DateFormatter++Extension.swift in Sources */,
