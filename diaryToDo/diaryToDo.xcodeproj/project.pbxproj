@@ -16,6 +16,21 @@
 		837C4F0C27DC349B00FC46A7 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */; };
 		837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */; };
 		837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0F27DC360000FC46A7 /* ToDo.swift */; };
+		83D512BC27F5B120009B3A23 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 83D512BB27F5B120009B3A23 /* FSCalendar */; };
+		83D512BE27F5BC67009B3A23 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512BD27F5BC67009B3A23 /* CalendarViewController.swift */; };
+		83D512C027F5C368009B3A23 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512BF27F5C368009B3A23 /* SettingViewController.swift */; };
+		83D512C227F5C3C6009B3A23 /* DateFormatSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C127F5C3C6009B3A23 /* DateFormatSettingViewController.swift */; };
+		83D512C427F5C3E7009B3A23 /* FontSizeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C327F5C3E7009B3A23 /* FontSizeSettingViewController.swift */; };
+		83D512C627F5C405009B3A23 /* FilmSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C527F5C405009B3A23 /* FilmSettingViewController.swift */; };
+		83D512C827F5CB18009B3A23 /* DateFormatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C727F5CB18009B3A23 /* DateFormatTableViewCell.swift */; };
+		83D512CA27F5CC09009B3A23 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C927F5CC09009B3A23 /* DateFormat.swift */; };
+		83D512CC27F5D998009B3A23 /* FontSizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512CB27F5D998009B3A23 /* FontSizeTableViewCell.swift */; };
+		83D512CE27F5DABD009B3A23 /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512CD27F5DABD009B3A23 /* FontSize.swift */; };
+		83D512D027F5DD9F009B3A23 /* FontSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512CF27F5DD9F009B3A23 /* FontSettingViewController.swift */; };
+		83D512D227F5DE14009B3A23 /* FontSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512D127F5DE14009B3A23 /* FontSettingTableViewCell.swift */; };
+		83D512D427F5E461009B3A23 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512D327F5E461009B3A23 /* Font.swift */; };
+		83D512D627F5EE98009B3A23 /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512D527F5EE98009B3A23 /* FilmTableViewCell.swift */; };
+		83D512D827F5EF26009B3A23 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512D727F5EF26009B3A23 /* Film.swift */; };
 		83D86A8827E3532500B7E5DC /* DateFormatter++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */; };
 		83FDF01E27F2EA33008E45E3 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF01D27F2EA33008E45E3 /* Diary.swift */; };
 		83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */; };
@@ -35,6 +50,20 @@
 		837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837C4F0F27DC360000FC46A7 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		83D512BD27F5BC67009B3A23 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		83D512BF27F5C368009B3A23 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = diaryToDo/Resource/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
+		83D512C127F5C3C6009B3A23 /* DateFormatSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatSettingViewController.swift; path = diaryToDo/Resource/DateFormatSettingViewController.swift; sourceTree = SOURCE_ROOT; };
+		83D512C327F5C3E7009B3A23 /* FontSizeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSizeSettingViewController.swift; path = diaryToDo/Resource/FontSizeSettingViewController.swift; sourceTree = SOURCE_ROOT; };
+		83D512C527F5C405009B3A23 /* FilmSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmSettingViewController.swift; sourceTree = "<group>"; };
+		83D512C727F5CB18009B3A23 /* DateFormatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatTableViewCell.swift; sourceTree = "<group>"; };
+		83D512C927F5CC09009B3A23 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormat.swift; path = diaryToDo/Source/Setting/DateFormat.swift; sourceTree = SOURCE_ROOT; };
+		83D512CB27F5D998009B3A23 /* FontSizeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSizeTableViewCell.swift; path = diaryToDo/Resource/FontSizeTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		83D512CD27F5DABD009B3A23 /* FontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSize.swift; path = diaryToDo/Source/Setting/FontSize.swift; sourceTree = SOURCE_ROOT; };
+		83D512CF27F5DD9F009B3A23 /* FontSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSettingViewController.swift; path = diaryToDo/Resource/FontSettingViewController.swift; sourceTree = SOURCE_ROOT; };
+		83D512D127F5DE14009B3A23 /* FontSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSettingTableViewCell.swift; path = diaryToDo/Resource/FontSettingTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		83D512D327F5E461009B3A23 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Font.swift; path = diaryToDo/Source/Setting/Font.swift; sourceTree = SOURCE_ROOT; };
+		83D512D527F5EE98009B3A23 /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilmTableViewCell.swift; path = diaryToDo/Resource/FilmTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		83D512D727F5EF26009B3A23 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Film.swift; path = diaryToDo/Source/Setting/Film.swift; sourceTree = SOURCE_ROOT; };
 		83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extension.swift"; sourceTree = "<group>"; };
 		83FDF01D27F2EA33008E45E3 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController++Extension.swift"; sourceTree = "<group>"; };
@@ -47,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D512BC27F5B120009B3A23 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +112,15 @@
 		83D5129627F5A64F009B3A23 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				83D512BF27F5C368009B3A23 /* SettingViewController.swift */,
+				83D512C127F5C3C6009B3A23 /* DateFormatSettingViewController.swift */,
+				83D512C727F5CB18009B3A23 /* DateFormatTableViewCell.swift */,
+				83D512C327F5C3E7009B3A23 /* FontSizeSettingViewController.swift */,
+				83D512CB27F5D998009B3A23 /* FontSizeTableViewCell.swift */,
+				83D512CF27F5DD9F009B3A23 /* FontSettingViewController.swift */,
+				83D512D127F5DE14009B3A23 /* FontSettingTableViewCell.swift */,
+				83D512C527F5C405009B3A23 /* FilmSettingViewController.swift */,
+				83D512D527F5EE98009B3A23 /* FilmTableViewCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -91,11 +130,12 @@
 			children = (
 				83354D9927DB51AE0096C7B5 /* AppDelegate.swift */,
 				83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */,
+				83D512BD27F5BC67009B3A23 /* CalendarViewController.swift */,
+				83FDF01627F2D7D0008E45E3 /* Diary */,
+				83FDF01727F2D7DF008E45E3 /* ToDo */,
+				83D5129627F5A64F009B3A23 /* Setting */,
 				83FDF01A27F2D7EE008E45E3 /* Model */,
 				83FDF01927F2D7E9008E45E3 /* Extension */,
-				83D5129627F5A64F009B3A23 /* Setting */,
-				83FDF01727F2D7DF008E45E3 /* ToDo */,
-				83FDF01627F2D7D0008E45E3 /* Diary */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -141,8 +181,12 @@
 		83FDF01A27F2D7EE008E45E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				837C4F0F27DC360000FC46A7 /* ToDo.swift */,
 				83FDF01D27F2EA33008E45E3 /* Diary.swift */,
+				837C4F0F27DC360000FC46A7 /* ToDo.swift */,
+				83D512C927F5CC09009B3A23 /* DateFormat.swift */,
+				83D512CD27F5DABD009B3A23 /* FontSize.swift */,
+				83D512D327F5E461009B3A23 /* Font.swift */,
+				83D512D727F5EF26009B3A23 /* Film.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,6 +207,9 @@
 			dependencies = (
 			);
 			name = diaryToDo;
+			packageProductDependencies = (
+				83D512BB27F5B120009B3A23 /* FSCalendar */,
+			);
 			productName = diaryToDo;
 			productReference = 83354D9627DB51AE0096C7B5 /* diaryToDo.app */;
 			productType = "com.apple.product-type.application";
@@ -191,6 +238,9 @@
 				Base,
 			);
 			mainGroup = 83354D8D27DB51AE0096C7B5;
+			packageReferences = (
+				83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 83354D9727DB51AE0096C7B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,17 +268,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D512D827F5EF26009B3A23 /* Film.swift in Sources */,
+				83D512BE27F5BC67009B3A23 /* CalendarViewController.swift in Sources */,
 				837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */,
+				83D512C427F5C3E7009B3A23 /* FontSizeSettingViewController.swift in Sources */,
+				83D512D427F5E461009B3A23 /* Font.swift in Sources */,
 				83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */,
+				83D512CC27F5D998009B3A23 /* FontSizeTableViewCell.swift in Sources */,
+				83D512CE27F5DABD009B3A23 /* FontSize.swift in Sources */,
+				83D512C027F5C368009B3A23 /* SettingViewController.swift in Sources */,
+				83D512C227F5C3C6009B3A23 /* DateFormatSettingViewController.swift in Sources */,
 				83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */,
 				837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */,
+				83D512CA27F5CC09009B3A23 /* DateFormat.swift in Sources */,
+				83D512D227F5DE14009B3A23 /* FontSettingTableViewCell.swift in Sources */,
 				83FDF02227F317AD008E45E3 /* AddDiaryViewController.swift in Sources */,
 				83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */,
 				83FDF02427F3547F008E45E3 /* AddToDoViewController.swift in Sources */,
+				83D512C827F5CB18009B3A23 /* DateFormatTableViewCell.swift in Sources */,
 				83FDF01E27F2EA33008E45E3 /* Diary.swift in Sources */,
 				83354D9C27DB51AE0096C7B5 /* SceneDelegate.swift in Sources */,
 				837C4F0C27DC349B00FC46A7 /* ToDoTableViewCell.swift in Sources */,
+				83D512D027F5DD9F009B3A23 /* FontSettingViewController.swift in Sources */,
+				83D512D627F5EE98009B3A23 /* FilmTableViewCell.swift in Sources */,
 				83D86A8827E3532500B7E5DC /* DateFormatter++Extension.swift in Sources */,
+				83D512C627F5C405009B3A23 /* FilmSettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +512,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		83D512BB27F5B120009B3A23 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83354D8E27DB51AE0096C7B5 /* Project object */;
 }

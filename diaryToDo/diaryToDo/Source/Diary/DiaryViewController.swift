@@ -21,7 +21,8 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
-        
+        guard let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: CalendarViewController.identifier) as? CalendarViewController else { return }
+        self.present(calendarVC, animated: true)
     }
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {

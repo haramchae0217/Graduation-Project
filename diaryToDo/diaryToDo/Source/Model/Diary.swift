@@ -11,7 +11,7 @@ struct Diary {
     var content: String
     var hashTag: String
     var date: Date = Date()
-    var picture: UIImage = UIImage(systemName: "film1")!
+    var picture: UIImage = UIImage(systemName: "cafe")!
     
     static var diaryItem: [Diary] = []
 }
