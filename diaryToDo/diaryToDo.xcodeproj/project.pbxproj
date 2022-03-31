@@ -79,6 +79,13 @@
 			path = diaryToDo;
 			sourceTree = "<group>";
 		};
+		83D5129627F5A64F009B3A23 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		83FDF01427F2D7A8008E45E3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +93,7 @@
 				83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */,
 				83FDF01A27F2D7EE008E45E3 /* Model */,
 				83FDF01927F2D7E9008E45E3 /* Extension */,
-				83FDF01827F2D7E4008E45E3 /* Setting */,
+				83D5129627F5A64F009B3A23 /* Setting */,
 				83FDF01727F2D7DF008E45E3 /* ToDo */,
 				83FDF01627F2D7D0008E45E3 /* Diary */,
 			);
@@ -120,13 +127,6 @@
 				837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */,
 			);
 			path = ToDo;
-			sourceTree = "<group>";
-		};
-		83FDF01827F2D7E4008E45E3 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Setting;
 			sourceTree = "<group>";
 		};
 		83FDF01927F2D7E9008E45E3 /* Extension */ = {
