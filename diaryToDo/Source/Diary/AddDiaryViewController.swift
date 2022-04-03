@@ -71,7 +71,7 @@ class AddDiaryViewController: UIViewController {
             return
         }
         let newDiary = Diary(content: addContent, hashTag: addHashTag, date: addDate, picture: addPicture)
-        Diary.diaryItem.append(newDiary)
+        MyDB.diaryItem.append(newDiary)
         
         self.navigationController?.popViewController(animated: true)
     }

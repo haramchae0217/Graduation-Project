@@ -11,6 +11,8 @@ import FSCalendar
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var diaryCalendarView: FSCalendar!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var toDoLabel: UILabel!
     
     static let identifier = "calendarVC"
     
@@ -41,16 +43,39 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        if events.contains(date) {
-            return 1
-//        } else {
-//            return 0
-//        }
+        
+        for todo in MyDB.ToDoList {
+            let toDoEvent = todo.startDate
+            if toDoEvent == date {
+                let count = MyDB.ToDoList.filter { todo in
+                    todo.startDate == date
+                }.count
+                
+                if count >= 3 {
+                    return 3
+                } else {
+                    return count
+                }
+            }
+        }
+        return 0
     }
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        if events.contains(date) {
-//            print("이벤트 있음")
-//            // 화면 전환 코드, 데이터 리로드 코드
-//        }
+        dateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
+        
+        let toDoList = MyDB.ToDoList.filter { toDo in
+            toDo.startDate == date
+        }
+        if toDoList.count > 0 {
+            
+            var text: String = ""
+            
+            for str in toDoList {
+                text.append("\(str.title)\n")
+            }
+            toDoLabel.text = text
+        } else {
+            toDoLabel.text = "등록된 ToDo가 없습니다."
+        }
     }
 }

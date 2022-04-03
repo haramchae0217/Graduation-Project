@@ -18,24 +18,24 @@ extension DateFormatter {
         return df
     }()
     
-    func toDateFromString(target: String) -> Date {
+    func strToDate(str: String) -> Date {
         self.dateFormat = "yyyy/MM/dd"
-        return self.date(from: target)!
+        return self.date(from: str)!
     }
     
-    func toStringFromDate(target: Date) -> String {
+    func dateToStr(date: Date) -> String {
         self.dateFormat = "yyyy/MM/dd"
-        return self.string(from: target)
+        return self.string(from: date)
     }
     
-    func toTimeFromString(target: String) -> Date {
+    func strToTime(str: String) -> Date {
         self.dateFormat = "a hh:mm"
-        return self.date(from: target)!
+        return self.date(from: str)!
     }
     
-    func toStringFromTime(target: Date) -> String {
+    func timeToStr(date: Date) -> String {
         self.dateFormat = "a hh:mm"
-        return self.string(from: target)
+        return self.string(from: date)
     }
 
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8300692A27F9F16400BDD784 /* MyDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300692927F9F16400BDD784 /* MyDB.swift */; };
 		83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9927DB51AE0096C7B5 /* AppDelegate.swift */; };
 		83354D9C27DB51AE0096C7B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */; };
 		83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8300692927F9F16400BDD784 /* MyDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDB.swift; sourceTree = "<group>"; };
 		83354D9627DB51AE0096C7B5 /* diaryToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diaryToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83354D9927DB51AE0096C7B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		83FDF01A27F2D7EE008E45E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8300692927F9F16400BDD784 /* MyDB.swift */,
 				83FDF01D27F2EA33008E45E3 /* Diary.swift */,
 				837C4F0F27DC360000FC46A7 /* ToDo.swift */,
 				83D512C927F5CC09009B3A23 /* DateFormat.swift */,
@@ -283,6 +286,7 @@
 				83D512CA27F5CC09009B3A23 /* DateFormat.swift in Sources */,
 				83D512D227F5DE14009B3A23 /* FontSettingTableViewCell.swift in Sources */,
 				83FDF02227F317AD008E45E3 /* AddDiaryViewController.swift in Sources */,
+				8300692A27F9F16400BDD784 /* MyDB.swift in Sources */,
 				83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */,
 				83FDF02427F3547F008E45E3 /* AddToDoViewController.swift in Sources */,
 				83D512C827F5CB18009B3A23 /* DateFormatTableViewCell.swift in Sources */,

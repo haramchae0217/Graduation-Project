@@ -13,5 +13,4 @@ struct Diary {
     var date: Date = Date()
     var picture: UIImage = UIImage(systemName: "cafe")!
     
-    static var diaryItem: [Diary] = []
 }

@@ -229,20 +229,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FaX-7j-GpQ" customClass="FSCalendar">
-                                <rect key="frame" x="20" y="64" width="374" height="249.5"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="276"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FaX-7j-GpQ" secondAttribute="height" multiplier="1.5:1" id="1af-uB-POx"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8t-Sk-5lT">
-                                <rect key="frame" x="20" y="333.5" width="374" height="21"/>
+                                <rect key="frame" x="20" y="340" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjT-ah-g47">
-                                <rect key="frame" x="20" y="384.5" width="374" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjT-ah-g47">
+                                <rect key="frame" x="20" y="391" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -253,17 +253,19 @@
                         <constraints>
                             <constraint firstItem="EjT-ah-g47" firstAttribute="leading" secondItem="A7W-Cg-5hH" secondAttribute="leading" constant="20" id="0Qe-eg-fCN"/>
                             <constraint firstItem="A7W-Cg-5hH" firstAttribute="trailing" secondItem="EjT-ah-g47" secondAttribute="trailing" constant="20" id="7Co-zA-xNe"/>
-                            <constraint firstItem="FaX-7j-GpQ" firstAttribute="leading" secondItem="A7W-Cg-5hH" secondAttribute="leading" constant="20" id="9G6-gc-qTs"/>
-                            <constraint firstItem="A7W-Cg-5hH" firstAttribute="trailing" secondItem="FaX-7j-GpQ" secondAttribute="trailing" constant="20" id="FQ7-J5-IdV"/>
+                            <constraint firstItem="FaX-7j-GpQ" firstAttribute="leading" secondItem="A7W-Cg-5hH" secondAttribute="leading" id="9G6-gc-qTs"/>
+                            <constraint firstItem="A7W-Cg-5hH" firstAttribute="trailing" secondItem="FaX-7j-GpQ" secondAttribute="trailing" id="FQ7-J5-IdV"/>
                             <constraint firstItem="k8t-Sk-5lT" firstAttribute="top" secondItem="FaX-7j-GpQ" secondAttribute="bottom" constant="20" id="PQK-RL-oiP"/>
                             <constraint firstItem="EjT-ah-g47" firstAttribute="top" secondItem="k8t-Sk-5lT" secondAttribute="bottom" constant="30" id="U7A-KB-JVW"/>
-                            <constraint firstItem="FaX-7j-GpQ" firstAttribute="top" secondItem="A7W-Cg-5hH" secondAttribute="top" constant="20" id="W46-1b-XMW"/>
+                            <constraint firstItem="FaX-7j-GpQ" firstAttribute="top" secondItem="A7W-Cg-5hH" secondAttribute="top" id="W46-1b-XMW"/>
                             <constraint firstItem="A7W-Cg-5hH" firstAttribute="trailing" secondItem="k8t-Sk-5lT" secondAttribute="trailing" constant="20" id="YgW-UH-5Kn"/>
                             <constraint firstItem="k8t-Sk-5lT" firstAttribute="leading" secondItem="A7W-Cg-5hH" secondAttribute="leading" constant="20" id="nfO-jg-Z6q"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="k8t-Sk-5lT" id="tzS-Au-9Gn"/>
                         <outlet property="diaryCalendarView" destination="FaX-7j-GpQ" id="x5z-4R-Dd2"/>
+                        <outlet property="toDoLabel" destination="EjT-ah-g47" id="s5H-Xf-4KN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3G6-rw-Xcp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -408,6 +410,9 @@
                             </barButtonItem>
                             <barButtonItem image="calendar" catalog="system" style="plain" id="a5U-xX-Yli">
                                 <color key="tintColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="calendarButton:" destination="v9c-dq-c5l" id="FNs-On-mdo"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>

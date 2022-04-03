@@ -32,37 +32,42 @@ class ToDoViewController: UIViewController {
         if sender.isSelected {
             sender.setImage(UIImage(systemName: "checkmark.square"),for: .normal)
             sender.isSelected = false
-            ToDo.ToDoList[sender.tag].isChecked = true
+            MyDB.ToDoList[sender.tag].isChecked = true
         } else {
             sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
             sender.isSelected = true
-            ToDo.ToDoList[sender.tag].isChecked = true
+            MyDB.ToDoList[sender.tag].isChecked = true
         }
         
+    }
+    
+    @IBAction func calendarButton(_ sender: UIBarButtonItem) {
+        guard let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: CalendarViewController.identifier) as? CalendarViewController else { return }
+        self.present(calendarVC, animated: true)
     }
     
 }
 
 extension ToDoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ToDo.ToDoList.count
+        MyDB.ToDoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDo", for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
-        let todo = ToDo.ToDoList[indexPath.row]
+        let todo = MyDB.ToDoList[indexPath.row]
         cell.toDoTitleLabel.text = todo.title
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
-        cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.toStringFromDate(target: todo.expireDate)
-        cell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.toStringFromTime(target: todo.expireTime)
+        cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.expireDate)
+        cell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.timeToStr(date: todo.expireTime)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            ToDo.ToDoList.remove(at: indexPath.row)
+            MyDB.ToDoList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -76,7 +81,7 @@ extension ToDoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as? AddToDoViewController else { return }
-        editToDoVC.editToDo = ToDo.ToDoList[indexPath.row]
+        editToDoVC.editToDo = MyDB.ToDoList[indexPath.row]
         editToDoVC.editRow = indexPath.row
         self.navigationController?.pushViewController(editToDoVC, animated: true)
     }
