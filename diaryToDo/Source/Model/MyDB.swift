@@ -9,11 +9,7 @@ import Foundation
 import UIKit
 
 struct MyDB {
-    static var diaryItem: [Diary] = [
-        Diary(content: "재밌는 하루", hashTag: "서울", date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/01")),
-        Diary(content: "오늘의 하루", hashTag: "파주", date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/02")),
-        Diary(content: "힘든 하루", hashTag: "충주", date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/03"))
-    ]
+    static var diaryItem: [Diary] = []
     
     static var ToDoList: [ToDo] = [
         ToDo(title: "점심먹기", memo: "친구와 밥약", startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/04/01")),

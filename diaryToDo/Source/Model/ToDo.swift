@@ -12,7 +12,6 @@ struct ToDo {
     var memo: String
     var isChecked: Bool = false
     var startDate: Date = Date()
-    var expireDate: Date = Date()
-    var expireTime: Date = Date()
+    var endDate: Date = Date()
     
 }

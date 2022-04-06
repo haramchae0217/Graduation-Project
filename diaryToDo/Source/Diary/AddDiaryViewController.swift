@@ -66,11 +66,13 @@ class AddDiaryViewController: UIViewController {
         let addHashTag = addDiaryHashTagTextField.text!
         let addPicture = addDiaryImageView.image!
         
+        let filterHashTag = addHashTag.components(separatedBy: " ")
+        
         if addContent.isEmpty, addHashTag.isEmpty {
             UIAlertController.showAlert(message: "내용을 입력해주세요.", vc: self)
             return
         }
-        let newDiary = Diary(content: addContent, hashTag: addHashTag, date: addDate, picture: addPicture)
+        let newDiary = Diary(content: addContent, hashTag: filterHashTag, date: addDate, picture: addPicture)
         MyDB.diaryItem.append(newDiary)
         
         self.navigationController?.popViewController(animated: true)

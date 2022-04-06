@@ -59,8 +59,8 @@ extension ToDoViewController: UITableViewDataSource {
         cell.toDoTitleLabel.text = todo.title
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
-        cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.expireDate)
-        cell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.timeToStr(date: todo.expireTime)
+        cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.endDate)
+        cell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.timeToStr(date: todo.endDate)
         
         return cell
     }

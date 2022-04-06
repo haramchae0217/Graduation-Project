@@ -43,7 +43,7 @@ class DiaryViewController: UIViewController {
 extension DiaryViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            filterHashTag = MyDB.diaryItem.filter{ $0.hashTag.lowercased().map { String($0) }.contains(searchText) }
+            filterHashTag = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(searchText) }
         }
         
     }

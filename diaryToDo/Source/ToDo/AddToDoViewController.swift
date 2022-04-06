@@ -30,7 +30,7 @@ class AddToDoViewController: UIViewController {
         if let editToDo = editToDo {
             addTitleTextField.text = editToDo.title
             addMemoTextField.text = editToDo.memo
-            addExpireDatePicker.date = editToDo.expireDate
+            addExpireDatePicker.date = editToDo.endDate
         }
         
         if viewType == .add {
@@ -48,7 +48,7 @@ class AddToDoViewController: UIViewController {
         let title = addTitleTextField.text!
         let memo = addMemoTextField.text!
         let expireDate = addExpireDatePicker.date
-        let toDo = ToDo(title: title, memo: memo, expireDate: expireDate, expireTime: expireDate)
+        let toDo = ToDo(title: title, memo: memo, endDate: expireDate)
         guard let editToDoList = editToDo else { return }
         
         if editToDoList.title == title && editToDoList.memo == memo {
