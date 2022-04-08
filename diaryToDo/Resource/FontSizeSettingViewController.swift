@@ -20,11 +20,18 @@ class FontSizeSettingViewController: UIViewController {
         fontSizeTableView.delegate = self
         fontSizeTableView.reloadData()
         
+        let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
+        self.navigationItem.rightBarButtonItem = rightDoneButton
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         fontSizeTableView.reloadData()
+    }
+    
+    @objc func setDoneButton() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectFontSize(_ sender: UIButton) {

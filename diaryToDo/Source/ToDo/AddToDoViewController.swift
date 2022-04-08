@@ -13,7 +13,7 @@ class AddToDoViewController: UIViewController {
     
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addMemoTextField: UITextField!
-    @IBOutlet weak var addExpireDatePicker: UIDatePicker!
+    @IBOutlet weak var addEndDatePicker: UIDatePicker!
     
     var editToDo: ToDo?
     var editRow: Int?
@@ -30,7 +30,7 @@ class AddToDoViewController: UIViewController {
         if let editToDo = editToDo {
             addTitleTextField.text = editToDo.title
             addMemoTextField.text = editToDo.memo
-            addExpireDatePicker.date = editToDo.endDate
+            addEndDatePicker.date = editToDo.endDate
         }
         
         if viewType == .add {
@@ -47,7 +47,7 @@ class AddToDoViewController: UIViewController {
     @objc func addToDoButton() {
         let title = addTitleTextField.text!
         let memo = addMemoTextField.text!
-        let expireDate = addExpireDatePicker.date
+        let expireDate = addEndDatePicker.date
         let toDo = ToDo(title: title, memo: memo, endDate: expireDate)
         guard let editToDoList = editToDo else { return }
         

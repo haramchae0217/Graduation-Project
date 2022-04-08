@@ -10,10 +10,13 @@ import UIKit
 class ToDoViewController: UIViewController {
 
     @IBOutlet weak var toDoTableView: UITableView!
+    @IBOutlet weak var todoDateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
+        
         toDoTableView.dataSource = self
         toDoTableView.delegate = self
     }
@@ -21,6 +24,14 @@ class ToDoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         toDoTableView.reloadData()
+    }
+    
+    @IBAction func previousToDoButton(_ sender: UIButton) {
+    
+    }
+    
+    @IBAction func nextToDoButton(_ sender: UIButton) {
+        
     }
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {

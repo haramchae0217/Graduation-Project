@@ -19,6 +19,13 @@ class FontSettingViewController: UIViewController {
         fontTableView.dataSource = self
         fontTableView.delegate = self
         fontTableView.reloadData()
+        
+        let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
+        self.navigationItem.rightBarButtonItem = rightDoneButton
+    }
+    
+    @objc func setDoneButton() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectFont(_ sender: UIButton) {

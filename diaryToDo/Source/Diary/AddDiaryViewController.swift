@@ -33,6 +33,10 @@ class AddDiaryViewController: UIViewController {
         
     }
     
+    @IBAction func addDiaryPictureButton(_ sender: UIButton) {
+        showAlertSheet()
+    }
+    
     func showAlertSheet() {
         let alertAction = UIAlertController(title: "사진 추가하기", message: "어떤방식으로 추가하시겠습니까?", preferredStyle: .actionSheet)
         

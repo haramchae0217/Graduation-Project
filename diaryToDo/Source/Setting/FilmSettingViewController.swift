@@ -19,6 +19,13 @@ class FilmSettingViewController: UIViewController {
         filmTableView.dataSource = self
         filmTableView.delegate = self
         filmTableView.reloadData()
+        
+        let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
+        self.navigationItem.rightBarButtonItem = rightDoneButton
+    }
+    
+    @objc func setDoneButton() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectFilm(_ sender: UIButton) {

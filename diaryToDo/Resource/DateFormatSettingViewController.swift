@@ -20,11 +20,18 @@ class DateFormatSettingViewController: UIViewController {
         dateFormatTableView.delegate = self
         dateFormatTableView.reloadData()
         
+        let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
+        self.navigationItem.rightBarButtonItem = rightDoneButton
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         dateFormatTableView.reloadData()
+    }
+    
+    @objc func setDoneButton() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectDateFormat(_ sender: UIButton) {

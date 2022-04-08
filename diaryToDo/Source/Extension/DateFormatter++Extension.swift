@@ -24,7 +24,7 @@ extension DateFormatter {
     }
     
     func dateToStr(date: Date) -> String {
-        self.dateFormat = "yyyy/MM/dd"
+        self.dateFormat = "MMM d, yyyy"
         return self.string(from: date)
     }
     

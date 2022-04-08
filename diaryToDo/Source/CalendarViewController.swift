@@ -15,6 +15,12 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var toDoLabel: UILabel!
     
     static let identifier = "calendarVC"
+    var viewType: ViewType = .diary
+    
+    enum ViewType {
+        case diary
+        case todo
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
