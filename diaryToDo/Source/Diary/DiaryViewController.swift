@@ -11,6 +11,7 @@ class DiaryViewController: UIViewController {
 
     var filterHashTag: [Diary] = []
     var hashTag: String = ""
+    var moveIndex = MyDB.diaryItem.count
     let searchHashTag = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var diaryDateLabel: UILabel!
@@ -20,7 +21,7 @@ class DiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if !MyDB.diaryItem.isEmpty {
-            let recentDiary = MyDB.diaryItem[MyDB.diaryItem.count-1]
+            let recentDiary = MyDB.diaryItem[moveIndex]
             for word in recentDiary.hashTag {
             hashTag += word
             }
@@ -36,11 +37,10 @@ class DiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        moveIndex = MyDB.diaryItem.count
         hashTag = ""
-        
         if !MyDB.diaryItem.isEmpty {
-            let recentDiary = MyDB.diaryItem[MyDB.diaryItem.count-1]
-            
+            let recentDiary = MyDB.diaryItem[moveIndex-1]
             for word in recentDiary.hashTag {
             hashTag += word
             }
@@ -51,11 +51,12 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func previousDiaryButton(_ sender: UIButton) {
-        
+       
+           
     }
     
     @IBAction func nextDiaryButton(_ sender: UIButton) {
-    
+        
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
