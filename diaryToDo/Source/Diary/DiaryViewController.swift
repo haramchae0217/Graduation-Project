@@ -56,7 +56,7 @@ class DiaryViewController: UIViewController {
     @IBAction func previousDiaryButton(_ sender: UIButton) {
         print(moveIndex)
         hashTag = ""
-        if moveIndex >= 1 {
+        if moveIndex > 0 {
             moveIndex -= 1
             print(moveIndex)
             let recentDiary = MyDB.diaryItem[moveIndex]
