@@ -11,7 +11,7 @@ class DiaryViewController: UIViewController {
 
     var filterHashTag: [Diary] = []
     var hashTag: String = ""
-    var moveIndex = MyDB.diaryItem.count
+    var moveIndex: Int = 0
     let searchHashTag = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var diaryDateLabel: UILabel!
@@ -20,8 +20,10 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moveIndex = MyDB.diaryItem.count
+        print(moveIndex)
         if !MyDB.diaryItem.isEmpty {
-            let recentDiary = MyDB.diaryItem[moveIndex]
+            let recentDiary = MyDB.diaryItem[moveIndex-1]
             for word in recentDiary.hashTag {
             hashTag += word
             }
@@ -38,6 +40,7 @@ class DiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         moveIndex = MyDB.diaryItem.count
+        print(moveIndex)
         hashTag = ""
         if !MyDB.diaryItem.isEmpty {
             let recentDiary = MyDB.diaryItem[moveIndex-1]
@@ -51,12 +54,40 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func previousDiaryButton(_ sender: UIButton) {
-       
+        print(moveIndex)
+        hashTag = ""
+        if moveIndex >= 1 {
+            moveIndex -= 1
+            print(moveIndex)
+            let recentDiary = MyDB.diaryItem[moveIndex]
+            for word in recentDiary.hashTag {
+                hashTag += word
+            }
+            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
+            diaryHashTagLabel.text = hashTag
+            diaryPictureUIImage.image = recentDiary.picture
+        } else {
+            print("더 이상 전으로 갈 수 없습니다.")
+        }
            
     }
     
     @IBAction func nextDiaryButton(_ sender: UIButton) {
-        
+        print(moveIndex)
+        hashTag = ""
+        if moveIndex <= MyDB.diaryItem.count-1 {
+            moveIndex += 1
+            print(moveIndex)
+            let recentDiary = MyDB.diaryItem[moveIndex]
+            for word in recentDiary.hashTag {
+                hashTag += word
+            }
+            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
+            diaryHashTagLabel.text = hashTag
+            diaryPictureUIImage.image = recentDiary.picture
+        } else {
+            print("더 이상 뒤로 갈 수 없습니다.")
+        }
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
