@@ -56,10 +56,10 @@ class DiaryViewController: UIViewController {
     @IBAction func previousDiaryButton(_ sender: UIButton) {
         print(moveIndex)
         hashTag = ""
-        if moveIndex > 0 {
+        if moveIndex > 1 {
             moveIndex -= 1
             print(moveIndex)
-            let recentDiary = MyDB.diaryItem[moveIndex]
+            let recentDiary = MyDB.diaryItem[moveIndex-1]
             for word in recentDiary.hashTag {
                 hashTag += word
             }
@@ -75,10 +75,10 @@ class DiaryViewController: UIViewController {
     @IBAction func nextDiaryButton(_ sender: UIButton) {
         print(moveIndex)
         hashTag = ""
-        if moveIndex <= MyDB.diaryItem.count-1 {
+        if moveIndex < MyDB.diaryItem.count {
             moveIndex += 1
             print(moveIndex)
-            let recentDiary = MyDB.diaryItem[moveIndex]
+            let recentDiary = MyDB.diaryItem[moveIndex-1]
             for word in recentDiary.hashTag {
                 hashTag += word
             }
