@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 class DiaryViewController: UIViewController {
 
@@ -17,9 +18,14 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryDateLabel: UILabel!
     @IBOutlet weak var diaryPictureUIImage: UIImageView!
     @IBOutlet weak var diaryHashTagLabel: UILabel!
+    @IBOutlet weak var diaryCalendarView: FSCalendar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        calendarSetting()
+        diaryCalendarView.isHidden = true
+        
         moveIndex = MyDB.diaryItem.count
         print(moveIndex)
         if !MyDB.diaryItem.isEmpty {
@@ -91,8 +97,12 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
-        guard let calendarVC = self.storyboard?.instantiateViewController(withIdentifier: CalendarViewController.identifier) as? CalendarViewController else { return }
-        self.present(calendarVC, animated: true)
+        if diaryCalendarView.isHidden == true {
+            diaryCalendarView.isHidden = false
+        } else {
+            diaryCalendarView.isHidden = true
+        }
+        calendarSetting()
     }
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {
@@ -105,12 +115,19 @@ class DiaryViewController: UIViewController {
         searchHashTag.searchBar.placeholder = "검색"
     }
     
-
-    
     @IBAction func addDiaryButton(_ sender: UIBarButtonItem) {
         guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: AddDiaryViewController.identifier) as? AddDiaryViewController else { return }
         self.navigationController?.pushViewController(addVC, animated: true)
     
+    }
+    
+    func calendarSetting() {
+        diaryCalendarView.delegate = self
+        diaryCalendarView.dataSource = self
+        
+        diaryCalendarView.locale = Locale(identifier: "ko-KR")
+        
+        diaryCalendarView.appearance.selectionColor = .systemBlue
     }
     
 }
@@ -135,4 +152,39 @@ extension DiaryViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     
+}
+
+extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+        for diary in MyDB.diaryItem {
+            let diaryEvent = diary.date
+            if diaryEvent == date {
+                let count = MyDB.diaryItem.filter { diary in
+                    diary.date == date
+                }.count
+                
+                return count
+                
+            }
+        }
+        return 0
+    }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+        let diaryList = MyDB.diaryItem.filter { diary in
+            diary.date == date
+        }
+        if diaryList.count > 0 {
+            
+            var text: String = ""
+            
+            for str in diaryList {
+                text.append("\(str.hashTag)\n")
+            }
+            diaryHashTagLabel.text = text
+        } else {
+            diaryHashTagLabel.text = "등록된 hashtag가 없습니다."
+        }
+    }
 }
