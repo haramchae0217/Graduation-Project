@@ -232,58 +232,6 @@
             </objects>
             <point key="canvasLocation" x="5055" y="-1039"/>
         </scene>
-        <!--Calendar View Controller-->
-        <scene sceneID="6Dt-8G-kzv">
-            <objects>
-                <viewController storyboardIdentifier="calendarVC" id="vnS-z8-E43" customClass="CalendarViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ez8-B5-DIi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FaX-7j-GpQ" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="44" width="414" height="276"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="FaX-7j-GpQ" secondAttribute="height" multiplier="1.5:1" id="1af-uB-POx"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8t-Sk-5lT">
-                                <rect key="frame" x="20" y="340" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjT-ah-g47">
-                                <rect key="frame" x="20" y="391" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="A7W-Cg-5hH"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="EjT-ah-g47" firstAttribute="leading" secondItem="A7W-Cg-5hH" secondAttribute="leading" constant="20" id="0Qe-eg-fCN"/>
-                            <constraint firstItem="A7W-Cg-5hH" firstAttribute="trailing" secondItem="EjT-ah-g47" secondAttribute="trailing" constant="20" id="7Co-zA-xNe"/>
-                            <constraint firstItem="FaX-7j-GpQ" firstAttribute="leading" secondItem="A7W-Cg-5hH" secondAttribute="leading" id="9G6-gc-qTs"/>
-                            <constraint firstItem="A7W-Cg-5hH" firstAttribute="trailing" secondItem="FaX-7j-GpQ" secondAttribute="trailing" id="FQ7-J5-IdV"/>
-                            <constraint firstItem="k8t-Sk-5lT" firstAttribute="top" secondItem="FaX-7j-GpQ" secondAttribute="bottom" constant="20" id="PQK-RL-oiP"/>
-                            <constraint firstItem="EjT-ah-g47" firstAttribute="top" secondItem="k8t-Sk-5lT" secondAttribute="bottom" constant="30" id="U7A-KB-JVW"/>
-                            <constraint firstItem="FaX-7j-GpQ" firstAttribute="top" secondItem="A7W-Cg-5hH" secondAttribute="top" id="W46-1b-XMW"/>
-                            <constraint firstItem="A7W-Cg-5hH" firstAttribute="trailing" secondItem="k8t-Sk-5lT" secondAttribute="trailing" constant="20" id="YgW-UH-5Kn"/>
-                            <constraint firstItem="k8t-Sk-5lT" firstAttribute="leading" secondItem="A7W-Cg-5hH" secondAttribute="leading" constant="20" id="nfO-jg-Z6q"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="dateLabel" destination="k8t-Sk-5lT" id="tzS-Au-9Gn"/>
-                        <outlet property="diaryCalendarView" destination="FaX-7j-GpQ" id="x5z-4R-Dd2"/>
-                        <outlet property="toDoLabel" destination="EjT-ah-g47" id="s5H-Xf-4KN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3G6-rw-Xcp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2274" y="-1039"/>
-        </scene>
         <!--ToDo-->
         <scene sceneID="2yG-eG-IN8">
             <objects>
@@ -388,16 +336,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tXB-gh-RdW" customClass="FSCalendar">
+                                <rect key="frame" x="110" y="88" width="284" height="284"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tXB-gh-RdW" secondAttribute="height" multiplier="1:1" id="OrA-jT-Em3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VWT-wU-VQx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="tXB-gh-RdW" firstAttribute="top" secondItem="VWT-wU-VQx" secondAttribute="top" id="83g-3q-CsL"/>
                             <constraint firstItem="rwd-v6-t4H" firstAttribute="leading" secondItem="VWT-wU-VQx" secondAttribute="leading" constant="20" id="Cbn-GZ-HoL"/>
+                            <constraint firstItem="VWT-wU-VQx" firstAttribute="trailing" secondItem="tXB-gh-RdW" secondAttribute="trailing" constant="20" id="LOh-PR-HT3"/>
                             <constraint firstItem="VWT-wU-VQx" firstAttribute="trailing" secondItem="S3b-4f-Lj3" secondAttribute="trailing" constant="50" id="Mvz-FN-ROJ"/>
                             <constraint firstItem="S3b-4f-Lj3" firstAttribute="leading" secondItem="VWT-wU-VQx" secondAttribute="leading" constant="50" id="YAu-Qj-jvo"/>
                             <constraint firstItem="S3b-4f-Lj3" firstAttribute="top" secondItem="VWT-wU-VQx" secondAttribute="top" constant="20" id="Ywy-nd-ia7"/>
                             <constraint firstItem="rwd-v6-t4H" firstAttribute="top" secondItem="S3b-4f-Lj3" secondAttribute="bottom" constant="20" id="pG2-0x-8iM"/>
                             <constraint firstItem="VWT-wU-VQx" firstAttribute="bottom" secondItem="rwd-v6-t4H" secondAttribute="bottom" constant="48.5" id="q8K-zO-Dgs"/>
+                            <constraint firstItem="tXB-gh-RdW" firstAttribute="leading" secondItem="VWT-wU-VQx" secondAttribute="leading" constant="110" id="qEo-Bs-AIc"/>
                             <constraint firstItem="VWT-wU-VQx" firstAttribute="trailing" secondItem="rwd-v6-t4H" secondAttribute="trailing" constant="20" id="uwq-UO-ftT"/>
                         </constraints>
                     </view>
@@ -422,6 +380,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="toDoCalendarView" destination="tXB-gh-RdW" id="zL7-UX-e6F"/>
                         <outlet property="toDoTableView" destination="rwd-v6-t4H" id="2SM-zL-sIf"/>
                         <outlet property="todoDateLabel" destination="NKy-Xi-RcD" id="CHz-Wo-T8c"/>
                     </connections>

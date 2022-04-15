@@ -18,7 +18,6 @@
 		837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */; };
 		837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0F27DC360000FC46A7 /* ToDo.swift */; };
 		83D512BC27F5B120009B3A23 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 83D512BB27F5B120009B3A23 /* FSCalendar */; };
-		83D512BE27F5BC67009B3A23 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512BD27F5BC67009B3A23 /* CalendarViewController.swift */; };
 		83D512C027F5C368009B3A23 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512BF27F5C368009B3A23 /* SettingViewController.swift */; };
 		83D512C227F5C3C6009B3A23 /* DateFormatSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C127F5C3C6009B3A23 /* DateFormatSettingViewController.swift */; };
 		83D512C427F5C3E7009B3A23 /* FontSizeSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C327F5C3E7009B3A23 /* FontSizeSettingViewController.swift */; };
@@ -52,7 +51,6 @@
 		837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837C4F0F27DC360000FC46A7 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
-		83D512BD27F5BC67009B3A23 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		83D512BF27F5C368009B3A23 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = diaryToDo/Resource/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		83D512C127F5C3C6009B3A23 /* DateFormatSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatSettingViewController.swift; path = diaryToDo/Resource/DateFormatSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		83D512C327F5C3E7009B3A23 /* FontSizeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSizeSettingViewController.swift; path = diaryToDo/Resource/FontSizeSettingViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -132,7 +130,6 @@
 			children = (
 				83354D9927DB51AE0096C7B5 /* AppDelegate.swift */,
 				83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */,
-				83D512BD27F5BC67009B3A23 /* CalendarViewController.swift */,
 				83FDF01627F2D7D0008E45E3 /* Diary */,
 				83FDF01727F2D7DF008E45E3 /* ToDo */,
 				83D5129627F5A64F009B3A23 /* Setting */,
@@ -272,7 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D512D827F5EF26009B3A23 /* Film.swift in Sources */,
-				83D512BE27F5BC67009B3A23 /* CalendarViewController.swift in Sources */,
 				837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */,
 				83D512C427F5C3E7009B3A23 /* FontSizeSettingViewController.swift in Sources */,
 				83D512D427F5E461009B3A23 /* Font.swift in Sources */,

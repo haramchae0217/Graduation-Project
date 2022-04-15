@@ -62,10 +62,10 @@ class AddToDoViewController: UIViewController {
         }
         
         if viewType == .add {
-            MyDB.ToDoList.append(toDo)
+            MyDB.toDoList.append(toDo)
         } else {
             if let row = editRow {
-                MyDB.ToDoList[row] = toDo
+                MyDB.toDoList[row] = toDo
             }
         }
         
