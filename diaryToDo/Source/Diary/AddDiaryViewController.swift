@@ -42,8 +42,8 @@ class AddDiaryViewController: UIViewController {
         
         let cameraButton = UIAlertAction(title: "카메라", style: .default) { _ in
             print("camera on")
-//            self.imagePicker.sourceType = .camera
-//            self.present(self.imagePicker, animated: true, completion: nil)
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
         }
         let photoLibraryButton = UIAlertAction(title: "사진첩", style: .default) { _ in
             print("photoLibrary on")

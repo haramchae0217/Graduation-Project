@@ -124,7 +124,8 @@ extension ToDoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as? AddToDoViewController else { return }
-        editToDoVC.editToDo = MyDB.toDoList[indexPath.row]
+        editToDoVC.viewType = .edit
+        editToDoVC.editToDo = calendarList[indexPath.row]
         editToDoVC.editRow = indexPath.row
         self.navigationController?.pushViewController(editToDoVC, animated: true)
     }
