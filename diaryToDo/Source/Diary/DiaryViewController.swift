@@ -177,17 +177,25 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
         let diaryList = MyDB.diaryItem.filter { diary in
             diary.date == date
         }
+        
         if diaryList.count > 0 {
             
-            var text: String = ""
+            var text = ""
+            var image: UIImage = UIImage(named: "cafe1")!
             
-            for str in diaryList {
-                text.append("\(str.hashTag)\n")
+            for item in diaryList {
+                for i in 0...item.hashTag.endIndex-1 {
+                    text += item.hashTag[i]
+                }
+                image = item.picture
+                
             }
             
+            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
+            diaryPictureUIImage.image = image
             diaryHashTagLabel.text = text
         } else {
-            diaryHashTagLabel.text = "등록된 hashtag가 없습니다."
+            UIAlertController.showAlert(message: "등록된 다이어리가 없습니다.", vc: self)
         }
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 struct MyDB {
     static var diaryItem: [Diary] = [
-        Diary(content: "카페", hashTag: ["#카페","#강화도"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/01"), picture: UIImage(named: "cafe1")!),
+        Diary(content: "카페", hashTag: ["#카페","#강화도","#여행"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/01"), picture: UIImage(named: "cafe1")!),
         Diary(content: "카페", hashTag: ["#카페","#운정"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/06"), picture: UIImage(named: "cafe2")!),
         Diary(content: "카페", hashTag: ["#카페","#건대"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/11"), picture: UIImage(named: "cafe3")!),
         Diary(content: "집", hashTag: ["#자취방","#침대"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/04/16"), picture: UIImage(named: "home1")!)
