@@ -102,16 +102,17 @@ extension ToDoViewController: UITableViewDataSource {
         cell.toDoTitleLabel.text = todo.title
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
-        cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.endDate)
-        cell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.timeToStr(date: todo.endDate)
+        cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.startDate)
+        cell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.timeToStr(date: todo.startDate)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            MyDB.toDoList.remove(at: indexPath.row)
+            calendarList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
         }
     }
    
@@ -159,7 +160,7 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
         toDoTableView.reloadData()
         
         if calendarList.count == 0 {
-            
+            UIAlertController.showAlert(message: "등록된 투두가 없습니다.", vc: self)
         }
     }
 }
