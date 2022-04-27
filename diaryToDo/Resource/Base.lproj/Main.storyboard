@@ -419,17 +419,49 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fIL-I6-WEK">
-                                <rect key="frame" x="20" y="270" width="374" height="162"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="e1S-y5-8u0">
+                                <rect key="frame" x="20" y="270" width="374" height="31"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcl-HG-bWY">
-                                        <rect key="frame" x="0.0" y="0.0" width="69.5" height="162"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="하루종일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laf-74-4Gr">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="izj-bU-cfH">
+                                        <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5de-2N-Cxc">
+                                <rect key="frame" x="20" y="321" width="374" height="162"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwg-5g-qhw">
+                                        <rect key="frame" x="0.0" y="69" width="35" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-jL-SMd">
-                                        <rect key="frame" x="79.5" y="0.0" width="294.5" height="162"/>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="3Am-pc-576">
+                                        <rect key="frame" x="45" y="0.0" width="329" height="162"/>
+                                    </datePicker>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bwg-5g-qhw" firstAttribute="centerY" secondItem="5de-2N-Cxc" secondAttribute="centerY" id="JSA-OY-h6m"/>
+                                    <constraint firstItem="3Am-pc-576" firstAttribute="centerY" secondItem="5de-2N-Cxc" secondAttribute="centerY" id="VRR-7q-Rne"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fIL-I6-WEK">
+                                <rect key="frame" x="20" y="503" width="374" height="162"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="종료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcl-HG-bWY">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="162"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-jL-SMd">
+                                        <rect key="frame" x="45" y="0.0" width="329" height="162"/>
                                     </datePicker>
                                 </subviews>
                                 <constraints>
@@ -444,23 +476,31 @@
                             <constraint firstItem="bIy-XI-DIg" firstAttribute="leading" secondItem="1v1-7V-hzU" secondAttribute="leading" constant="20" id="1jE-O8-Owu"/>
                             <constraint firstItem="GvD-lG-IYb" firstAttribute="leading" secondItem="1v1-7V-hzU" secondAttribute="leading" constant="20" id="1zl-Un-97v"/>
                             <constraint firstItem="GvD-lG-IYb" firstAttribute="top" secondItem="1v1-7V-hzU" secondAttribute="top" constant="20" id="9K8-uM-j0m"/>
+                            <constraint firstItem="fIL-I6-WEK" firstAttribute="top" secondItem="5de-2N-Cxc" secondAttribute="bottom" constant="20" id="A5m-gh-L1Q"/>
                             <constraint firstItem="ALM-cF-YRt" firstAttribute="top" secondItem="bIy-XI-DIg" secondAttribute="bottom" constant="30" id="Biv-Cp-Lk9"/>
                             <constraint firstItem="1v1-7V-hzU" firstAttribute="trailing" secondItem="j1X-yg-h0E" secondAttribute="trailing" constant="20" id="Hfh-bu-WbK"/>
                             <constraint firstItem="fIL-I6-WEK" firstAttribute="leading" secondItem="1v1-7V-hzU" secondAttribute="leading" constant="20" id="IBX-0c-90n"/>
                             <constraint firstItem="j1X-yg-h0E" firstAttribute="top" secondItem="ALM-cF-YRt" secondAttribute="bottom" constant="20" id="Iz1-E6-Lcu"/>
+                            <constraint firstItem="1v1-7V-hzU" firstAttribute="trailing" secondItem="e1S-y5-8u0" secondAttribute="trailing" constant="20" id="MVn-4i-m2e"/>
                             <constraint firstItem="1v1-7V-hzU" firstAttribute="trailing" secondItem="ALM-cF-YRt" secondAttribute="trailing" constant="20" id="QMo-BK-An6"/>
                             <constraint firstItem="ALM-cF-YRt" firstAttribute="leading" secondItem="1v1-7V-hzU" secondAttribute="leading" constant="20" id="R3P-gJ-QAO"/>
                             <constraint firstItem="1v1-7V-hzU" firstAttribute="trailing" secondItem="GvD-lG-IYb" secondAttribute="trailing" constant="20" id="Un0-WH-jk7"/>
+                            <constraint firstItem="e1S-y5-8u0" firstAttribute="top" secondItem="j1X-yg-h0E" secondAttribute="bottom" constant="20" id="dBR-yA-i4r"/>
                             <constraint firstItem="j1X-yg-h0E" firstAttribute="leading" secondItem="1v1-7V-hzU" secondAttribute="leading" constant="20" id="dgk-Sh-fKb"/>
-                            <constraint firstItem="fIL-I6-WEK" firstAttribute="top" secondItem="j1X-yg-h0E" secondAttribute="bottom" constant="20" id="hH9-RP-vtp"/>
+                            <constraint firstItem="1v1-7V-hzU" firstAttribute="trailing" secondItem="5de-2N-Cxc" secondAttribute="trailing" constant="20" id="kqV-9p-DLQ"/>
                             <constraint firstItem="1v1-7V-hzU" firstAttribute="trailing" secondItem="bIy-XI-DIg" secondAttribute="trailing" constant="20" id="kxP-ty-Crm"/>
                             <constraint firstItem="1v1-7V-hzU" firstAttribute="trailing" secondItem="fIL-I6-WEK" secondAttribute="trailing" constant="20" id="mdN-MU-M3r"/>
+                            <constraint firstItem="5de-2N-Cxc" firstAttribute="leading" secondItem="1v1-7V-hzU" secondAttribute="leading" constant="20" id="tDS-5V-Y7B"/>
                             <constraint firstItem="bIy-XI-DIg" firstAttribute="top" secondItem="GvD-lG-IYb" secondAttribute="bottom" constant="20" id="tID-FG-YYu"/>
+                            <constraint firstItem="5de-2N-Cxc" firstAttribute="top" secondItem="e1S-y5-8u0" secondAttribute="bottom" constant="20" id="vya-i2-BIi"/>
+                            <constraint firstItem="e1S-y5-8u0" firstAttribute="leading" secondItem="1v1-7V-hzU" secondAttribute="leading" constant="20" id="z9C-oi-mUS"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addAllDay" destination="izj-bU-cfH" id="8WN-Nt-aSA"/>
                         <outlet property="addEndDatePicker" destination="TLd-jL-SMd" id="XKu-yN-EwG"/>
                         <outlet property="addMemoTextField" destination="j1X-yg-h0E" id="nQb-AD-qTs"/>
+                        <outlet property="addStartDatePicker" destination="3Am-pc-576" id="65r-mF-Dhp"/>
                         <outlet property="addTitleTextField" destination="bIy-XI-DIg" id="sot-5b-m7b"/>
                     </connections>
                 </viewController>
