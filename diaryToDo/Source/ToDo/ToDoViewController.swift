@@ -69,11 +69,11 @@ class ToDoViewController: UIViewController {
     
     @objc func checkToDoButton(_ sender: UIButton) {
         if sender.isSelected {
-            sender.setImage(UIImage(systemName: "checkmark.square"),for: .normal)
+            sender.setImage(UIImage(systemName: "circle"),for: .normal)
             sender.isSelected = false
             MyDB.toDoList[sender.tag].isChecked = true
         } else {
-            sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
+            sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
             sender.isSelected = true
             MyDB.toDoList[sender.tag].isChecked = true
         }
@@ -97,7 +97,7 @@ extension ToDoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDo", for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
         let todo = calendarList[indexPath.row]
         cell.toDoTitleLabel.text = todo.title
         cell.toDoCheckButton.tag = indexPath.row
@@ -112,7 +112,6 @@ extension ToDoViewController: UITableViewDataSource {
         if editingStyle == .delete {
             calendarList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadData()
         }
     }
    

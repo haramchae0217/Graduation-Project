@@ -9,6 +9,8 @@ import UIKit
 
 class ToDoTableViewCell: UITableViewCell {
 
+    static let identifier = "ToDo"
+    
     @IBOutlet weak var toDoTitleLabel: UILabel!
     @IBOutlet weak var toDoExpireDateLabel: UILabel!
     @IBOutlet weak var toDoExpireTimeLabel: UILabel!
