@@ -63,7 +63,10 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
+        print("guard이전")
         guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as? AddToDoViewController else { return }
+        print("guard이후")
+        addToDo.viewType = .add
         self.navigationController?.pushViewController(addToDo, animated: true)
     }
     

@@ -29,9 +29,6 @@ class AddToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewType = .add
-        print(viewType)
-        
         if let editToDo = editToDo {
             addTitleTextField.text = editToDo.title
             addMemoTextField.text = editToDo.memo
@@ -59,9 +56,13 @@ class AddToDoViewController: UIViewController {
         
         let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
         
-        guard let editToDoList = editToDo else { return }
-        
-        if editToDoList.title == title && editToDoList.memo == memo {
+//        guard let editToDoList = editToDo else { return }
+//
+//        if editToDoList.title == title && editToDoList.memo == memo {
+//            UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
+//            return
+//        }
+        if editToDo?.title == title && editToDo?.memo == memo {
             UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
             return
         }
