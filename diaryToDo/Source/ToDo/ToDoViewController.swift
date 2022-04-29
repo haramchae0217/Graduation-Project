@@ -20,28 +20,27 @@ class ToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        toDoTableView.dataSource = self
+        toDoTableView.delegate = self
+        
         toDoCalendarSetting()
         toDoCalendarView.isHidden = true
         
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
         
-        toDoTableView.dataSource = self
-        toDoTableView.delegate = self
-        
         moveIndex = MyDB.toDoList.count
-        print(moveIndex)
-        
         toDoTableView.reloadData()
         
+        print(moveIndex)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        moveIndex = MyDB.diaryItem.count
-        print(moveIndex)
         
+        moveIndex = MyDB.diaryItem.count
         toDoTableView.reloadData()
         
+        print(moveIndex)
     }
     
     func toDoCalendarSetting() {
@@ -49,9 +48,7 @@ class ToDoViewController: UIViewController {
         toDoCalendarView.dataSource = self
         
         toDoCalendarView.locale = Locale(identifier: "ko-KR")
-        
         toDoCalendarView.appearance.selectionColor = .systemBlue
-        
     }
     
     @IBAction func previousToDoButton(_ sender: UIButton) {
@@ -63,9 +60,7 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
-        print("guard이전")
         guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as? AddToDoViewController else { return }
-        print("guard이후")
         addToDo.viewType = .add
         self.navigationController?.pushViewController(addToDo, animated: true)
     }
@@ -80,7 +75,6 @@ class ToDoViewController: UIViewController {
             sender.isSelected = true
             MyDB.toDoList[sender.tag].isChecked = true
         }
-        
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
@@ -89,9 +83,9 @@ class ToDoViewController: UIViewController {
         } else {
             toDoCalendarView.isHidden = true
         }
+        
         toDoCalendarSetting()
     }
-    
 }
 
 extension ToDoViewController: UITableViewDataSource {
@@ -102,6 +96,7 @@ extension ToDoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
         let todo = calendarList[indexPath.row]
+        
         cell.toDoTitleLabel.text = todo.title
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
@@ -117,7 +112,6 @@ extension ToDoViewController: UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-   
 }
 
 extension ToDoViewController: UITableViewDelegate {
@@ -151,14 +145,17 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
                 }
             }
         }
+        
         return 0
     }
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
         
         calendarList = MyDB.toDoList.filter { toDo in
             toDo.startDate == date
         }
+        
         toDoTableView.reloadData()
         
         if calendarList.count == 0 {

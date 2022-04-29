@@ -9,9 +9,9 @@ import UIKit
 
 class FontSizeSettingViewController: UIViewController {
 
-    @IBOutlet weak var fontSizeTableView: UITableView!
-    
     static let identifier = "fontSizeVC"
+    
+    @IBOutlet weak var fontSizeTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +22,8 @@ class FontSizeSettingViewController: UIViewController {
         
         let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
         self.navigationItem.rightBarButtonItem = rightDoneButton
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -44,19 +44,18 @@ class FontSizeSettingViewController: UIViewController {
             sender.isSelected = true
             FontSize.fontsizeList[sender.tag].isSelectType = true
         }
-        
     }
-    
-
 }
 
 extension FontSizeSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FontSize.fontsizeList.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = fontSizeTableView.dequeueReusableCell(withIdentifier: "fontSizeCell", for: indexPath) as? FontSizeTableViewCell else { return UITableViewCell() }
         let fontSize = FontSize.fontsizeList[indexPath.row]
+        
         cell.fontSizeLabel.text = fontSize.fontSize
         cell.fontSizeSelectButton.tag = indexPath.row
         cell.fontSizeSelectButton.addTarget(self, action: #selector(isSelectFontSize), for: .touchUpInside)

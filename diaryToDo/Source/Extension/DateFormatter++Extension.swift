@@ -37,5 +37,4 @@ extension DateFormatter {
         self.dateFormat = "a hh:mm"
         return self.string(from: date)
     }
-
 }

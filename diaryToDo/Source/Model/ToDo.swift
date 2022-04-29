@@ -13,5 +13,4 @@ struct ToDo {
     var isChecked: Bool = false
     var startDate: Date = Date()
     var endDate: Date = Date()
-    
 }

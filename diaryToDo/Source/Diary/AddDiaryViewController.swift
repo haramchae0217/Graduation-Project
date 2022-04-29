@@ -9,28 +9,28 @@ import UIKit
 
 class AddDiaryViewController: UIViewController {
 
+    static let identifier = "addDiaryVC"
+    
     @IBOutlet weak var addDiaryImageView: UIImageView!
     @IBOutlet weak var addDiaryDatePicker: UIDatePicker!
     @IBOutlet weak var addDiaryContentTextView: UITextView!
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
-    
-    static let identifier = "addDiaryVC"
+
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rightBarButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(addDiaryButton))
-        self.navigationItem.rightBarButtonItem = rightBarButton
-        
         addDiaryContentTextView.delegate = self
         imagePicker.delegate = self
+        
+        let rightBarButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(addDiaryButton))
+        self.navigationItem.rightBarButtonItem = rightBarButton
         
         if addDiaryContentTextView.text.isEmpty {
             addDiaryContentTextView.text = "내용을 입력해주세요."
             addDiaryContentTextView.textColor = .lightGray
         }
-        
     }
     
     @IBAction func addDiaryPictureButton(_ sender: UIButton) {
@@ -45,6 +45,7 @@ class AddDiaryViewController: UIViewController {
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         }
+        
         let photoLibraryButton = UIAlertAction(title: "사진첩", style: .default) { _ in
             print("photoLibrary on")
             self.imagePicker.sourceType = .photoLibrary
@@ -81,8 +82,6 @@ class AddDiaryViewController: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
-    
-
 }
 
 extension AddDiaryViewController: UITextViewDelegate {
@@ -92,6 +91,7 @@ extension AddDiaryViewController: UITextViewDelegate {
             textView.textColor = .label
         }
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "내용을 입력해주세요."
@@ -104,10 +104,10 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             addDiaryImageView.image = image
-            
         } else {
             print("이미지 선택 실패")
         }
+        
         self.dismiss(animated: true, completion: nil)
     }
 }

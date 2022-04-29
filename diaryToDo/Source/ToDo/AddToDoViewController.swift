@@ -45,7 +45,6 @@ class AddToDoViewController: UIViewController {
             let rightBarButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(addToDoButton))
             self.navigationItem.rightBarButtonItem = rightBarButton
         }
-    
     }
     
     @objc func addToDoButton() {
@@ -56,12 +55,6 @@ class AddToDoViewController: UIViewController {
         
         let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
         
-//        guard let editToDoList = editToDo else { return }
-//
-//        if editToDoList.title == title && editToDoList.memo == memo {
-//            UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
-//            return
-//        }
         if editToDo?.title == title && editToDo?.memo == memo {
             UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
             return

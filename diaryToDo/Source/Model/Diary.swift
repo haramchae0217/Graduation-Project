@@ -12,5 +12,4 @@ struct Diary {
     var hashTag: [String]
     var date: Date = Date()
     var picture: UIImage
-    
 }

@@ -13,6 +13,5 @@ extension UIAlertController {
         let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: nil)
         alert.addAction(cancelButton)
         vc.present(alert, animated: true, completion: nil)
-        
     }
 }

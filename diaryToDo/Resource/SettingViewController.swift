@@ -12,7 +12,6 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-           
     }
     
     @IBAction func MoveDateFormatVC(_ sender: UIButton) {
@@ -21,8 +20,7 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func MoveFontSizeVC(_ sender: UIButton) {
-        guard let fontSizeVC = self.storyboard?.instantiateViewController(withIdentifier: FontSizeSettingViewController.identifier) as?
-                FontSizeSettingViewController else { return }
+        guard let fontSizeVC = self.storyboard?.instantiateViewController(withIdentifier: FontSizeSettingViewController.identifier) as? FontSizeSettingViewController else { return }
         self.navigationController?.pushViewController(fontSizeVC, animated: true)
     }
     
@@ -30,12 +28,10 @@ class SettingViewController: UIViewController {
         guard let fontVC = self.storyboard?.instantiateViewController(withIdentifier: FontSettingViewController.identifier) as? FontSettingViewController else { return }
         self.navigationController?.pushViewController(fontVC, animated: true)
     }
-    
-    
+
     @IBAction func MoveFilmVC(_ sender: UIButton) {
         guard let filmVC = self.storyboard?.instantiateViewController(withIdentifier: FilmSettingViewController.identifier) as? FilmSettingViewController else { return }
         self.navigationController?.pushViewController(filmVC, animated: true)
     }
-    
 
 }

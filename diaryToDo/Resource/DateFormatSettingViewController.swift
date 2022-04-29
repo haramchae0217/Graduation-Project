@@ -9,9 +9,9 @@ import UIKit
 
 class DateFormatSettingViewController: UIViewController {
 
-    @IBOutlet weak var dateFormatTableView: UITableView!
-    
     static let identifier = "DateVC"
+    
+    @IBOutlet weak var dateFormatTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,7 @@ class DateFormatSettingViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightDoneButton
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -44,24 +45,23 @@ class DateFormatSettingViewController: UIViewController {
             sender.isSelected = true
             DateFormat.dateFormatList[sender.tag].isSelectType = true
         }
-        
     }
-   
 }
 
 extension DateFormatSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DateFormat.dateFormatList.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = dateFormatTableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as? DateFormatTableViewCell else { return UITableViewCell() }
         let dateFormat = DateFormat.dateFormatList[indexPath.row]
+        
         cell.typeDateFormat.text = dateFormat.typeDateFormat
         cell.selectedDateFormat.tag = indexPath.row
         cell.selectedDateFormat.addTarget(self, action: #selector(isSelectDateFormat), for: .touchUpInside)
         
         return cell
-        
     }
 }
 

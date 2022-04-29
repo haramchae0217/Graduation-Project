@@ -9,9 +9,9 @@ import UIKit
 
 class FontSettingViewController: UIViewController {
 
-    @IBOutlet weak var fontTableView: UITableView!
-    
     static let identifier = "fontVC"
+    
+    @IBOutlet weak var fontTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,18 +38,18 @@ class FontSettingViewController: UIViewController {
             sender.isSelected = true
             Font.fontList[sender.tag].isSelectType = true
         }
-        
     }
-    
 }
 
 extension FontSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Font.fontList.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = fontTableView.dequeueReusableCell(withIdentifier: "fontCell", for: indexPath) as? FontSettingTableViewCell else { return UITableViewCell() }
         let font = Font.fontList[indexPath.row]
+        
         cell.fontSettingLabel.text = font.fontName
         cell.isSelectedFontButton.tag = indexPath.row
         cell.isSelectedFontButton.addTarget(self, action: #selector(isSelectFont), for: .touchUpInside)
