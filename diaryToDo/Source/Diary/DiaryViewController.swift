@@ -15,6 +15,7 @@ class DiaryViewController: UIViewController {
     var moveIndex: Int = 0
     var recentDate: Date = Date()
     let searchHashTag = UISearchController(searchResultsController: nil)
+    var arr: [Int] = []
     
     @IBOutlet weak var diaryDateLabel: UILabel!
     @IBOutlet weak var diaryPictureUIImage: UIImageView!
@@ -26,6 +27,11 @@ class DiaryViewController: UIViewController {
         
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
+        
+        for i in MyDB.diaryItem.startIndex...MyDB.diaryItem.endIndex-1{
+            arr.append(i)
+        }
+        print(arr)
         
         let endIndex = MyDB.diaryItem.endIndex-1
         recentDate = MyDB.diaryItem[endIndex].date
@@ -192,17 +198,7 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
                     text += item.hashTag[i]
                 }
                 
-                if recentDate > date {
-                    moveIndex -= 1
-                    recentDate = date
-                    print(moveIndex)
-                    print(recentDate)
-                } else if recentDate < date {
-                    moveIndex += 1
-                    recentDate = date
-                    print(moveIndex)
-                    print(recentDate)
-                }
+                
                 
                 image = item.picture
                 
