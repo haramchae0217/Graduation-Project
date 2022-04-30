@@ -22,6 +22,8 @@ class DiaryViewController: UIViewController {
     var hashTag: String = ""
     var moveIndex: Int = 0
     var recentDate: Date = Date()
+    var previousDate: Date = Date()
+    var currentDiary: Diary?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,27 +33,10 @@ class DiaryViewController: UIViewController {
         
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
-        
-        for i in MyDB.diaryItem.startIndex...MyDB.diaryItem.endIndex - 1 {
-            arr.append(i)
-        }
-        print(arr)
-        
-        let endIndex = MyDB.diaryItem.endIndex - 1
-        recentDate = MyDB.diaryItem[endIndex].date
+    
         moveIndex = MyDB.diaryItem.count
         print(moveIndex)
         
-        if !MyDB.diaryItem.isEmpty {
-            let recentDiary = MyDB.diaryItem[moveIndex - 1]
-            for word in recentDiary.hashTag {
-            hashTag += word
-            }
-            
-            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
-            diaryHashTagLabel.text = hashTag
-            diaryPictureUIImage.image = recentDiary.picture
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +56,37 @@ class DiaryViewController: UIViewController {
             diaryHashTagLabel.text = hashTag
             diaryPictureUIImage.image = recentDiary.picture
         }
+    }
+    
+    func differenceBetweenTwoDates(recentDate: Date, previousDate: Date) -> Int {
+        var differenceIndex: Int = 0
+        var lhsDate: Date = Date() // 날짜가 더 이전인 date
+        var rhsDate: Date = Date() // 날짜가 더 이후인 date
+        
+        if recentDate == previousDate {
+            return 0
+        } else if recentDate > previousDate {
+            lhsDate = previousDate
+            rhsDate = recentDate
+        } else {
+            lhsDate = recentDate
+            rhsDate = previousDate
+        }
+        
+        if moveIndex < MyDB.diaryItem.count - 1 {
+            if rhsDate == MyDB.diaryItem[moveIndex + 1].date {
+                print(rhsDate)
+            }
+        }
+        
+        for item in MyDB.diaryItem {
+            
+            if rhsDate > item.date && lhsDate < item.date {
+                differenceIndex += 1
+            }
+        }
+        
+        return differenceIndex
     }
     
     func diaryCalendarSetting() {
@@ -213,5 +229,18 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
         } else {
             UIAlertController.showAlert(message: "등록된 다이어리가 없습니다.", vc: self)
         }
+        
+        previousDate = recentDate
+        recentDate = date
+        
+        let interval = differenceBetweenTwoDates(recentDate: recentDate, previousDate: previousDate)
+        
+        if previousDate > recentDate {
+            moveIndex -= interval
+        } else {
+            moveIndex += interval
+        }
+        
+        print(differenceBetweenTwoDates(recentDate: recentDate, previousDate: previousDate))
     }
 }
