@@ -11,12 +11,17 @@ extension DateFormatter {
     static let customDateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "yyyy/MM/dd"
-        df.locale = Locale(identifier: "ko-KR")
-        df.timeZone = TimeZone(abbreviation: "KST")
-        df.dateStyle = .medium
-        df.timeStyle = .medium
+        df.locale = Locale(identifier: "ko_KR")
+        //df.timeZone = TimeZone(abbreviation: "KST")
+        //df.dateStyle = .medium
+        //df.timeStyle = .medium
         return df
     }()
+    
+    func dayDate(date: Date) -> String {
+        self.dateFormat = "dd"
+        return self.string(from: date)
+    }
     
     func strToDate(str: String) -> Date {
         self.dateFormat = "yyyy/MM/dd"
