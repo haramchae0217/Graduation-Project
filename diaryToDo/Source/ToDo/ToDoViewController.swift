@@ -15,7 +15,7 @@ class ToDoViewController: UIViewController {
     @IBOutlet weak var todoDateLabel: UILabel!
     
     var calendarList: [ToDo] = []
-    var moveIndex: Int = 0
+    var selectedDate: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +28,15 @@ class ToDoViewController: UIViewController {
         
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
         
-        moveIndex = MyDB.toDoList.count
         toDoTableView.reloadData()
         
-        print(moveIndex)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        moveIndex = MyDB.diaryItem.count
         toDoTableView.reloadData()
         
-        print(moveIndex)
     }
     
     func toDoCalendarSetting() {
@@ -56,8 +52,28 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func nextToDoButton(_ sender: UIButton) {
+        var nextDate: Date = selectedDate
         
+        calendarList = []
+        
+        for data in MyDB.toDoList {
+            if selectedDate < data.startDate {
+                nextDate = data.startDate
+                break
+            }
+        }
+        
+        for data in MyDB.toDoList {
+            if nextDate == data.startDate {
+                calendarList.append(data)
+            }
+        }
+        
+        toDoTableView.reloadData()
+        selectedDate = nextDate
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate)
     }
+    
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
         guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as? AddToDoViewController else { return }
@@ -71,7 +87,7 @@ class ToDoViewController: UIViewController {
             sender.isSelected = false
             MyDB.toDoList[sender.tag].isChecked = true
         } else {
-            sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+            sender.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             sender.isSelected = true
             MyDB.toDoList[sender.tag].isChecked = true
         }

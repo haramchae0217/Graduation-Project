@@ -19,16 +19,12 @@ class DiaryViewController: UIViewController {
     
     var filterHashTag: [Diary] = []
     var dayArr: [Int] = []
-    var hashTag: String = ""
+    var hashTagList: String = ""
     var moveIndex: Int = 0
-    var recentDate: Date = Date()
+    var index: Int = 0
+    var selectedDate: Date = Date()
     var currentDiary: Diary?
-    var moveType: MoveType = .next
     
-    enum MoveType{
-        case previous
-        case next
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +35,8 @@ class DiaryViewController: UIViewController {
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
     
+        index = MyDB.diaryItem.endIndex - 1
+        selectedDate = MyDB.diaryItem[index].date
         moveIndex = MyDB.diaryItem.count
     }
     
@@ -46,16 +44,16 @@ class DiaryViewController: UIViewController {
         super.viewWillAppear(animated)
         
         moveIndex = MyDB.diaryItem.count
-        hashTag = ""
+        hashTagList = ""
         
         if !MyDB.diaryItem.isEmpty {
             let recentDiary = MyDB.diaryItem[moveIndex - 1]
             for word in recentDiary.hashTag {
-            hashTag += word
+                hashTagList += word
             }
             
             diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
-            diaryHashTagLabel.text = hashTag
+            diaryHashTagLabel.text = hashTagList
             diaryPictureUIImage.image = recentDiary.picture
         }
     }
@@ -74,88 +72,63 @@ class DiaryViewController: UIViewController {
 //    -데이터가 있다면 증가를 멈추고 화면에 보여주기
 //    -그 달의 마지막 날짜인데 데이터가 없다면 얼럿
     
-    func moveDiary() {
-        
-        for item in MyDB.diaryItem {
-            let day = item.date
-            let diaryList = MyDB.diaryItem.filter { diary in
-                diary.date == day
-            }
-            print(diaryList)
-        }
-        
-        
-        let stringDate = DateFormatter.customDateFormatter.dayDate(date: recentDate)
-        let intDate = Int(stringDate)!
-        if moveType == .previous {
-            for dayDate in (1 ... intDate).reversed() {
-                for i in dayArr {
-                    if dayDate == i {
-                        print(dayDate)
-                        print(i)
-                    }
-                }
-            }
-        }else if moveType == .next {
-            for dayDate in (1 ... intDate) {
-                for i in dayArr {
-                    if dayDate == i {
-                        print(dayDate)
-                        print(i)
-                    }
-                }
-            }
-        }
-    }
-    
     @IBAction func previousDiaryButton(_ sender: UIButton) {
-        moveType = .previous
-        moveDiary()
-        hashTag = ""
+        let sortedList = MyDB.diaryItem.sorted(by: { $0.date > $1.date })
+        hashTagList = ""
         
-//        if moveIndex > 1 {
-//            moveIndex -= 1
-//            print(moveIndex)
-//
-//            let recentDiary = MyDB.diaryItem[moveIndex - 1]
-//
-//            for word in recentDiary.hashTag {
-//                hashTag += word
-//            }
-            
-//            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
-//            diaryHashTagLabel.text = hashTag
-//            diaryPictureUIImage.image = recentDiary.picture
-//        } else {
-//            print("더 이상 전으로 갈 수 없습니다.")
-//            UIAlertController.showAlert(message: "이전 다이어리가 없습니다.", vc: self)
-//        }
+        var previousDate: Date = selectedDate
+        
+        for data in sortedList { // 바로 이전 날짜 추출
+            if selectedDate > data.date {
+                previousDate = data.date
+                break
+            }
+        }
+        
+        for data in sortedList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
+            if previousDate == data.date {
+                for word in data.hashTag{
+                    hashTagList += word
+                }
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
+                diaryHashTagLabel.text = hashTagList
+                diaryPictureUIImage.image = data.picture
+                break
+            } else {
+//                UIAlertController.showAlert(message: "이전 다이어리가 없습니다.", vc: self)
+            }
+        }
+        
+        selectedDate = previousDate
     }
     
     @IBAction func nextDiaryButton(_ sender: UIButton) {
-        moveType = .next
-        moveDiary()
-        hashTag = ""
+        hashTagList = ""
         
+        var nextDate: Date = selectedDate
         
+        for data in MyDB.diaryItem { // 바로 이전 날짜 추출
+            if selectedDate < data.date {
+                nextDate = data.date
+                break
+            }
+        }
         
-//        if moveIndex < MyDB.diaryItem.count {
-//            moveIndex += 1
-//            print(moveIndex)
-//
-//            let recentDiary = MyDB.diaryItem[moveIndex - 1]
-//
-//            for word in recentDiary.hashTag {
-//                hashTag += word
-//            }
-//
-//            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
-//            diaryHashTagLabel.text = hashTag
-//            diaryPictureUIImage.image = recentDiary.picture
-//        } else {
-//            print("더 이상 뒤로 갈 수 없습니다.")
-//            UIAlertController.showAlert(message: "다음 다이어리가 없습니다.", vc: self)
-//        }
+        for data in MyDB.diaryItem { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
+            if nextDate == data.date {
+                for word in data.hashTag{
+                    hashTagList += word
+                }
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
+                diaryHashTagLabel.text = hashTagList
+                diaryPictureUIImage.image = data.picture
+                break
+            } else {
+//                UIAlertController.showAlert(message: "다음 다이어리가 없습니다.", vc: self)
+            }
+        }
+        
+        selectedDate = nextDate
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
@@ -238,6 +211,7 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
                 image = item.picture
             }
             
+            selectedDate = date
             diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
             diaryPictureUIImage.image = image
             diaryHashTagLabel.text = text
