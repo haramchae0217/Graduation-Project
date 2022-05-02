@@ -48,7 +48,30 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func previousToDoButton(_ sender: UIButton) {
-       
+        let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
+        
+        var previousDate: Date = selectedDate
+        calendarList = []
+        
+        for data in sortedList { // 바로 이전 날짜 추출
+            if selectedDate > data.startDate {
+                previousDate = data.startDate
+                break
+            }
+        }
+        
+        for data in sortedList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
+            if previousDate == data.startDate {
+                calendarList.append(data)
+                break
+            } else {
+//                UIAlertController.showAlert(message: "이전 다이어리가 없습니다.", vc: self)
+            }
+        }
+        
+        toDoTableView.reloadData()
+        selectedDate = previousDate
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate)
     }
     
     @IBAction func nextToDoButton(_ sender: UIButton) {
@@ -173,6 +196,7 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
         }
         
         toDoTableView.reloadData()
+        selectedDate = date
         
         if calendarList.count == 0 {
             UIAlertController.showAlert(message: "등록된 투두가 없습니다.", vc: self)
