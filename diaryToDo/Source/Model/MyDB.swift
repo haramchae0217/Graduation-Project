@@ -26,7 +26,8 @@ struct MyDB {
         ToDo(title: "자격증 시험", memo: "모스 ppt", startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/04/11")),
         ToDo(title: "독서", memo: "프로그래밍실습 과제", startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/04/13")),
         ToDo(title: "MOS", memo: "중간고사", startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/04/15")),
-        ToDo(title: "과제", memo: "전산통계", startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/04/16"))
+        ToDo(title: "과제", memo: "전산통계", startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/04/16")),
+        ToDo(title: "본가가기", memo: "파주로", startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/04/16"))
 
     ]
 }

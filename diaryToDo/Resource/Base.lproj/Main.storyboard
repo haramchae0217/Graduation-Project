@@ -283,10 +283,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-8b-t60">
-                                                    <rect key="frame" x="10" y="28" width="354" height="51"/>
+                                                    <rect key="frame" x="10" y="31" width="354" height="45"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqe-OO-HzM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Lqe-OO-HzM" secondAttribute="height" multiplier="1:1" id="eWW-4F-P3t"/>
                                                             </constraints>
@@ -296,29 +296,22 @@
                                                             </buttonConfiguration>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="토익" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXn-2T-KfM">
-                                                            <rect key="frame" x="61" y="0.0" width="198" height="51"/>
+                                                            <rect key="frame" x="55" y="0.0" width="204" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="N0E-sP-6eH">
-                                                            <rect key="frame" x="269" y="0.0" width="85" height="51"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022.03.12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqa-kT-3hR">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전 00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soj-h5-4Kw">
-                                                                    <rect key="frame" x="0.0" y="30.5" width="85" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022.03.12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqa-kT-3hR">
+                                                            <rect key="frame" x="269" y="0.0" width="85" height="45"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="oXn-2T-KfM" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="4xg-54-bl8"/>
+                                                        <constraint firstItem="Tqa-kT-3hR" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="GDa-xF-XkP"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -330,7 +323,6 @@
                                         <connections>
                                             <outlet property="toDoCheckButton" destination="Lqe-OO-HzM" id="wmV-SW-PKG"/>
                                             <outlet property="toDoExpireDateLabel" destination="Tqa-kT-3hR" id="JHx-BS-cVN"/>
-                                            <outlet property="toDoExpireTimeLabel" destination="Soj-h5-4Kw" id="GJC-et-prZ"/>
                                             <outlet property="toDoTitleLabel" destination="oXn-2T-KfM" id="Ing-GL-GQ8"/>
                                         </connections>
                                     </tableViewCell>
@@ -444,6 +436,7 @@
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="3Am-pc-576">
                                         <rect key="frame" x="45" y="0.0" width="329" height="162"/>
+                                        <locale key="locale" localeIdentifier="ko_KR"/>
                                     </datePicker>
                                 </subviews>
                                 <constraints>
@@ -462,6 +455,7 @@
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-jL-SMd">
                                         <rect key="frame" x="45" y="0.0" width="329" height="162"/>
+                                        <locale key="locale" localeIdentifier="ko_KR"/>
                                     </datePicker>
                                 </subviews>
                                 <constraints>

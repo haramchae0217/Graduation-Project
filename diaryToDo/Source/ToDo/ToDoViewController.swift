@@ -29,13 +29,30 @@ class ToDoViewController: UIViewController {
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
         
         toDoTableView.reloadData()
-        
+        toDoCalendarView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        recentToDoView()
+        
         toDoTableView.reloadData()
+        toDoCalendarView.reloadData()
+    }
+    
+    func recentToDoView() {
+        let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
+        
+        let recentToDoDate: Date = MyDB.toDoList[sortedList.endIndex - 1].startDate
+        calendarList = []
+        
+        for data in sortedList {
+            if recentToDoDate == data.startDate {
+                calendarList.append(data)
+                todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
+            }
+        }
         
     }
     
@@ -60,12 +77,9 @@ class ToDoViewController: UIViewController {
             }
         }
         
-        for data in sortedList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
+        for data in MyDB.toDoList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
             if previousDate == data.startDate {
                 calendarList.append(data)
-                break
-            } else {
-//                UIAlertController.showAlert(message: "이전 다이어리가 없습니다.", vc: self)
             }
         }
         
@@ -140,7 +154,6 @@ extension ToDoViewController: UITableViewDataSource {
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.startDate)
-        cell.toDoExpireTimeLabel.text = DateFormatter.customDateFormatter.timeToStr(date: todo.startDate)
         
         return cell
     }

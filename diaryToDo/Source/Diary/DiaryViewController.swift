@@ -18,13 +18,10 @@ class DiaryViewController: UIViewController {
     let searchHashTag = UISearchController(searchResultsController: nil)
     
     var filterHashTag: [Diary] = []
-    var dayArr: [Int] = []
     var hashTagList: String = ""
     var moveIndex: Int = 0
     var index: Int = 0
     var selectedDate: Date = Date()
-    var currentDiary: Diary?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
