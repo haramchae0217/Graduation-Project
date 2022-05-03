@@ -160,6 +160,9 @@ extension ToDoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            MyDB.toDoList.removeAll { item in
+                    item.title == calendarList[indexPath.row].title
+            }
             calendarList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

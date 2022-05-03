@@ -67,11 +67,10 @@ class AddToDoViewController: UIViewController {
         
         if viewType == .add {
             MyDB.toDoList.append(toDo)
-            print("add")
         } else {
             if let row = editRow {
                 MyDB.toDoList[row] = toDo
-                print("edit")
+                
             }
         }
         
