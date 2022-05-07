@@ -69,11 +69,12 @@ class AddToDoViewController: UIViewController {
             MyDB.toDoList.append(toDo)
         } else {
             if let row = editRow {
-                MyDB.toDoList[row] = toDo
-                
+                for data in MyDB.toDoList {
+                    
+                }
             }
-        }
         
         self.navigationController?.popViewController(animated: true)
+        }
     }
 }
