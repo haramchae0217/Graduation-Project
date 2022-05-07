@@ -55,24 +55,31 @@ class AddToDoViewController: UIViewController {
         
         let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
         
-        if editToDo?.title == title && editToDo?.memo == memo {
-            UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
+        if title.isEmpty, memo.isEmpty {
+            UIAlertController.showAlert(message: "내용을 입력해주세요.", vc: self)
             return
         }
         
-        if title.isEmpty, memo.isEmpty {
-            UIAlertController.showAlert(message: "내용을 입력해주세요.", vc: self)
+        if editToDo?.title == title && editToDo?.memo == memo {
+            UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
             return
         }
         
         if viewType == .add {
             MyDB.toDoList.append(toDo)
         } else {
-            if let row = editRow {
-                for data in MyDB.toDoList {
-                    
+            for var data in MyDB.toDoList {
+                if (data.title == editToDo?.title && data.memo == editToDo?.memo) {
+                    print(data)
+                    data.title = title
+                    data.memo = memo
+                    data.startDate = startDate
+                    data.endDate = endDate
+                    data = toDo
+                    print(data)
                 }
             }
+//            print(MyDB.toDoList)
         
         self.navigationController?.popViewController(animated: true)
         }
