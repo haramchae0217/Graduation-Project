@@ -117,6 +117,12 @@ class ToDoViewController: UIViewController {
         self.navigationController?.pushViewController(addToDo, animated: true)
     }
     
+    @IBAction func graphButon(_ sender: UIBarButtonItem) {
+        guard let graphVC = self.storyboard?.instantiateViewController(withIdentifier: GraphViewController.identifier) as? GraphViewController else { return }
+        self.navigationController?.pushViewController(graphVC, animated: true)
+    }
+    
+    
     @objc func checkToDoButton(_ sender: UIButton) {
         if sender.isSelected {
             sender.setImage(UIImage(systemName: "circle"),for: .normal)

@@ -354,6 +354,9 @@
                     <navigationItem key="navigationItem" title="ToDo" id="vKs-uh-eOi">
                         <barButtonItem key="leftBarButtonItem" image="chart.line.uptrend.xyaxis" catalog="system" id="M6P-Lf-lKb">
                             <color key="tintColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="graphButon:" destination="v9c-dq-c5l" id="XjG-Z5-4ew"/>
+                            </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem style="plain" systemItem="add" id="haB-wb-SLL">
@@ -501,6 +504,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5MD-O3-OnS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5053.6231884057979" y="-320.08928571428572"/>
+        </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="Sho-f8-dYi">
+            <objects>
+                <viewController storyboardIdentifier="GraphVC" id="0Xs-N9-MZW" customClass="GraphViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GpR-0I-HrH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkC-q0-9dO" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="64" width="374" height="199.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RkC-q0-9dO" secondAttribute="height" multiplier="15:8" id="Whu-Yd-nCv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sUp-NZ-nb6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RkC-q0-9dO" firstAttribute="top" secondItem="sUp-NZ-nb6" secondAttribute="top" constant="20" id="Jnb-hV-jRu"/>
+                            <constraint firstItem="RkC-q0-9dO" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="vMP-Ik-oI4"/>
+                            <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="RkC-q0-9dO" secondAttribute="trailing" constant="20" id="xM5-4Y-glf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="barChart" destination="RkC-q0-9dO" id="ghF-pg-dxV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kwp-sl-3lj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5952" y="-320"/>
         </scene>
         <!--Setting-->
         <scene sceneID="pC0-zX-TXr">

@@ -17,6 +17,8 @@
 		837C4F0C27DC349B00FC46A7 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */; };
 		837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */; };
 		837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0F27DC360000FC46A7 /* ToDo.swift */; };
+		8390C3122829660200E8D57A /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 8390C3112829660200E8D57A /* Charts */; };
+		8390C3142829663A00E8D57A /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8390C3132829663A00E8D57A /* GraphViewController.swift */; };
 		83D512BC27F5B120009B3A23 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 83D512BB27F5B120009B3A23 /* FSCalendar */; };
 		83D512C027F5C368009B3A23 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512BF27F5C368009B3A23 /* SettingViewController.swift */; };
 		83D512C227F5C3C6009B3A23 /* DateFormatSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512C127F5C3C6009B3A23 /* DateFormatSettingViewController.swift */; };
@@ -51,6 +53,7 @@
 		837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837C4F0F27DC360000FC46A7 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		8390C3132829663A00E8D57A /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = SOURCE_ROOT; };
 		83D512BF27F5C368009B3A23 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = diaryToDo/Resource/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		83D512C127F5C3C6009B3A23 /* DateFormatSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatSettingViewController.swift; path = diaryToDo/Resource/DateFormatSettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		83D512C327F5C3E7009B3A23 /* FontSizeSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontSizeSettingViewController.swift; path = diaryToDo/Resource/FontSizeSettingViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -77,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D512BC27F5B120009B3A23 /* FSCalendar in Frameworks */,
+				8390C3122829660200E8D57A /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +167,7 @@
 			children = (
 				837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */,
 				83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */,
+				8390C3132829663A00E8D57A /* GraphViewController.swift */,
 				837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */,
 			);
 			path = ToDo;
@@ -209,6 +214,7 @@
 			name = diaryToDo;
 			packageProductDependencies = (
 				83D512BB27F5B120009B3A23 /* FSCalendar */,
+				8390C3112829660200E8D57A /* Charts */,
 			);
 			productName = diaryToDo;
 			productReference = 83354D9627DB51AE0096C7B5 /* diaryToDo.app */;
@@ -240,6 +246,7 @@
 			mainGroup = 83354D8D27DB51AE0096C7B5;
 			packageReferences = (
 				83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				8390C3102829660200E8D57A /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 83354D9727DB51AE0096C7B5 /* Products */;
 			projectDirPath = "";
@@ -275,6 +282,7 @@
 				83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */,
 				83D512CC27F5D998009B3A23 /* FontSizeTableViewCell.swift in Sources */,
 				83D512CE27F5DABD009B3A23 /* FontSize.swift in Sources */,
+				8390C3142829663A00E8D57A /* GraphViewController.swift in Sources */,
 				83D512C027F5C368009B3A23 /* SettingViewController.swift in Sources */,
 				83D512C227F5C3C6009B3A23 /* DateFormatSettingViewController.swift in Sources */,
 				83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */,
@@ -514,6 +522,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8390C3102829660200E8D57A /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -525,6 +541,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8390C3112829660200E8D57A /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8390C3102829660200E8D57A /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
 		83D512BB27F5B120009B3A23 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */;
