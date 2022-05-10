@@ -18,11 +18,6 @@ extension DateFormatter {
         return df
     }()
     
-    func dayDate(date: Date) -> String {
-        self.dateFormat = "dd"
-        return self.string(from: date)
-    }
-    
     func strToDate(str: String) -> Date {
         self.dateFormat = "yyyy/MM/dd"
         return self.date(from: str)!
