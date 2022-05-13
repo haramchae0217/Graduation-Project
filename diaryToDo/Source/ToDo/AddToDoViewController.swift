@@ -79,7 +79,6 @@ class AddToDoViewController: UIViewController {
                     print(data)
                 }
             }
-//            print(MyDB.toDoList)
         
         self.navigationController?.popViewController(animated: true)
         }

@@ -7,20 +7,68 @@
 
 import UIKit
 import Charts
+import FSCalendar
 
 class GraphViewController: UIViewController {
     
     static var identifier = "GraphVC"
 
+    @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var barChart: BarChartView!
     
-    var checkCount: [Double] = [3.3, 2.4, 11.4, 7.6, 4.4, 8.4, 5.5]
-    var dates: [String] = ["1월","2월","3월","4월","5월","6월","7월"]
+    var calendarList: [ToDo] = []
+    var checkCount: [Double] = []
+    var dates: [String] = []
+    var count: Double = 0
+    var todayDate: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        appendDate()
+        appendCount()
         drawGraph()
+        setCalendar()
+        
+        calendarView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        calendarView.reloadData()
+    }
+    
+//    func weekDay() {
+//        for i in 1..<8 {
+//            Int(todayDate) - i
+//            let date = DateFormatter.customDateFormatter.dateToStr(date: todayDate)
+//            dates.append(<#T##newElement: String##String#>)
+//        }
+//    }
+    func setCalendar() {
+        calendarView.delegate = self
+        calendarView.dataSource = self
+        
+        calendarView.locale = Locale(identifier: "ko-KR")
+        calendarView.appearance.selectionColor = .systemBlue
+    }
+    
+    func appendDate() {
+        for data in MyDB.toDoList {
+            let strDate = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
+            dates.append(strDate)
+        }
+    }
+    
+    func appendCount() {
+        for data in MyDB.toDoList {
+            let checkTrue = data.isChecked
+            if checkTrue == true {
+                count += 1
+            }
+            checkCount.append(count)
+        }
     }
     
     func drawGraph() {
@@ -49,4 +97,36 @@ class GraphViewController: UIViewController {
     }
    
 
+}
+
+extension GraphViewController: FSCalendarDelegate, FSCalendarDataSource {
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        for todo in MyDB.toDoList {
+            let toDoEvent = todo.startDate
+            
+            if toDoEvent == date {
+                let count = MyDB.toDoList.filter { todo in
+                    todo.startDate == date
+                }.count
+                
+                if count >= 3 {
+                    return 3
+                } else {
+                    return count
+                }
+            }
+        }
+        
+        return 0
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        calendarList = MyDB.toDoList.filter { toDo in
+            toDo.startDate == date
+        }
+        
+        if calendarList.count == 0 {
+            UIAlertController.showAlert(message: "등록된 투두가 없습니다.", vc: self)
+        }
+    }
 }

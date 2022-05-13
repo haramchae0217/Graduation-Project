@@ -513,8 +513,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-OQ-2FL" customClass="FSCalendar">
+                                <rect key="frame" x="20" y="64" width="374" height="374"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7D2-OQ-2FL" secondAttribute="height" multiplier="1:1" id="xdP-1Z-Xd2"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkC-q0-9dO" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="64" width="374" height="199.5"/>
+                                <rect key="frame" x="20" y="458" width="374" height="199.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RkC-q0-9dO" secondAttribute="height" multiplier="15:8" id="Whu-Yd-nCv"/>
@@ -524,13 +531,17 @@
                         <viewLayoutGuide key="safeArea" id="sUp-NZ-nb6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RkC-q0-9dO" firstAttribute="top" secondItem="sUp-NZ-nb6" secondAttribute="top" constant="20" id="Jnb-hV-jRu"/>
+                            <constraint firstItem="7D2-OQ-2FL" firstAttribute="top" secondItem="sUp-NZ-nb6" secondAttribute="top" constant="20" id="6ji-QU-dc8"/>
+                            <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="7D2-OQ-2FL" secondAttribute="trailing" constant="20" id="FB4-YN-YWj"/>
+                            <constraint firstItem="7D2-OQ-2FL" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="Y2W-Dc-bDF"/>
+                            <constraint firstItem="RkC-q0-9dO" firstAttribute="top" secondItem="7D2-OQ-2FL" secondAttribute="bottom" constant="20" id="gMy-w2-j38"/>
                             <constraint firstItem="RkC-q0-9dO" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="vMP-Ik-oI4"/>
                             <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="RkC-q0-9dO" secondAttribute="trailing" constant="20" id="xM5-4Y-glf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="barChart" destination="RkC-q0-9dO" id="ghF-pg-dxV"/>
+                        <outlet property="calendarView" destination="7D2-OQ-2FL" id="l2g-Xx-v0L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwp-sl-3lj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
