@@ -26,7 +26,7 @@ class GraphViewController: UIViewController {
         super.viewDidLoad()
         
         appendDate()
-        appendCount()
+//        appendCount()
         drawGraph()
         setCalendar()
         
@@ -58,18 +58,19 @@ class GraphViewController: UIViewController {
         for data in MyDB.toDoList {
             let strDate = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
             dates.append(strDate)
+            print(dates)
         }
     }
-    
-    func appendCount() {
-        for data in MyDB.toDoList {
-            let checkTrue = data.isChecked
-            if checkTrue == true {
-                count += 1
-            }
-            checkCount.append(count)
-        }
-    }
+//
+//    func appendCount() {
+//        for data in MyDB.toDoList {
+//            let checkTrue = data.isChecked
+//            if checkTrue == true {
+//                count += 1
+//            }
+//            checkCount.append(count)
+//        }
+//    }
     
     func drawGraph() {
         var chartEntry: [ChartDataEntry] = []
@@ -108,7 +109,8 @@ extension GraphViewController: FSCalendarDelegate, FSCalendarDataSource {
                 let count = MyDB.toDoList.filter { todo in
                     todo.startDate == date
                 }.count
-                
+                checkCount.append(Double(count))
+                print(checkCount)
                 if count >= 3 {
                     return 3
                 } else {
