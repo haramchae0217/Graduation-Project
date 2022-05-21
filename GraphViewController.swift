@@ -26,7 +26,6 @@ class GraphViewController: UIViewController {
         super.viewDidLoad()
         
         appendDate()
-//        appendCount()
         drawGraph()
         setCalendar()
         
@@ -39,13 +38,6 @@ class GraphViewController: UIViewController {
         calendarView.reloadData()
     }
     
-//    func weekDay() {
-//        for i in 1..<8 {
-//            Int(todayDate) - i
-//            let date = DateFormatter.customDateFormatter.dateToStr(date: todayDate)
-//            dates.append(<#T##newElement: String##String#>)
-//        }
-//    }
     func setCalendar() {
         calendarView.delegate = self
         calendarView.dataSource = self
@@ -61,17 +53,7 @@ class GraphViewController: UIViewController {
             print(dates)
         }
     }
-//
-//    func appendCount() {
-//        for data in MyDB.toDoList {
-//            let checkTrue = data.isChecked
-//            if checkTrue == true {
-//                count += 1
-//            }
-//            checkCount.append(count)
-//        }
-//    }
-    
+
     func drawGraph() {
         var chartEntry: [ChartDataEntry] = []
         
