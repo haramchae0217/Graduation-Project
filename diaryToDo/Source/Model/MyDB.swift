@@ -5,7 +5,6 @@
 //  Created by Chae_Haram on 2022/04/04.
 //
 
-import Foundation
 import UIKit
 
 struct MyDB {

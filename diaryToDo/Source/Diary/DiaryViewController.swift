@@ -62,13 +62,7 @@ class DiaryViewController: UIViewController {
         diaryCalendarView.locale = Locale(identifier: "ko-KR")
         diaryCalendarView.appearance.selectionColor = .systemBlue
     }
-    
-//    -현재 눌린 날짜를 기준으로 날짜 정보를 1 증가
-//    -증가시킨 날짜에 데이터가 있나 체크
-//    -데이터가 있거나 그 달의 마지막 날짜까지 증가
-//    -데이터가 있다면 증가를 멈추고 화면에 보여주기
-//    -그 달의 마지막 날짜인데 데이터가 없다면 얼럿
-    
+        
     @IBAction func previousDiaryButton(_ sender: UIButton) {
         let sortedList = MyDB.diaryItem.sorted(by: { $0.date > $1.date })
         hashTagList = ""
