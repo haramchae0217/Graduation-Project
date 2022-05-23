@@ -12,9 +12,6 @@ extension DateFormatter {
         let df = DateFormatter()
         df.dateFormat = "yyyy/MM/dd"
         df.locale = Locale(identifier: "ko_KR")
-        //df.timeZone = TimeZone(abbreviation: "KST")
-        //df.dateStyle = .medium
-        //df.timeStyle = .medium
         return df
     }()
     
@@ -28,13 +25,13 @@ extension DateFormatter {
         return self.string(from: date)
     }
     
-    func strToTime(str: String) -> Date {
-        self.dateFormat = "a hh:mm"
+    func strToDay(str: String) -> Date {
+        self.dateFormat = "dd"
         return self.date(from: str)!
     }
     
-    func timeToStr(date: Date) -> String {
-        self.dateFormat = "a hh:mm"
+    func dayToStr(date: Date) -> String {
+        self.dateFormat = "dd"
         return self.string(from: date)
     }
 }

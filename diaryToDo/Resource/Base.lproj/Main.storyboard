@@ -520,8 +520,14 @@
                                     <constraint firstAttribute="width" secondItem="7D2-OQ-2FL" secondAttribute="height" multiplier="1:1" id="xdP-1Z-Xd2"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0월 0째주 그래프" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynG-Ql-Mhw">
+                                <rect key="frame" x="20" y="458" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkC-q0-9dO" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="20" y="458" width="374" height="199.5"/>
+                                <rect key="frame" x="20" y="502" width="374" height="199.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RkC-q0-9dO" secondAttribute="height" multiplier="15:8" id="Whu-Yd-nCv"/>
@@ -533,14 +539,18 @@
                         <constraints>
                             <constraint firstItem="7D2-OQ-2FL" firstAttribute="top" secondItem="sUp-NZ-nb6" secondAttribute="top" constant="20" id="6ji-QU-dc8"/>
                             <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="7D2-OQ-2FL" secondAttribute="trailing" constant="20" id="FB4-YN-YWj"/>
+                            <constraint firstItem="RkC-q0-9dO" firstAttribute="top" secondItem="ynG-Ql-Mhw" secondAttribute="bottom" constant="20" id="RGv-zQ-jDv"/>
                             <constraint firstItem="7D2-OQ-2FL" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="Y2W-Dc-bDF"/>
-                            <constraint firstItem="RkC-q0-9dO" firstAttribute="top" secondItem="7D2-OQ-2FL" secondAttribute="bottom" constant="20" id="gMy-w2-j38"/>
+                            <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="ynG-Ql-Mhw" secondAttribute="trailing" constant="20" id="b2o-7y-6oZ"/>
+                            <constraint firstItem="ynG-Ql-Mhw" firstAttribute="top" secondItem="7D2-OQ-2FL" secondAttribute="bottom" constant="20" id="kQK-sE-2TE"/>
+                            <constraint firstItem="ynG-Ql-Mhw" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="mTu-Da-odg"/>
                             <constraint firstItem="RkC-q0-9dO" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="vMP-Ik-oI4"/>
                             <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="RkC-q0-9dO" secondAttribute="trailing" constant="20" id="xM5-4Y-glf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="barChart" destination="RkC-q0-9dO" id="ghF-pg-dxV"/>
+                        <outlet property="calendarInfo" destination="ynG-Ql-Mhw" id="Id8-qF-2dM"/>
                         <outlet property="calendarView" destination="7D2-OQ-2FL" id="l2g-Xx-v0L"/>
                     </connections>
                 </viewController>
