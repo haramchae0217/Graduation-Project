@@ -18,7 +18,8 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var calendarInfo: UILabel!
     
     var calendarList: [ToDo] = []
-    var checkCount: [Double] = [8,5,4,2,1,2,3]
+    var checkCount: [Double] = []
+    var dates: [Date] = []
     var strDates: [String] = []
     var todayDate: Date = Date()
     var monthInfo: Int = 0
@@ -41,6 +42,8 @@ class GraphViewController: UIViewController {
     
     func appendDate(date: Date) {
         strDates = []
+        dates = []
+        checkCount = []
         monthInfo = Calendar.current.component(.month, from: date)
         weekInfo = Calendar.current.component(.weekOfMonth, from: date)
         calendarInfo.text = "\(monthInfo)월 \(weekInfo)째주"
@@ -49,6 +52,7 @@ class GraphViewController: UIViewController {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: date)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
+                dates.append(addDate)
             }
         } else if Calendar.current.component(.weekday, from: date) == 2 {
             let editDate = Calendar.current.date(byAdding: .day, value: -1, to: date)!
@@ -56,6 +60,7 @@ class GraphViewController: UIViewController {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
+                dates.append(addDate)
             }
         } else if Calendar.current.component(.weekday, from: date) == 3 {
             let editDate = Calendar.current.date(byAdding: .day, value: -2, to: date)!
@@ -63,6 +68,7 @@ class GraphViewController: UIViewController {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
+                dates.append(addDate)
             }
         } else if Calendar.current.component(.weekday, from: date) == 4 {
             let editDate = Calendar.current.date(byAdding: .day, value: -3, to: date)!
@@ -70,6 +76,7 @@ class GraphViewController: UIViewController {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
+                dates.append(addDate)
             }
         } else if Calendar.current.component(.weekday, from: date) == 5 {
             let editDate = Calendar.current.date(byAdding: .day, value: -4, to: date)!
@@ -77,6 +84,7 @@ class GraphViewController: UIViewController {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
+                dates.append(addDate)
             }
         } else if Calendar.current.component(.weekday, from: date) == 6 {
             let editDate = Calendar.current.date(byAdding: .day, value: -5, to: date)!
@@ -84,6 +92,7 @@ class GraphViewController: UIViewController {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
+                dates.append(addDate)
             }
         } else if Calendar.current.component(.weekday, from: date) == 7 {
             let editDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
@@ -91,16 +100,29 @@ class GraphViewController: UIViewController {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
+                dates.append(addDate)
             }
         }
+        appendData(datas: dates)
         drawGraph()
-        appendData(datas: strDates)
     }
     
-    func appendData(datas: [String]) {
+    func appendData(datas: [Date]) {
+        var count: Double = 0
         for data in datas {
-            if data == MyDB.toDoList
+            for date in MyDB.toDoList {
+                if data == date.startDate {
+                    if date.isChecked == true {
+                        count += 1
+                    } else {
+                        count += 0
+                    }
+                    checkCount.append(count)
+                    count = 0
+                }
+            }
         }
+        print(checkCount)
     }
     
     func setCalendar() {
