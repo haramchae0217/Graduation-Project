@@ -18,6 +18,7 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var calendarInfo: UILabel!
     
     var calendarList: [ToDo] = []
+    var weekTodoList: [ToDo] = []
     var checkCount: [Double] = []
     var dates: [Date] = []
     var strDates: [String] = []
@@ -43,7 +44,6 @@ class GraphViewController: UIViewController {
     func appendDate(date: Date) {
         strDates = []
         dates = []
-        checkCount = []
         monthInfo = Calendar.current.component(.month, from: date)
         weekInfo = Calendar.current.component(.weekOfMonth, from: date)
         calendarInfo.text = "\(monthInfo)월 \(weekInfo)째주"
@@ -103,26 +103,29 @@ class GraphViewController: UIViewController {
                 dates.append(addDate)
             }
         }
-        appendData(datas: dates)
-        drawGraph()
+//        print(strDates)
+        print(dates)
+        let count = appendData(datas: dates)
+        drawGraph(data: count)
     }
     
-    func appendData(datas: [Date]) {
+    func appendData(datas: [Date]) -> [Double] {
         var count: Double = 0
-        for data in datas {
-            for date in MyDB.toDoList {
-                if data == date.startDate {
-                    if date.isChecked == true {
-                        count += 1
-                    } else {
-                        count += 0
-                    }
-                    checkCount.append(count)
-                    count = 0
+        checkCount = []
+        weekTodoList = []
+        
+        for everydate in MyDB.toDoList {
+            for weekday in datas {
+                if weekday == everydate.startDate {
+                    weekTodoList.append(everydate)
                 }
             }
         }
-        print(checkCount)
+        
+        checkCount = [4,2,5,1,3,7,0]
+        print(weekTodoList)
+//        print(checkCount)
+        return checkCount
     }
     
     func setCalendar() {
@@ -133,11 +136,11 @@ class GraphViewController: UIViewController {
         calendarView.appearance.selectionColor = .systemBlue
     }
     
-    func drawGraph() {
+    func drawGraph(data: [Double]) {
         var chartEntry: [ChartDataEntry] = []
         
         for i in 0..<checkCount.count {
-            let value = BarChartDataEntry(x: Double(i), y: checkCount[i])
+            let value = BarChartDataEntry(x: Double(i), y: data[i])
             chartEntry.append(value)
         }
         

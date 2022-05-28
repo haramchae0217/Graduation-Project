@@ -21,6 +21,8 @@ class AddDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "다이어리 추가"
+        
         addDiaryContentTextView.delegate = self
         imagePicker.delegate = self
         

@@ -15,8 +15,6 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryHashTagLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
     
-    let searchHashTag = UISearchController(searchResultsController: nil)
-    
     var filterHashTag: [Diary] = []
     var hashTagList: String = ""
     var moveIndex: Int = 0
@@ -25,9 +23,6 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchHashTag.searchBar.delegate = self
-        searchHashTag.searchResultsUpdater = self
         
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
@@ -133,13 +128,8 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {
-        setupSearchBar()
-        navigationItem.searchController = searchHashTag
-    }
-    
-    func setupSearchBar() {
-        searchHashTag.hidesNavigationBarDuringPresentation = false
-        searchHashTag.searchBar.placeholder = "검색"
+        guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: SearchDiaryViewController.identfier) as? SearchDiaryViewController else { return }
+        self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
     @IBAction func addDiaryButton(_ sender: UIBarButtonItem) {
@@ -149,24 +139,6 @@ class DiaryViewController: UIViewController {
     
 }
 
-extension DiaryViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            filterHashTag = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(searchText) }
-        }
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        navigationItem.searchController = nil
-    }
-}
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
