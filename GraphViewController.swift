@@ -48,7 +48,7 @@ class GraphViewController: UIViewController {
         weekInfo = Calendar.current.component(.weekOfMonth, from: date)
         calendarInfo.text = "\(monthInfo)월 \(weekInfo)째주"
         if Calendar.current.component(.weekday, from: date) == 1 {
-            for i in 0...7 {
+            for i in 0..<7 {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: date)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
@@ -56,7 +56,7 @@ class GraphViewController: UIViewController {
             }
         } else if Calendar.current.component(.weekday, from: date) == 2 {
             let editDate = Calendar.current.date(byAdding: .day, value: -1, to: date)!
-            for i in 0...7 {
+            for i in 0..<7 {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
@@ -64,7 +64,7 @@ class GraphViewController: UIViewController {
             }
         } else if Calendar.current.component(.weekday, from: date) == 3 {
             let editDate = Calendar.current.date(byAdding: .day, value: -2, to: date)!
-            for i in 0...7 {
+            for i in 0..<7 {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
@@ -72,7 +72,7 @@ class GraphViewController: UIViewController {
             }
         } else if Calendar.current.component(.weekday, from: date) == 4 {
             let editDate = Calendar.current.date(byAdding: .day, value: -3, to: date)!
-            for i in 0...7 {
+            for i in 0..<7 {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
@@ -80,7 +80,7 @@ class GraphViewController: UIViewController {
             }
         } else if Calendar.current.component(.weekday, from: date) == 5 {
             let editDate = Calendar.current.date(byAdding: .day, value: -4, to: date)!
-            for i in 0...7 {
+            for i in 0..<7 {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
@@ -88,7 +88,7 @@ class GraphViewController: UIViewController {
             }
         } else if Calendar.current.component(.weekday, from: date) == 6 {
             let editDate = Calendar.current.date(byAdding: .day, value: -5, to: date)!
-            for i in 0...7 {
+            for i in 0..<7 {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
@@ -96,15 +96,14 @@ class GraphViewController: UIViewController {
             }
         } else if Calendar.current.component(.weekday, from: date) == 7 {
             let editDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
-            for i in 0...7 {
+            for i in 0..<7 {
                 let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
                 let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
                 strDates.append(dateToStr)
                 dates.append(addDate)
             }
         }
-//        print(strDates)
-        print(dates)
+        
         let count = appendData(datas: dates)
         drawGraph(data: count)
     }
@@ -114,17 +113,31 @@ class GraphViewController: UIViewController {
         checkCount = []
         weekTodoList = []
         
-        for everydate in MyDB.toDoList {
-            for weekday in datas {
-                if weekday == everydate.startDate {
+        for weekday in datas {
+            for everydate in MyDB.toDoList {
+                print(weekday,everydate.startDate)
+                if DateFormatter.customDateFormatter.dateToStr(date: weekday) == DateFormatter.customDateFormatter.dateToStr(date: everydate.startDate) {
                     weekTodoList.append(everydate)
                 }
             }
         }
         
-        checkCount = [4,2,5,1,3,7,0]
-        print(weekTodoList)
-//        print(checkCount)
+        for weekday in datas {
+            for data in weekTodoList {
+                if DateFormatter.customDateFormatter.dateToStr(date: weekday) == DateFormatter.customDateFormatter.dateToStr(date: data.startDate) {
+                    if data.isChecked == true {
+                        count += 1
+                    } else {
+                        count += 0
+                    }
+                } else {
+                    
+                }
+            }
+            checkCount.append(count)
+            count = 0
+        }
+        
         return checkCount
     }
     
