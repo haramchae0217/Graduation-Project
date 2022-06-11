@@ -38,11 +38,11 @@ class AddToDoViewController: UIViewController {
         
         if viewType == .add {
             title = "add ToDo"
-            let rightBarButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(addToDoButton))
+            let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addToDoButton))
             self.navigationItem.rightBarButtonItem = rightBarButton
         } else {
             title = "edit ToDo"
-            let rightBarButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(addToDoButton))
+            let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addToDoButton))
             self.navigationItem.rightBarButtonItem = rightBarButton
         }
     }

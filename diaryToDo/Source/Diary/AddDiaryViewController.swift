@@ -26,7 +26,7 @@ class AddDiaryViewController: UIViewController {
         addDiaryContentTextView.delegate = self
         imagePicker.delegate = self
         
-        let rightBarButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(addDiaryButton))
+        let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addDiaryButton))
         self.navigationItem.rightBarButtonItem = rightBarButton
         
         if addDiaryContentTextView.text.isEmpty {
