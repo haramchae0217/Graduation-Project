@@ -13,24 +13,22 @@ class SearchDiaryViewController: UIViewController {
 
     @IBOutlet weak var searchTableView: UITableView!
     
-    var searchDiary: [Diary] = []
+    var searchDiary: [Diary] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.searchTableView.reloadData()
+            }
+        }
+    }
     var hashTag: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "다이어리 검색"
-        
-        searchDiary = MyDB.diaryItem
 
         tableViewSet()
         searchBarSet()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        searchTableView.reloadData()
     }
     
     func tableViewSet() {
@@ -55,16 +53,16 @@ extension SearchDiaryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
+        let searchData = searchDiary[indexPath.row]
         hashTag = ""
-        if !searchDiary.isEmpty {
-            let searchResult = searchDiary[indexPath.row]
-            for data in searchResult.hashTag {
-                hashTag += data
-            }
-            cell.diaryImage.image = searchResult.picture
-            cell.diaryHashTag.text = hashTag
-            cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchResult.date)
+        for data in searchData.hashTag {
+            hashTag += data
         }
+
+        cell.diaryImage.image = searchData.picture
+        cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date
+        )
+        cell.diaryHashTag.text = hashTag
         
         return cell
     }
@@ -96,11 +94,11 @@ extension SearchDiaryViewController: UISearchResultsUpdating, UISearchBarDelegat
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchTableView.reloadData()
+//        let searchResult = searchBar.text!
+//        searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(searchResult) }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchDiary = MyDB.diaryItem
-        searchTableView.reloadData()
+        searchDiary = []
     }
 }
