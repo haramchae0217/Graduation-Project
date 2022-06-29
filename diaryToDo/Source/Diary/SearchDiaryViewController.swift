@@ -60,8 +60,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
         }
 
         cell.diaryImage.image = searchData.picture
-        cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date
-        )
+        cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date)
         cell.diaryHashTag.text = hashTag
         
         return cell
@@ -88,14 +87,16 @@ extension SearchDiaryViewController: UISearchResultsUpdating, UISearchBarDelegat
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             print("검색어 : ",searchText)
-            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(searchText) }
+            searchDiary = MyDB.diaryItem.filter{ $0.content.map { String($0) }.contains(searchText) }
             print("필터링 : ",searchDiary)
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        let searchResult = searchBar.text!
-//        searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(searchResult) }
+        let searchResult = searchBar.text!
+//        searchDiary = MyDB.diaryItem.filter{ $0.content.map { String($0) }.contains(searchResult) }
+//        print(searchResult)
+//        print(searchDiary)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
