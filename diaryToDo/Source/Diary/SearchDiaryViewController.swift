@@ -29,6 +29,16 @@ class SearchDiaryViewController: UIViewController {
 
         tableViewSet()
         searchBarSet()
+        rightBarButton()
+    }
+    
+    func rightBarButton() {
+        let cancelButton = UIBarButtonItem(title: "X", style: .done, target: self, action: #selector(cancelButton))
+        self.navigationItem.rightBarButtonItem = cancelButton
+    }
+    
+    @objc func cancelButton() {
+        self.dismiss(animated: true)
     }
     
     func tableViewSet() {
@@ -58,7 +68,6 @@ extension SearchDiaryViewController: UITableViewDataSource {
         for data in searchData.hashTag {
             hashTag += data
         }
-
         cell.diaryImage.image = searchData.picture
         cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date)
         cell.diaryHashTag.text = hashTag
@@ -75,11 +84,12 @@ extension SearchDiaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectDiary = storyboard?.instantiateViewController(withIdentifier: "diaryVC") as? DiaryViewController else { return }
         let diary = searchDiary[indexPath.row]
-        selectDiary.diaryPictureUIImage.image = diary.picture
-        selectDiary.diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date)
-        selectDiary.diaryHashTagLabel.text = hashTag
+        selectDiary.selectDiary = diary
+        selectDiary.diaryType = .search
+        print(diary)
+        print(selectDiary.selectDiary)
+        print(selectDiary.diaryType)
         self.dismiss(animated: true)
-        //self.navigationController?.pushViewController(selectDiary, animated: true)
     }
 }
 
@@ -93,7 +103,7 @@ extension SearchDiaryViewController: UISearchResultsUpdating, UISearchBarDelegat
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let searchResult = searchBar.text!
+//        let searchResult = searchBar.text!
 //        searchDiary = MyDB.diaryItem.filter{ $0.content.map { String($0) }.contains(searchResult) }
 //        print(searchResult)
 //        print(searchDiary)

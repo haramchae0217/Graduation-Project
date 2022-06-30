@@ -15,14 +15,22 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryHashTagLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
     
+    enum DiaryType {
+        case basic
+        case search
+    }
+    
     var filterHashTag: [Diary] = []
+    var selectDiary: Diary?
     var hashTagList: String = ""
     var moveIndex: Int = 0
     var index: Int = 0
     var selectedDate: Date = Date()
+    var diaryType: DiaryType = .basic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(diaryType)
         
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
@@ -34,20 +42,36 @@ class DiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("화면전환")
+        print(diaryType)
+        print(selectDiary)
         
         moveIndex = MyDB.diaryItem.count
         hashTagList = ""
         
-        if !MyDB.diaryItem.isEmpty {
-            let recentDiary = MyDB.diaryItem[moveIndex - 1]
-            for word in recentDiary.hashTag {
+        if diaryType == .search {
+            guard let selectDiary = selectDiary else {return }
+
+            for word in selectDiary.hashTag {
                 hashTagList += word
             }
-            
-            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
+            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date)
             diaryHashTagLabel.text = hashTagList
-            diaryPictureUIImage.image = recentDiary.picture
+            diaryPictureUIImage.image = selectDiary.picture
+        } else {
+            if !MyDB.diaryItem.isEmpty {
+                let recentDiary = MyDB.diaryItem[moveIndex - 1]
+                for word in recentDiary.hashTag {
+                    hashTagList += word
+                }
+                
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
+                diaryHashTagLabel.text = hashTagList
+                diaryPictureUIImage.image = recentDiary.picture
+            }
         }
+        //viewType = .basic
+        
     }
     
     func diaryCalendarSetting() {
@@ -128,10 +152,10 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {
-        guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: SearchDiaryViewController.identfier) as? SearchDiaryViewController else { return }
-        searchVC.modalPresentationStyle = .fullScreen
-        self.present(searchVC, animated: true)
-//        self.navigationController?.pushViewController(searchVC, animated: true)
+        guard let searchNC = self.storyboard?.instantiateViewController(withIdentifier: "SearchNC") as? UINavigationController else { return }
+//        guard let searchVC = searchNC.children.first as? SearchDiaryViewController else { return }
+        searchNC.modalPresentationStyle = .fullScreen
+        self.present(searchNC, animated: true)
     }
     
     @IBAction func addDiaryButton(_ sender: UIBarButtonItem) {

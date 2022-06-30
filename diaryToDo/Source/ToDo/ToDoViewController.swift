@@ -127,7 +127,7 @@ class ToDoViewController: UIViewController {
         if sender.isSelected {
             sender.setImage(UIImage(systemName: "circle"),for: .normal)
             sender.isSelected = false
-            MyDB.toDoList[sender.tag].isChecked = true
+            MyDB.toDoList[sender.tag].isChecked = false
         } else {
             sender.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             sender.isSelected = true
