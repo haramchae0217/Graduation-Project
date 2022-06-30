@@ -78,8 +78,8 @@ extension SearchDiaryViewController: UITableViewDelegate {
         selectDiary.diaryPictureUIImage.image = diary.picture
         selectDiary.diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date)
         selectDiary.diaryHashTagLabel.text = hashTag
-        
-        self.navigationController?.pushViewController(selectDiary, animated: true)
+        self.dismiss(animated: true)
+        //self.navigationController?.pushViewController(selectDiary, animated: true)
     }
 }
 

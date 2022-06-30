@@ -241,7 +241,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Xg5-Vv-mg2">
-                                <rect key="frame" x="0.0" y="64" width="414" height="778"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="172" id="1pK-Zr-6ga" customClass="SearchTableViewCell" customModule="diaryToDo" customModuleProvider="target">
@@ -303,13 +303,14 @@
                             <constraint firstItem="Xg5-Vv-mg2" firstAttribute="leading" secondItem="WXk-Vd-ZdU" secondAttribute="leading" id="nmZ-AG-Idp"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TcJ-Nz-o61"/>
                     <connections>
                         <outlet property="searchTableView" destination="Xg5-Vv-mg2" id="xnW-g4-Whp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvI-Dl-zth" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5950.7246376811599" y="-1039.2857142857142"/>
+            <point key="canvasLocation" x="6860.8695652173919" y="-1039.2857142857142"/>
         </scene>
         <!--ToDo-->
         <scene sceneID="2yG-eG-IN8">
@@ -1144,6 +1145,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ATc-ZU-YRg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2274" y="-320"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WTa-7a-7sl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f3d-0j-JEe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Buq-TV-1Fb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ncK-aH-n09" kind="relationship" relationship="rootViewController" id="Crk-G3-F7j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dYF-tO-em8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5950.7246376811599" y="-1039.2857142857142"/>
         </scene>
     </scenes>
     <resources>

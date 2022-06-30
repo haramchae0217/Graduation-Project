@@ -129,7 +129,9 @@ class DiaryViewController: UIViewController {
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {
         guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: SearchDiaryViewController.identfier) as? SearchDiaryViewController else { return }
-        self.navigationController?.pushViewController(searchVC, animated: true)
+        searchVC.modalPresentationStyle = .fullScreen
+        self.present(searchVC, animated: true)
+//        self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
     @IBAction func addDiaryButton(_ sender: UIBarButtonItem) {
