@@ -30,7 +30,7 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(diaryType)
+        print("did화면전환")
         
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
@@ -42,13 +42,17 @@ class DiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("화면전환")
+        print("will화면전환")
         print(diaryType)
         print(selectDiary)
         
         moveIndex = MyDB.diaryItem.count
-        hashTagList = ""
+        diaryViewType()
         
+    }
+    
+    func diaryViewType() {
+        hashTagList = ""
         if diaryType == .search {
             guard let selectDiary = selectDiary else {return }
 
@@ -70,8 +74,6 @@ class DiaryViewController: UIViewController {
                 diaryPictureUIImage.image = recentDiary.picture
             }
         }
-        //viewType = .basic
-        
     }
     
     func diaryCalendarSetting() {

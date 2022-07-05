@@ -87,7 +87,7 @@ extension SearchDiaryViewController: UITableViewDelegate {
         selectDiary.selectDiary = diary
         selectDiary.diaryType = .search
         print(diary)
-        print(selectDiary.selectDiary)
+        print(selectDiary.selectDiary!)
         print(selectDiary.diaryType)
         self.dismiss(animated: true)
     }
