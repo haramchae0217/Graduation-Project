@@ -30,7 +30,6 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("did화면전환")
         
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
