@@ -23,8 +23,8 @@ class DiaryViewController: UIViewController {
     var filterHashTag: [Diary] = []
     var selectDiary: Diary?
     var hashTagList: String = ""
-    var moveIndex: Int = 0
-    var index: Int = 0
+    var diaryCount: Int = 0
+    var indexNumber: Int = 0
     var selectedDate: Date = Date()
     var diaryType: DiaryType = .basic
     
@@ -34,9 +34,9 @@ class DiaryViewController: UIViewController {
         diaryCalendarSetting()
         diaryCalendarView.isHidden = true
     
-        index = MyDB.diaryItem.endIndex - 1
-        selectedDate = MyDB.diaryItem[index].date
-        moveIndex = MyDB.diaryItem.count
+        indexNumber = MyDB.diaryItem.endIndex - 1
+        selectedDate = MyDB.diaryItem[indexNumber].date
+        diaryCount = MyDB.diaryItem.count
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +45,7 @@ class DiaryViewController: UIViewController {
         print(diaryType)
         print(selectDiary)
         
-        moveIndex = MyDB.diaryItem.count
+        diaryCount = MyDB.diaryItem.count
         diaryViewType()
         
     }
@@ -53,7 +53,7 @@ class DiaryViewController: UIViewController {
     func diaryViewType() {
         hashTagList = ""
         if diaryType == .search {
-            guard let selectDiary = selectDiary else {return }
+            guard let selectDiary = selectDiary else { return }
 
             for word in selectDiary.hashTag {
                 hashTagList += word
@@ -63,7 +63,7 @@ class DiaryViewController: UIViewController {
             diaryPictureUIImage.image = selectDiary.picture
         } else {
             if !MyDB.diaryItem.isEmpty {
-                let recentDiary = MyDB.diaryItem[moveIndex - 1]
+                let recentDiary = MyDB.diaryItem[diaryCount - 1]
                 for word in recentDiary.hashTag {
                     hashTagList += word
                 }
