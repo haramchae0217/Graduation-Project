@@ -20,7 +20,6 @@ class SearchDiaryViewController: UIViewController {
             }
         }
     }
-    var hashTag: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +63,19 @@ extension SearchDiaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         let searchData = searchDiary[indexPath.row]
-        hashTag = ""
-        for data in searchData.hashTag {
-            hashTag += data
+        
+        var hashtags: String = ""
+        for i in 0..<searchDiary.count {
+            if i == searchDiary.count - 1 {
+                hashtags.append("#\(searchDiary[i].hashTag)")
+                break
+            }
+            hashtags.append("#\(searchDiary[i].hashTag), ")
         }
+        
         cell.diaryImage.image = searchData.picture
         cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date)
-        cell.diaryHashTag.text = hashTag
+        cell.diaryHashTag.text = hashtags
         
         return cell
     }
@@ -96,18 +101,9 @@ extension SearchDiaryViewController: UITableViewDelegate {
 extension SearchDiaryViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
-            var matches: [Diary] = []
-            matches = MyDB.diaryItem.filter{ $0.hashTag.contains(text)}
-            
-            var hashtags: String = ""
-            for i in 0..<matches.count {
-                if i == matches.count - 1 {
-                    hashtags.append("#\(matches[i])")
-                    break
-                }
-                hashtags.append("#\(matches[i]), ")
-            }
-            
+            print(text)
+            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.contains(text)}
+            print(searchDiary)
         }
     }
     
