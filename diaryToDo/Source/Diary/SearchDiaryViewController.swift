@@ -49,7 +49,7 @@ class SearchDiaryViewController: UIViewController {
     func searchBarSet() {
         let searchHashTag = UISearchController(searchResultsController: nil)
         searchHashTag.searchBar.delegate = self
-        searchHashTag.searchResultsUpdater = self
+//        searchHashTag.searchResultsUpdater = self
         searchHashTag.searchBar.placeholder = "다이어리 검색"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchHashTag
@@ -93,23 +93,34 @@ extension SearchDiaryViewController: UITableViewDelegate {
     }
 }
 
-extension SearchDiaryViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            print("검색어 : ",searchText)
-            searchDiary = MyDB.diaryItem.filter{ $0.content.map { String($0) }.contains(searchText) }
-            print("필터링 : ",searchDiary)
-        }
-    }
-    
+extension SearchDiaryViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        let searchResult = searchBar.text!
-//        searchDiary = MyDB.diaryItem.filter{ $0.content.map { String($0) }.contains(searchResult) }
-//        print(searchResult)
-//        print(searchDiary)
+        if let text = searchBar.text {
+            var matches: [Diary] = []
+            matches = MyDB.diaryItem.filter{ $0.hashTag.contains(text)}
+            
+            var hashtags: String = ""
+            for i in 0..<matches.count {
+                if i == matches.count - 1 {
+                    hashtags.append("#\(matches[i])")
+                    break
+                }
+                hashtags.append("#\(matches[i]), ")
+            }
+            
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchDiary = []
     }
 }
+
+//extension SearchDiaryViewController: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        if let searchText = searchController.searchBar.text {
+//            var matches: [String] = []
+//
+//        }
+//    }
+//}
