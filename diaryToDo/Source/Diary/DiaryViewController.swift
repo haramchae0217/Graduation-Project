@@ -98,11 +98,18 @@ class DiaryViewController: UIViewController {
         
         for data in sortedList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
             if previousDate == data.date {
-                for word in data.hashTag{
-                    hashTagList += word
+//                for word in data.hashTag{
+//                    hashTagList += word
+//                }
+                for i in 0..<data.hashTag.count {
+                    if i == data.hashTag.count - 1 {
+                        hashTagList.append("#\(data.hashTag[i])")
+                        break
+                    }
+                    hashTagList.append("#\(data.hashTag[i]), ")
                 }
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
-                diaryHashTagLabel.text = hashTagList
+                diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
                 break
             } else {
@@ -127,11 +134,16 @@ class DiaryViewController: UIViewController {
         
         for data in MyDB.diaryItem { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
             if nextDate == data.date {
-                for word in data.hashTag{
-                    hashTagList += word
+                
+                for i in 0..<data.hashTag.count {
+                    if i == data.hashTag.count - 1 {
+                        hashTagList.append("#\(data.hashTag[i])")
+                        break
+                    }
+                    hashTagList.append("#\(data.hashTag[i]), ")
                 }
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
-                diaryHashTagLabel.text = hashTagList
+                diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
                 break
             } else {

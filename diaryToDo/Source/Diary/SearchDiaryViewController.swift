@@ -75,7 +75,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
         
         cell.diaryImage.image = searchData.picture
         cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date)
-        cell.diaryHashTag.text = hashtags
+        cell.diaryHashTag.text = "\(hashtags)"
         
         return cell
     }
