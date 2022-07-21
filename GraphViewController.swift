@@ -9,9 +9,17 @@ import UIKit
 import Charts
 import FSCalendar
 
+enum Weekday: Int {
+    case monday = 1
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
+}
+
 class GraphViewController: UIViewController {
-    
-    static var identifier = "GraphVC"
 
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var barChart: BarChartView!
@@ -47,65 +55,33 @@ class GraphViewController: UIViewController {
         monthInfo = Calendar.current.component(.month, from: date)
         weekInfo = Calendar.current.component(.weekOfMonth, from: date)
         calendarInfo.text = "\(monthInfo)월 \(weekInfo)째주"
-        if Calendar.current.component(.weekday, from: date) == 1 {
-            for i in 0..<7 {
-                let addDate = Calendar.current.date(byAdding: .day, value: i, to: date)!
-                let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
-                strDates.append(dateToStr)
-                dates.append(addDate)
-            }
-        } else if Calendar.current.component(.weekday, from: date) == 2 {
-            let editDate = Calendar.current.date(byAdding: .day, value: -1, to: date)!
-            for i in 0..<7 {
-                let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
-                let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
-                strDates.append(dateToStr)
-                dates.append(addDate)
-            }
-        } else if Calendar.current.component(.weekday, from: date) == 3 {
-            let editDate = Calendar.current.date(byAdding: .day, value: -2, to: date)!
-            for i in 0..<7 {
-                let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
-                let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
-                strDates.append(dateToStr)
-                dates.append(addDate)
-            }
-        } else if Calendar.current.component(.weekday, from: date) == 4 {
-            let editDate = Calendar.current.date(byAdding: .day, value: -3, to: date)!
-            for i in 0..<7 {
-                let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
-                let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
-                strDates.append(dateToStr)
-                dates.append(addDate)
-            }
-        } else if Calendar.current.component(.weekday, from: date) == 5 {
-            let editDate = Calendar.current.date(byAdding: .day, value: -4, to: date)!
-            for i in 0..<7 {
-                let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
-                let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
-                strDates.append(dateToStr)
-                dates.append(addDate)
-            }
-        } else if Calendar.current.component(.weekday, from: date) == 6 {
-            let editDate = Calendar.current.date(byAdding: .day, value: -5, to: date)!
-            for i in 0..<7 {
-                let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
-                let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
-                strDates.append(dateToStr)
-                dates.append(addDate)
-            }
-        } else if Calendar.current.component(.weekday, from: date) == 7 {
-            let editDate = Calendar.current.date(byAdding: .day, value: -6, to: date)!
-            for i in 0..<7 {
-                let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
-                let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
-                strDates.append(dateToStr)
-                dates.append(addDate)
-            }
+        
+        var current: Weekday = .monday
+        
+        if let currentValue = Weekday.init(rawValue: Calendar.current.component(.weekday, from: date)) {
+            current = currentValue
         }
+        
+        getDateInfo(today: current, date: date)
         
         let count = appendData(datas: dates)
         drawGraph(data: count)
+    }
+    
+    func getDateInfo(today: Weekday, date: Date) {
+        let weekdayCount: Int = 7
+        var editDate: Date = date
+        
+        if today != .monday {
+            editDate = Calendar.current.date(byAdding: .day, value: -(today.rawValue - 1), to: date)!
+        }
+        
+        for i in 0..<weekdayCount {
+            let addDate = Calendar.current.date(byAdding: .day, value: i, to: editDate)!
+            let dateToStr = DateFormatter.customDateFormatter.dayToStr(date: addDate)
+            strDates.append(dateToStr)
+            dates.append(addDate)
+        }
     }
     
     func appendData(datas: [Date]) -> [Double] {

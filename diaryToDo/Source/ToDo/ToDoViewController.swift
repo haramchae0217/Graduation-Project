@@ -118,7 +118,7 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func graphButon(_ sender: UIBarButtonItem) {
-        guard let graphVC = self.storyboard?.instantiateViewController(withIdentifier: GraphViewController.identifier) as? GraphViewController else { return }
+        guard let graphVC = self.storyboard?.instantiateViewController(withIdentifier: "GraphVC") as? GraphViewController else { return }
         self.navigationController?.pushViewController(graphVC, animated: true)
     }
     
