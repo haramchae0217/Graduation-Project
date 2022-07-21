@@ -145,7 +145,7 @@
         <!--Add Diary View Controller-->
         <scene sceneID="kKv-Zu-SIn">
             <objects>
-                <viewController storyboardIdentifier="addDiaryVC" hidesBottomBarWhenPushed="YES" id="QxW-Wp-KaG" customClass="AddDiaryViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddDiaryVC" hidesBottomBarWhenPushed="YES" id="QxW-Wp-KaG" customClass="AddDiaryViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DYs-J9-SFs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,9 +177,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H59-0r-5Zv">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="내용을 입력해주세요." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H59-0r-5Zv">
                                 <rect key="frame" x="20" y="588" width="374" height="176"/>
-                                <color key="textColor" systemColor="labelColor"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1175,9 +1175,6 @@
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="film1" width="1179" height="1835"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

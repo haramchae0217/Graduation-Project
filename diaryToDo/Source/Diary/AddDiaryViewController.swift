@@ -8,8 +8,6 @@
 import UIKit
 
 class AddDiaryViewController: UIViewController {
-
-    static let identifier = "addDiaryVC"
     
     @IBOutlet weak var addDiaryImageView: UIImageView!
     @IBOutlet weak var addDiaryDatePicker: UIDatePicker!
@@ -28,15 +26,10 @@ class AddDiaryViewController: UIViewController {
         
         let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addDiaryButton))
         self.navigationItem.rightBarButtonItem = rightBarButton
-        
-        if addDiaryContentTextView.text.isEmpty {
-            addDiaryContentTextView.text = "내용을 입력해주세요."
-            addDiaryContentTextView.textColor = .lightGray
-        }
     }
     
-    @IBAction func addDiaryPictureButton(_ sender: UIButton) {
-        showAlertSheet()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func showAlertSheet() {
@@ -63,10 +56,6 @@ class AddDiaryViewController: UIViewController {
         self.present(alertAction, animated: true, completion: nil)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     @objc func addDiaryButton() {
         let addDate = addDiaryDatePicker.date
         let addContent = addDiaryContentTextView.text!
@@ -79,10 +68,15 @@ class AddDiaryViewController: UIViewController {
             UIAlertController.showAlert(message: "내용을 입력해주세요.", vc: self)
             return
         }
+
         let newDiary = Diary(content: addContent, hashTag: filterHashTag, date: addDate, picture: addPicture)
         MyDB.diaryItem.append(newDiary)
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func addDiaryPictureButton(_ sender: UIButton) {
+        showAlertSheet()
     }
 }
 
@@ -108,6 +102,7 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
             addDiaryImageView.image = image
         } else {
             print("이미지 선택 실패")
+            // alert
         }
         
         self.dismiss(animated: true, completion: nil)
