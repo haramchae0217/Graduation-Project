@@ -65,12 +65,12 @@ extension SearchDiaryViewController: UITableViewDataSource {
         let searchData = searchDiary[indexPath.row]
         
         var hashtags: String = ""
-        for i in 0..<searchDiary.count {
-            if i == searchDiary.count - 1 {
-                hashtags.append("#\(searchDiary[i].hashTag)")
+        for i in 0..<searchData.hashTag.count {
+            if i == searchData.hashTag.count - 1 {
+                hashtags.append("#\(searchData.hashTag[i])")
                 break
             }
-            hashtags.append("#\(searchDiary[i].hashTag), ")
+            hashtags.append("#\(searchData.hashTag[i]), ")
         }
         
         cell.diaryImage.image = searchData.picture
@@ -95,6 +95,7 @@ extension SearchDiaryViewController: UITableViewDelegate {
         print(selectDiary.selectDiary!)
         print(selectDiary.diaryType)
         self.dismiss(animated: true)
+        self.present(selectDiary, animated: true)
     }
 }
 
