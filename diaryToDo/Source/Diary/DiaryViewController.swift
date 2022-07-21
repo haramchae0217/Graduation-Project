@@ -31,7 +31,7 @@ class DiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        diaryCalendarSetting()
+        configureCalendarView()
         diaryCalendarView.isHidden = true
     
         indexNumber = MyDB.diaryItem.endIndex - 1
@@ -52,18 +52,21 @@ class DiaryViewController: UIViewController {
     
     func diaryViewType() {
         hashTagList = ""
+        
         if diaryType == .search {
             guard let selectDiary = selectDiary else { return }
 
             for word in selectDiary.hashTag {
                 hashTagList += word
             }
+            
             diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date)
             diaryHashTagLabel.text = hashTagList
             diaryPictureUIImage.image = selectDiary.picture
         } else {
             if !MyDB.diaryItem.isEmpty {
                 let recentDiary = MyDB.diaryItem[diaryCount - 1]
+                
                 for word in recentDiary.hashTag {
                     hashTagList += word
                 }
@@ -75,7 +78,7 @@ class DiaryViewController: UIViewController {
         }
     }
     
-    func diaryCalendarSetting() {
+    func configureCalendarView() {
         diaryCalendarView.delegate = self
         diaryCalendarView.dataSource = self
         
@@ -98,9 +101,6 @@ class DiaryViewController: UIViewController {
         
         for data in sortedList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
             if previousDate == data.date {
-//                for word in data.hashTag{
-//                    hashTagList += word
-//                }
                 for i in 0..<data.hashTag.count {
                     if i == data.hashTag.count - 1 {
                         hashTagList.append("#\(data.hashTag[i])")
@@ -134,7 +134,6 @@ class DiaryViewController: UIViewController {
         
         for data in MyDB.diaryItem { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
             if nextDate == data.date {
-                
                 for i in 0..<data.hashTag.count {
                     if i == data.hashTag.count - 1 {
                         hashTagList.append("#\(data.hashTag[i])")
@@ -155,18 +154,12 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
-        if diaryCalendarView.isHidden == true {
-            diaryCalendarView.isHidden = false
-        } else {
-            diaryCalendarView.isHidden = true
-        }
-        
-        diaryCalendarSetting()
+        diaryCalendarView.isHidden.toggle()
+        configureCalendarView()
     }
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {
         guard let searchNC = self.storyboard?.instantiateViewController(withIdentifier: "SearchNC") as? UINavigationController else { return }
-//        guard let searchVC = searchNC.children.first as? SearchDiaryViewController else { return }
         searchNC.modalPresentationStyle = .fullScreen
         self.present(searchNC, animated: true)
     }
@@ -175,9 +168,7 @@ class DiaryViewController: UIViewController {
         guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: AddDiaryViewController.identifier) as? AddDiaryViewController else { return }
         self.navigationController?.pushViewController(addVC, animated: true)
     }
-    
 }
-
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
