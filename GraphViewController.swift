@@ -106,10 +106,9 @@ class GraphViewController: UIViewController {
                     } else {
                         count += 0
                     }
-                } else {
-                    
                 }
             }
+            
             checkCount.append(count)
             count = 0
         }
@@ -145,7 +144,7 @@ class GraphViewController: UIViewController {
         
         barChart.rightAxis.enabled = false
         
-        barChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
+        barChart.animate(xAxisDuration: 2, yAxisDuration: 2)
         
     }
 }
@@ -172,9 +171,8 @@ extension GraphViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        calendarList = MyDB.toDoList.filter { toDo in
-            toDo.startDate == date
-        }
+        calendarList = MyDB.toDoList.filter { toDo in toDo.startDate == date }
+        
         if Calendar.current.component(.weekOfMonth, from: date) != weekInfo {
             appendDate(date: date)
         }
