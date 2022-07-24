@@ -8,8 +8,6 @@
 import UIKit
 
 class SearchDiaryViewController: UIViewController {
-    
-    static let identfier = "SearchVC"
 
     @IBOutlet weak var searchTableView: UITableView!
     
@@ -26,12 +24,12 @@ class SearchDiaryViewController: UIViewController {
         
         title = "다이어리 검색"
 
-        tableViewSet()
-        searchBarSet()
-        rightBarButton()
+        configuretableView()
+        configuresearchBar()
+        configureRightBarButton()
     }
     
-    func rightBarButton() {
+    func configureRightBarButton() {
         let cancelButton = UIBarButtonItem(title: "X", style: .done, target: self, action: #selector(cancelButton))
         self.navigationItem.rightBarButtonItem = cancelButton
     }
@@ -40,12 +38,12 @@ class SearchDiaryViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    func tableViewSet() {
+    func configuretableView() {
         searchTableView.delegate = self
         searchTableView.dataSource = self
     }
     
-    func searchBarSet() {
+    func configuresearchBar() {
         let searchHashTag = UISearchController(searchResultsController: nil)
         searchHashTag.searchBar.delegate = self
 //        searchHashTag.searchResultsUpdater = self
@@ -70,6 +68,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
                 hashtags.append("#\(searchData.hashTag[i])")
                 break
             }
+            
             hashtags.append("#\(searchData.hashTag[i]), ")
         }
         
@@ -94,8 +93,10 @@ extension SearchDiaryViewController: UITableViewDelegate {
         print(diary)
         print(selectDiary.selectDiary!)
         print(selectDiary.diaryType)
-        self.dismiss(animated: true)
-        self.present(selectDiary, animated: true)
+        self.dismiss(animated: true) // pop으로 전환 -> 그전 present를 push로 변경
+//        self.present(selectDiary, animated: true)
+        // TODO: -1 ) 검색결과 중 내가 누른 셀에 대한 데이터를 어딘가 저장하기
+        // TODO: -2 ) searchVC를 pop해준 뒤, 아래에 있는 diaryVC에 viewWillAppear에서 데이터 업데이트 해주기
     }
 }
 
@@ -112,12 +113,3 @@ extension SearchDiaryViewController: UISearchBarDelegate {
         searchDiary = []
     }
 }
-
-//extension SearchDiaryViewController: UISearchResultsUpdating {
-//    func updateSearchResults(for searchController: UISearchController) {
-//        if let searchText = searchController.searchBar.text {
-//            var matches: [String] = []
-//
-//        }
-//    }
-//}
