@@ -41,23 +41,26 @@ class DiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("will화면전환")
-        print(diaryType)
-        print(selectDiary)
         
         diaryCount = MyDB.diaryItem.count
         diaryViewType()
+//        print(selectDiary)
         
     }
     
     func diaryViewType() {
         hashTagList = ""
-        
+        print(diaryType)
+        selectDiary = MyDB.selectDiary
         if diaryType == .search {
             guard let selectDiary = selectDiary else { return }
 
-            for word in selectDiary.hashTag {
-                hashTagList += word
+            for i in 0..<selectDiary.hashTag.count {
+                if i == selectDiary.hashTag.count - 1 {
+                    hashTagList.append("#\(selectDiary.hashTag[i])")
+                    break
+                }
+                hashTagList.append("#\(selectDiary.hashTag[i]), ")
             }
             
             diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date)
@@ -67,10 +70,13 @@ class DiaryViewController: UIViewController {
             if !MyDB.diaryItem.isEmpty {
                 let recentDiary = MyDB.diaryItem[diaryCount - 1]
                 
-                for word in recentDiary.hashTag {
-                    hashTagList += word
+                for i in 0..<recentDiary.hashTag.count {
+                    if i == recentDiary.hashTag.count - 1 {
+                        hashTagList.append("#\(recentDiary.hashTag[i])")
+                        break
+                    }
+                    hashTagList.append("#\(recentDiary.hashTag[i]), ")
                 }
-                
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
                 diaryHashTagLabel.text = hashTagList
                 diaryPictureUIImage.image = recentDiary.picture
@@ -159,9 +165,8 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {
-        guard let searchNC = self.storyboard?.instantiateViewController(withIdentifier: "SearchNC") as? UINavigationController else { return }
-        searchNC.modalPresentationStyle = .fullScreen
-        self.present(searchNC, animated: true)
+        guard let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchVC") as? SearchDiaryViewController else { return }
+        self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
     @IBAction func addDiaryButton(_ sender: UIBarButtonItem) {

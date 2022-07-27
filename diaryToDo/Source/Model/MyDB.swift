@@ -8,6 +8,8 @@
 import UIKit
 
 struct MyDB {
+    static var selectDiary: Diary?
+    
     static var diaryItem: [Diary] = [
         Diary(content: "카페", hashTag: ["카페","강화도","여행"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/05/11"), picture: UIImage(named: "cafe1")!),
         Diary(content: "카페", hashTag: ["카페","운정"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/05/16"), picture: UIImage(named: "cafe2")!),
