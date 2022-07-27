@@ -971,7 +971,7 @@
         <!--Film Setting View Controller-->
         <scene sceneID="9eZ-p0-hQb">
             <objects>
-                <viewController storyboardIdentifier="filmVC" id="bAK-Ay-4N7" customClass="FilmSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilmVC" id="bAK-Ay-4N7" customClass="FilmSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hXJ-s2-JWG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1033,6 +1033,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="filmImageView" destination="D3e-25-anC" id="5qt-hK-aLz"/>
+                                            <outlet property="filmName" destination="Woa-QK-AcK" id="A2f-Jb-bDb"/>
                                             <outlet property="isSelectFilmButton" destination="YLW-ev-BXI" id="Zi6-Sg-fKb"/>
                                         </connections>
                                     </tableViewCell>

@@ -8,6 +8,8 @@
 import UIKit
 
 struct MyDB {
+    static var filmList: [(filmName: FilmType, isSelectd: Bool)] = [(.film1, false), (.film2, false), (.film3, false), (.film4, false)]
+    
     static var selectDiary: Diary?
     
     static var diaryItem: [Diary] = [

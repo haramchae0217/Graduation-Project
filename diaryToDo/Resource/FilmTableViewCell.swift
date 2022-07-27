@@ -10,6 +10,7 @@ import UIKit
 class FilmTableViewCell: UITableViewCell {
     
     @IBOutlet weak var filmImageView: UIImageView!
+    @IBOutlet weak var filmName: UILabel!
     @IBOutlet weak var isSelectFilmButton: UIButton!
 
 }

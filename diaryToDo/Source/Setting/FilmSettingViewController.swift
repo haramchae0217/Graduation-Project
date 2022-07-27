@@ -7,52 +7,68 @@
 
 import UIKit
 
-class FilmSettingViewController: UIViewController {
+/*
+ 1. 현재 사용중인 필름이 무엇인지 저장
+ 2. 저장된 필름을 앱이 시작되는 시점에 다이어리 뷰컨에 지정
+ 3. 세팅에서 필름을 변경할 경우 완료를 누르는 순간 선택한 필름이 저장
+ 4. diaryVC는 viewWillAppear 시점에 필름이 바뀌었는지 체크
+ 5. 내가 어딘가 저장한 필름의 번호를 가져와서 tableView의 index들을 순회하면서 해당하는 버튼을 selected로 변경
+ */
 
-    static let identifier = "filmVC"
+class FilmSettingViewController: UIViewController {
     
     @IBOutlet weak var filmTableView: UITableView!
+    
+    var selectedFilm: FilmType = .film1
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         filmTableView.dataSource = self
         filmTableView.delegate = self
-        filmTableView.reloadData()
         
         let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
         self.navigationItem.rightBarButtonItem = rightDoneButton
     }
     
+    func toImage(filmType: FilmType) -> UIImage {
+        let name: String = filmType.rawValue
+        return UIImage(named: name) ?? UIImage(systemName: "book.fill")!
+    }
+    
     @objc func setDoneButton() {
+        MyDB.filmList.count
+        
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectFilm(_ sender: UIButton) {
+        // TODO: -1 4개의 필름 중에서 1개만 되게하기.
         if sender.isSelected {
             sender.setImage(UIImage(systemName: "circle"),for: .normal)
             sender.isSelected = false
-            Film.filmList[sender.tag].isSelectType = false
+//            MyDB.filmList[sender.tag].isSelectd = false
         } else {
             sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
             sender.isSelected = true
-            Film.filmList[sender.tag].isSelectType = true
+//            MyDB.filmList[sender.tag].isSelectd = true
         }
     }
 }
 
 extension FilmSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Film.filmList.count
+        return MyDB.filmList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = filmTableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as? FilmTableViewCell else { return UITableViewCell() }
-        let film = Film.filmList[indexPath.row]
+        let selectFilm = MyDB.filmList[indexPath.row]
         
         cell.isSelectFilmButton.tag = indexPath.row
         cell.isSelectFilmButton.addTarget(self, action: #selector(isSelectFilm), for: .touchUpInside)
-        cell.filmImageView.image = film.filmType
+        cell.filmName.text = selectFilm.filmName.rawValue
+        cell.filmImageView.image = toImage(filmType: selectFilm.filmName)
         cell.filmImageView.contentMode = .scaleAspectFit
         
         return cell

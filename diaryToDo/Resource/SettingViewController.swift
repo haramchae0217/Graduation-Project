@@ -30,7 +30,7 @@ class SettingViewController: UIViewController {
     }
 
     @IBAction func MoveFilmVC(_ sender: UIButton) {
-        guard let filmVC = self.storyboard?.instantiateViewController(withIdentifier: FilmSettingViewController.identifier) as? FilmSettingViewController else { return }
+        guard let filmVC = self.storyboard?.instantiateViewController(withIdentifier: "FilmVC") as? FilmSettingViewController else { return }
         self.navigationController?.pushViewController(filmVC, animated: true)
     }
 
