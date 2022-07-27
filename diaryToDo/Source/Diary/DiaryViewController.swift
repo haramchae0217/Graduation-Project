@@ -42,17 +42,18 @@ class DiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let selectDiary = MyDB.selectDiary {
+            diaryType = .search
+        }
         diaryCount = MyDB.diaryItem.count
         diaryViewType()
-//        print(selectDiary)
         
     }
     
     func diaryViewType() {
         hashTagList = ""
-        print(diaryType)
-        selectDiary = MyDB.selectDiary
         if diaryType == .search {
+            selectDiary = MyDB.selectDiary
             guard let selectDiary = selectDiary else { return }
 
             for i in 0..<selectDiary.hashTag.count {

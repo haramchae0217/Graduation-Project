@@ -83,13 +83,8 @@ extension SearchDiaryViewController: UITableViewDelegate {
         guard let selectDiary = storyboard?.instantiateViewController(withIdentifier: "diaryVC") as? DiaryViewController else { return }
         let diary = searchDiary[indexPath.row]
         MyDB.selectDiary = diary
-        selectDiary.diaryType = .search
-        navigationController?.modalPresentationStyle = .fullScreen
-        self.present(selectDiary, animated: true)
-//        navigationController?.popViewController(animated: true)
-        // pop으로 전환 -> 그전 present를 push로 변경
-//        navigationController?.modalPresentationStyle = .fullScreen
-//        self.present(selectDiary, animated: true)
+        self.navigationController?.popViewController(animated: true)
+
         // TODO: -1 ) 검색결과 중 내가 누른 셀에 대한 데이터를 어딘가 저장하기
         // TODO: -2 ) searchVC를 pop해준 뒤, 아래에 있는 diaryVC에 viewWillAppear에서 데이터 업데이트 해주기
     }
