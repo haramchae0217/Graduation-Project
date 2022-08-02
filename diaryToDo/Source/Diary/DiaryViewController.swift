@@ -13,7 +13,9 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryDateLabel: UILabel!
     @IBOutlet weak var diaryPictureUIImage: UIImageView!
     @IBOutlet weak var diaryHashTagLabel: UILabel!
+    @IBOutlet weak var diaryContentLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
+    @IBOutlet weak var ishiddenPicture: UIButton!
     
     enum DiaryType {
         case basic
@@ -63,10 +65,10 @@ class DiaryViewController: UIViewController {
                 }
                 hashTagList.append("#\(selectDiary.hashTag[i]), ")
             }
-            
             diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date)
             diaryHashTagLabel.text = hashTagList
             diaryPictureUIImage.image = selectDiary.picture
+            diaryContentLabel.text = selectDiary.content
         } else {
             if !MyDB.diaryItem.isEmpty {
                 let recentDiary = MyDB.diaryItem[diaryCount - 1]
@@ -81,6 +83,7 @@ class DiaryViewController: UIViewController {
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
                 diaryHashTagLabel.text = hashTagList
                 diaryPictureUIImage.image = recentDiary.picture
+                diaryContentLabel.text = recentDiary.content
             }
         }
     }
@@ -118,6 +121,7 @@ class DiaryViewController: UIViewController {
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
                 diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
+                diaryContentLabel.text = data.content
                 break
             } else {
 //                UIAlertController.showAlert(message: "이전 다이어리가 없습니다.", vc: self)
@@ -151,6 +155,7 @@ class DiaryViewController: UIViewController {
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
                 diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
+                diaryContentLabel.text = data.content
                 break
             } else {
 //                UIAlertController.showAlert(message: "다음 다이어리가 없습니다.", vc: self)
@@ -174,6 +179,26 @@ class DiaryViewController: UIViewController {
         guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
         self.navigationController?.pushViewController(addVC, animated: true)
     }
+    
+    @IBAction func hiddenPictureButton(_ sender: UIButton) {
+        diaryPictureUIImage.isHidden.toggle()
+        ishiddenPicture.isHidden.toggle()
+    }
+    
+    @IBAction func showPictureButton(_ sender: UIButton) {
+        print("show")
+        diaryPictureUIImage.isHidden.toggle()
+        ishiddenPicture.isHidden.toggle()
+    }
+    
+    @IBAction func editDiaryButton(_ sender: UIButton) {
+        print("edit")
+    }
+    
+    @IBAction func deleteDiaryButton(_ sender: UIButton) {
+        print("delete")
+    }
+    
 }
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
