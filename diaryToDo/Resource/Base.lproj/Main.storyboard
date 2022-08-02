@@ -53,12 +53,58 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film1" translatesAutoresizingMaskIntoConstraints="NO" id="h16-SV-UY5">
                                         <rect key="frame" x="10" y="0.0" width="394" height="508"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-io-IFh">
+                                        <rect key="frame" x="50" y="100" width="314" height="270"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="270" id="IKD-7p-Yd2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6ch-RI-PRm">
+                                        <rect key="frame" x="221.5" y="380" width="152.5" height="8"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3a-3Y-pQ9" userLabel="ReturnButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="8"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
+                                                <connections>
+                                                    <action selector="showPictureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jiq-gC-sIz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suA-X8-W37" userLabel="EditButton">
+                                                <rect key="frame" x="52.5" y="0.0" width="46" height="8"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system"/>
+                                                <connections>
+                                                    <action selector="editDiaryButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pwo-UA-SHb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6z-MI-aRs" userLabel="DeleteButton">
+                                                <rect key="frame" x="108.5" y="0.0" width="44" height="8"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                                <connections>
+                                                    <action selector="deleteDiaryButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qAY-YK-jB4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe" translatesAutoresizingMaskIntoConstraints="NO" id="f0F-OA-l5p">
                                         <rect key="frame" x="42" y="84" width="333" height="333"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="f0F-OA-l5p" secondAttribute="height" multiplier="1:1" id="S4C-hZ-FEF"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XcT-b2-WcV">
+                                        <rect key="frame" x="50" y="100" width="314" height="308"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="hiddenPictureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oMb-NI-fmv"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lj-sM-W27">
                                         <rect key="frame" x="30" y="439.5" width="354" height="28.5"/>
                                         <subviews>
@@ -74,15 +120,25 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="5lj-sM-W27" secondAttribute="bottom" constant="40" id="1WQ-Lj-4Od"/>
                                     <constraint firstAttribute="trailing" secondItem="5lj-sM-W27" secondAttribute="trailing" constant="30" id="23E-hR-bOn"/>
+                                    <constraint firstAttribute="trailing" secondItem="6ch-RI-PRm" secondAttribute="trailing" constant="40" id="256-e0-KId"/>
+                                    <constraint firstAttribute="trailing" secondItem="XcT-b2-WcV" secondAttribute="trailing" constant="50" id="3nb-7e-HYw"/>
+                                    <constraint firstItem="k6h-io-IFh" firstAttribute="top" secondItem="Bu6-v5-RPH" secondAttribute="top" constant="100" id="4QQ-AE-5vC"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="leading" secondItem="h16-SV-UY5" secondAttribute="leading" constant="32" id="EQA-LE-5ZJ"/>
+                                    <constraint firstItem="k6h-io-IFh" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="50" id="Lxi-dP-d4m"/>
+                                    <constraint firstAttribute="bottom" secondItem="XcT-b2-WcV" secondAttribute="bottom" constant="100" id="MwL-Ez-qkl"/>
                                     <constraint firstItem="h16-SV-UY5" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="10" id="PyO-B1-qKc"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="top" secondItem="h16-SV-UY5" secondAttribute="top" constant="84" id="Uop-Yf-ytT"/>
                                     <constraint firstAttribute="bottom" secondItem="h16-SV-UY5" secondAttribute="bottom" id="VCA-lr-6c6"/>
                                     <constraint firstAttribute="trailing" secondItem="h16-SV-UY5" secondAttribute="trailing" constant="10" id="aLv-vl-eCe"/>
+                                    <constraint firstAttribute="bottom" secondItem="6ch-RI-PRm" secondAttribute="bottom" constant="120" id="aag-Lx-elI"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="trailing" secondItem="h16-SV-UY5" secondAttribute="trailing" constant="-29" id="b1h-Gv-kz3"/>
                                     <constraint firstItem="h16-SV-UY5" firstAttribute="top" secondItem="Bu6-v5-RPH" secondAttribute="top" id="bPj-Uq-Uwj"/>
                                     <constraint firstItem="5lj-sM-W27" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="30" id="c2E-UU-WHh"/>
+                                    <constraint firstItem="XcT-b2-WcV" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="50" id="gQO-Jj-qwe"/>
+                                    <constraint firstItem="6ch-RI-PRm" firstAttribute="top" secondItem="k6h-io-IFh" secondAttribute="bottom" constant="10" id="n7K-Zm-5hm"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="bottom" secondItem="h16-SV-UY5" secondAttribute="bottom" constant="-91" id="o1X-3J-3uP"/>
+                                    <constraint firstItem="XcT-b2-WcV" firstAttribute="top" secondItem="Bu6-v5-RPH" secondAttribute="top" constant="100" id="tlM-mT-ti0"/>
+                                    <constraint firstAttribute="trailing" secondItem="k6h-io-IFh" secondAttribute="trailing" constant="50" id="x3h-zr-Fmp"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="om5-Uj-axe" customClass="FSCalendar">
@@ -133,9 +189,11 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="diaryCalendarView" destination="om5-Uj-axe" id="3q1-Lm-DXj"/>
+                        <outlet property="diaryContentLabel" destination="k6h-io-IFh" id="BuY-0E-wrs"/>
                         <outlet property="diaryDateLabel" destination="AMz-gj-TmG" id="zLD-DY-oI7"/>
                         <outlet property="diaryHashTagLabel" destination="lkK-cD-frG" id="z29-kT-R8e"/>
                         <outlet property="diaryPictureUIImage" destination="f0F-OA-l5p" id="G7A-6g-3Ia"/>
+                        <outlet property="ishiddenPicture" destination="XcT-b2-WcV" id="ncf-KF-qXw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1149,6 +1207,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="cafe" width="3019" height="3019"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="101"/>
@@ -1158,6 +1217,7 @@
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="film1" width="1179" height="1835"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
