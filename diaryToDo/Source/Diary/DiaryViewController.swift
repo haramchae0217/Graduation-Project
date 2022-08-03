@@ -185,10 +185,8 @@ class DiaryViewController: UIViewController {
         ishiddenPicture.isHidden.toggle()
     }
     
-    @IBAction func showPictureButton(_ sender: UIButton) {
+    @IBAction func showPictureButon(_ sender: UIButton) {
         print("show")
-        diaryPictureUIImage.isHidden.toggle()
-        ishiddenPicture.isHidden.toggle()
     }
     
     @IBAction func editDiaryButton(_ sender: UIButton) {

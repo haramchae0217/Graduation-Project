@@ -19,6 +19,7 @@ class FilmSettingViewController: UIViewController {
     
     @IBOutlet weak var filmTableView: UITableView!
     
+//    var filmBool: [Bool] = Array.init(repeating: false, count: MyDB.filmList.count)
     var selectedFilm: FilmType = .film1
     
     override func viewDidLoad() {
@@ -36,23 +37,32 @@ class FilmSettingViewController: UIViewController {
         return UIImage(named: name) ?? UIImage(systemName: "book.fill")!
     }
     
+    func setImageSelect(_ sender: UIButton) {
+        sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+    }
+    
+    func setImageNotSelect(_ sender: UIButton) {
+        sender.setImage(UIImage(systemName: "circle"),for: .normal)
+    }
+    
     @objc func setDoneButton() {
-        MyDB.filmList.count
-        
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectFilm(_ sender: UIButton) {
         // TODO: -1 4개의 필름 중에서 1개만 되게하기.
-        if sender.isSelected {
-            sender.setImage(UIImage(systemName: "circle"),for: .normal)
-            sender.isSelected = false
-//            MyDB.filmList[sender.tag].isSelectd = false
-        } else {
-            sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-            sender.isSelected = true
-//            MyDB.filmList[sender.tag].isSelectd = true
+        
+        for i in 0..<MyDB.filmList.count {
+            if sender.tag == i {
+                if !MyDB.filmList[i].isSelectd {
+                    MyDB.filmList[i].isSelectd.toggle()
+                }
+            } else {
+                MyDB.filmList[i].isSelectd = false
+            }
         }
+    
+        filmTableView.reloadData()
     }
 }
 
@@ -64,6 +74,12 @@ extension FilmSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = filmTableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as? FilmTableViewCell else { return UITableViewCell() }
         let selectFilm = MyDB.filmList[indexPath.row]
+        
+        if selectFilm.isSelectd {
+            setImageSelect(cell.isSelectFilmButton)
+        } else {
+            setImageNotSelect(cell.isSelectFilmButton)
+        }
         
         cell.isSelectFilmButton.tag = indexPath.row
         cell.isSelectFilmButton.addTarget(self, action: #selector(isSelectFilm), for: .touchUpInside)

@@ -70,7 +70,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
                                                 <connections>
-                                                    <action selector="showPictureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jiq-gC-sIz"/>
+                                                    <action selector="showPictureButon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QUZ-YM-8Rb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="suA-X8-W37" userLabel="EditButton">
