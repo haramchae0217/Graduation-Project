@@ -7,14 +7,6 @@
 
 import UIKit
 
-/*
- 1. 현재 사용중인 필름이 무엇인지 저장
- 2. 저장된 필름을 앱이 시작되는 시점에 다이어리 뷰컨에 지정
- 3. 세팅에서 필름을 변경할 경우 완료를 누르는 순간 선택한 필름이 저장
- 4. diaryVC는 viewWillAppear 시점에 필름이 바뀌었는지 체크
- 5. 내가 어딘가 저장한 필름의 번호를 가져와서 tableView의 index들을 순회하면서 해당하는 버튼을 selected로 변경
- */
-
 class FilmSettingViewController: UIViewController {
     
     @IBOutlet weak var filmTableView: UITableView!
@@ -88,6 +80,10 @@ extension FilmSettingViewController: UITableViewDataSource {
         cell.filmImageView.contentMode = .scaleAspectFit
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO: Cell을 누를때 선택되도록 수정해보기!
     }
 }
 

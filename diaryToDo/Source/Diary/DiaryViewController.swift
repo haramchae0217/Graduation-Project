@@ -15,7 +15,6 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryHashTagLabel: UILabel!
     @IBOutlet weak var diaryContentLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
-    @IBOutlet weak var ishiddenPicture: UIButton!
     
     enum DiaryType {
         case basic
@@ -32,6 +31,11 @@ class DiaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        imageTapGesture.delegate = self
+        diaryPictureUIImage.addGestureRecognizer(imageTapGesture)
+        diaryPictureUIImage.isUserInteractionEnabled = true
         
         configureCalendarView()
         diaryCalendarView.isHidden = true
@@ -94,6 +98,11 @@ class DiaryViewController: UIViewController {
         
         diaryCalendarView.locale = Locale(identifier: "ko-KR")
         diaryCalendarView.appearance.selectionColor = .systemBlue
+    }
+    
+    @objc func imageViewTapped(_ sender: UIImageView){
+        print("imageView Tapped")
+        diaryPictureUIImage.isHidden = true
     }
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
@@ -180,12 +189,8 @@ class DiaryViewController: UIViewController {
         self.navigationController?.pushViewController(addVC, animated: true)
     }
     
-    @IBAction func hiddenPictureButton(_ sender: UIButton) {
-        diaryPictureUIImage.isHidden.toggle()
-        ishiddenPicture.isHidden.toggle()
-    }
-    
-    @IBAction func showPictureButon(_ sender: UIButton) {
+    @IBAction func showPictureButton(_ sender: UIButton) {
+        diaryPictureUIImage.isHidden = false
         print("show")
     }
     
@@ -241,4 +246,8 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
             UIAlertController.showAlert(message: "등록된 다이어리가 없습니다.", vc: self)
         }
     }
+}
+
+extension DiaryViewController: UIGestureRecognizerDelegate {
+    
 }
