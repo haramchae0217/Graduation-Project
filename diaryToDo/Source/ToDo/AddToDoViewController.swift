@@ -27,20 +27,17 @@ class AddToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureRightBarButton()
+        
         if let editToDo = editToDo {
+            title = "edit ToDo"
             addTitleTextField.text = editToDo.title
             addMemoTextField.text = editToDo.memo
             addStartDatePicker.date = editToDo.startDate
             addEndDatePicker.date = editToDo.endDate
         }
         
-        if viewType == .add {
-            title = "add ToDo"
-            configureRightBarButton()
-        } else {
-            title = "edit ToDo"
-            configureRightBarButton()
-        }
+        title = "add ToDo"
     }
     
     func configureRightBarButton() {
