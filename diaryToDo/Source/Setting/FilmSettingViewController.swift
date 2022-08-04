@@ -7,11 +7,17 @@
 
 import UIKit
 
+/*
+ TODO:
+ - cell 눌렀을 때 토글되게 하기
+ - '완료'버튼 눌렀을 때 저장되어있게 하기
+ - 만약 저장하지 않고 뒤로가면, 저장하기 전에 선택했던 필름으로 설정
+ */
+
 class FilmSettingViewController: UIViewController {
     
     @IBOutlet weak var filmTableView: UITableView!
     
-//    var filmBool: [Bool] = Array.init(repeating: false, count: MyDB.filmList.count)
     var selectedFilm: FilmType = .film1
     
     override func viewDidLoad() {
@@ -42,8 +48,6 @@ class FilmSettingViewController: UIViewController {
     }
     
     @objc func isSelectFilm(_ sender: UIButton) {
-        // TODO: -1 4개의 필름 중에서 1개만 되게하기.
-        
         for i in 0..<MyDB.filmList.count {
             if sender.tag == i {
                 if !MyDB.filmList[i].isSelectd {
@@ -84,6 +88,11 @@ extension FilmSettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: Cell을 누를때 선택되도록 수정해보기!
+        let selectCell = MyDB.filmList[indexPath.row]
+        
+        
+
+        print(selectCell.filmName)
     }
 }
 
