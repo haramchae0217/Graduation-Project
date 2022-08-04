@@ -112,7 +112,7 @@ class ToDoViewController: UIViewController {
     
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
-        guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as? AddToDoViewController else { return }
+        guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: "addToDoVC") as? AddToDoViewController else { return }
         addToDo.viewType = .add
         self.navigationController?.pushViewController(addToDo, animated: true)
     }
@@ -180,7 +180,7 @@ extension ToDoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: AddToDoViewController.identifier) as? AddToDoViewController else { return }
+        guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: "addToDoVC") as? AddToDoViewController else { return }
         editToDoVC.viewType = .edit
         editToDoVC.editToDo = calendarList[indexPath.row]
         editToDoVC.editRow = indexPath.row
