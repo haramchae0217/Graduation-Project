@@ -20,22 +20,38 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
 
     let imagePicker = UIImagePickerController()
-    var viewType: ToDoViewType = .add
+    var editDiary: Diary?
+    var viewType: DiaryViewType = .add
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "다이어리 추가"
-        
         addDiaryContentTextView.delegate = self
         imagePicker.delegate = self
+        configureRightBarButton()
         
-        let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addDiaryButton))
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        if let editDiary = editDiary {
+            title = "edit Diary"
+            var hashtag: String = ""
+            addDiaryImageView.image = editDiary.picture
+            addDiaryDatePicker.date = editDiary.date
+            addDiaryContentTextView.text = editDiary.content
+            for data in editDiary.hashTag {
+                hashtag += data
+            }
+            addDiaryHashTagTextField.text = hashtag
+        }
+        
+        title = "add Diary"
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func configureRightBarButton() {
+        let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addDiaryButton))
+        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     func showAlertSheet() {
@@ -63,21 +79,37 @@ class AddDiaryViewController: UIViewController {
     }
     
     @objc func addDiaryButton() {
-        let addDate = addDiaryDatePicker.date
-        let addContent = addDiaryContentTextView.text!
-        let addHashTag = addDiaryHashTagTextField.text!
-        let addPicture = addDiaryImageView.image!
+        let date = addDiaryDatePicker.date
+        let content = addDiaryContentTextView.text!
+        let hashTag = addDiaryHashTagTextField.text!
+        let picture = addDiaryImageView.image!
         
-        let filterHashTag = addHashTag.components(separatedBy: " ")
+        let filterHashTag = hashTag.components(separatedBy: " ")
         
-        if addContent.isEmpty, addHashTag.isEmpty {
+        let diary = Diary(content: content, hashTag: filterHashTag, date: date, picture: picture)
+        
+        if content.isEmpty, hashTag.isEmpty {
             UIAlertController.showAlert(message: "내용을 입력해주세요.", vc: self)
             return
         }
-
-        let newDiary = Diary(content: addContent, hashTag: filterHashTag, date: addDate, picture: addPicture)
-        MyDB.diaryItem.append(newDiary)
         
+        if editDiary?.content == content && editDiary?.hashTag == filterHashTag { UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
+            return
+        }
+        
+        if viewType == .add {
+            MyDB.diaryItem.append(diary)
+        } else {
+            for var data in MyDB.diaryItem {
+                if (data.content == editDiary?.content && data.hashTag == editDiary?.hashTag) {
+                    data.hashTag = filterHashTag
+                    data.picture = picture
+                    data.date = date
+                    data = diary
+                }
+            }
+        }
+
         self.navigationController?.popViewController(animated: true)
     }
     
