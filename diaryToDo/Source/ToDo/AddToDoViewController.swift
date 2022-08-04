@@ -8,8 +8,11 @@
 import UIKit
 
 class AddToDoViewController: UIViewController {
-
-    static let identifier = "addToDoVC"
+    
+    enum ToDoViewType {
+        case add
+        case edit
+    }
     
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addMemoTextField: UITextField!
@@ -19,12 +22,7 @@ class AddToDoViewController: UIViewController {
     
     var editToDo: ToDo?
     var editRow: Int?
-    var viewType: ViewType = .add
-    
-    enum ViewType {
-        case add
-        case edit
-    }
+    var viewType: ToDoViewType = .add
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +36,16 @@ class AddToDoViewController: UIViewController {
         
         if viewType == .add {
             title = "add ToDo"
-            let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addToDoButton))
-            self.navigationItem.rightBarButtonItem = rightBarButton
+            configureRightBarButton()
         } else {
             title = "edit ToDo"
-            let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addToDoButton))
-            self.navigationItem.rightBarButtonItem = rightBarButton
+            configureRightBarButton()
         }
+    }
+    
+    func configureRightBarButton() {
+        let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addToDoButton))
+        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     @objc func addToDoButton() {
