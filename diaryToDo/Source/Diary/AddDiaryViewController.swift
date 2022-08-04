@@ -9,12 +9,18 @@ import UIKit
 
 class AddDiaryViewController: UIViewController {
     
+    enum DiaryViewType {
+        case add
+        case edit
+    }
+    
     @IBOutlet weak var addDiaryImageView: UIImageView!
     @IBOutlet weak var addDiaryDatePicker: UIDatePicker!
     @IBOutlet weak var addDiaryContentTextView: UITextView!
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
 
     let imagePicker = UIImagePickerController()
+    var viewType: ToDoViewType = .add
     
     override func viewDidLoad() {
         super.viewDidLoad()
