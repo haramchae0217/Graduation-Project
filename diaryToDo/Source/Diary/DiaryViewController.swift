@@ -10,17 +10,20 @@ import FSCalendar
 
 class DiaryViewController: UIViewController {
     
+    //MARK: Enum
+    enum DiaryType {
+        case basic
+        case search
+    }
+    
+    //MARK: UI
     @IBOutlet weak var diaryDateLabel: UILabel!
     @IBOutlet weak var diaryPictureUIImage: UIImageView!
     @IBOutlet weak var diaryHashTagLabel: UILabel!
     @IBOutlet weak var diaryContentLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
     
-    enum DiaryType {
-        case basic
-        case search
-    }
-    
+    //MARK: Property
     var filterHashTag: [Diary] = []
     var selectDiary: Diary?
     var hashTagList: String = ""
@@ -29,16 +32,12 @@ class DiaryViewController: UIViewController {
     var selectedDate: Date = Date()
     var diaryType: DiaryType = .basic
     
+    //MARK: Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
-        imageTapGesture.delegate = self
-        diaryPictureUIImage.addGestureRecognizer(imageTapGesture)
-        diaryPictureUIImage.isUserInteractionEnabled = true
-        
+        configureTapGesture()
         configureCalendarView()
-        diaryCalendarView.isHidden = true
     
         indexNumber = MyDB.diaryItem.endIndex - 1
         selectedDate = MyDB.diaryItem[indexNumber].date
@@ -48,7 +47,7 @@ class DiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let selectDiary = MyDB.selectDiary {
+        if MyDB.selectDiary != nil {
             diaryType = .search
         }
         diaryCount = MyDB.diaryItem.count
@@ -56,6 +55,24 @@ class DiaryViewController: UIViewController {
         
     }
     
+    //MARK: Configure
+    func configureCalendarView() {
+        diaryCalendarView.delegate = self
+        diaryCalendarView.dataSource = self
+        
+        diaryCalendarView.locale = Locale(identifier: "ko-KR")
+        diaryCalendarView.appearance.selectionColor = .systemBlue
+        diaryCalendarView.isHidden = true
+    }
+    
+    func configureTapGesture() {
+        let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        imageTapGesture.delegate = self
+        diaryPictureUIImage.addGestureRecognizer(imageTapGesture)
+        diaryPictureUIImage.isUserInteractionEnabled = true
+    }
+    
+    //MARK: ETC
     func diaryViewType() {
         hashTagList = ""
         if diaryType == .search {
@@ -92,14 +109,7 @@ class DiaryViewController: UIViewController {
         }
     }
     
-    func configureCalendarView() {
-        diaryCalendarView.delegate = self
-        diaryCalendarView.dataSource = self
-        
-        diaryCalendarView.locale = Locale(identifier: "ko-KR")
-        diaryCalendarView.appearance.selectionColor = .systemBlue
-    }
-    
+    //MARK: Actions
     @objc func imageViewTapped(_ sender: UIImageView){
         print("imageView Tapped")
         diaryPictureUIImage.isHidden = true
@@ -191,11 +201,12 @@ class DiaryViewController: UIViewController {
     
     @IBAction func showPictureButton(_ sender: UIButton) {
         diaryPictureUIImage.isHidden = false
-        print("show")
     }
     
     @IBAction func editDiaryButton(_ sender: UIButton) {
         print("edit")
+        guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
+        self.navigationController?.pushViewController(editVC, animated: true)
     }
     
     @IBAction func deleteDiaryButton(_ sender: UIButton) {
