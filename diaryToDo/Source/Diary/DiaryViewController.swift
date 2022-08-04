@@ -196,6 +196,7 @@ class DiaryViewController: UIViewController {
     
     @IBAction func addDiaryButton(_ sender: UIBarButtonItem) {
         guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
+        addVC.viewType = .add
         self.navigationController?.pushViewController(addVC, animated: true)
     }
     
@@ -206,6 +207,12 @@ class DiaryViewController: UIViewController {
     @IBAction func editDiaryButton(_ sender: UIButton) {
         print("edit")
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
+        let hashtag = diaryHashTagLabel.text!
+        let arrayHashTag = hashtag.components(separatedBy: " ")
+        let diary = Diary(content: diaryContentLabel.text!, hashTag: arrayHashTag, date: DateFormatter.customDateFormatter.strToDate(str: diaryDateLabel.text!), picture: diaryPictureUIImage.image!)
+        editVC.viewType = .edit
+        editVC.editDiary = diary
+        
         self.navigationController?.pushViewController(editVC, animated: true)
     }
     
