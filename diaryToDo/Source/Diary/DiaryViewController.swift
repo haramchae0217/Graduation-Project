@@ -207,9 +207,7 @@ class DiaryViewController: UIViewController {
     @IBAction func editDiaryButton(_ sender: UIButton) {
         print("edit")
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
-        let hashtag = diaryHashTagLabel.text!
-        let arrayHashTag = hashtag.components(separatedBy: " ")
-        let diary = Diary(content: diaryContentLabel.text!, hashTag: arrayHashTag, date: DateFormatter.customDateFormatter.strToDate(str: diaryDateLabel.text!), picture: diaryPictureUIImage.image!)
+        var diary: Diary
         editVC.viewType = .edit
         editVC.editDiary = diary
         
