@@ -25,6 +25,7 @@ class DiaryViewController: UIViewController {
     
     //MARK: Property
     var filterHashTag: [Diary] = []
+    var diary: Diary?
     var selectDiary: Diary?
     var hashTagList: String = ""
     var diaryCount: Int = 0
@@ -207,7 +208,7 @@ class DiaryViewController: UIViewController {
     @IBAction func editDiaryButton(_ sender: UIButton) {
         print("edit")
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
-        var diary: Diary
+        
         editVC.viewType = .edit
         editVC.editDiary = diary
         
