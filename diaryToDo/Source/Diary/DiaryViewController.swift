@@ -25,7 +25,7 @@ class DiaryViewController: UIViewController {
     
     //MARK: Property
     var filterHashTag: [Diary] = []
-    var diary: Diary?
+    var editDiary: Diary?
     var selectDiary: Diary?
     var hashTagList: String = ""
     var diaryCount: Int = 0
@@ -91,6 +91,7 @@ class DiaryViewController: UIViewController {
             diaryHashTagLabel.text = hashTagList
             diaryPictureUIImage.image = selectDiary.picture
             diaryContentLabel.text = selectDiary.content
+            editDiary = selectDiary
         } else {
             if !MyDB.diaryItem.isEmpty {
                 let recentDiary = MyDB.diaryItem[diaryCount - 1]
@@ -106,13 +107,14 @@ class DiaryViewController: UIViewController {
                 diaryHashTagLabel.text = hashTagList
                 diaryPictureUIImage.image = recentDiary.picture
                 diaryContentLabel.text = recentDiary.content
+                editDiary = recentDiary
             }
         }
+        
     }
     
     //MARK: Actions
     @objc func imageViewTapped(_ sender: UIImageView){
-        print("imageView Tapped")
         diaryPictureUIImage.isHidden = true
     }
         
@@ -142,6 +144,7 @@ class DiaryViewController: UIViewController {
                 diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
                 diaryContentLabel.text = data.content
+                editDiary = data
                 break
             } else {
 //                UIAlertController.showAlert(message: "이전 다이어리가 없습니다.", vc: self)
@@ -176,6 +179,7 @@ class DiaryViewController: UIViewController {
                 diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
                 diaryContentLabel.text = data.content
+                editDiary = data
                 break
             } else {
 //                UIAlertController.showAlert(message: "다음 다이어리가 없습니다.", vc: self)
@@ -208,10 +212,8 @@ class DiaryViewController: UIViewController {
     @IBAction func editDiaryButton(_ sender: UIButton) {
         print("edit")
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
-        
         editVC.viewType = .edit
-        editVC.editDiary = diary
-        
+        editVC.editDiary = editDiary
         self.navigationController?.pushViewController(editVC, animated: true)
     }
     
