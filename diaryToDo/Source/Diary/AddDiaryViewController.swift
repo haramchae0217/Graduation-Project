@@ -29,9 +29,9 @@ class AddDiaryViewController: UIViewController {
         addDiaryContentTextView.delegate = self
         imagePicker.delegate = self
         configureRightBarButton()
+        configureDiaryTitle()
         
         if let editDiary = editDiary {
-            title = "edit Diary"
             var hashtag: String = ""
             addDiaryImageView.image = editDiary.picture
             addDiaryDatePicker.date = editDiary.date
@@ -41,12 +41,18 @@ class AddDiaryViewController: UIViewController {
             }
             addDiaryHashTagTextField.text = hashtag
         }
-        
-        title = "add Diary"
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func configureDiaryTitle() {
+        if viewType == .add {
+            self.title = "add Diary"
+        } else {
+            self.title = "edit Diary"
+        }
     }
     
     func configureRightBarButton() {
