@@ -60,13 +60,11 @@ class AddDiaryViewController: UIViewController {
         let alertAction = UIAlertController(title: "사진 추가하기", message: "어떤방식으로 추가하시겠습니까?", preferredStyle: .actionSheet)
         
         let cameraButton = UIAlertAction(title: "카메라", style: .default) { _ in
-            print("camera on")
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         }
         
         let photoLibraryButton = UIAlertAction(title: "사진첩", style: .default) { _ in
-            print("photoLibrary on")
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         }
