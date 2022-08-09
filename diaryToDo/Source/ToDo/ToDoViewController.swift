@@ -220,7 +220,7 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
         selectedDate = date
         
         if calendarList.count == 0 {
-            UIAlertController.showAlert(message: "등록된 투두가 없습니다.", vc: self)
+            UIAlertController.warningAlert(message: "등록된 투두가 없습니다.", viewController: self)
         }
     }
 }

@@ -262,7 +262,7 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
             diaryPictureUIImage.image = image
             diaryHashTagLabel.text = text
         } else {
-            UIAlertController.showAlert(message: "등록된 다이어리가 없습니다.", vc: self)
+            UIAlertController.warningAlert(message: "등록된 다이어리가 없습니다.", viewController: self)
         }
     }
 }

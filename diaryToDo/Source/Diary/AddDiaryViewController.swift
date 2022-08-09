@@ -89,12 +89,12 @@ class AddDiaryViewController: UIViewController {
         let diary = Diary(content: content, hashTag: filterHashTag, date: date, picture: picture)
         
         if content.isEmpty, hashTag.isEmpty {
-            UIAlertController.showAlert(message: "내용을 입력해주세요.", vc: self)
+            UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
             return
         }
         
         if editDiary?.content == content && editDiary?.hashTag == filterHashTag {
-            UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
+            UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
             return
         }
         

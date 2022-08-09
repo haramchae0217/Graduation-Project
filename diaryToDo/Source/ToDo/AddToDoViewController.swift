@@ -54,12 +54,12 @@ class AddToDoViewController: UIViewController {
         let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
         
         if title.isEmpty, memo.isEmpty {
-            UIAlertController.showAlert(message: "내용을 입력해주세요.", vc: self)
+            UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
             return
         }
         
         if editToDo?.title == title && editToDo?.memo == memo {
-            UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
+            UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
             return
         }
         
