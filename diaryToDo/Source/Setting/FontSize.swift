@@ -5,17 +5,12 @@
 //  Created by Chae_Haram on 2022/03/31.
 //
 
-import Foundation
+import UIKit
 
-struct FontSize {
-    var fontSize: String
-    var isSelectType: Bool = false
-    
-    static var fontsizeList: [FontSize] = [
-        FontSize(fontSize: "아주 작게"),
-        FontSize(fontSize: "작게", isSelectType: true),
-        FontSize(fontSize: "중간"),
-        FontSize(fontSize: "크게"),
-        FontSize(fontSize: "아주 크게")
-    ]
+enum FontSize: String {
+    case 아주작게
+    case 작게
+    case 중간
+    case 크게
+    case 아주크게
 }
