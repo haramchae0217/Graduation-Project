@@ -93,7 +93,8 @@ class AddDiaryViewController: UIViewController {
             return
         }
         
-        if editDiary?.content == content && editDiary?.hashTag == filterHashTag { UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
+        if editDiary?.content == content && editDiary?.hashTag == filterHashTag {
+            UIAlertController.showAlert(message: "변경 후 다시 시도해주세요.", vc: self)
             return
         }
         
@@ -101,11 +102,22 @@ class AddDiaryViewController: UIViewController {
             MyDB.diaryItem.append(diary)
         } else {
             for var data in MyDB.diaryItem {
-                if (data.content == editDiary?.content && data.hashTag == editDiary?.hashTag) {
+                print(data)
+                print(editDiary!)
+                if (data.content == editDiary?.content && data.hashTag == editDiary?.hashTag && data.date == editDiary?.date && data.picture == editDiary?.picture) {
+                    print("if문 통과")
                     data.hashTag = filterHashTag
                     data.picture = picture
                     data.date = date
-                    data = diary
+                    data.content = content
+                    print(filterHashTag)
+                    print(data.hashTag)
+                    print(picture)
+                    print(data.picture)
+                    print(date)
+                    print(data.date)
+                    print(content)
+                    print(data.content)
                 }
             }
         }
