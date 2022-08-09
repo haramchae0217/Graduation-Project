@@ -8,7 +8,11 @@
 import UIKit
 
 struct MyDB {
-    static var filmList: [(filmName: FilmType, isSelectd: Bool)] = [(.film1, true), (.film2, false), (.film3, false), (.film4, false)]
+    static var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.film1, true), (.film2, false), (.film3, false), (.film4, false)]
+    
+    static var dateFormatList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, true), (.type2, false), (.type3, false), (.type4, false)]
+    
+    static var fontSizeList: [(fontSize: FontSize, isSelected: Bool)] = [(.아주작게, false), (.작게, true), (.중간, false), (.크게, false), (.아주크게, false)]
     
     static var selectDiary: Diary?
     
