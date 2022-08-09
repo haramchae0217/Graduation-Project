@@ -67,14 +67,12 @@ class AddToDoViewController: UIViewController {
             MyDB.toDoList.append(toDo)
         } else {
             for var data in MyDB.toDoList {
-                if (data.title == editToDo?.title && data.memo == editToDo?.memo) {
-                    print(data)
+                if (data.title == editToDo?.title && data.memo == editToDo?.memo && data.startDate == editToDo?.startDate && data.endDate == editToDo?.endDate) {
                     data.title = title
                     data.memo = memo
                     data.startDate = startDate
                     data.endDate = endDate
-                    data = toDo
-                    print(data)
+                    
                 }
             }
         
