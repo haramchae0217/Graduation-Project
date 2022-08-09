@@ -50,11 +50,11 @@ class FilmSettingViewController: UIViewController {
     @objc func isSelectFilm(_ sender: UIButton) {
         for i in 0..<MyDB.filmList.count {
             if sender.tag == i {
-                if !MyDB.filmList[i].isSelectd {
-                    MyDB.filmList[i].isSelectd.toggle()
+                if !MyDB.filmList[i].isSelected {
+                    MyDB.filmList[i].isSelected.toggle()
                 }
             } else {
-                MyDB.filmList[i].isSelectd = false
+                MyDB.filmList[i].isSelected = false
             }
         }
     
@@ -71,7 +71,7 @@ extension FilmSettingViewController: UITableViewDataSource {
         guard let cell = filmTableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath) as? FilmTableViewCell else { return UITableViewCell() }
         let selectFilm = MyDB.filmList[indexPath.row]
         
-        if selectFilm.isSelectd {
+        if selectFilm.isSelected {
             setImageSelect(cell.isSelectFilmButton)
         } else {
             setImageNotSelect(cell.isSelectFilmButton)
@@ -89,7 +89,7 @@ extension FilmSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: Cell을 누를때 선택되도록 수정해보기!
         let selectCell = MyDB.filmList[indexPath.row]
-        
+                
         
 
         print(selectCell.filmName)
