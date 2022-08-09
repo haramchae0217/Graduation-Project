@@ -40,7 +40,6 @@ class SearchDiaryViewController: UIViewController {
     func configuresearchBar() {
         let searchHashTag = UISearchController(searchResultsController: nil)
         searchHashTag.searchBar.delegate = self
-//        searchHashTag.searchResultsUpdater = self
         searchHashTag.searchBar.placeholder = "다이어리 검색"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchHashTag
