@@ -8,10 +8,18 @@
 import UIKit
 
 extension UIAlertController {
-    static func showAlert(message: String, vc: UIViewController) {
-        let alert = UIAlertController(title: "⚠️", message: message , preferredStyle: .alert)
+    static func warningAlert(message: String, viewController: UIViewController) {
+        let alert = UIAlertController(title: "🚫", message: message , preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: nil)
         alert.addAction(cancelButton)
-        vc.present(alert, animated: true, completion: nil)
+        viewController.present(alert, animated: true, completion: nil)
+    }
+    static func cautionAlert(message: String, viewController: UIViewController) {
+        let alert = UIAlertController(title: "⚠️", message: message, preferredStyle: .alert)
+        let doneButton = UIAlertAction(title: "확인", style: .destructive, handler: nil)
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(cancelButton)
+        alert.addAction(doneButton)
+        viewController.present(alert, animated: true, completion: nil)
     }
 }
