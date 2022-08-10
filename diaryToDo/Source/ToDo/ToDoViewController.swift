@@ -180,7 +180,7 @@ extension ToDoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: "addToDoVC") as? AddToDoViewController else { return }
+        guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: "AddToDoVC") as? AddToDoViewController else { return }
         editToDoVC.viewType = .edit
         editToDoVC.editToDo = calendarList[indexPath.row]
         editToDoVC.editRow = indexPath.row
