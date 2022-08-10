@@ -188,6 +188,7 @@
                         <outlet property="diaryCalendarView" destination="om5-Uj-axe" id="3q1-Lm-DXj"/>
                         <outlet property="diaryContentLabel" destination="k6h-io-IFh" id="BuY-0E-wrs"/>
                         <outlet property="diaryDateLabel" destination="AMz-gj-TmG" id="zLD-DY-oI7"/>
+                        <outlet property="diaryFilmImage" destination="h16-SV-UY5" id="EpJ-XH-2T8"/>
                         <outlet property="diaryHashTagLabel" destination="lkK-cD-frG" id="z29-kT-R8e"/>
                         <outlet property="diaryPictureUIImage" destination="f0F-OA-l5p" id="G7A-6g-3Ia"/>
                     </connections>
