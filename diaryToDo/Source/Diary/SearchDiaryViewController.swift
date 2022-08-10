@@ -82,9 +82,6 @@ extension SearchDiaryViewController: UITableViewDelegate {
         let diary = searchDiary[indexPath.row]
         MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
-
-        // TODO: -1 ) 검색결과 중 내가 누른 셀에 대한 데이터를 어딘가 저장하기
-        // TODO: -2 ) searchVC를 pop해준 뒤, 아래에 있는 diaryVC에 viewWillAppear에서 데이터 업데이트 해주기
     }
 }
 
