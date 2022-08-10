@@ -11,7 +11,7 @@
         <!--Diary-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="diaryVC" id="BYZ-38-t0r" customClass="DiaryViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiaryVC" id="BYZ-38-t0r" customClass="DiaryViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -369,7 +369,7 @@
         <!--ToDo-->
         <scene sceneID="2yG-eG-IN8">
             <objects>
-                <viewController id="v9c-dq-c5l" customClass="ToDoViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToDoVC" id="v9c-dq-c5l" customClass="ToDoViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="14U-us-5KZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -521,7 +521,7 @@
         <!--Add To Do View Controller-->
         <scene sceneID="PAu-9E-mhc">
             <objects>
-                <viewController storyboardIdentifier="addToDoVC" hidesBottomBarWhenPushed="YES" id="jFj-Kl-H69" customClass="AddToDoViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddToDoVC" hidesBottomBarWhenPushed="YES" id="jFj-Kl-H69" customClass="AddToDoViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XNq-PW-UYe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -695,7 +695,7 @@
         <!--Setting-->
         <scene sceneID="pC0-zX-TXr">
             <objects>
-                <viewController id="YTg-fq-yOD" customClass="SettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingVC" id="YTg-fq-yOD" customClass="SettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cVd-QJ-nkD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -867,7 +867,7 @@
         <!--Font Size Setting View Controller-->
         <scene sceneID="aQe-cJ-Dyi">
             <objects>
-                <viewController storyboardIdentifier="fontSizeVC" hidesBottomBarWhenPushed="YES" id="zBx-8A-HBx" customClass="FontSizeSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FontSizeVC" hidesBottomBarWhenPushed="YES" id="zBx-8A-HBx" customClass="FontSizeSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ooM-8d-Exo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -946,7 +946,7 @@
         <!--Font Setting View Controller-->
         <scene sceneID="aqs-fv-VwR">
             <objects>
-                <viewController storyboardIdentifier="fontVC" id="x18-81-jbv" customClass="FontSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FontVC" id="x18-81-jbv" customClass="FontSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ba1-v2-tkB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
