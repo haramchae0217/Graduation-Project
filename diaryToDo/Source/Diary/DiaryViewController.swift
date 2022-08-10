@@ -91,6 +91,7 @@ class DiaryViewController: UIViewController {
             diaryHashTagLabel.text = hashTagList
             diaryPictureUIImage.image = selectDiary.picture
             diaryContentLabel.text = selectDiary.content
+            selectedDate = selectDiary.date
             editDiary = selectDiary
         } else {
             if !MyDB.diaryItem.isEmpty {
