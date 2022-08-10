@@ -22,6 +22,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryHashTagLabel: UILabel!
     @IBOutlet weak var diaryContentLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
+    @IBOutlet weak var diaryFilmImage: UIImageView!
     
     //MARK: Property
     var filterHashTag: [Diary] = []
@@ -53,10 +54,21 @@ class DiaryViewController: UIViewController {
         }
         diaryCount = MyDB.diaryItem.count
         diaryViewType()
-        
+        configureFilmImage()
     }
     
     //MARK: Configure
+    
+    func configureFilmImage() {
+        for data in MyDB.filmList {
+            if data.isSelected {
+                let filmName = data.filmName.rawValue
+                diaryFilmImage.image = UIImage(named: filmName)
+                break
+            }
+        }
+    }
+    
     func configureCalendarView() {
         diaryCalendarView.delegate = self
         diaryCalendarView.dataSource = self
@@ -125,14 +137,16 @@ class DiaryViewController: UIViewController {
         
         var previousDate: Date = selectedDate
         
-        for data in sortedList { // 바로 이전 날짜 추출
+        for data in sortedList {
             if selectedDate > data.date {
                 previousDate = data.date
                 break
+            } else {
+                print("else")
             }
         }
         
-        for data in sortedList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
+        for data in sortedList {
             if previousDate == data.date {
                 for i in 0..<data.hashTag.count {
                     if i == data.hashTag.count - 1 {
@@ -148,7 +162,7 @@ class DiaryViewController: UIViewController {
                 editDiary = data
                 break
             } else {
-//                UIAlertController.showAlert(message: "이전 다이어리가 없습니다.", vc: self)
+                
             }
         }
         
@@ -160,14 +174,16 @@ class DiaryViewController: UIViewController {
         
         var nextDate: Date = selectedDate
         
-        for data in MyDB.diaryItem { // 바로 이전 날짜 추출
+        for data in MyDB.diaryItem {
             if selectedDate < data.date {
                 nextDate = data.date
                 break
+            } else {
+                
             }
         }
         
-        for data in MyDB.diaryItem { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
+        for data in MyDB.diaryItem {
             if nextDate == data.date {
                 for i in 0..<data.hashTag.count {
                     if i == data.hashTag.count - 1 {
@@ -183,6 +199,7 @@ class DiaryViewController: UIViewController {
                 editDiary = data
                 break
             } else {
+                print("else")
 //                UIAlertController.showAlert(message: "다음 다이어리가 없습니다.", vc: self)
             }
         }
@@ -211,7 +228,6 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func editDiaryButton(_ sender: UIButton) {
-        print("edit")
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
         editVC.viewType = .edit
         editVC.editDiary = editDiary
