@@ -15,17 +15,17 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func MoveDateFormatVC(_ sender: UIButton) {
-        guard let dateVC = self.storyboard?.instantiateViewController(withIdentifier: DateFormatSettingViewController.identifier) as? DateFormatSettingViewController else { return }
+        guard let dateVC = self.storyboard?.instantiateViewController(withIdentifier: "DateVC") as? DateFormatSettingViewController else { return }
         self.navigationController?.pushViewController(dateVC, animated: true)
     }
     
     @IBAction func MoveFontSizeVC(_ sender: UIButton) {
-        guard let fontSizeVC = self.storyboard?.instantiateViewController(withIdentifier: FontSizeSettingViewController.identifier) as? FontSizeSettingViewController else { return }
+        guard let fontSizeVC = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeVC") as? FontSizeSettingViewController else { return }
         self.navigationController?.pushViewController(fontSizeVC, animated: true)
     }
     
     @IBAction func MoveFontVC(_ sender: UIButton) {
-        guard let fontVC = self.storyboard?.instantiateViewController(withIdentifier: FontSettingViewController.identifier) as? FontSettingViewController else { return }
+        guard let fontVC = self.storyboard?.instantiateViewController(withIdentifier: "FontVC") as? FontSettingViewController else { return }
         self.navigationController?.pushViewController(fontVC, animated: true)
     }
 
