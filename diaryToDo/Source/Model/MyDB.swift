@@ -14,6 +14,8 @@ struct MyDB {
     
     static var fontSizeList: [(fontSize: FontSize, isSelected: Bool)] = [(.아주작게, false), (.작게, true), (.중간, false), (.크게, false), (.아주크게, false)]
     
+    static var fontList: [(fontName: FontName, isSelected: Bool)] = [(.name1, true), (.name2, false), (.name3, false), (.name4, false), (.name5, false), (.name6, false), (.name7, false)]
+    
     static var selectDiary: Diary?
     
     static var diaryItem: [Diary] = [
