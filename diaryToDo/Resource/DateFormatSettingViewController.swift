@@ -8,22 +8,41 @@
 import UIKit
 
 class DateFormatSettingViewController: UIViewController {
-
-    static let identifier = "DateVC"
     
     @IBOutlet weak var dateFormatTableView: UITableView!
     
+    var dateList = MyDB.dateFormatList
     var selectedDateFormat: DateFormatType = .type1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
+        configureRightBarButton()
+        
+    }
+    
+    func configureTableView() {
         dateFormatTableView.dataSource = self
         dateFormatTableView.delegate = self
-        
+    }
+    
+    func configureRightBarButton() {
         let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
         self.navigationItem.rightBarButtonItem = rightDoneButton
-        
+    }
+    
+    func toggleAndReload(index: Int) {
+        for i in 0..<dateList.count {
+            if index == i {
+                if !dateList[i].isSelected {
+                    dateList[i].isSelected.toggle()
+                }
+            } else {
+                dateList[i].isSelected = false
+            }
+        }
+        dateFormatTableView.reloadData()
     }
     
     func setDateStyleSelect(_ sender: UIButton) {
@@ -35,32 +54,23 @@ class DateFormatSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        
+        MyDB.dateFormatList = dateList
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectDateFormat(_ sender: UIButton) {
-        for i in 0..<MyDB.dateFormatList.count {
-            if sender.tag == i {
-                if !MyDB.dateFormatList[i].isSelected {
-                    MyDB.dateFormatList[i].isSelected.toggle()
-                }
-            } else {
-                MyDB.dateFormatList[i].isSelected = false
-            }
-        }
-        dateFormatTableView.reloadData()
+        toggleAndReload(index: sender.tag)
     }
 }
 
 extension DateFormatSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MyDB.dateFormatList.count
+        return dateList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = dateFormatTableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as? DateFormatTableViewCell else { return UITableViewCell() }
-        let dateFormat = MyDB.dateFormatList[indexPath.row]
+        let dateFormat = dateList[indexPath.row]
         
         if dateFormat.isSelected {
             setDateStyleSelect(cell.selectedDateFormat)
@@ -76,7 +86,7 @@ extension DateFormatSettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        toggleAndReload(index: indexPath.row)
     }
 }
 
