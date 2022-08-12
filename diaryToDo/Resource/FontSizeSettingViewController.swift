@@ -8,21 +8,41 @@
 import UIKit
 
 class FontSizeSettingViewController: UIViewController {
-
-    static let identifier = "fontSizeVC"
     
     @IBOutlet weak var fontSizeTableView: UITableView!
-    
+
+    var fontSizeList = MyDB.fontSizeList
     var selectedFontSize: FontSize = .작게
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureTableView()
+        configureRightBarButton()
+        
+    }
+    
+    func configureTableView() {
         fontSizeTableView.dataSource = self
         fontSizeTableView.delegate = self
-        
+    }
+    
+    func configureRightBarButton() {
         let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
         self.navigationItem.rightBarButtonItem = rightDoneButton
+    }
+    
+    func toggleAndReload(index: Int) {
+        for i in 0..<MyDB.fontSizeList.count {
+            if index == i {
+                if !MyDB.fontSizeList[i].isSelected {
+                    MyDB.fontSizeList[i].isSelected.toggle()
+                }
+            } else {
+                MyDB.fontSizeList[i].isSelected = false
+            }
+        }
+        fontSizeTableView.reloadData()
     }
     
     func setFontSizeSelect(_ sender: UIButton) {
@@ -34,26 +54,18 @@ class FontSizeSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
+        MyDB.fontSizeList = fontSizeList
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectFontSize(_ sender: UIButton) {
-        for i in 0..<MyDB.fontSizeList.count {
-            if sender.tag == i {
-                if !MyDB.fontSizeList[i].isSelected {
-                    MyDB.fontSizeList[i].isSelected.toggle()
-                }
-            } else {
-                MyDB.fontSizeList[i].isSelected = false
-            }
-        }
-        fontSizeTableView.reloadData()
+        toggleAndReload(index: sender.tag)
     }
 }
 
 extension FontSizeSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MyDB.fontSizeList.count
+        return fontSizeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +86,7 @@ extension FontSizeSettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        toggleAndReload(index: indexPath.row)
     }
 }
 
