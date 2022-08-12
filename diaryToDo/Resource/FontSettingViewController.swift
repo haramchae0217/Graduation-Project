@@ -8,53 +8,85 @@
 import UIKit
 
 class FontSettingViewController: UIViewController {
-
-    static let identifier = "fontVC"
     
     @IBOutlet weak var fontTableView: UITableView!
+    
+    var fontList = MyDB.fontList
+    var selectedFont: FontName = .name1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
+        configureRightBarButton()
+        
+    }
+    
+    func configureTableView() {
         fontTableView.dataSource = self
         fontTableView.delegate = self
-        fontTableView.reloadData()
-        
+    }
+    
+    func configureRightBarButton() {
         let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
         self.navigationItem.rightBarButtonItem = rightDoneButton
     }
     
+    func toggleAndReload(index: Int) {
+        for i in 0..<fontList.count {
+            if index == i {
+                if !fontList[i].isSelected {
+                    fontList[i].isSelected.toggle()
+                }
+            } else {
+                fontList[i].isSelected = false
+            }
+        }
+        fontTableView.reloadData()
+    }
+    
+    func setFontStyleSelect(_ sender: UIButton) {
+        sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+    }
+    
+    func setFontStyleNotSelect(_ sender: UIButton) {
+        sender.setImage(UIImage(systemName: "circle"), for: .normal)
+    }
+    
     @objc func setDoneButton() {
+        MyDB.fontList = fontList
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc func isSelectFont(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.setImage(UIImage(systemName: "circle"),for: .normal)
-            sender.isSelected = false
-            Font.fontList[sender.tag].isSelectType = false
-        } else {
-            sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-            sender.isSelected = true
-            Font.fontList[sender.tag].isSelectType = true
-        }
+        toggleAndReload(index: sender.tag)
     }
 }
 
 extension FontSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Font.fontList.count
+        return fontList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = fontTableView.dequeueReusableCell(withIdentifier: "fontCell", for: indexPath) as? FontSettingTableViewCell else { return UITableViewCell() }
-        let font = Font.fontList[indexPath.row]
+        let font = fontList[indexPath.row]
         
-        cell.fontSettingLabel.text = font.fontName
+        if font.isSelected {
+            setFontStyleSelect(cell.isSelectedFontButton)
+        } else {
+            setFontStyleNotSelect(cell.isSelectedFontButton)
+        }
+        
+        cell.fontSettingLabel.text = font.fontName.rawValue
         cell.isSelectedFontButton.tag = indexPath.row
         cell.isSelectedFontButton.addTarget(self, action: #selector(isSelectFont), for: .touchUpInside)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        toggleAndReload(index: indexPath.row)
     }
 }
 
