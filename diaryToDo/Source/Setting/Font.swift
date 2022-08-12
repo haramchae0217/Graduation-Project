@@ -7,17 +7,12 @@
 
 import Foundation
 
-struct Font {
-    var fontName: String
-    var isSelectType: Bool = false
-    
-    static var fontList: [Font] = [
-        Font(fontName: "Apple SD 산돌고딕 Neo"),
-        Font(fontName: "Apple Gothic"),
-        Font(fontName: "Apple Myungjo"),
-        Font(fontName: "D2 Coding"),
-        Font(fontName: "D2 Coding ligature"),
-        Font(fontName: "GungSeo"),
-        Font(fontName: "HeadLine A")
-    ]
+enum FontName: String {
+    case name1 = "Apple SD 산돌고딕 Neo"
+    case name2 = "Apple Gothic"
+    case name3 = "Apple Myungjo"
+    case name4 = "D2 Coding"
+    case name5 = "D2 Coding ligature"
+    case name6 = "GungSeo"
+    case name7 = "HeadLine A"
 }
