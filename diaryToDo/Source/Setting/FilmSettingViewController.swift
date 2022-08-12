@@ -22,9 +22,17 @@ class FilmSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureTableView()
+        configureRightBarButton()
+        
+    }
+    
+    func configureTableView() {
         filmTableView.dataSource = self
         filmTableView.delegate = self
-        
+    }
+    
+    func configureRightBarButton() {
         let rightDoneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(setDoneButton))
         self.navigationItem.rightBarButtonItem = rightDoneButton
     }
@@ -80,11 +88,11 @@ extension FilmSettingViewController: UITableViewDataSource {
             setImageNotSelect(cell.isSelectFilmButton)
         }
         
-        cell.isSelectFilmButton.tag = indexPath.row
-        cell.isSelectFilmButton.addTarget(self, action: #selector(isSelectFilm), for: .touchUpInside)
         cell.filmName.text = selectFilm.filmName.rawValue
         cell.filmImageView.image = toImage(filmType: selectFilm.filmName)
         cell.filmImageView.contentMode = .scaleAspectFit
+        cell.isSelectFilmButton.tag = indexPath.row
+        cell.isSelectFilmButton.addTarget(self, action: #selector(isSelectFilm), for: .touchUpInside)
         
         return cell
     }
