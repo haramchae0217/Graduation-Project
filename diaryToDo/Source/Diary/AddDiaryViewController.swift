@@ -101,30 +101,14 @@ class AddDiaryViewController: UIViewController {
         if viewType == .add {
             MyDB.diaryItem.append(diary)
         } else {
-            for var data in MyDB.diaryItem {
-                print(data)
-                print(editDiary!)
+            var index = 0
+            for data in MyDB.diaryItem {
+                index += 1
                 if (data.content == editDiary?.content && data.hashTag == editDiary?.hashTag && data.date == editDiary?.date && data.picture == editDiary?.picture) {
-                    print("if문 통과")
-                    data = diary
-                    print(data)
-                    print(diary)
-//                    data.hashTag = filterHashTag
-//                    data.picture = picture
-//                    data.date = date
-//                    data.content = content
-//                    print(filterHashTag)
-//                    print(data.hashTag)
-//                    print(picture)
-//                    print(data.picture)
-//                    print(date)
-//                    print(data.date)
-//                    print(content)
-//                    print(data.content)
+                    MyDB.diaryItem[index - 1] = diary
                 }
             }
         }
-
         self.navigationController?.popViewController(animated: true)
     }
     
