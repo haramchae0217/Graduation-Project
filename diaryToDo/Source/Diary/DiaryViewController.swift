@@ -28,11 +28,11 @@ class DiaryViewController: UIViewController {
     var filterHashTag: [Diary] = []
     var editDiary: Diary?
     var selectDiary: Diary?
-    var hashTagList: String = ""
-    var diaryCount: Int = 0
-    var indexNumber: Int = 0
-    var selectedDate: Date = Date()
+    var deleteDiary: Diary?
     var diaryType: DiaryType = .basic
+    var diaryList = MyDB.diaryItem
+    var hashTagList: String = ""
+    var selectedDate: Date = Date()
     
     //MARK: Life-Cycle
     override func viewDidLoad() {
@@ -40,10 +40,8 @@ class DiaryViewController: UIViewController {
         
         configureTapGesture()
         configureCalendarView()
-    
-        indexNumber = MyDB.diaryItem.endIndex - 1
-        selectedDate = MyDB.diaryItem[indexNumber].date
-        diaryCount = MyDB.diaryItem.count
+
+        selectedDate = diaryList[diaryList.endIndex - 1].date
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +50,7 @@ class DiaryViewController: UIViewController {
         if MyDB.selectDiary != nil {
             diaryType = .search
         }
-        diaryCount = MyDB.diaryItem.count
+
         diaryViewType()
         configureFilmImage()
     }
@@ -88,6 +86,7 @@ class DiaryViewController: UIViewController {
     //MARK: ETC
     func diaryViewType() {
         hashTagList = ""
+        diaryList = MyDB.diaryItem
         if diaryType == .search {
             selectDiary = MyDB.selectDiary
             guard let selectDiary = selectDiary else { return }
@@ -107,8 +106,8 @@ class DiaryViewController: UIViewController {
             editDiary = selectDiary
         } else {
             if !MyDB.diaryItem.isEmpty {
-                let recentDiary = MyDB.diaryItem[diaryCount - 1]
-                
+                let recentDiary = diaryList[diaryList.endIndex - 1]
+                deleteDiary = recentDiary
                 for i in 0..<recentDiary.hashTag.count {
                     if i == recentDiary.hashTag.count - 1 {
                         hashTagList.append("#\(recentDiary.hashTag[i])")
@@ -132,7 +131,7 @@ class DiaryViewController: UIViewController {
     }
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
-        let sortedList = MyDB.diaryItem.sorted(by: { $0.date > $1.date })
+        let sortedList = diaryList.sorted(by: { $0.date > $1.date })
         hashTagList = ""
         
         var previousDate: Date = selectedDate
@@ -142,7 +141,7 @@ class DiaryViewController: UIViewController {
                 previousDate = data.date
                 break
             } else {
-                print("else")
+//                print("else")
             }
         }
         
@@ -160,6 +159,7 @@ class DiaryViewController: UIViewController {
                 diaryPictureUIImage.image = data.picture
                 diaryContentLabel.text = data.content
                 editDiary = data
+                deleteDiary = data
                 break
             } else {
                 
@@ -174,7 +174,7 @@ class DiaryViewController: UIViewController {
         
         var nextDate: Date = selectedDate
         
-        for data in MyDB.diaryItem {
+        for data in diaryList {
             if selectedDate < data.date {
                 nextDate = data.date
                 break
@@ -183,7 +183,7 @@ class DiaryViewController: UIViewController {
             }
         }
         
-        for data in MyDB.diaryItem {
+        for data in diaryList {
             if nextDate == data.date {
                 for i in 0..<data.hashTag.count {
                     if i == data.hashTag.count - 1 {
@@ -197,10 +197,10 @@ class DiaryViewController: UIViewController {
                 diaryPictureUIImage.image = data.picture
                 diaryContentLabel.text = data.content
                 editDiary = data
+                deleteDiary = data
                 break
             } else {
-                print("else")
-//                UIAlertController.showAlert(message: "다음 다이어리가 없습니다.", vc: self)
+//                print("else")
             }
         }
         
@@ -235,9 +235,18 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func deleteDiaryButton(_ sender: UIButton) {
-        print("delete")
+        let diaryDelete = UIAlertController(title: "⚠️", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let deleteButton = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            MyDB.diaryItem.removeAll { data in
+                data.content == self.deleteDiary?.content && data.picture == self.deleteDiary?.picture && data.hashTag == self.deleteDiary?.hashTag && data.date == self.deleteDiary?.date
+            }
+            self.diaryViewType()
+        }
+        diaryDelete.addAction(cancelButton)
+        diaryDelete.addAction(deleteButton)
+        present(diaryDelete, animated: true, completion: nil)
     }
-    
 }
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
