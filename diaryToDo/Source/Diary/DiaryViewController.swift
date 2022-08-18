@@ -120,6 +120,8 @@ class DiaryViewController: UIViewController {
                 diaryPictureUIImage.image = recentDiary.picture
                 diaryContentLabel.text = recentDiary.content
                 editDiary = recentDiary
+            } else {
+                // 다이어리 작성 없을때 기본으로 화면에 보여줄거 만들기
             }
         }
         
