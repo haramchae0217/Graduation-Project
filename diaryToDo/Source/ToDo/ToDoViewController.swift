@@ -15,6 +15,7 @@ class ToDoViewController: UIViewController {
     @IBOutlet weak var todoDateLabel: UILabel!
     
     var calendarList: [ToDo] = []
+    var todayToDoList: [ToDo] = []
     var selectedDate: Date = Date()
     
     override func viewDidLoad() {
