@@ -16,6 +16,8 @@ class ToDoViewController: UIViewController {
     
     var calendarList: [ToDo] = []
     var selectedDate: Date = Date()
+    var font: String = "Apple SD 산돌고딕 Neo"
+    var fontSize: CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +36,23 @@ class ToDoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         recentToDoView()
-        
+        configureFontAndFontSize()
         toDoTableView.reloadData()
         toDoCalendarView.reloadData()
+    }
+    
+    func configureFontAndFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+            }
+        }
     }
     
     func configureTableView() {
@@ -156,9 +172,11 @@ extension ToDoViewController: UITableViewDataSource {
         let todo = calendarList[indexPath.row]
         
         cell.toDoTitleLabel.text = todo.title
+        cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.endDate)
+        cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize)
         
         return cell
     }
