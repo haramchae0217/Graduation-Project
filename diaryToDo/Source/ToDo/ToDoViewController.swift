@@ -15,17 +15,14 @@ class ToDoViewController: UIViewController {
     @IBOutlet weak var todoDateLabel: UILabel!
     
     var calendarList: [ToDo] = []
-    var todayToDoList: [ToDo] = []
     var selectedDate: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        toDoTableView.dataSource = self
-        toDoTableView.delegate = self
+        configureTableView()
+        configureCalendar()
         
-        toDoCalendarSetting()
-        toDoCalendarView.isHidden = true
         
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
         
@@ -42,6 +39,20 @@ class ToDoViewController: UIViewController {
         toDoCalendarView.reloadData()
     }
     
+    func configureTableView() {
+        toDoTableView.dataSource = self
+        toDoTableView.delegate = self
+    }
+    
+    func configureCalendar() {
+        toDoCalendarView.delegate = self
+        toDoCalendarView.dataSource = self
+        
+        toDoCalendarView.isHidden = true
+        toDoCalendarView.locale = Locale(identifier: "ko-KR")
+        toDoCalendarView.appearance.selectionColor = .systemBlue
+    }
+    
     func recentToDoView() {
         let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
         
@@ -54,14 +65,6 @@ class ToDoViewController: UIViewController {
                 todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
             }
         }
-    }
-    
-    func toDoCalendarSetting() {
-        toDoCalendarView.delegate = self
-        toDoCalendarView.dataSource = self
-        
-        toDoCalendarView.locale = Locale(identifier: "ko-KR")
-        toDoCalendarView.appearance.selectionColor = .systemBlue
     }
     
     @IBAction func previousToDoButton(_ sender: UIButton) {
@@ -113,7 +116,7 @@ class ToDoViewController: UIViewController {
     
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
-        guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: "addToDoVC") as? AddToDoViewController else { return }
+        guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: "AddToDoVC") as? AddToDoViewController else { return }
         addToDo.viewType = .add
         self.navigationController?.pushViewController(addToDo, animated: true)
     }
@@ -137,13 +140,9 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
-        if toDoCalendarView.isHidden == true {
-            toDoCalendarView.isHidden = false
-        } else {
-            toDoCalendarView.isHidden = true
-        }
+        toDoCalendarView.isHidden.toggle()
         
-        toDoCalendarSetting()
+        configureCalendar()
     }
 }
 
