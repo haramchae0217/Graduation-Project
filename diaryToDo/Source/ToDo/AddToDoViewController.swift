@@ -49,6 +49,13 @@ class AddToDoViewController: UIViewController {
             addMemoTextField.text = editToDo.memo
             addStartDatePicker.date = editToDo.startDate
             addEndDatePicker.date = editToDo.endDate
+            if allDayType == .no{
+                mySwitch.setOn(false, animated: true)
+                startDateLabel.isHidden = false
+                endDateLabel.isHidden = false
+                addStartDatePicker.isHidden = false
+                addEndDatePicker.isHidden = false
+            }
         }
         
         title = "add ToDo"
