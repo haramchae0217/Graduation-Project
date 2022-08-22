@@ -14,19 +14,18 @@ class ToDoViewController: UIViewController {
     @IBOutlet weak var toDoTableView: UITableView!
     @IBOutlet weak var todoDateLabel: UILabel!
     
-    var calendarList: [ToDo] = []
+    var toDoList = MyDB.toDoList
+    var todayToDoList: [ToDo] = []
     var selectedDate: Date = Date()
     var font: String = "Apple SD 산돌고딕 Neo"
     var fontSize: CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        selectedDate = toDoList[toDoList.endIndex - 1].startDate
         configureTableView()
         configureCalendar()
-        
-        
-        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
         
         toDoTableView.reloadData()
         toDoCalendarView.reloadData()
@@ -35,8 +34,9 @@ class ToDoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        recentToDoView()
+        toDoView()
         configureFontAndFontSize()
+        
         toDoTableView.reloadData()
         toDoCalendarView.reloadData()
     }
@@ -69,16 +69,17 @@ class ToDoViewController: UIViewController {
         toDoCalendarView.appearance.selectionColor = .systemBlue
     }
     
-    func recentToDoView() {
+    func toDoView() {
         let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
         
-        let recentToDoDate: Date = MyDB.toDoList[sortedList.endIndex - 1].startDate
-        calendarList = []
+        let recentToDoDate: Date = selectedDate
+        todayToDoList = []
         
         for data in sortedList {
             if recentToDoDate == data.startDate {
-                calendarList.append(data)
+                todayToDoList.append(data)
                 todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
+                todoDateLabel.font = UIFont(name: font, size: fontSize)
             }
         }
     }
@@ -87,7 +88,7 @@ class ToDoViewController: UIViewController {
         let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
         
         var previousDate: Date = selectedDate
-        calendarList = []
+        todayToDoList = []
         
         for data in sortedList { // 바로 이전 날짜 추출
             if selectedDate > data.startDate {
@@ -98,7 +99,7 @@ class ToDoViewController: UIViewController {
         
         for data in MyDB.toDoList { // 위에서 추출한 날짜와 db에 날짜가 같다면 데이터를 뽑아와서 저장
             if previousDate == data.startDate {
-                calendarList.append(data)
+                todayToDoList.append(data)
             }
         }
         
@@ -110,7 +111,7 @@ class ToDoViewController: UIViewController {
     @IBAction func nextToDoButton(_ sender: UIButton) {
         var nextDate: Date = selectedDate
         
-        calendarList = []
+        todayToDoList = []
         
         for data in MyDB.toDoList {
             if selectedDate < data.startDate {
@@ -121,7 +122,7 @@ class ToDoViewController: UIViewController {
         
         for data in MyDB.toDoList {
             if nextDate == data.startDate {
-                calendarList.append(data)
+                todayToDoList.append(data)
             }
         }
         
@@ -157,19 +158,17 @@ class ToDoViewController: UIViewController {
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
         toDoCalendarView.isHidden.toggle()
-        
-        configureCalendar()
     }
 }
 
 extension ToDoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calendarList.count
+        return todayToDoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
-        let todo = calendarList[indexPath.row]
+        let todo = todayToDoList[indexPath.row]
         
         cell.toDoTitleLabel.text = todo.title
         cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
@@ -184,9 +183,9 @@ extension ToDoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             MyDB.toDoList.removeAll { item in
-                item.title == calendarList[indexPath.row].title && item.memo == calendarList[indexPath.row].memo && item.startDate == calendarList[indexPath.row].startDate && item.endDate == calendarList[indexPath.row].endDate
+                item.title == todayToDoList[indexPath.row].title && item.memo == todayToDoList[indexPath.row].memo && item.startDate == todayToDoList[indexPath.row].startDate && item.endDate == todayToDoList[indexPath.row].endDate
             }
-            calendarList.remove(at: indexPath.row)
+            todayToDoList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -200,7 +199,7 @@ extension ToDoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: "AddToDoVC") as? AddToDoViewController else { return }
         editToDoVC.viewType = .edit
-        editToDoVC.editToDo = calendarList[indexPath.row]
+        editToDoVC.editToDo = todayToDoList[indexPath.row]
         editToDoVC.editRow = indexPath.row
         self.navigationController?.pushViewController(editToDoVC, animated: true)
     }
@@ -228,16 +227,18 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        toDoCalendarView.isHidden.toggle()
+        
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
         
-        calendarList = MyDB.toDoList.filter { toDo in
+        todayToDoList = MyDB.toDoList.filter { toDo in
             toDo.startDate == date
         }
         
         toDoTableView.reloadData()
         selectedDate = date
         
-        if calendarList.count == 0 {
+        if todayToDoList.count == 0 {
             UIAlertController.warningAlert(message: "등록된 투두가 없습니다.", viewController: self)
         }
     }
