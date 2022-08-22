@@ -560,6 +560,9 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="izj-bU-cfH">
                                         <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="allDaySwitch:" destination="jFj-Kl-H69" eventType="valueChanged" id="IlY-pZ-MKQ"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
@@ -629,11 +632,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addAllDay" destination="izj-bU-cfH" id="8WN-Nt-aSA"/>
                         <outlet property="addEndDatePicker" destination="TLd-jL-SMd" id="XKu-yN-EwG"/>
                         <outlet property="addMemoTextField" destination="j1X-yg-h0E" id="nQb-AD-qTs"/>
                         <outlet property="addStartDatePicker" destination="3Am-pc-576" id="65r-mF-Dhp"/>
                         <outlet property="addTitleTextField" destination="bIy-XI-DIg" id="sot-5b-m7b"/>
+                        <outlet property="endDateLabel" destination="Rcl-HG-bWY" id="01v-Ez-PSa"/>
+                        <outlet property="mySwitch" destination="izj-bU-cfH" id="A4W-OP-sVd"/>
+                        <outlet property="startDateLabel" destination="bwg-5g-qhw" id="Msh-29-nn0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5MD-O3-OnS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
