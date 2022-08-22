@@ -93,11 +93,13 @@ class ToDoViewController: UIViewController {
     }
     
     func toggleAndReload(index: Int) {
-        for i in 0..<todayToDoList.count {
-            if index == i {
-                if !todayToDoList[i].isChecked {
-                    todayToDoList[i].isChecked.toggle()
-                }
+        let todo = todayToDoList[index]
+        todayToDoList[index].isChecked.toggle()
+        var toDoListIndex = 0
+        for data in MyDB.toDoList {
+            toDoListIndex += 1
+            if (data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate ) {
+                MyDB.toDoList[toDoListIndex - 1].isChecked.toggle()
             }
         }
         toDoTableView.reloadData()
@@ -149,7 +151,6 @@ class ToDoViewController: UIViewController {
         selectedDate = nextDate
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate)
     }
-    
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
         guard let addToDo = self.storyboard?.instantiateViewController(withIdentifier: "AddToDoVC") as? AddToDoViewController else { return }
