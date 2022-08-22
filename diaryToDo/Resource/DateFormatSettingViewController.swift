@@ -13,6 +13,8 @@ class DateFormatSettingViewController: UIViewController {
     
     var dateList = MyDB.dateFormatList
     var selectedDateFormat: DateFormatType = .type1
+    var font: String = "Apple SD 산돌고딕 Neo"
+    var fontSize: CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,26 @@ class DateFormatSettingViewController: UIViewController {
         configureTableView()
         configureRightBarButton()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureFontAndFontSize()
+    }
+    
+    func configureFontAndFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+            }
+        }
     }
     
     func configureTableView() {
@@ -79,6 +101,7 @@ extension DateFormatSettingViewController: UITableViewDataSource {
         }
         
         cell.typeDateFormat.text = dateFormat.dateformatType.rawValue
+        cell.typeDateFormat.font = UIFont(name: font, size: fontSize)
         cell.selectedDateFormat.tag = indexPath.row
         cell.selectedDateFormat.addTarget(self, action: #selector(isSelectDateFormat), for: .touchUpInside)
         
