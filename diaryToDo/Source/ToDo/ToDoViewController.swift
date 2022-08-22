@@ -74,7 +74,7 @@ class ToDoViewController: UIViewController {
         
         let recentToDoDate: Date = selectedDate
         todayToDoList = []
-        
+
         for data in sortedList {
             if recentToDoDate == data.startDate {
                 todayToDoList.append(data)
