@@ -18,6 +18,8 @@ class FilmSettingViewController: UIViewController {
     
     var filmList = MyDB.filmList
     var selectedFilm: FilmType = .film1
+    var font: String = "Apple SD 산돌고딕 Neo"
+    var fontSize: CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,26 @@ class FilmSettingViewController: UIViewController {
         configureTableView()
         configureRightBarButton()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureFontAndFontSize()
+    }
+    
+    func configureFontAndFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+            }
+        }
     }
     
     func configureTableView() {
@@ -89,6 +111,7 @@ extension FilmSettingViewController: UITableViewDataSource {
         }
         
         cell.filmName.text = selectFilm.filmName.rawValue
+        cell.filmName.font = UIFont(name: font, size: fontSize)
         cell.filmImageView.image = toImage(filmType: selectFilm.filmName)
         cell.filmImageView.contentMode = .scaleAspectFit
         cell.isSelectFilmButton.tag = indexPath.row
