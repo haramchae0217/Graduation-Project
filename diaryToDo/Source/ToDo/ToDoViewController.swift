@@ -199,7 +199,11 @@ extension ToDoViewController: UITableViewDataSource {
         }
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
-        cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.endDate)
+        if todo.startDate == todo.endDate {
+            cell.toDoExpireDateLabel.text = "오늘"
+        } else {
+            cell.toDoExpireDateLabel.text = "마감일 : \(DateFormatter.customDateFormatter.dateToStr(date: todo.endDate))"
+        }
         cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize)
         
         return cell
