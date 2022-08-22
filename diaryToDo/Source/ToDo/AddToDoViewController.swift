@@ -14,18 +14,32 @@ class AddToDoViewController: UIViewController {
         case edit
     }
     
+    enum AllDayType{
+        case yes
+        case no
+    }
+    
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addMemoTextField: UITextField!
-    @IBOutlet weak var addAllDay: UISwitch!
     @IBOutlet weak var addStartDatePicker: UIDatePicker!
+    @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var addEndDatePicker: UIDatePicker!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var mySwitch: UISwitch!
     
     var editToDo: ToDo?
     var editRow: Int?
     var viewType: ToDoViewType = .add
+    var allDayType: AllDayType = .yes
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mySwitch.setOn(true, animated: true)
+        startDateLabel.isHidden = true
+        endDateLabel.isHidden = true
+        addStartDatePicker.isHidden = true
+        addEndDatePicker.isHidden = true
         
         configureRightBarButton()
         
@@ -76,4 +90,19 @@ class AddToDoViewController: UIViewController {
         }
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func allDaySwitch(_ sender: UISwitch) {
+        if mySwitch.isOn {
+            startDateLabel.isHidden = true
+            endDateLabel.isHidden = true
+            addStartDatePicker.isHidden = true
+            addEndDatePicker.isHidden = true
+        } else {
+            startDateLabel.isHidden = false
+            endDateLabel.isHidden = false
+            addStartDatePicker.isHidden = false
+            addEndDatePicker.isHidden = false
+        }
+    }
+    
 }
