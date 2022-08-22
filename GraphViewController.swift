@@ -33,6 +33,9 @@ class GraphViewController: UIViewController {
     var todayDate: Date = Date()
     var monthInfo: Int = 0
     var weekInfo: Int = 0
+    var font: String = "Apple SD 산돌고딕 Neo"
+    var fontSize: CGFloat = 12
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +49,22 @@ class GraphViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        configureFontAndFontSize()
         calendarView.reloadData()
+    }
+    
+    func configureFontAndFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+            }
+        }
     }
     
     func appendDate(date: Date) {
@@ -55,6 +73,7 @@ class GraphViewController: UIViewController {
         monthInfo = Calendar.current.component(.month, from: date)
         weekInfo = Calendar.current.component(.weekOfMonth, from: date)
         calendarInfo.text = "\(monthInfo)월 \(weekInfo)째주"
+        calendarInfo.font = UIFont(name: font, size: fontSize)
         
         var current: Weekday = .monday
         
