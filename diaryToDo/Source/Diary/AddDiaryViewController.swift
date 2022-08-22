@@ -37,6 +37,7 @@ class AddDiaryViewController: UIViewController {
                 addDiaryImageView.image = editDiary.picture
                 addDiaryDatePicker.date = editDiary.date
                 addDiaryContentTextView.text = editDiary.content
+                addDiaryContentTextView.textColor = .label
                 for data in editDiary.hashTag {
                     hashtag += data
                 }
