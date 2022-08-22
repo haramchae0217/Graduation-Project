@@ -190,6 +190,13 @@ extension ToDoViewController: UITableViewDataSource {
         
         cell.toDoTitleLabel.text = todo.title
         cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
+        if todo.isChecked {
+            cell.toDoTitleLabel.textColor = .lightGray
+            cell.toDoExpireDateLabel.textColor = .lightGray
+        } else {
+            cell.toDoTitleLabel.textColor = .label
+            cell.toDoExpireDateLabel.textColor = .label
+        }
         cell.toDoCheckButton.tag = indexPath.row
         cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         cell.toDoExpireDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todo.endDate)
