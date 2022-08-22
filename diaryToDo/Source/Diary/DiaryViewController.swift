@@ -53,6 +53,7 @@ class DiaryViewController: UIViewController {
 
         diaryViewType()
         configureFilmImage()
+        configureFont()
     }
     
     //MARK: Configure
@@ -63,6 +64,24 @@ class DiaryViewController: UIViewController {
                 let filmName = data.filmName.rawValue
                 diaryFilmImage.image = UIImage(named: filmName)
                 break
+            }
+        }
+    }
+    
+    func configureFont() {
+        var fontSize: CGFloat = 12
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                let fontName = data.fontName.rawValue
+                diaryDateLabel.font = UIFont(name: fontName, size: fontSize)
+                diaryContentLabel.font = UIFont(name: fontName, size: fontSize)
+                diaryHashTagLabel.font = UIFont(name: fontName, size: fontSize)
             }
         }
     }
