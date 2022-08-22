@@ -84,6 +84,25 @@ class ToDoViewController: UIViewController {
         }
     }
     
+    func setToDoComplete(_ sender: UIButton) {
+        sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+    }
+    
+    func setToDoNotComplete(_ sender: UIButton) {
+        sender.setImage(UIImage(systemName: "circle"), for: .normal)
+    }
+    
+    func toggleAndReload(index: Int) {
+        for i in 0..<todayToDoList.count {
+            if index == i {
+                if !todayToDoList[i].isChecked {
+                    todayToDoList[i].isChecked.toggle()
+                }
+            }
+        }
+        toDoTableView.reloadData()
+    }
+    
     @IBAction func previousToDoButton(_ sender: UIButton) {
         let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
         
@@ -145,15 +164,7 @@ class ToDoViewController: UIViewController {
     
     
     @objc func checkToDoButton(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.setImage(UIImage(systemName: "circle"),for: .normal)
-            sender.isSelected = false
-            MyDB.toDoList[sender.tag].isChecked = false
-        } else {
-            sender.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            sender.isSelected = true
-            MyDB.toDoList[sender.tag].isChecked = true
-        }
+        toggleAndReload(index: sender.tag)
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
@@ -169,6 +180,12 @@ extension ToDoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
         let todo = todayToDoList[indexPath.row]
+        
+        if todo.isChecked {
+            setToDoComplete(cell.toDoCheckButton)
+        } else {
+            setToDoNotComplete(cell.toDoCheckButton)
+        }
         
         cell.toDoTitleLabel.text = todo.title
         cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
