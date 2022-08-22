@@ -34,8 +34,8 @@ class ToDoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        toDoView()
         configureFontAndFontSize()
+        toDoView()
         
         toDoTableView.reloadData()
         toDoCalendarView.reloadData()
@@ -72,7 +72,7 @@ class ToDoViewController: UIViewController {
     func toDoView() {
         let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
         
-        let recentToDoDate: Date = selectedDate
+        let recentToDoDate: Date = MyDB.toDoList[sortedList.endIndex - 1].startDate
         todayToDoList = []
 
         for data in sortedList {
@@ -226,9 +226,15 @@ extension ToDoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let todo = todayToDoList[indexPath.row]
         guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: "AddToDoVC") as? AddToDoViewController else { return }
         editToDoVC.viewType = .edit
-        editToDoVC.editToDo = todayToDoList[indexPath.row]
+        editToDoVC.editToDo = todo
+        if todo.startDate == todo.endDate {
+            editToDoVC.allDayType = .yes
+        } else {
+            editToDoVC.allDayType = .no
+        }
         editToDoVC.editRow = indexPath.row
         self.navigationController?.pushViewController(editToDoVC, animated: true)
     }
