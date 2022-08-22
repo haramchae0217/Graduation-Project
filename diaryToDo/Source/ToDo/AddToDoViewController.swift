@@ -66,17 +66,14 @@ class AddToDoViewController: UIViewController {
         if viewType == .add {
             MyDB.toDoList.append(toDo)
         } else {
-            for var data in MyDB.toDoList {
+            var index = 0
+            for data in MyDB.toDoList {
+                index += 1
                 if (data.title == editToDo?.title && data.memo == editToDo?.memo && data.startDate == editToDo?.startDate && data.endDate == editToDo?.endDate) {
-                    data.title = title
-                    data.memo = memo
-                    data.startDate = startDate
-                    data.endDate = endDate
-                    
+                    MyDB.toDoList[index - 1] = toDo
                 }
             }
-        
-        self.navigationController?.popViewController(animated: true)
         }
+        self.navigationController?.popViewController(animated: true)
     }
 }
