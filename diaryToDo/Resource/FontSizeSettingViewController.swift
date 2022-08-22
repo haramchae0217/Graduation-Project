@@ -13,7 +13,7 @@ class FontSizeSettingViewController: UIViewController {
 
     var fontSizeList = MyDB.fontSizeList
     var selectedFontSize: FontSize = .작게
-    var font: String = ""
+    var font: String = "Apple SD 산돌고딕 Neo"
     
     override func viewDidLoad() {
         super.viewDidLoad()
