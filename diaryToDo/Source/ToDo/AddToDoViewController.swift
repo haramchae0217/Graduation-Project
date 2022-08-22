@@ -35,30 +35,34 @@ class AddToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mySwitch.setOn(true, animated: true)
-        startDateLabel.isHidden = true
-        endDateLabel.isHidden = true
-        addStartDatePicker.isHidden = true
-        addEndDatePicker.isHidden = true
+        if allDayType == .yes {
+            mySwitch.setOn(true, animated: true)
+            startDateLabel.isHidden = true
+            endDateLabel.isHidden = true
+            addStartDatePicker.isHidden = true
+            addEndDatePicker.isHidden = true
+        } else {
+            mySwitch.setOn(false, animated: true)
+            startDateLabel.isHidden = false
+            endDateLabel.isHidden = false
+            addStartDatePicker.isHidden = false
+            addEndDatePicker.isHidden = false
+        }
+        
         
         configureRightBarButton()
         
-        if let editToDo = editToDo {
+        if viewType == .edit {
             title = "edit ToDo"
-            addTitleTextField.text = editToDo.title
-            addMemoTextField.text = editToDo.memo
-            addStartDatePicker.date = editToDo.startDate
-            addEndDatePicker.date = editToDo.endDate
-            if allDayType == .no{
-                mySwitch.setOn(false, animated: true)
-                startDateLabel.isHidden = false
-                endDateLabel.isHidden = false
-                addStartDatePicker.isHidden = false
-                addEndDatePicker.isHidden = false
+            if let editToDo = editToDo {
+                addTitleTextField.text = editToDo.title
+                addMemoTextField.text = editToDo.memo
+                addStartDatePicker.date = editToDo.startDate
+                addEndDatePicker.date = editToDo.endDate
             }
+        } else {
+            title = "add ToDo"
         }
-        
-        title = "add ToDo"
     }
     
     func configureRightBarButton() {
