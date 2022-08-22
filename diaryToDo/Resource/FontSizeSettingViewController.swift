@@ -13,6 +13,7 @@ class FontSizeSettingViewController: UIViewController {
 
     var fontSizeList = MyDB.fontSizeList
     var selectedFontSize: FontSize = .작게
+    var font: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,20 @@ class FontSizeSettingViewController: UIViewController {
         configureTableView()
         configureRightBarButton()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureFont()
+    }
+    
+    func configureFont() {
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+            }
+        }
     }
     
     func configureTableView() {
@@ -33,13 +48,13 @@ class FontSizeSettingViewController: UIViewController {
     }
     
     func toggleAndReload(index: Int) {
-        for i in 0..<MyDB.fontSizeList.count {
+        for i in 0..<fontSizeList.count {
             if index == i {
-                if !MyDB.fontSizeList[i].isSelected {
-                    MyDB.fontSizeList[i].isSelected.toggle()
+                if !fontSizeList[i].isSelected {
+                    fontSizeList[i].isSelected.toggle()
                 }
             } else {
-                MyDB.fontSizeList[i].isSelected = false
+                fontSizeList[i].isSelected = false
             }
         }
         fontSizeTableView.reloadData()
@@ -70,7 +85,7 @@ extension FontSizeSettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = fontSizeTableView.dequeueReusableCell(withIdentifier: "fontSizeCell", for: indexPath) as? FontSizeTableViewCell else { return UITableViewCell() }
-        let fontSize = MyDB.fontSizeList[indexPath.row]
+        let fontSize = fontSizeList[indexPath.row]
         
         if fontSize.isSelected {
             setFontSizeSelect(cell.fontSizeSelectButton)
@@ -78,7 +93,8 @@ extension FontSizeSettingViewController: UITableViewDataSource {
             setFontSizeNotSelect(cell.fontSizeSelectButton)
         }
         
-        cell.fontSizeLabel.text = fontSize.fontSize.rawValue
+        cell.fontSizeLabel.text = "\(fontSize.fontSize)"
+        cell.fontSizeLabel.font = UIFont(name: font, size: fontSize.fontSize.rawValue)
         cell.fontSizeSelectButton.tag = indexPath.row
         cell.fontSizeSelectButton.addTarget(self, action: #selector(isSelectFontSize), for: .touchUpInside)
         
