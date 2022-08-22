@@ -13,6 +13,7 @@ class FontSettingViewController: UIViewController {
     
     var fontList = MyDB.fontList
     var selectedFont: FontName = .name1
+    var fontSize: CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,19 @@ class FontSettingViewController: UIViewController {
         configureTableView()
         configureRightBarButton()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureFontSize()
+    }
+    
+    func configureFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
     }
     
     func configureTableView() {
@@ -79,6 +93,7 @@ extension FontSettingViewController: UITableViewDataSource {
         }
         
         cell.fontSettingLabel.text = font.fontName.rawValue
+        cell.fontSettingLabel.font = UIFont(name: font.fontName.rawValue, size: fontSize)
         cell.isSelectedFontButton.tag = indexPath.row
         cell.isSelectedFontButton.addTarget(self, action: #selector(isSelectFont), for: .touchUpInside)
         
