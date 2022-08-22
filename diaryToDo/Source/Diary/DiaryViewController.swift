@@ -230,7 +230,6 @@ class DiaryViewController: UIViewController {
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
         diaryCalendarView.isHidden.toggle()
-        configureCalendarView()
     }
     
     @IBAction func searchBarButton(_ sender: UIBarButtonItem) {
@@ -288,6 +287,8 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        diaryCalendarView.isHidden.toggle()
+        
         let diaryList = MyDB.diaryItem.filter { diary in
             diary.date == date
         }
