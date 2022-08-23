@@ -8,7 +8,6 @@
 import UIKit
 
 struct MyDB {
-    static var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.film1, true), (.film2, false), (.film3, false), (.film4, false)]
     
     static var dateFormatList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, true), (.type2, false), (.type3, false), (.type4, false)]
     
@@ -16,7 +15,11 @@ struct MyDB {
     
     static var fontList: [(fontName: FontName, isSelected: Bool)] = [(.name1, true), (.name2, false), (.name3, false), (.name4, false), (.name5, false), (.name6, false), (.name7, false)]
     
+    static var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.film1, true), (.film2, false), (.film3, false), (.film4, false)]
+    
     static var selectDiary: Diary?
+    
+    static var selectToDo: ToDo?
     
     static var diaryItem: [Diary] = [
         Diary(content: "8년지기 친구들과 함께 강화도 여행중 간 카페! 고구마 케잌이 시그니처 메뉴였는데 맛있었다.", hashTag: ["카페","강화도","여행"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/05/11"), picture: UIImage(named: "cafe1")!),
@@ -56,6 +59,5 @@ struct MyDB {
         ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10")),
         ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10")),
         ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"))
-
     ]
 }
