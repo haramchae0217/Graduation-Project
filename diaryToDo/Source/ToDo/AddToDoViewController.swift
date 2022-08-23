@@ -99,6 +99,7 @@ class AddToDoViewController: UIViewController {
                 }
             }
         }
+        MyDB.selectToDo = toDo
         self.navigationController?.popViewController(animated: true)
     }
     
