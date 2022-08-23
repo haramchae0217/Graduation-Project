@@ -23,6 +23,9 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryContentLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
     @IBOutlet weak var diaryFilmImage: UIImageView!
+    @IBOutlet weak var showPictureButton: UIButton!
+    @IBOutlet weak var editDiaryButton: UIButton!
+    @IBOutlet weak var deleteDiaryButton: UIButton!
     
     //MARK: Property
     var filterHashTag: [Diary] = []
@@ -128,7 +131,6 @@ class DiaryViewController: UIViewController {
             deleteDiary = selectDiary
         } else {
             if !MyDB.diaryItem.isEmpty {
-                print(MyDB.diaryItem)
                 let recentDiary = diaryList[diaryList.endIndex - 1]
                 for i in 0..<recentDiary.hashTag.count {
                     if i == recentDiary.hashTag.count - 1 {
@@ -144,6 +146,14 @@ class DiaryViewController: UIViewController {
                 editDiary = recentDiary
                 deleteDiary = recentDiary
             } else {
+                diaryPictureUIImage.isHidden = false
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
+                diaryPictureUIImage.image = UIImage(named: "noImage")
+                diaryHashTagLabel.text = "작성된 다이어리가 없습니다. 다이어리를 작성해주세요."
+                diaryContentLabel.isHidden = true
+                showPictureButton.isHidden = true
+                editDiaryButton.isHidden = true
+                deleteDiaryButton.isHidden = true
                 // 다이어리 작성 없을때 기본으로 화면에 보여줄거 만들기
             }
         }
@@ -247,6 +257,8 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func showPictureButton(_ sender: UIButton) {
+        
+        
         diaryPictureUIImage.isHidden = false
     }
     
