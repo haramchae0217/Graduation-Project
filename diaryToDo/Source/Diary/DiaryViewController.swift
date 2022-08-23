@@ -36,15 +36,17 @@ class DiaryViewController: UIViewController {
     var diaryList = MyDB.diaryItem
     var hashTagList: String = ""
     var selectedDate: Date = Date()
+    var fontSize: CGFloat = 12
     
     //MARK: Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTapGesture()
-        configureCalendarView()
 
-        selectedDate = diaryList[diaryList.endIndex - 1].date
+        if !MyDB.diaryItem.isEmpty {
+            selectedDate = diaryList[diaryList.endIndex - 1].date
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,11 +56,11 @@ class DiaryViewController: UIViewController {
             diaryType = .search
         }
         
+        configureCalendarView()
         diaryList = MyDB.diaryItem
-
-        diaryViewType()
         configureFilmImage()
-        configureFont()
+        configureFontAndFontSize()
+        diaryViewType()
     }
     
     //MARK: Configure
@@ -73,8 +75,7 @@ class DiaryViewController: UIViewController {
         }
     }
     
-    func configureFont() {
-        var fontSize: CGFloat = 12
+    func configureFontAndFontSize() {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
@@ -95,9 +96,10 @@ class DiaryViewController: UIViewController {
         diaryCalendarView.delegate = self
         diaryCalendarView.dataSource = self
         
+        diaryCalendarView.isHidden = true
         diaryCalendarView.locale = Locale(identifier: "ko-KR")
         diaryCalendarView.appearance.selectionColor = .systemBlue
-        diaryCalendarView.isHidden = true
+        diaryCalendarView.reloadData()
     }
     
     func configureTapGesture() {
@@ -257,8 +259,6 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func showPictureButton(_ sender: UIButton) {
-        
-        
         diaryPictureUIImage.isHidden = false
     }
     
