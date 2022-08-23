@@ -40,7 +40,7 @@ class AddDiaryViewController: UIViewController {
                 addDiaryContentTextView.text = editDiary.content
                 addDiaryContentTextView.textColor = .label
                 for data in editDiary.hashTag {
-                    hashtag += data
+                    hashtag += "\(data) "
                 }
                 addDiaryHashTagTextField.text = hashtag
             }
@@ -120,6 +120,7 @@ class AddDiaryViewController: UIViewController {
                 }
             }
         }
+        MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }
     
