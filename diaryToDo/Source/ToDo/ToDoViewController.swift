@@ -9,6 +9,11 @@ import UIKit
 import FSCalendar
 
 class ToDoViewController: UIViewController {
+    
+    enum ToDoType {
+        case basic
+        case select
+    }
 
     @IBOutlet weak var toDoCalendarView: FSCalendar!
     @IBOutlet weak var toDoTableView: UITableView!
@@ -16,6 +21,8 @@ class ToDoViewController: UIViewController {
     
     var toDoList = MyDB.toDoList
     var todayToDoList: [ToDo] = []
+    var toDoType: ToDoType = .basic
+    var selectToDo: ToDo?
     var selectedDate: Date = Date()
     var font: String = "Apple SD 산돌고딕 Neo"
     var fontSize: CGFloat = 12
@@ -23,22 +30,25 @@ class ToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectedDate = toDoList[toDoList.endIndex - 1].startDate
         configureTableView()
-        configureCalendar()
-        
-        toDoTableView.reloadData()
-        toDoCalendarView.reloadData()
+    
+        if !MyDB.toDoList.isEmpty {
+            selectedDate = toDoList[toDoList.endIndex - 1].startDate
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if MyDB.selectToDo != nil {
+            toDoType = .select
+        }
+        
+        configureCalendar()
+        toDoList = MyDB.toDoList
         configureFontAndFontSize()
         toDoView()
-        
         toDoTableView.reloadData()
-        toDoCalendarView.reloadData()
     }
     
     func configureFontAndFontSize() {
@@ -51,6 +61,7 @@ class ToDoViewController: UIViewController {
         for data in MyDB.fontList {
             if data.isSelected {
                 font = data.fontName.rawValue
+                todoDateLabel.font = UIFont(name: font, size: fontSize)
             }
         }
     }
@@ -67,19 +78,34 @@ class ToDoViewController: UIViewController {
         toDoCalendarView.isHidden = true
         toDoCalendarView.locale = Locale(identifier: "ko-KR")
         toDoCalendarView.appearance.selectionColor = .systemBlue
+        toDoCalendarView.reloadData()
     }
     
     func toDoView() {
-        let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
-        
-        let recentToDoDate: Date = MyDB.toDoList[sortedList.endIndex - 1].startDate
+        let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate } )
         todayToDoList = []
-
-        for data in sortedList {
-            if recentToDoDate == data.startDate {
-                todayToDoList.append(data)
-                todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
-                todoDateLabel.font = UIFont(name: font, size: fontSize)
+        if toDoType == .select {
+            selectToDo = MyDB.selectToDo
+            guard let selectToDo = selectToDo else { return }
+            let selectToDoDate: Date = selectToDo.startDate
+            for data in sortedList {
+                if selectToDoDate == data.startDate {
+                    todayToDoList.append(data)
+                    todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
+                    selectedDate = selectToDo.startDate
+                }
+            }
+        } else {
+            if !MyDB.toDoList.isEmpty {
+                let recentToDoDate: Date = MyDB.toDoList[sortedList.endIndex - 1].startDate
+                for data in sortedList {
+                    if recentToDoDate == data.startDate {
+                        todayToDoList.append(data)
+                        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
+                    }
+                }
+            } else {
+                todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
             }
         }
     }
@@ -182,29 +208,33 @@ extension ToDoViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
         let todo = todayToDoList[indexPath.row]
         
-        if todo.isChecked {
-            setToDoComplete(cell.toDoCheckButton)
+        if MyDB.toDoList.isEmpty {
+            cell.toDoTitleLabel.text = "등록된 투두가 없습니다. 투두를 추가해주세요."
         } else {
-            setToDoNotComplete(cell.toDoCheckButton)
+            if todo.isChecked {
+                setToDoComplete(cell.toDoCheckButton)
+            } else {
+                setToDoNotComplete(cell.toDoCheckButton)
+            }
+            
+            cell.toDoTitleLabel.text = todo.title
+            cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
+            if todo.isChecked {
+                cell.toDoTitleLabel.textColor = .lightGray
+                cell.toDoExpireDateLabel.textColor = .lightGray
+            } else {
+                cell.toDoTitleLabel.textColor = .label
+                cell.toDoExpireDateLabel.textColor = .label
+            }
+            cell.toDoCheckButton.tag = indexPath.row
+            cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
+            if todo.startDate == todo.endDate {
+                cell.toDoExpireDateLabel.text = "오늘"
+            } else {
+                cell.toDoExpireDateLabel.text = "마감일 : \(DateFormatter.customDateFormatter.dateToStr(date: todo.endDate))"
+            }
+            cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize)
         }
-        
-        cell.toDoTitleLabel.text = todo.title
-        cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
-        if todo.isChecked {
-            cell.toDoTitleLabel.textColor = .lightGray
-            cell.toDoExpireDateLabel.textColor = .lightGray
-        } else {
-            cell.toDoTitleLabel.textColor = .label
-            cell.toDoExpireDateLabel.textColor = .label
-        }
-        cell.toDoCheckButton.tag = indexPath.row
-        cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
-        if todo.startDate == todo.endDate {
-            cell.toDoExpireDateLabel.text = "오늘"
-        } else {
-            cell.toDoExpireDateLabel.text = "마감일 : \(DateFormatter.customDateFormatter.dateToStr(date: todo.endDate))"
-        }
-        cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize)
         
         return cell
     }
@@ -264,11 +294,11 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         toDoCalendarView.isHidden.toggle()
         
-        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
-        
         todayToDoList = MyDB.toDoList.filter { toDo in
             toDo.startDate == date
         }
+        
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
         
         toDoTableView.reloadData()
         selectedDate = date
