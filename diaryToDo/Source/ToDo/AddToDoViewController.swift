@@ -14,7 +14,7 @@ class AddToDoViewController: UIViewController {
         case edit
     }
     
-    enum AllDayType{
+    enum AllDayType {
         case yes
         case no
     }
