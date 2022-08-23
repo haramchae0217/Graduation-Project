@@ -50,6 +50,8 @@ class DiaryViewController: UIViewController {
         if MyDB.selectDiary != nil {
             diaryType = .search
         }
+        
+        diaryList = MyDB.diaryItem
 
         diaryViewType()
         configureFilmImage()
@@ -123,10 +125,11 @@ class DiaryViewController: UIViewController {
             diaryContentLabel.text = selectDiary.content
             selectedDate = selectDiary.date
             editDiary = selectDiary
+            deleteDiary = selectDiary
         } else {
             if !MyDB.diaryItem.isEmpty {
+                print(MyDB.diaryItem)
                 let recentDiary = diaryList[diaryList.endIndex - 1]
-                deleteDiary = recentDiary
                 for i in 0..<recentDiary.hashTag.count {
                     if i == recentDiary.hashTag.count - 1 {
                         hashTagList.append("#\(recentDiary.hashTag[i])")
@@ -139,6 +142,7 @@ class DiaryViewController: UIViewController {
                 diaryPictureUIImage.image = recentDiary.picture
                 diaryContentLabel.text = recentDiary.content
                 editDiary = recentDiary
+                deleteDiary = recentDiary
             } else {
                 // 다이어리 작성 없을때 기본으로 화면에 보여줄거 만들기
             }
@@ -156,7 +160,6 @@ class DiaryViewController: UIViewController {
         hashTagList = ""
         
         var previousDate: Date = selectedDate
-        
         for data in sortedList {
             if selectedDate > data.date {
                 previousDate = data.date
