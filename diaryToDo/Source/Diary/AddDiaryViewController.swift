@@ -19,6 +19,7 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDiaryContentTextView: UITextView!
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
 
+    var diaryList = MyDB.diaryItem
     let imagePicker = UIImagePickerController()
     var editDiary: Diary?
     var viewType: DiaryViewType = .add
@@ -100,7 +101,16 @@ class AddDiaryViewController: UIViewController {
         }
         
         if viewType == .add {
-            MyDB.diaryItem.append(diary)
+            var index = 0
+            for data in MyDB.diaryItem {
+                index += 1
+                if diary.date < data.date {
+                    MyDB.diaryItem.insert(diary, at: index - 1)
+                    break
+                } else if MyDB.diaryItem.count == index {
+                    MyDB.diaryItem.append(diary)
+                }
+            }
         } else {
             var index = 0
             for data in MyDB.diaryItem {
