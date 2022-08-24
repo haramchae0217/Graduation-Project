@@ -43,6 +43,7 @@ class DiaryViewController: UIViewController {
         super.viewDidLoad()
         
         configureTapGesture()
+        configureCalendarView()
 
         if !MyDB.diaryItem.isEmpty {
             selectedDate = diaryList[diaryList.endIndex - 1].date
@@ -55,11 +56,10 @@ class DiaryViewController: UIViewController {
         if MyDB.selectDiary != nil {
             diaryType = .search
         }
-        
-        configureCalendarView()
         diaryList = MyDB.diaryItem
         configureFilmImage()
         configureFontAndFontSize()
+        diaryCalendarView.reloadData()
         diaryViewType()
     }
     
@@ -99,7 +99,6 @@ class DiaryViewController: UIViewController {
         diaryCalendarView.isHidden = true
         diaryCalendarView.locale = Locale(identifier: "ko-KR")
         diaryCalendarView.appearance.selectionColor = .systemBlue
-        diaryCalendarView.reloadData()
     }
     
     func configureTapGesture() {
