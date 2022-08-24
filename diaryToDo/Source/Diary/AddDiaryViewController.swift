@@ -101,25 +101,20 @@ class AddDiaryViewController: UIViewController {
         }
         
         if viewType == .add {
-            var index = 0
-            for data in MyDB.diaryItem {
-                index += 1
-                if diary.date < data.date {
-                    MyDB.diaryItem.insert(diary, at: index - 1)
-                    break
-                } else if MyDB.diaryItem.count == index {
-                    MyDB.diaryItem.append(diary)
-                }
-            }
+            MyDB.diaryItem.append(diary)
         } else {
-            var index = 0
-            for data in MyDB.diaryItem {
-                index += 1
-                if (data.content == editDiary?.content && data.hashTag == editDiary?.hashTag && data.date == editDiary?.date && data.picture == editDiary?.picture) {
-                    MyDB.diaryItem[index - 1] = diary
+            if let editDiary = editDiary {
+                var index = 0
+                for data in MyDB.diaryItem {
+                    index += 1
+                    if (data.content == editDiary.content && data.hashTag == editDiary.hashTag && data.date == editDiary.date && data.picture == editDiary.picture) {
+                        MyDB.diaryItem[index - 1] = diary
+                    }
                 }
             }
         }
+        MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
+        print(MyDB.diaryItem)
         MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }
