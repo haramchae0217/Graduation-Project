@@ -4,10 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>온글잎 쏘찌.ttf</string>
 		<string>온글잎 보현체.ttf</string>
-		<string>온글잎 위리체.ttf</string>
+		<string>온글잎 쏘찌.ttf</string>
 		<string>온글잎 아희.ttf</string>
+		<string>온글잎 위리체.ttf</string>
 		<string>온글잎 윤우체.ttf</string>
 		<string>온글잎 의연체.ttf</string>
 		<string>온글잎 주녕 손글씨.ttf</string>
@@ -30,14 +30,6 @@
 		<string>LeeSeoyun.otf</string>
 		<string>SimKyungha.otf</string>
 	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>사진 및 동영상 첨부를 위한 앨범 사용 권한</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>동영상 촬영 및 음성인식을 위한 권한 필요</string>
-	<key>NSCameraUsageDescription</key>
-	<string>사진 및 동영상 촬영을 위한 카메라 사용 권한</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
