@@ -18,6 +18,7 @@ class SearchDiaryViewController: UIViewController {
             }
         }
     }
+    var dateFormatType: DateFormatType = .type1
     var font: String = "Apple SD 산돌고딕 Neo"
     var fontSize: CGFloat = 12
     
@@ -28,12 +29,23 @@ class SearchDiaryViewController: UIViewController {
 
         configuretableView()
         configuresearchBar()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        configureDateFormat()
         configureFontAndFontSize()
+    }
+    
+    func configureDateFormat() {
+        for data in MyDB.dateFormatList {
+            if data.isSelected {
+                dateFormatType = data.dateformatType
+                break
+            }
+        }
     }
     
     func configureFontAndFontSize() {
@@ -89,7 +101,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
         }
         
         cell.diaryImage.image = searchData.picture
-        cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date)
+        cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date, type: dateFormatType)
         cell.diaryDate.font = UIFont(name: font, size: fontSize)
         cell.diaryHashTag.text = "\(hashtags)"
         cell.diaryHashTag.font = UIFont(name: font, size: fontSize)
