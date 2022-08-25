@@ -15,6 +15,7 @@ import UIKit
 class FilmSettingViewController: UIViewController {
     
     @IBOutlet weak var filmTableView: UITableView!
+    @IBOutlet weak var filmLabel: UILabel!
     
     var filmList = MyDB.filmList
     var selectedFilm: FilmType = .film1
@@ -45,6 +46,7 @@ class FilmSettingViewController: UIViewController {
         for data in MyDB.fontList {
             if data.isSelected {
                 font = data.fontName.rawValue
+                filmLabel.font = UIFont(name: font, size: fontSize)
             }
         }
     }
