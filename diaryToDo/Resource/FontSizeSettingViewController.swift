@@ -10,10 +10,12 @@ import UIKit
 class FontSizeSettingViewController: UIViewController {
     
     @IBOutlet weak var fontSizeTableView: UITableView!
-
+    @IBOutlet weak var fontSizeLabel: UILabel!
+    
     var fontSizeList = MyDB.fontSizeList
     var selectedFontSize: FontSize = .작게
     var font: String = "Apple SD 산돌고딕 Neo"
+    var fontSize: CGFloat = 12
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +28,20 @@ class FontSizeSettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        configureFont()
+        configureFontAndFontSize()
     }
     
-    func configureFont() {
+    func configureFontAndFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
+        
         for data in MyDB.fontList {
             if data.isSelected {
                 font = data.fontName.rawValue
+                fontSizeLabel.font = UIFont(name: font, size: fontSize)
             }
         }
     }
