@@ -9,11 +9,11 @@ import UIKit
 
 struct MyDB {
     
-    static var dateFormatList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, true), (.type2, false), (.type3, false), (.type4, false)]
+    static var dateFormatList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, true), (.type2, false), (.type3, false), (.type4, false), (.type5, false)]
     
     static var fontSizeList: [(fontSize: FontSize, isSelected: Bool)] = [(.아주작게, false), (.작게, true), (.중간, false), (.크게, false), (.아주크게, false)]
     
-    static var fontList: [(fontName: FontName, isSelected: Bool)] = [(.name1, true), (.name2, false), (.name3, false), (.name4, false), (.name5, false), (.name6, false), (.name7, false)]
+    static var fontList: [(fontName: FontName, isSelected: Bool)] = [(.name1, true), (.name2, false), (.name3, false), (.name4, false), (.name5, false), (.name6, false), (.name7, false), (.name8, false), (.name9, false), (.name10, false), (.name11, false), (.name12, false), (.name13, false), (.name14, false), (.name15, false), (.name16, false), (.name17, false), (.name18, false), (.name19, false), (.name20, false), (.name21, false), (.name22, false), (.name23, false), (.name24, false), (.name25, false)]
     
     static var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.film1, true), (.film2, false), (.film3, false), (.film4, false)]
     
