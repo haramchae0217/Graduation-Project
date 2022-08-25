@@ -49,7 +49,6 @@ class AddToDoViewController: UIViewController {
             addEndDatePicker.isHidden = false
         }
         
-        
         configureRightBarButton()
         
         if viewType == .edit {
