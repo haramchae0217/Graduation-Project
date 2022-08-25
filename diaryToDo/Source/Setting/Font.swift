@@ -8,13 +8,20 @@
 import Foundation
 
 enum FontName: String {
-    case name1 = "Ownglyph ssojji" // o
-    case name2 = "온글잎 보현체" // o
-    case name3 = "Ownglyph wiri" // o
-    case name4 = "Ownglyph Ahee" // o
-    case name5 = "온글잎 윤우체" // o
-    case name6 = "온글잎 의연체" // o
-    case name7 = "Ownglyph Kjh1030" // o
+    case name1 = "Apple SD 산돌고딕 Neo"
+    case name2 = "Apple Gothic"
+    case name3 = "Apple Myungjo"
+    case name4 = "D2 Coding"
+    case name5 = "D2 Coding ligature"
+    case name6 = "GungSeo"
+    case name7 = "HeadLine A"
+//    case name1 = "Ownglyph ssojji" // o
+//    case name2 = "온글잎 보현체" // o
+//    case name3 = "Ownglyph wiri" // o
+//    case name4 = "Ownglyph Ahee" // o
+//    case name5 = "온글잎 윤우체" // o
+//    case name6 = "온글잎 의연체" // o
+//    case name7 = "Ownglyph Kjh1030" // o
     case name8 = "Ownglyph ZZANGO903" // o
     case name9 = "Ownglyph JourneyofYouth" // o
     case name10 = "Chilgok_Cye" // o
