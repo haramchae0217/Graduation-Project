@@ -10,11 +10,13 @@ import UIKit
 class DateFormatSettingViewController: UIViewController {
     
     @IBOutlet weak var dateFormatTableView: UITableView!
+    @IBOutlet weak var dateFormatLabel: UILabel!
     
     var dateList = MyDB.dateFormatList
     var selectedDateFormat: DateFormatType = .type1
     var font: String = "Apple SD 산돌고딕 Neo"
     var fontSize: CGFloat = 12
+    var dateFormatType: DateFormatType = .type1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,16 @@ class DateFormatSettingViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configureFontAndFontSize()
+        configureDateFormat()
+    }
+    
+    func configureDateFormat() {
+        for data in MyDB.dateFormatList {
+            if data.isSelected {
+                dateFormatType = data.dateformatType
+                break
+            }
+        }
     }
     
     func configureFontAndFontSize() {
@@ -40,6 +52,7 @@ class DateFormatSettingViewController: UIViewController {
         for data in MyDB.fontList {
             if data.isSelected {
                 font = data.fontName.rawValue
+                dateFormatLabel.font = UIFont(name: font, size: fontSize)
             }
         }
     }
