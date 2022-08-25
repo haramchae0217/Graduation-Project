@@ -10,14 +10,17 @@ import UIKit
 class FontSettingViewController: UIViewController {
     
     @IBOutlet weak var fontTableView: UITableView!
+    @IBOutlet weak var fontLabel: UILabel!
     
     var fontList = MyDB.fontList
     var selectedFont: FontName = .name1
+    var font: String = "Apple SD 산돌고딕 Neo"
     var fontSize: CGFloat = 12
+//    var fontName: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        fontNameCheck()
         configureTableView()
         configureRightBarButton()
         
@@ -25,13 +28,30 @@ class FontSettingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureFontSize()
+        
+        configureFontAndFontSize()
     }
     
-    func configureFontSize() {
+//    func fontNameCheck() {
+//        UIFont.familyNames.sorted().forEach { familyName in
+//            print("***\(familyName)***")
+//            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
+//                print("\(fontName)")
+//            }
+//        }
+//    }
+    
+    func configureFontAndFontSize() {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+                fontLabel.font = UIFont(name: font, size: fontSize)
             }
         }
     }
