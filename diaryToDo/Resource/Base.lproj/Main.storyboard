@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="온글잎 쏘찌.ttf">
+            <string>Ownglyph_ssojji-Rg</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Diary-->
         <scene sceneID="tne-QT-ifu">
@@ -31,7 +36,7 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Jan, 30 / 2022" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMz-gj-TmG">
                                         <rect key="frame" x="47" y="0.0" width="220" height="77"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Ownglyph_ssojji-Rg" family="Ownglyph ssojji" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -58,7 +63,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="IKD-7p-Yd2"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="Ownglyph_ssojji-Rg" family="Ownglyph ssojji" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -107,11 +112,11 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lj-sM-W27">
-                                        <rect key="frame" x="30" y="439.5" width="354" height="28.5"/>
+                                        <rect key="frame" x="30" y="444" width="354" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="#강화도 #카페" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkK-cD-frG">
-                                                <rect key="frame" x="0.0" y="0.0" width="354" height="28.5"/>
-                                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="24"/>
+                                                <fontDescription key="fontDescription" name="Ownglyph_ssojji-Rg" family="Ownglyph ssojji" pointSize="20"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -231,7 +236,7 @@
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용 입력" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6s-3y-7kr">
                                 <rect key="frame" x="20" y="554" width="374" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Ownglyph_ssojji-Rg" family="Ownglyph ssojji" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -243,7 +248,7 @@
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해시태그 입력" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyW-Ti-QbG">
                                 <rect key="frame" x="20" y="774" width="374" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Ownglyph_ssojji-Rg" family="Ownglyph ssojji" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -789,6 +794,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Setting" id="9Qq-sB-ZAC"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="basicSettingLabel" destination="CdO-Np-ZD3" id="wem-0l-agh"/>
+                        <outlet property="dateFormatButton" destination="dM5-Sc-AdU" id="SkP-0W-zWh"/>
+                        <outlet property="filmSettingButton" destination="14P-ef-JDG" id="uan-yY-0VT"/>
+                        <outlet property="fontSettingButton" destination="CPO-ub-h76" id="S5Z-iM-Tyk"/>
+                        <outlet property="fontSizeButton" destination="6eU-zj-pmd" id="XXI-Ov-d80"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a42-en-8Ty" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -866,6 +878,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateFormatLabel" destination="Jab-Vz-IOj" id="f5W-OC-hzZ"/>
                         <outlet property="dateFormatTableView" destination="3FF-Rr-ENv" id="VVs-Ol-kNz"/>
                     </connections>
                 </viewController>
@@ -945,6 +958,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fontSizeLabel" destination="ZpV-M8-lZM" id="OPC-PU-bWl"/>
                         <outlet property="fontSizeTableView" destination="ynI-Q6-bMb" id="sxh-an-pH6"/>
                     </connections>
                 </viewController>
@@ -1024,6 +1038,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fontLabel" destination="pi8-3b-pTQ" id="h9o-eD-afc"/>
                         <outlet property="fontTableView" destination="Tlp-0S-dts" id="vAz-pI-swM"/>
                     </connections>
                 </viewController>
@@ -1116,6 +1131,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filmLabel" destination="rsm-l7-gd8" id="kVw-Rw-Jpj"/>
                         <outlet property="filmTableView" destination="e7N-u1-uUZ" id="hbK-CN-nQn"/>
                     </connections>
                 </viewController>
