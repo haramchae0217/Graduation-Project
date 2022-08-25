@@ -37,7 +37,7 @@ class DiaryViewController: UIViewController {
     var hashTagList: String = ""
     var selectedDate: Date = Date()
     var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 12
+    var fontSize: CGFloat = 20
     var dateFormatType: DateFormatType = .type1
     
     //MARK: Life-Cycle
@@ -50,6 +50,7 @@ class DiaryViewController: UIViewController {
         if !MyDB.diaryItem.isEmpty {
             selectedDate = diaryList[diaryList.endIndex - 1].date
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
