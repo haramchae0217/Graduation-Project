@@ -19,8 +19,8 @@ class SearchDiaryViewController: UIViewController {
         }
     }
     var dateFormatType: DateFormatType = .type1
-    var font: String = "Apple SD 산돌고딕 Neo"
-    var fontSize: CGFloat = 12
+    var font: String = "Ownglyph ssojji"
+    var fontSize: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()

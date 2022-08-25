@@ -14,8 +14,8 @@ class FontSettingViewController: UIViewController {
     
     var fontList = MyDB.fontList
     var selectedFont: FontName = .name1
-    var font: String = "Apple SD 산돌고딕 Neo"
-    var fontSize: CGFloat = 12
+    var font: String = "Ownglyph ssojji"
+    var fontSize: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()

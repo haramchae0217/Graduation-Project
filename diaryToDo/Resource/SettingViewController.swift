@@ -15,8 +15,8 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var fontSettingButton: UIButton!
     @IBOutlet weak var filmSettingButton: UIButton!
     
-    var font: String = "Apple SD 산돌고딕 Neo"
-    var fontSize: CGFloat = 12
+    var font: String = "Ownglyph ssojji"
+    var fontSize: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
