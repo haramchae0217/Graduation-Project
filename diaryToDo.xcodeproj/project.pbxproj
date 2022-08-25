@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8300692A27F9F16400BDD784 /* MyDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300692927F9F16400BDD784 /* MyDB.swift */; };
+		832B1A8128B7BA3700350F7E /* font in Resources */ = {isa = PBXBuildFile; fileRef = 832B1A8028B7BA3700350F7E /* font */; };
 		83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9927DB51AE0096C7B5 /* AppDelegate.swift */; };
 		83354D9C27DB51AE0096C7B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */; };
 		83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		8300692927F9F16400BDD784 /* MyDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDB.swift; sourceTree = "<group>"; };
+		832B1A8028B7BA3700350F7E /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		83354D9627DB51AE0096C7B5 /* diaryToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diaryToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83354D9927DB51AE0096C7B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +57,7 @@
 		837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837C4F0F27DC360000FC46A7 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
-		8390C3132829663A00E8D57A /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = SOURCE_ROOT; };
+		8390C3132829663A00E8D57A /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = diaryToDo/Source/ToDo/GraphViewController.swift; sourceTree = SOURCE_ROOT; };
 		83C0269D28424BFB00511B7F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		83C0269F28424C2B00511B7F /* SearchDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiaryViewController.swift; sourceTree = "<group>"; };
 		83D512BF27F5C368009B3A23 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = diaryToDo/Resource/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -150,6 +152,7 @@
 		83FDF01527F2D7AE008E45E3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				832B1A8028B7BA3700350F7E /* font */,
 				83354D9F27DB51AE0096C7B5 /* Main.storyboard */,
 				83354DA227DB51AF0096C7B5 /* Assets.xcassets */,
 				83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */,
@@ -172,8 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */,
-				83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */,
 				8390C3132829663A00E8D57A /* GraphViewController.swift */,
+				83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */,
 				837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */,
 			);
 			path = ToDo;
@@ -271,6 +274,7 @@
 				83354DA627DB51AF0096C7B5 /* LaunchScreen.storyboard in Resources */,
 				83354DA327DB51AF0096C7B5 /* Assets.xcassets in Resources */,
 				83354DA127DB51AE0096C7B5 /* Main.storyboard in Resources */,
+				832B1A8128B7BA3700350F7E /* font in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
