@@ -8,13 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		8300692A27F9F16400BDD784 /* MyDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300692927F9F16400BDD784 /* MyDB.swift */; };
-		832B1A8128B7BA3700350F7E /* font in Resources */ = {isa = PBXBuildFile; fileRef = 832B1A8028B7BA3700350F7E /* font */; };
 		83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9927DB51AE0096C7B5 /* AppDelegate.swift */; };
 		83354D9C27DB51AE0096C7B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */; };
 		83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */; };
 		83354DA127DB51AE0096C7B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83354D9F27DB51AE0096C7B5 /* Main.storyboard */; };
 		83354DA327DB51AF0096C7B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83354DA227DB51AF0096C7B5 /* Assets.xcassets */; };
 		83354DA627DB51AF0096C7B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */; };
+		83608C1D28B7C7F700D79202 /* HSSantokki-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0328B7C7F000D79202 /* HSSantokki-Regular.otf */; };
+		83608C1E28B7C7F700D79202 /* 온글잎 의연체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0428B7C7F000D79202 /* 온글잎 의연체.ttf */; };
+		83608C1F28B7C7F700D79202 /* HSBombaram3.0_Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0528B7C7F000D79202 /* HSBombaram3.0_Thin.otf */; };
+		83608C2028B7C7F700D79202 /* ChosunGu.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0628B7C7F000D79202 /* ChosunGu.TTF */; };
+		83608C2128B7C7F700D79202 /* 온글잎 보현체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0728B7C7F100D79202 /* 온글잎 보현체.ttf */; };
+		83608C2228B7C7F700D79202 /* HS유지체.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0828B7C7F100D79202 /* HS유지체.otf */; };
+		83608C2328B7C7F700D79202 /* 온글잎 윤우체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0928B7C7F200D79202 /* 온글잎 윤우체.ttf */; };
+		83608C2428B7C7F700D79202 /* JeonHwaseon.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0A28B7C7F200D79202 /* JeonHwaseon.otf */; };
+		83608C2528B7C7F700D79202 /* 온글잎 위리체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0B28B7C7F200D79202 /* 온글잎 위리체.ttf */; };
+		83608C2628B7C7F700D79202 /* HS가을생각체2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0C28B7C7F200D79202 /* HS가을생각체2.0.ttf */; };
+		83608C2728B7C7F700D79202 /* 온글잎 짜앙구.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0D28B7C7F300D79202 /* 온글잎 짜앙구.ttf */; };
+		83608C2828B7C7F700D79202 /* 온글잎 주녕 손글씨.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0E28B7C7F300D79202 /* 온글잎 주녕 손글씨.ttf */; };
+		83608C2928B7C7F700D79202 /* ChosunCentennial_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0F28B7C7F300D79202 /* ChosunCentennial_otf.otf */; };
+		83608C2A28B7C7F700D79202 /* Chilgok_kyb.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1028B7C7F400D79202 /* Chilgok_kyb.otf */; };
+		83608C2B28B7C7F700D79202 /* 온글잎 아희.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1128B7C7F400D79202 /* 온글잎 아희.ttf */; };
+		83608C2C28B7C7F700D79202 /* Chilgok_Kaj.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1228B7C7F500D79202 /* Chilgok_Kaj.otf */; };
+		83608C2D28B7C7F700D79202 /* Chilgok_Cye.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1328B7C7F500D79202 /* Chilgok_Cye.otf */; };
+		83608C2E28B7C7F700D79202 /* HSBombaram3.0_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1428B7C7F500D79202 /* HSBombaram3.0_Regular.otf */; };
+		83608C2F28B7C7F700D79202 /* LeeSeoyun.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1528B7C7F500D79202 /* LeeSeoyun.otf */; };
+		83608C3028B7C7F700D79202 /* 온글잎 청춘여정.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1628B7C7F600D79202 /* 온글잎 청춘여정.ttf */; };
+		83608C3128B7C7F700D79202 /* 온글잎 쏘찌.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1728B7C7F600D79202 /* 온글잎 쏘찌.ttf */; };
+		83608C3228B7C7F700D79202 /* HSSaemaul-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1828B7C7F600D79202 /* HSSaemaul-Regular.ttf */; };
+		83608C3328B7C7F700D79202 /* SimKyungha.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1928B7C7F600D79202 /* SimKyungha.otf */; };
+		83608C3428B7C7F700D79202 /* Chilgok_lws.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1A28B7C7F600D79202 /* Chilgok_lws.otf */; };
+		83608C3528B7C7F700D79202 /* Chilgok_ljh.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1B28B7C7F700D79202 /* Chilgok_ljh.otf */; };
+		83608C3628B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1C28B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf */; };
 		837C4F0C27DC349B00FC46A7 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */; };
 		837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */; };
 		837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0F27DC360000FC46A7 /* ToDo.swift */; };
@@ -45,8 +70,7 @@
 
 /* Begin PBXFileReference section */
 		8300692927F9F16400BDD784 /* MyDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDB.swift; sourceTree = "<group>"; };
-		832B1A8028B7BA3700350F7E /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
-		83354D9627DB51AE0096C7B5 /* diaryToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diaryToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83354D9627DB51AE0096C7B5 /* diaryToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = diaryToDo.app; path = "/Users/Haram/Project/Graduation-Project/build/Debug-iphoneos/diaryToDo.app"; sourceTree = "<absolute>"; };
 		83354D9927DB51AE0096C7B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +78,32 @@
 		83354DA227DB51AF0096C7B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83354DA527DB51AF0096C7B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83354DA727DB51AF0096C7B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83608C0328B7C7F000D79202 /* HSSantokki-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HSSantokki-Regular.otf"; sourceTree = "<group>"; };
+		83608C0428B7C7F000D79202 /* 온글잎 의연체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 의연체.ttf"; sourceTree = "<group>"; };
+		83608C0528B7C7F000D79202 /* HSBombaram3.0_Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HSBombaram3.0_Thin.otf; sourceTree = "<group>"; };
+		83608C0628B7C7F000D79202 /* ChosunGu.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChosunGu.TTF; sourceTree = "<group>"; };
+		83608C0728B7C7F100D79202 /* 온글잎 보현체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 보현체.ttf"; sourceTree = "<group>"; };
+		83608C0828B7C7F100D79202 /* HS유지체.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HS유지체.otf"; sourceTree = "<group>"; };
+		83608C0928B7C7F200D79202 /* 온글잎 윤우체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 윤우체.ttf"; sourceTree = "<group>"; };
+		83608C0A28B7C7F200D79202 /* JeonHwaseon.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JeonHwaseon.otf; sourceTree = "<group>"; };
+		83608C0B28B7C7F200D79202 /* 온글잎 위리체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 위리체.ttf"; sourceTree = "<group>"; };
+		83608C0C28B7C7F200D79202 /* HS가을생각체2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HS가을생각체2.0.ttf"; sourceTree = "<group>"; };
+		83608C0D28B7C7F300D79202 /* 온글잎 짜앙구.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 짜앙구.ttf"; sourceTree = "<group>"; };
+		83608C0E28B7C7F300D79202 /* 온글잎 주녕 손글씨.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 주녕 손글씨.ttf"; sourceTree = "<group>"; };
+		83608C0F28B7C7F300D79202 /* ChosunCentennial_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChosunCentennial_otf.otf; sourceTree = "<group>"; };
+		83608C1028B7C7F400D79202 /* Chilgok_kyb.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chilgok_kyb.otf; sourceTree = "<group>"; };
+		83608C1128B7C7F400D79202 /* 온글잎 아희.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 아희.ttf"; sourceTree = "<group>"; };
+		83608C1228B7C7F500D79202 /* Chilgok_Kaj.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chilgok_Kaj.otf; sourceTree = "<group>"; };
+		83608C1328B7C7F500D79202 /* Chilgok_Cye.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chilgok_Cye.otf; sourceTree = "<group>"; };
+		83608C1428B7C7F500D79202 /* HSBombaram3.0_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HSBombaram3.0_Regular.otf; sourceTree = "<group>"; };
+		83608C1528B7C7F500D79202 /* LeeSeoyun.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LeeSeoyun.otf; sourceTree = "<group>"; };
+		83608C1628B7C7F600D79202 /* 온글잎 청춘여정.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 청춘여정.ttf"; sourceTree = "<group>"; };
+		83608C1728B7C7F600D79202 /* 온글잎 쏘찌.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 쏘찌.ttf"; sourceTree = "<group>"; };
+		83608C1828B7C7F600D79202 /* HSSaemaul-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HSSaemaul-Regular.ttf"; sourceTree = "<group>"; };
+		83608C1928B7C7F600D79202 /* SimKyungha.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimKyungha.otf; sourceTree = "<group>"; };
+		83608C1A28B7C7F600D79202 /* Chilgok_lws.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chilgok_lws.otf; sourceTree = "<group>"; };
+		83608C1B28B7C7F700D79202 /* Chilgok_ljh.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chilgok_ljh.otf; sourceTree = "<group>"; };
+		83608C1C28B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HSGyeoulNoonkott2.0-Regular.ttf"; sourceTree = "<group>"; };
 		837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837C4F0F27DC360000FC46A7 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
@@ -97,16 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				83354D9827DB51AE0096C7B5 /* diaryToDo */,
-				83354D9727DB51AE0096C7B5 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		83354D9727DB51AE0096C7B5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				83354D9627DB51AE0096C7B5 /* diaryToDo.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		83354D9827DB51AE0096C7B5 /* diaryToDo */ = {
@@ -117,6 +158,39 @@
 				83354DA727DB51AF0096C7B5 /* Info.plist */,
 			);
 			path = diaryToDo;
+			sourceTree = "<group>";
+		};
+		83608C3728B7C8CE00D79202 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				83608C0728B7C7F100D79202 /* 온글잎 보현체.ttf */,
+				83608C1728B7C7F600D79202 /* 온글잎 쏘찌.ttf */,
+				83608C1128B7C7F400D79202 /* 온글잎 아희.ttf */,
+				83608C0B28B7C7F200D79202 /* 온글잎 위리체.ttf */,
+				83608C0928B7C7F200D79202 /* 온글잎 윤우체.ttf */,
+				83608C0428B7C7F000D79202 /* 온글잎 의연체.ttf */,
+				83608C0E28B7C7F300D79202 /* 온글잎 주녕 손글씨.ttf */,
+				83608C0D28B7C7F300D79202 /* 온글잎 짜앙구.ttf */,
+				83608C1628B7C7F600D79202 /* 온글잎 청춘여정.ttf */,
+				83608C1328B7C7F500D79202 /* Chilgok_Cye.otf */,
+				83608C1228B7C7F500D79202 /* Chilgok_Kaj.otf */,
+				83608C1028B7C7F400D79202 /* Chilgok_kyb.otf */,
+				83608C1B28B7C7F700D79202 /* Chilgok_ljh.otf */,
+				83608C1A28B7C7F600D79202 /* Chilgok_lws.otf */,
+				83608C0F28B7C7F300D79202 /* ChosunCentennial_otf.otf */,
+				83608C0628B7C7F000D79202 /* ChosunGu.TTF */,
+				83608C0C28B7C7F200D79202 /* HS가을생각체2.0.ttf */,
+				83608C0828B7C7F100D79202 /* HS유지체.otf */,
+				83608C1428B7C7F500D79202 /* HSBombaram3.0_Regular.otf */,
+				83608C0528B7C7F000D79202 /* HSBombaram3.0_Thin.otf */,
+				83608C1C28B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf */,
+				83608C1828B7C7F600D79202 /* HSSaemaul-Regular.ttf */,
+				83608C0328B7C7F000D79202 /* HSSantokki-Regular.otf */,
+				83608C0A28B7C7F200D79202 /* JeonHwaseon.otf */,
+				83608C1528B7C7F500D79202 /* LeeSeoyun.otf */,
+				83608C1928B7C7F600D79202 /* SimKyungha.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		83D5129627F5A64F009B3A23 /* Setting */ = {
@@ -152,7 +226,7 @@
 		83FDF01527F2D7AE008E45E3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				832B1A8028B7BA3700350F7E /* font */,
+				83608C3728B7C8CE00D79202 /* Font */,
 				83354D9F27DB51AE0096C7B5 /* Main.storyboard */,
 				83354DA227DB51AF0096C7B5 /* Assets.xcassets */,
 				83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */,
@@ -257,7 +331,7 @@
 				83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				8390C3102829660200E8D57A /* XCRemoteSwiftPackageReference "Charts" */,
 			);
-			productRefGroup = 83354D9727DB51AE0096C7B5 /* Products */;
+			productRefGroup = 83354D8D27DB51AE0096C7B5;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -271,10 +345,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83608C2328B7C7F700D79202 /* 온글잎 윤우체.ttf in Resources */,
+				83608C2628B7C7F700D79202 /* HS가을생각체2.0.ttf in Resources */,
+				83608C2B28B7C7F700D79202 /* 온글잎 아희.ttf in Resources */,
+				83608C2D28B7C7F700D79202 /* Chilgok_Cye.otf in Resources */,
 				83354DA627DB51AF0096C7B5 /* LaunchScreen.storyboard in Resources */,
 				83354DA327DB51AF0096C7B5 /* Assets.xcassets in Resources */,
+				83608C2428B7C7F700D79202 /* JeonHwaseon.otf in Resources */,
+				83608C2528B7C7F700D79202 /* 온글잎 위리체.ttf in Resources */,
+				83608C2A28B7C7F700D79202 /* Chilgok_kyb.otf in Resources */,
 				83354DA127DB51AE0096C7B5 /* Main.storyboard in Resources */,
-				832B1A8128B7BA3700350F7E /* font in Resources */,
+				83608C3228B7C7F700D79202 /* HSSaemaul-Regular.ttf in Resources */,
+				83608C2128B7C7F700D79202 /* 온글잎 보현체.ttf in Resources */,
+				83608C2928B7C7F700D79202 /* ChosunCentennial_otf.otf in Resources */,
+				83608C2228B7C7F700D79202 /* HS유지체.otf in Resources */,
+				83608C2828B7C7F700D79202 /* 온글잎 주녕 손글씨.ttf in Resources */,
+				83608C2728B7C7F700D79202 /* 온글잎 짜앙구.ttf in Resources */,
+				83608C2E28B7C7F700D79202 /* HSBombaram3.0_Regular.otf in Resources */,
+				83608C3028B7C7F700D79202 /* 온글잎 청춘여정.ttf in Resources */,
+				83608C1E28B7C7F700D79202 /* 온글잎 의연체.ttf in Resources */,
+				83608C3628B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf in Resources */,
+				83608C3328B7C7F700D79202 /* SimKyungha.otf in Resources */,
+				83608C2028B7C7F700D79202 /* ChosunGu.TTF in Resources */,
+				83608C3428B7C7F700D79202 /* Chilgok_lws.otf in Resources */,
+				83608C1F28B7C7F700D79202 /* HSBombaram3.0_Thin.otf in Resources */,
+				83608C2F28B7C7F700D79202 /* LeeSeoyun.otf in Resources */,
+				83608C3528B7C7F700D79202 /* Chilgok_ljh.otf in Resources */,
+				83608C3128B7C7F700D79202 /* 온글잎 쏘찌.ttf in Resources */,
+				83608C1D28B7C7F700D79202 /* HSSantokki-Regular.otf in Resources */,
+				83608C2C28B7C7F700D79202 /* Chilgok_Kaj.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,11 +563,15 @@
 				DEVELOPMENT_TEAM = D289277BWD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = diaryToDo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진 및 동영상 촬영을 위한 카메라 사용 권한";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영 및 음성인식을 위한 권한 필요";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 및 동영상 첨부를 위한 앨범 사용 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -492,11 +595,15 @@
 				DEVELOPMENT_TEAM = D289277BWD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = diaryToDo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "사진 및 동영상 촬영을 위한 카메라 사용 권한";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영 및 음성인식을 위한 권한 필요";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 및 동영상 첨부를 위한 앨범 사용 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
