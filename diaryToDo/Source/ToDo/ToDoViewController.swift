@@ -24,8 +24,8 @@ class ToDoViewController: UIViewController {
     var toDoType: ToDoType = .basic
     var selectToDo: ToDo?
     var selectedDate: Date = Date()
-    var font: String = "Apple SD 산돌고딕 Neo"
-    var fontSize: CGFloat = 12
+    var font: String = "Ownglyph ssojji"
+    var fontSize: CGFloat = 20
     var dateFormatType: DateFormatType = .type1
     
     override func viewDidLoad() {
@@ -243,7 +243,7 @@ extension ToDoViewController: UITableViewDataSource {
             } else {
                 cell.toDoExpireDateLabel.text = "마감일 : \(DateFormatter.customDateFormatter.dateToStr(date: todo.endDate, type: dateFormatType))"
             }
-            cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize)
+            cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize - 6)
         }
         
         return cell
