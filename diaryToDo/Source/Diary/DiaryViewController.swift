@@ -36,7 +36,9 @@ class DiaryViewController: UIViewController {
     var diaryList = MyDB.diaryItem
     var hashTagList: String = ""
     var selectedDate: Date = Date()
+    var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 12
+    var dateFormatType: DateFormatType = .type1
     
     //MARK: Life-Cycle
     override func viewDidLoad() {
@@ -57,6 +59,7 @@ class DiaryViewController: UIViewController {
             diaryType = .search
         }
         diaryList = MyDB.diaryItem
+        configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
         diaryCalendarView.reloadData()
@@ -64,6 +67,15 @@ class DiaryViewController: UIViewController {
     }
     
     //MARK: Configure
+    
+    func configureDateFormat() {
+        for data in MyDB.dateFormatList {
+            if data.isSelected {
+                dateFormatType = data.dateformatType
+                break
+            }
+        }
+    }
     
     func configureFilmImage() {
         for data in MyDB.filmList {
@@ -79,15 +91,17 @@ class DiaryViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
         for data in MyDB.fontList {
             if data.isSelected {
-                let fontName = data.fontName.rawValue
-                diaryDateLabel.font = UIFont(name: fontName, size: fontSize)
-                diaryContentLabel.font = UIFont(name: fontName, size: fontSize)
-                diaryHashTagLabel.font = UIFont(name: fontName, size: fontSize)
+                font = data.fontName.rawValue
+                diaryDateLabel.font = UIFont(name: font, size: fontSize)
+                diaryContentLabel.font = UIFont(name: font, size: fontSize)
+                diaryHashTagLabel.font = UIFont(name: font, size: fontSize)
+                break
             }
         }
     }
@@ -123,7 +137,7 @@ class DiaryViewController: UIViewController {
                 }
                 hashTagList.append("#\(selectDiary.hashTag[i]), ")
             }
-            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date)
+            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date, type: dateFormatType)
             diaryHashTagLabel.text = hashTagList
             diaryPictureUIImage.image = selectDiary.picture
             diaryContentLabel.text = selectDiary.content
@@ -140,7 +154,7 @@ class DiaryViewController: UIViewController {
                     }
                     hashTagList.append("#\(recentDiary.hashTag[i]), ")
                 }
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date)
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date, type: dateFormatType)
                 diaryHashTagLabel.text = hashTagList
                 diaryPictureUIImage.image = recentDiary.picture
                 diaryContentLabel.text = recentDiary.content
@@ -148,7 +162,7 @@ class DiaryViewController: UIViewController {
                 deleteDiary = recentDiary
             } else {
                 diaryPictureUIImage.isHidden = false
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
                 diaryPictureUIImage.image = UIImage(named: "noImage")
                 diaryHashTagLabel.text = "작성된 다이어리가 없습니다. 다이어리를 작성해주세요."
                 diaryContentLabel.isHidden = true
@@ -189,7 +203,7 @@ class DiaryViewController: UIViewController {
                     }
                     hashTagList.append("#\(data.hashTag[i]), ")
                 }
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date, type: dateFormatType)
                 diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
                 diaryContentLabel.text = data.content
@@ -227,7 +241,7 @@ class DiaryViewController: UIViewController {
                     }
                     hashTagList.append("#\(data.hashTag[i]), ")
                 }
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date)
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date, type: dateFormatType)
                 diaryHashTagLabel.text = "\(hashTagList)"
                 diaryPictureUIImage.image = data.picture
                 diaryContentLabel.text = data.content
@@ -320,7 +334,7 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
             }
             
             selectedDate = date
-            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
+            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date, type: dateFormatType)
             diaryPictureUIImage.image = image
             diaryHashTagLabel.text = text
         } else {
