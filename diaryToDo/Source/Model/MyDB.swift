@@ -9,7 +9,7 @@ import UIKit
 
 struct MyDB {
     
-    static var dateFormatList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, true), (.type2, false), (.type3, false), (.type4, false), (.type5, false)]
+    static var dateFormatList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, false), (.type2, false), (.type3, true), (.type4, false), (.type5, false)]
     
     static var fontSizeList: [(fontSize: FontSize, isSelected: Bool)] = [(.아주작게, false), (.작게, true), (.중간, false), (.크게, false), (.아주크게, false)]
     
@@ -29,35 +29,36 @@ struct MyDB {
     ]
     
     static var toDoList: [ToDo] = [
-        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/29"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/29")),
-        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/29"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/29")),
-        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/30"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/30")),
-        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/30"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/06/30")),
-        ToDo(title: "스터디", memo: "iOS Programming", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/01"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/01")),
-        ToDo(title: "과외", memo: "Swift Programming", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/01"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/01")),
-        ToDo(title: "자격증 시험", memo: "모스 ppt", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/02"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/02")),
-        ToDo(title: "독서", memo: "프로그래밍실습 과제", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/02"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/02")),
-        ToDo(title: "MOS", memo: "중간고사", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/02"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/02")),
-        ToDo(title: "과제", memo: "전산통계", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/03"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/03")),
-        ToDo(title: "본가가기", memo: "파주로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/03"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/03")),
-        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/03"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/03")),
-        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/04"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/04")),
-        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/04"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/04")),
-        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/04"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/04")),
-        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/05"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/05")),
-        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/05"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/05")),
-        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/06"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/06")),
-        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/06"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/06")),
-        ToDo(title: "스터디", memo: "iOS Programming", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/07"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/07")),
-        ToDo(title: "과외", memo: "Swift Programming", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/07"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/07")),
-        ToDo(title: "자격증 시험", memo: "모스 ppt", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/08"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/08")),
-        ToDo(title: "독서", memo: "프로그래밍실습 과제", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/08"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/08")),
-        ToDo(title: "MOS", memo: "중간고사", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/08"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/08")),
-        ToDo(title: "과제", memo: "전산통계", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/09"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/09")),
-        ToDo(title: "본가가기", memo: "파주로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/09"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/09")),
-        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/09"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/09")),
-        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10")),
-        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10")),
-        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/07/10"))
+        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/09"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/09")),
+        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/09"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/09")),
+        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/10")),
+        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/10"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/13")),
+        ToDo(title: "스터디", memo: "iOS Programming", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/11"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/11")),
+        ToDo(title: "과외", memo: "Swift Programming", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/11"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/11")),
+        ToDo(title: "자격증 시험", memo: "모스 ppt", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/12"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/12")),
+        ToDo(title: "독서", memo: "프로그래밍실습 과제", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/12"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/12")),
+        ToDo(title: "MOS", memo: "중간고사", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/12"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/12")),
+        ToDo(title: "과제", memo: "전산통계", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/13"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/16")),
+        ToDo(title: "본가가기", memo: "파주로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/13"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/13")),
+        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/13"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/13")),
+        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/14"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/14")),
+        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/14"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/14")),
+        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/14"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/17")),
+        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/15"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/15")),
+        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/15"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/15")),
+        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/16"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/16")),
+        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/16"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/19")),
+        ToDo(title: "스터디", memo: "iOS Programming", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/17"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/17")),
+        ToDo(title: "과외", memo: "Swift Programming", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/17"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/17")),
+        ToDo(title: "자격증 시험", memo: "모스 ppt", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/18"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/18")),
+        ToDo(title: "독서", memo: "프로그래밍실습 과제", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/18"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/18")),
+        ToDo(title: "MOS", memo: "중간고사", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/18"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/18")),
+        ToDo(title: "과제", memo: "전산통계", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/19"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/19")),
+        ToDo(title: "본가가기", memo: "파주로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/19"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/19")),
+        ToDo(title: "점심먹기", memo: "친구와 밥약", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/19"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/19")),
+        ToDo(title: "발표하기", memo: "졸업작품 발표", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/20"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/20")),
+        ToDo(title: "피드백 받기", memo: "졸작 피드백", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/20"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/20")),
+        ToDo(title: "과제", memo: "디지털 논리회로", isChecked: true, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/20"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/23")),
+        ToDo(title: "졸업작품", memo: "다이어리", isChecked: false, startDate: DateFormatter.customDateFormatter.strToDate(str: "2022/08/21"), endDate: DateFormatter.customDateFormatter.strToDate(str: "2022/09/06"))
     ]
 }
