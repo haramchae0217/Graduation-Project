@@ -26,6 +26,7 @@ class ToDoViewController: UIViewController {
     var selectedDate: Date = Date()
     var font: String = "Apple SD 산돌고딕 Neo"
     var fontSize: CGFloat = 12
+    var dateFormatType: DateFormatType = .type1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +44,21 @@ class ToDoViewController: UIViewController {
         if MyDB.selectToDo != nil {
             toDoType = .select
         }
-        
-        configureCalendar()
         toDoList = MyDB.toDoList
+        configureCalendar()
+        configureDateFormat()
         configureFontAndFontSize()
         toDoView()
         toDoTableView.reloadData()
+    }
+    
+    func configureDateFormat() {
+        for data in MyDB.dateFormatList {
+            if data.isSelected {
+                dateFormatType = data.dateformatType
+                break
+            }
+        }
     }
     
     func configureFontAndFontSize() {
@@ -91,7 +101,7 @@ class ToDoViewController: UIViewController {
             for data in sortedList {
                 if selectToDoDate == data.startDate {
                     todayToDoList.append(data)
-                    todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
+                    todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate, type: dateFormatType)
                     selectedDate = selectToDo.startDate
                 }
             }
@@ -101,11 +111,11 @@ class ToDoViewController: UIViewController {
                 for data in sortedList {
                     if recentToDoDate == data.startDate {
                         todayToDoList.append(data)
-                        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate)
+                        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate, type: dateFormatType)
                     }
                 }
             } else {
-                todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date())
+                todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
             }
         }
     }
@@ -152,7 +162,7 @@ class ToDoViewController: UIViewController {
         
         toDoTableView.reloadData()
         selectedDate = previousDate
-        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate)
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate, type: dateFormatType)
     }
     
     @IBAction func nextToDoButton(_ sender: UIButton) {
@@ -175,7 +185,7 @@ class ToDoViewController: UIViewController {
         
         toDoTableView.reloadData()
         selectedDate = nextDate
-        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate)
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate, type: dateFormatType)
     }
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
@@ -231,7 +241,7 @@ extension ToDoViewController: UITableViewDataSource {
             if todo.startDate == todo.endDate {
                 cell.toDoExpireDateLabel.text = "오늘"
             } else {
-                cell.toDoExpireDateLabel.text = "마감일 : \(DateFormatter.customDateFormatter.dateToStr(date: todo.endDate))"
+                cell.toDoExpireDateLabel.text = "마감일 : \(DateFormatter.customDateFormatter.dateToStr(date: todo.endDate, type: dateFormatType))"
             }
             cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize)
         }
@@ -298,7 +308,7 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
             toDo.startDate == date
         }
         
-        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date)
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date, type: dateFormatType)
         
         toDoTableView.reloadData()
         selectedDate = date
