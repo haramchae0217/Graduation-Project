@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -220,17 +221,6 @@
                                     <constraint firstAttribute="width" secondItem="PIX-es-mDd" secondAttribute="height" multiplier="1:1" id="reZ-dC-Iyb"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0M-LK-FXA">
-                                <rect key="frame" x="181.5" y="160" width="51" height="62"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="+">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="40"/>
-                                    <color key="baseForegroundColor" name="diaryColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="addDiaryPictureButton:" destination="QxW-Wp-KaG" eventType="touchUpInside" id="HZX-Vi-zjx"/>
-                                </connections>
-                            </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="4Or-4M-NqK">
                                 <rect key="frame" x="0.0" y="328" width="414" height="216"/>
                             </datePicker>
@@ -257,12 +247,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="777-CL-3pU">
+                                <rect key="frame" x="193.5" y="167" width="27" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" name="diaryColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tyy-Zt-slm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="AwA-CM-IPE" firstAttribute="leading" secondItem="tyy-Zt-slm" secondAttribute="leading" constant="20" id="6Li-Ph-Cfc"/>
                             <constraint firstItem="H59-0r-5Zv" firstAttribute="top" secondItem="R6s-3y-7kr" secondAttribute="bottom" constant="10" id="8k9-8O-9Ms"/>
+                            <constraint firstItem="777-CL-3pU" firstAttribute="centerX" secondItem="PIX-es-mDd" secondAttribute="centerX" id="Fo4-Be-kaZ"/>
                             <constraint firstItem="AwA-CM-IPE" firstAttribute="top" secondItem="uyW-Ti-QbG" secondAttribute="bottom" constant="10" id="Fwz-WU-w9U"/>
                             <constraint firstItem="tyy-Zt-slm" firstAttribute="trailing" secondItem="R6s-3y-7kr" secondAttribute="trailing" constant="20" id="IxX-bT-E8j"/>
                             <constraint firstItem="tyy-Zt-slm" firstAttribute="trailing" secondItem="H59-0r-5Zv" secondAttribute="trailing" constant="20" id="JlG-z1-deC"/>
@@ -273,15 +270,14 @@
                             <constraint firstItem="R6s-3y-7kr" firstAttribute="leading" secondItem="tyy-Zt-slm" secondAttribute="leading" constant="20" id="X7a-vW-Dej"/>
                             <constraint firstItem="PIX-es-mDd" firstAttribute="leading" secondItem="tyy-Zt-slm" secondAttribute="leading" constant="80" id="d6P-lg-oze"/>
                             <constraint firstItem="R6s-3y-7kr" firstAttribute="top" secondItem="4Or-4M-NqK" secondAttribute="bottom" constant="10" id="dTf-ae-0BJ"/>
+                            <constraint firstItem="777-CL-3pU" firstAttribute="centerY" secondItem="PIX-es-mDd" secondAttribute="centerY" id="eHT-e4-UXt"/>
                             <constraint firstItem="4Or-4M-NqK" firstAttribute="top" secondItem="PIX-es-mDd" secondAttribute="bottom" constant="10" id="ezV-1Q-2I9"/>
                             <constraint firstItem="H59-0r-5Zv" firstAttribute="leading" secondItem="tyy-Zt-slm" secondAttribute="leading" constant="20" id="k9u-xw-mUw"/>
                             <constraint firstItem="PIX-es-mDd" firstAttribute="top" secondItem="tyy-Zt-slm" secondAttribute="top" constant="20" id="mK7-gM-5XE"/>
                             <constraint firstItem="tyy-Zt-slm" firstAttribute="trailing" secondItem="4Or-4M-NqK" secondAttribute="trailing" id="mrT-Wt-2JO"/>
-                            <constraint firstItem="i0M-LK-FXA" firstAttribute="centerY" secondItem="PIX-es-mDd" secondAttribute="centerY" id="pBY-l7-ghF"/>
                             <constraint firstItem="tyy-Zt-slm" firstAttribute="trailing" secondItem="AwA-CM-IPE" secondAttribute="trailing" constant="20" id="s2d-4s-YZx"/>
                             <constraint firstItem="uyW-Ti-QbG" firstAttribute="leading" secondItem="tyy-Zt-slm" secondAttribute="leading" constant="20" id="vsg-j2-nYl"/>
                             <constraint firstItem="tyy-Zt-slm" firstAttribute="trailing" secondItem="uyW-Ti-QbG" secondAttribute="trailing" constant="20" id="xD0-nc-nVg"/>
-                            <constraint firstItem="i0M-LK-FXA" firstAttribute="centerX" secondItem="PIX-es-mDd" secondAttribute="centerX" id="ykP-dN-jtj"/>
                         </constraints>
                     </view>
                     <connections>
@@ -291,6 +287,7 @@
                         <outlet property="addDiaryImageView" destination="PIX-es-mDd" id="amQ-zg-KB1"/>
                         <outlet property="insertContentLabel" destination="R6s-3y-7kr" id="cMs-iY-AOC"/>
                         <outlet property="insertHashTagLabel" destination="uyW-Ti-QbG" id="lFc-zW-Kc9"/>
+                        <outlet property="plusLabel" destination="777-CL-3pU" id="w9z-dj-Ibk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wuB-xU-4Co" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1246,7 +1243,7 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="diaryColor">
-            <color red="0.93545049430000005" green="0.63429212020000003" blue="0.51606718159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.93500000238418579" green="0.63400000333786011" blue="0.51599997282028198" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
