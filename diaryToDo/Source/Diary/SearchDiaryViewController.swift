@@ -26,9 +26,10 @@ class SearchDiaryViewController: UIViewController {
         super.viewDidLoad()
         
         title = "다이어리 검색"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
 
-        configuretableView()
-        configuresearchBar()
+        configureTableView()
+        configureSearchBar()
     
     }
     
@@ -62,21 +63,17 @@ class SearchDiaryViewController: UIViewController {
         }
     }
     
-    func configuretableView() {
+    func configureTableView() {
         searchTableView.delegate = self
         searchTableView.dataSource = self
     }
     
-    func configuresearchBar() {
+    func configureSearchBar() {
         let searchHashTag = UISearchController(searchResultsController: nil)
         searchHashTag.searchBar.delegate = self
         searchHashTag.searchBar.placeholder = "다이어리 검색"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchHashTag
-    }
-    
-    @objc func cancelButton() {
-        self.dismiss(animated: true)
     }
     
 }
