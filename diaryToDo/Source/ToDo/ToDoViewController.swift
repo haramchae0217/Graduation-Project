@@ -50,6 +50,7 @@ class ToDoViewController: UIViewController {
         configureFontAndFontSize()
         toDoView()
         toDoTableView.reloadData()
+        toDoCalendarView.reloadData()
     }
     
     func configureDateFormat() {
@@ -65,6 +66,7 @@ class ToDoViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
@@ -72,6 +74,7 @@ class ToDoViewController: UIViewController {
             if data.isSelected {
                 font = data.fontName.rawValue
                 todoDateLabel.font = UIFont(name: font, size: fontSize)
+                break
             }
         }
     }
@@ -87,8 +90,16 @@ class ToDoViewController: UIViewController {
         
         toDoCalendarView.isHidden = true
         toDoCalendarView.locale = Locale(identifier: "ko-KR")
+        
+        toDoCalendarView.appearance.headerTitleFont = UIFont(name: font, size: fontSize)
+        toDoCalendarView.appearance.weekdayFont = UIFont(name: font, size: fontSize)
+        toDoCalendarView.appearance.titleFont = UIFont(name: font, size: fontSize)
+        toDoCalendarView.appearance.headerTitleColor = UIColor(named: "diaryColor")
+        toDoCalendarView.appearance.weekdayTextColor = UIColor(named: "diaryColor")
+        toDoCalendarView.appearance.titlePlaceholderColor = UIColor(named: "diaryColor2")
+        toDoCalendarView.appearance.titleDefaultColor = UIColor(named: "diaryColor3")
+        toDoCalendarView.layer.cornerRadius = 16
         toDoCalendarView.appearance.selectionColor = .systemBlue
-        toDoCalendarView.reloadData()
     }
     
     func toDoView() {
