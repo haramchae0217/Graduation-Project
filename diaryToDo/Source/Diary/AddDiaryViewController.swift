@@ -53,8 +53,10 @@ class AddDiaryViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    
     func configureRightBarButton() {
         let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addDiaryButton))
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
         self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
@@ -118,7 +120,6 @@ class AddDiaryViewController: UIViewController {
             }
         }
         MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
-        print(MyDB.diaryItem)
         MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }

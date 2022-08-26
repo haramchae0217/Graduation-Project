@@ -21,6 +21,8 @@ class DateFormatSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+        
         configureTableView()
         configureRightBarButton()
         
@@ -113,7 +115,7 @@ extension DateFormatSettingViewController: UITableViewDataSource {
             setDateStyleNotSelect(cell.selectedDateFormat)
         }
         
-        cell.typeDateFormat.text = dateFormat.dateformatType.rawValue
+        cell.typeDateFormat.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormat.dateformatType)
         cell.typeDateFormat.font = UIFont(name: font, size: fontSize)
         cell.selectedDateFormat.tag = indexPath.row
         cell.selectedDateFormat.addTarget(self, action: #selector(isSelectDateFormat), for: .touchUpInside)

@@ -20,6 +20,8 @@ class FontSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+        
         configureTableView()
         configureRightBarButton()
         

@@ -7,11 +7,6 @@
 
 import UIKit
 
-/*
- TODO:
- - 바뀐 필름 적용하기 -> 
- */
-
 class FilmSettingViewController: UIViewController {
     
     @IBOutlet weak var filmTableView: UITableView!
@@ -25,6 +20,8 @@ class FilmSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+        
         configureTableView()
         configureRightBarButton()
         
