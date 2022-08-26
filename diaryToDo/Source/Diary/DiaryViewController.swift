@@ -50,7 +50,6 @@ class DiaryViewController: UIViewController {
         if !MyDB.diaryItem.isEmpty {
             selectedDate = diaryList[diaryList.endIndex - 1].date
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,12 +113,15 @@ class DiaryViewController: UIViewController {
         diaryCalendarView.isHidden = true
         diaryCalendarView.locale = Locale(identifier: "ko-KR")
         
-        diaryCalendarView.appearance.headerDateFormat = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
         diaryCalendarView.appearance.headerTitleFont = UIFont(name: font, size: fontSize)
-        diaryCalendarView.appearance.headerTitleColor = UIColor(named: "diaryColor")
-        diaryCalendarView.appearance.weekdayTextColor = UIColor(named: "diaryColor3")
         diaryCalendarView.appearance.weekdayFont = UIFont(name: font, size: fontSize)
         diaryCalendarView.appearance.titleFont = UIFont(name: font, size: fontSize)
+        diaryCalendarView.appearance.headerTitleColor = UIColor(named: "diaryColor")
+        diaryCalendarView.appearance.weekdayTextColor = UIColor(named: "diaryColor")
+        diaryCalendarView.appearance.titlePlaceholderColor = UIColor(named: "diaryColor2")
+        diaryCalendarView.appearance.titleDefaultColor = UIColor(named: "diaryColor3")
+        diaryCalendarView.layer.cornerRadius = 16
+        
         diaryCalendarView.appearance.selectionColor = .systemBlue
     }
     
@@ -330,21 +332,24 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
         }
         
         if diaryList.count > 0 {
-            var text = ""
+            var hashTagList = ""
             var image: UIImage = UIImage(named: "cafe1")!
             
-            for item in diaryList {
-                for i in 0..<item.hashTag.endIndex {
-                    text += item.hashTag[i]
+            for data in diaryList {
+                for i in 0..<data.hashTag.count {
+                    if i == data.hashTag.count - 1 {
+                        hashTagList.append("#\(data.hashTag[i])")
+                        break
+                    }
+                    hashTagList.append("#\(data.hashTag[i]), ")
                 }
-                
-                image = item.picture
+                image = data.picture
             }
             
             selectedDate = date
             diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date, type: dateFormatType)
             diaryPictureUIImage.image = image
-            diaryHashTagLabel.text = text
+            diaryHashTagLabel.text = "\(hashTagList)"
         } else {
             UIAlertController.warningAlert(message: "등록된 다이어리가 없습니다.", viewController: self)
         }
