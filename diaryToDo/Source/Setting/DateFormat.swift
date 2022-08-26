@@ -8,9 +8,9 @@
 import UIKit
 
 enum DateFormatType: String {
-    case type1 = "24 Jan, 2022"
-    case type2 = "2022.01.24"
-    case type3 = "2022년 01월 24일"
-    case type4 = "2022-01-24"
-    case type5 = "2022/01/24"
+    case type1
+    case type2
+    case type3
+    case type4
+    case type5
 }
