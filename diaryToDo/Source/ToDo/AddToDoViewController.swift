@@ -19,6 +19,9 @@ class AddToDoViewController: UIViewController {
         case no
     }
     
+    @IBOutlet weak var toDoTitleLabel: UILabel!
+    @IBOutlet weak var toDoMemoLabel: UILabel!
+    @IBOutlet weak var allDayLabel: UILabel!
     @IBOutlet weak var addTitleTextField: UITextField!
     @IBOutlet weak var addMemoTextField: UITextField!
     @IBOutlet weak var addStartDatePicker: UIDatePicker!
@@ -31,9 +34,13 @@ class AddToDoViewController: UIViewController {
     var editRow: Int?
     var viewType: ToDoViewType = .add
     var allDayType: AllDayType = .yes
+    var font: String = "Ownglyph ssojji"
+    var fontSize: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
         
         if allDayType == .yes {
             mySwitch.setOn(true, animated: true)
@@ -61,6 +68,31 @@ class AddToDoViewController: UIViewController {
             }
         } else {
             title = "add ToDo"
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureFontAndFontSize()
+    }
+    
+    func configureFontAndFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+                startDateLabel.font = UIFont(name: font, size: fontSize)
+                endDateLabel.font = UIFont(name: font, size: fontSize)
+                toDoTitleLabel.font = UIFont(name: font, size: fontSize)
+                toDoMemoLabel.font = UIFont(name: font, size: fontSize)
+                allDayLabel.font = UIFont(name: font, size: fontSize)
+            }
         }
     }
     
