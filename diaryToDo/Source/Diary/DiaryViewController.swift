@@ -113,6 +113,13 @@ class DiaryViewController: UIViewController {
         
         diaryCalendarView.isHidden = true
         diaryCalendarView.locale = Locale(identifier: "ko-KR")
+        
+        diaryCalendarView.appearance.headerDateFormat = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
+        diaryCalendarView.appearance.headerTitleFont = UIFont(name: font, size: fontSize)
+        diaryCalendarView.appearance.headerTitleColor = UIColor(named: "diaryColor")
+        diaryCalendarView.appearance.weekdayTextColor = UIColor(named: "diaryColor3")
+        diaryCalendarView.appearance.weekdayFont = UIFont(name: font, size: fontSize)
+        diaryCalendarView.appearance.titleFont = UIFont(name: font, size: fontSize)
         diaryCalendarView.appearance.selectionColor = .systemBlue
     }
     
