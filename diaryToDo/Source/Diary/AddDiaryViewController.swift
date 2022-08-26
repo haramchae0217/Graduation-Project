@@ -20,7 +20,8 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDiaryDatePicker: UIDatePicker!
     @IBOutlet weak var addDiaryContentTextView: UITextView!
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
-
+    @IBOutlet weak var plusLabel: UILabel!
+    
     var diaryList = MyDB.diaryItem
     let imagePicker = UIImagePickerController()
     var editDiary: Diary?
@@ -34,6 +35,7 @@ class AddDiaryViewController: UIViewController {
         addDiaryContentTextView.delegate = self
         imagePicker.delegate = self
         configureRightBarButton()
+        configureTapGesture()
         
         if viewType == .edit {
             title = "edit Diary"
@@ -55,7 +57,6 @@ class AddDiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         configureFontAndFontSize()
     }
     
@@ -87,6 +88,13 @@ class AddDiaryViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
+    func configureTapGesture() {
+        let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        imageTapGesture.delegate = self
+        addDiaryImageView.addGestureRecognizer(imageTapGesture)
+        addDiaryImageView.isUserInteractionEnabled = true
+    }
+    
     func showAlertSheet() {
         let alertAction = UIAlertController(title: "사진 추가하기", message: "어떤방식으로 추가하시겠습니까?", preferredStyle: .actionSheet)
         
@@ -109,14 +117,23 @@ class AddDiaryViewController: UIViewController {
         self.present(alertAction, animated: true, completion: nil)
     }
     
+    @objc func imageViewTapped(_ sender: UIImageView){
+        showAlertSheet()
+        plusLabel.isHidden = true
+    }
+    
     @objc func addDiaryButton() {
         let date = addDiaryDatePicker.date
         let content = addDiaryContentTextView.text!
         let hashTag = addDiaryHashTagTextField.text!
-        let picture = addDiaryImageView.image!
+        var picture = UIImage(named: "noImage")!
+        if addDiaryImageView.image == nil {
+            UIAlertController.warningAlert(message: "사진을 첨부해주세요.", viewController: self)
+        } else {
+            picture = addDiaryImageView.image!
+        }
         
         let filterHashTag = hashTag.components(separatedBy: " ")
-        
         let diary = Diary(content: content, hashTag: filterHashTag, date: date, picture: picture)
         
         if content.isEmpty, hashTag.isEmpty {
@@ -151,9 +168,6 @@ class AddDiaryViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func addDiaryPictureButton(_ sender: UIButton) {
-        showAlertSheet()
-    }
 }
 
 extension AddDiaryViewController: UITextViewDelegate {
@@ -183,4 +197,8 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
         
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+extension AddDiaryViewController: UIGestureRecognizerDelegate {
+    
 }
