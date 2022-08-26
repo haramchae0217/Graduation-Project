@@ -43,9 +43,7 @@ class GraphViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
         appendDate(date: todayDate)
-        setCalendar()
-        
-        calendarView.reloadData()
+        configureCalendar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,12 +67,14 @@ class GraphViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
         for data in MyDB.fontList {
             if data.isSelected {
                 font = data.fontName.rawValue
+                break
             }
         }
     }
@@ -147,11 +147,20 @@ class GraphViewController: UIViewController {
         return checkCount
     }
     
-    func setCalendar() {
+    func configureCalendar() {
         calendarView.delegate = self
         calendarView.dataSource = self
         
         calendarView.locale = Locale(identifier: "ko-KR")
+        
+        calendarView.appearance.headerTitleFont = UIFont(name: font, size: fontSize)
+        calendarView.appearance.weekdayFont = UIFont(name: font, size: fontSize)
+        calendarView.appearance.titleFont = UIFont(name: font, size: fontSize)
+        calendarView.appearance.headerTitleColor = UIColor(named: "diaryColor")
+        calendarView.appearance.weekdayTextColor = UIColor(named: "diaryColor")
+        calendarView.appearance.titlePlaceholderColor = UIColor(named: "diaryColor2")
+        calendarView.appearance.titleDefaultColor = UIColor(named: "diaryColor3")
+        calendarView.layer.cornerRadius = 16
         calendarView.appearance.selectionColor = .systemBlue
     }
     
