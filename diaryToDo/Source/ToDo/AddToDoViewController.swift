@@ -108,17 +108,17 @@ class AddToDoViewController: UIViewController {
         let startDate = addStartDatePicker.date
         let endDate = addEndDatePicker.date
         
-        let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
-        
-        if title.isEmpty, memo.isEmpty {
+        if title.isEmpty || memo.isEmpty {
             UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
-            return
         }
         
-        if editToDo?.title == title && editToDo?.memo == memo {
-            UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
-            return
+        if let editToDo = editToDo {
+            if editToDo.title == title && editToDo.memo == memo && editToDo.startDate == startDate && editToDo.endDate == endDate {
+                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+            }
         }
+        
+        let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
         
         if viewType == .add {
             MyDB.toDoList.append(toDo)
