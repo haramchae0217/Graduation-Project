@@ -86,8 +86,32 @@ class FilmSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        MyDB.filmList = filmList
-        self.navigationController?.popViewController(animated: true)
+        var dbData = ""
+        var selectData = ""
+        for data in MyDB.filmList {
+            if data.isSelected {
+                dbData = data.filmName.rawValue
+            }
+        }
+        
+        for data in filmList {
+            if data.isSelected {
+                selectData = data.filmName.rawValue
+            }
+        }
+        if dbData == selectData {
+            UIAlertController.warningAlert(message: "변동사항이 없습니다.", viewController: self)
+        } else {
+            let settingEdit = UIAlertController(title: "⚠️", message: "설정을 변경하시겠습니까?", preferredStyle: .alert)
+            let cancelButton = UIAlertAction(title: "취소", style: .cancel)
+            let editButton = UIAlertAction(title: "변경", style: .destructive) { _ in
+                MyDB.filmList = self.filmList
+                self.navigationController?.popViewController(animated: true)
+            }
+            settingEdit.addAction(cancelButton)
+            settingEdit.addAction(editButton)
+            present(settingEdit, animated: true)
+        }
     }
     
     @objc func isSelectFilm(_ sender: UIButton) {
