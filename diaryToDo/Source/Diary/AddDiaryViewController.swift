@@ -14,6 +14,8 @@ class AddDiaryViewController: UIViewController {
         case edit
     }
     
+    @IBOutlet weak var insertContentLabel: UILabel!
+    @IBOutlet weak var insertHashTagLabel: UILabel!
     @IBOutlet weak var addDiaryImageView: UIImageView!
     @IBOutlet weak var addDiaryDatePicker: UIDatePicker!
     @IBOutlet weak var addDiaryContentTextView: UITextView!
@@ -23,6 +25,8 @@ class AddDiaryViewController: UIViewController {
     let imagePicker = UIImagePickerController()
     var editDiary: Diary?
     var viewType: DiaryViewType = .add
+    var font: String = "Ownglyph ssojji"
+    var fontSize: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +53,33 @@ class AddDiaryViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureFontAndFontSize()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+    func configureFontAndFontSize() {
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                fontSize = data.fontSize.rawValue
+                break
+            }
+        }
+        
+        for data in MyDB.fontList {
+            if data.isSelected {
+                font = data.fontName.rawValue
+                insertContentLabel.font = UIFont(name: font, size: fontSize)
+                insertHashTagLabel.font = UIFont(name: font, size: fontSize)
+                break
+            }
+        }
+    }
     
     func configureRightBarButton() {
         let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addDiaryButton))
