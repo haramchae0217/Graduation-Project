@@ -24,7 +24,6 @@ class FilmSettingViewController: UIViewController {
         
         configureTableView()
         configureRightBarButton()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +36,7 @@ class FilmSettingViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
@@ -44,6 +44,7 @@ class FilmSettingViewController: UIViewController {
             if data.isSelected {
                 font = data.fontName.rawValue
                 filmLabel.font = UIFont(name: font, size: fontSize)
+                break
             }
         }
     }

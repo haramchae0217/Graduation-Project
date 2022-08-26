@@ -41,6 +41,7 @@ class AddToDoViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+        configureRightBarButton()
         
         if allDayType == .yes {
             mySwitch.setOn(true, animated: true)
@@ -55,8 +56,6 @@ class AddToDoViewController: UIViewController {
             addStartDatePicker.isHidden = false
             addEndDatePicker.isHidden = false
         }
-        
-        configureRightBarButton()
         
         if viewType == .edit {
             title = "edit ToDo"
@@ -81,6 +80,7 @@ class AddToDoViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
@@ -92,6 +92,7 @@ class AddToDoViewController: UIViewController {
                 toDoTitleLabel.font = UIFont(name: font, size: fontSize)
                 toDoMemoLabel.font = UIFont(name: font, size: fontSize)
                 allDayLabel.font = UIFont(name: font, size: fontSize)
+                break
             }
         }
     }

@@ -37,6 +37,7 @@ class FontSettingViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
@@ -44,6 +45,7 @@ class FontSettingViewController: UIViewController {
             if data.isSelected {
                 font = data.fontName.rawValue
                 fontLabel.font = UIFont(name: font, size: fontSize)
+                break
             }
         }
     }

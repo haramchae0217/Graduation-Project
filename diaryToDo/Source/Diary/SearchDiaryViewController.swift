@@ -30,7 +30,6 @@ class SearchDiaryViewController: UIViewController {
 
         configureTableView()
         configureSearchBar()
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,12 +52,14 @@ class SearchDiaryViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
         for data in MyDB.fontList {
             if data.isSelected {
                 font = data.fontName.rawValue
+                break
             }
         }
     }

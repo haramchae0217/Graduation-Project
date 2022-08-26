@@ -24,7 +24,6 @@ class FontSizeSettingViewController: UIViewController {
 
         configureTableView()
         configureRightBarButton()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +36,7 @@ class FontSizeSettingViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
@@ -44,6 +44,7 @@ class FontSizeSettingViewController: UIViewController {
             if data.isSelected {
                 font = data.fontName.rawValue
                 fontSizeLabel.font = UIFont(name: font, size: fontSize)
+                break
             }
         }
     }

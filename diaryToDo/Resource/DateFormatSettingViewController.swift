@@ -48,6 +48,7 @@ class DateFormatSettingViewController: UIViewController {
         for data in MyDB.fontSizeList {
             if data.isSelected {
                 fontSize = data.fontSize.rawValue
+                break
             }
         }
         
@@ -55,6 +56,7 @@ class DateFormatSettingViewController: UIViewController {
             if data.isSelected {
                 font = data.fontName.rawValue
                 dateFormatLabel.font = UIFont(name: font, size: fontSize)
+                break
             }
         }
     }
