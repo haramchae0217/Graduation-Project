@@ -41,6 +41,7 @@ class AddDiaryViewController: UIViewController {
             title = "edit Diary"
             if let editDiary = editDiary {
                 var hashtag: String = ""
+                plusLabel.isHidden = true
                 addDiaryImageView.image = editDiary.picture
                 addDiaryDatePicker.date = editDiary.date
                 addDiaryContentTextView.text = editDiary.content
@@ -48,6 +49,7 @@ class AddDiaryViewController: UIViewController {
                 for data in editDiary.hashTag {
                     hashtag += "\(data) "
                 }
+                hashtag.removeLast()
                 addDiaryHashTagTextField.text = hashtag
             }
         } else {
@@ -126,46 +128,59 @@ class AddDiaryViewController: UIViewController {
         let date = addDiaryDatePicker.date
         let content = addDiaryContentTextView.text!
         let hashTag = addDiaryHashTagTextField.text!
+        var filterHashTag: [String] = []
         var picture = UIImage(named: "noImage")!
+        
         if addDiaryImageView.image == nil {
             UIAlertController.warningAlert(message: "사진을 첨부해주세요.", viewController: self)
         } else {
             picture = addDiaryImageView.image!
         }
         
-        let filterHashTag = hashTag.components(separatedBy: " ")
-        let diary = Diary(content: content, hashTag: filterHashTag, date: date, picture: picture)
-        
-        if content.isEmpty, hashTag.isEmpty {
+        if content.isEmpty || hashTag.isEmpty {
             UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
-            return
+        } else {
+            filterHashTag = hashTag.components(separatedBy: " ")
+            
+            if filterHashTag.count > 3 {
+                UIAlertController.warningAlert(message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
+            }
         }
         
-        if filterHashTag.count > 3 {
-            UIAlertController.warningAlert(message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
+        if let editDiary = editDiary {
+            if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.picture == picture && editDiary.date == date {
+                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+            }
         }
         
-        if editDiary?.content == content && editDiary?.hashTag == filterHashTag {
-            UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
-            return
-        }
+        let diary = Diary(content: content, hashTag: filterHashTag, date: date, picture: picture)
         
         if viewType == .add {
             MyDB.diaryItem.append(diary)
+            MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
+            MyDB.selectDiary = diary
+            self.navigationController?.popViewController(animated: true)
         } else {
-            if let editDiary = editDiary {
-                var index = 0
-                for data in MyDB.diaryItem {
-                    index += 1
-                    if (data.content == editDiary.content && data.hashTag == editDiary.hashTag && data.date == editDiary.date && data.picture == editDiary.picture) {
-                        MyDB.diaryItem[index - 1] = diary
+            let diaryEdit = UIAlertController(title: "⚠️", message: "정말 수정하시겠습니까?", preferredStyle: .alert)
+            let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let editButton = UIAlertAction(title: "수정", style: .destructive) { _ in
+                if let editDiary = self.editDiary {
+                    var index = 0
+                    for data in MyDB.diaryItem {
+                        index += 1
+                        if (data.content == editDiary.content && data.hashTag == editDiary.hashTag && data.date == editDiary.date && data.picture == editDiary.picture) {
+                            MyDB.diaryItem[index - 1] = diary
+                        }
                     }
                 }
+                MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
+                MyDB.selectDiary = diary
+                self.navigationController?.popViewController(animated: true)
             }
+            diaryEdit.addAction(cancelButton)
+            diaryEdit.addAction(editButton)
+            present(diaryEdit, animated: true, completion: nil)
         }
-        MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
-        MyDB.selectDiary = diary
-        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -191,8 +206,7 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             addDiaryImageView.image = image
         } else {
-            print("이미지 선택 실패")
-            // alert
+            UIAlertController.warningAlert(message: "이미지 선택 실패", viewController: self)
         }
         
         self.dismiss(animated: true, completion: nil)
