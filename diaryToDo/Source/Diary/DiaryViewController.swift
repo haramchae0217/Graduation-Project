@@ -199,8 +199,6 @@ class DiaryViewController: UIViewController {
             if selectedDate > data.date {
                 previousDate = data.date
                 break
-            } else {
-//                print("else")
             }
         }
         
@@ -220,8 +218,6 @@ class DiaryViewController: UIViewController {
                 editDiary = data
                 deleteDiary = data
                 break
-            } else {
-                
             }
         }
         
