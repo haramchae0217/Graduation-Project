@@ -81,8 +81,32 @@ class FontSizeSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        MyDB.fontSizeList = fontSizeList
-        self.navigationController?.popViewController(animated: true)
+        var dbData = ""
+        var selectData = ""
+        for data in MyDB.fontSizeList {
+            if data.isSelected {
+                dbData = "\(data.fontSize)"
+            }
+        }
+        
+        for data in fontSizeList {
+            if data.isSelected {
+                selectData = "\(data.fontSize)"
+            }
+        }
+        if dbData == selectData {
+            UIAlertController.warningAlert(message: "변동사항이 없습니다.", viewController: self)
+        } else {
+            let settingEdit = UIAlertController(title: "⚠️", message: "설정을 변경하시겠습니까?", preferredStyle: .alert)
+            let cancelButton = UIAlertAction(title: "취소", style: .cancel)
+            let editButton = UIAlertAction(title: "변경", style: .destructive) { _ in
+                MyDB.fontSizeList = self.fontSizeList
+                self.navigationController?.popViewController(animated: true)
+            }
+            settingEdit.addAction(cancelButton)
+            settingEdit.addAction(editButton)
+            present(settingEdit, animated: true)
+        }
     }
     
     @objc func isSelectFontSize(_ sender: UIButton) {
