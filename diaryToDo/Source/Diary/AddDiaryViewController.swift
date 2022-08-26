@@ -95,6 +95,10 @@ class AddDiaryViewController: UIViewController {
             return
         }
         
+        if filterHashTag.count > 3 {
+            UIAlertController.warningAlert(message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
+        }
+        
         if editDiary?.content == content && editDiary?.hashTag == filterHashTag {
             UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
             return
