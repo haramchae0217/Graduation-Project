@@ -38,7 +38,7 @@ class AddDiaryViewController: UIViewController {
         configureTapGesture()
         
         if viewType == .edit {
-            title = "edit Diary"
+            title = "다이어리 수정"
             if let editDiary = editDiary {
                 var hashtag: String = ""
                 plusLabel.isHidden = true
@@ -53,7 +53,7 @@ class AddDiaryViewController: UIViewController {
                 addDiaryHashTagTextField.text = hashtag
             }
         } else {
-            title = "add Diary"
+            title = "다이어리 추가"
         }
     }
     
@@ -133,26 +133,29 @@ class AddDiaryViewController: UIViewController {
         
         if addDiaryImageView.image == nil {
             UIAlertController.warningAlert(message: "사진을 첨부해주세요.", viewController: self)
+            return
         } else {
             picture = addDiaryImageView.image!
         }
         
         if content.isEmpty || hashTag.isEmpty {
             UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
+            return
         } else {
             filterHashTag = hashTag.components(separatedBy: " ")
             
             if filterHashTag.count > 3 {
                 UIAlertController.warningAlert(message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
+                return
             }
         }
         
         if let editDiary = editDiary {
             if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.picture == picture && editDiary.date == date {
                 UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+                return
             }
         }
-        
         let diary = Diary(content: content, hashTag: filterHashTag, date: date, picture: picture)
         
         if viewType == .add {
