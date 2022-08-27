@@ -58,7 +58,7 @@ class AddToDoViewController: UIViewController {
         }
         
         if viewType == .edit {
-            title = "edit ToDo"
+            title = "투두 수정"
             if let editToDo = editToDo {
                 addTitleTextField.text = editToDo.title
                 addMemoTextField.text = editToDo.memo
@@ -66,7 +66,7 @@ class AddToDoViewController: UIViewController {
                 addEndDatePicker.date = editToDo.endDate
             }
         } else {
-            title = "add ToDo"
+            title = "투두 추가"
         }
     }
     
@@ -105,20 +105,30 @@ class AddToDoViewController: UIViewController {
     @objc func addToDoButton() {
         let title = addTitleTextField.text!
         let memo = addMemoTextField.text!
-        let startDate = addStartDatePicker.date
-        let endDate = addEndDatePicker.date
+        var startDate = addStartDatePicker.date
+        var endDate = addEndDatePicker.date
+        
+        let startStringDate = DateFormatter.customDateFormatter.dateToString(date: startDate)
+        let endStringDate = DateFormatter.customDateFormatter.dateToString(date: endDate)
+        
+        startDate = DateFormatter.customDateFormatter.strToDate(str: startStringDate)
+        endDate = DateFormatter.customDateFormatter.strToDate(str: endStringDate)
         
         if title.isEmpty || memo.isEmpty {
             UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
+            return
         }
         
         if let editToDo = editToDo {
             if editToDo.title == title && editToDo.memo == memo && editToDo.startDate == startDate && editToDo.endDate == endDate {
                 UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+                return
             }
         }
         
         let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
+        print(startDate)
+        print(endDate)
         
         if viewType == .add {
             MyDB.toDoList.append(toDo)
