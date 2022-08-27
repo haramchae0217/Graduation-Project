@@ -20,6 +20,11 @@ extension DateFormatter {
         return self.date(from: str)!
     }
     
+    func dateToString(date: Date) -> String {
+        self.dateFormat = "yyyy/MM/dd"
+        return self.string(from: date)
+    }
+    
     func dateToStr(date: Date, type: DateFormatType) -> String {
         switch type {
         case .type1:
