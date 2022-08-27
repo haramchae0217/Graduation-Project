@@ -127,8 +127,6 @@ class AddToDoViewController: UIViewController {
         }
         
         let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
-        print(startDate)
-        print(endDate)
         
         if viewType == .add {
             MyDB.toDoList.append(toDo)
