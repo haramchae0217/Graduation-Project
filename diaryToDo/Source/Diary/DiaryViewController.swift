@@ -44,6 +44,8 @@ class DiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "다이어리"
+        
         configureTapGesture()
         configureCalendarView()
 
@@ -120,9 +122,9 @@ class DiaryViewController: UIViewController {
         diaryCalendarView.appearance.weekdayTextColor = UIColor(named: "diaryColor")
         diaryCalendarView.appearance.titlePlaceholderColor = UIColor(named: "diaryColor2")
         diaryCalendarView.appearance.titleDefaultColor = UIColor(named: "diaryColor3")
-        diaryCalendarView.layer.cornerRadius = 16
-        
         diaryCalendarView.appearance.selectionColor = .systemBlue
+        diaryCalendarView.layer.cornerRadius = 16
+        diaryCalendarView.reloadData()
     }
     
     func configureTapGesture() {
@@ -179,10 +181,8 @@ class DiaryViewController: UIViewController {
                 showPictureButton.isHidden = true
                 editDiaryButton.isHidden = true
                 deleteDiaryButton.isHidden = true
-                // 다이어리 작성 없을때 기본으로 화면에 보여줄거 만들기
             }
         }
-        
     }
     
     //MARK: Actions
@@ -233,8 +233,6 @@ class DiaryViewController: UIViewController {
             if selectedDate < data.date {
                 nextDate = data.date
                 break
-            } else {
-                
             }
         }
         
@@ -254,8 +252,6 @@ class DiaryViewController: UIViewController {
                 editDiary = data
                 deleteDiary = data
                 break
-            } else {
-//                print("else")
             }
         }
         
@@ -312,11 +308,9 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
                 let count = MyDB.diaryItem.filter { diary in
                     diary.date == date
                 }.count
-                
                 return count
             }
         }
-        
         return 0
     }
     
