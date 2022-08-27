@@ -31,8 +31,11 @@ class ToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "투두"
+        
         configureTableView()
-    
+        configureCalendar()
+        
         if !MyDB.toDoList.isEmpty {
             selectedDate = toDoList[toDoList.endIndex - 1].startDate
         }
@@ -45,7 +48,6 @@ class ToDoViewController: UIViewController {
             toDoType = .select
         }
         toDoList = MyDB.toDoList
-        configureCalendar()
         configureDateFormat()
         configureFontAndFontSize()
         toDoView()
@@ -103,13 +105,14 @@ class ToDoViewController: UIViewController {
     }
     
     func toDoView() {
-        let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate } )
+        let startDateList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate } )
+        let endDateList = MyDB.toDoList.sorted(by: { $0.endDate > $1.endDate } )
         todayToDoList = []
         if toDoType == .select {
             selectToDo = MyDB.selectToDo
             guard let selectToDo = selectToDo else { return }
             let selectToDoDate: Date = selectToDo.startDate
-            for data in sortedList {
+            for data in startDateList {
                 if selectToDoDate == data.startDate {
                     todayToDoList.append(data)
                     todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate, type: dateFormatType)
@@ -118,8 +121,8 @@ class ToDoViewController: UIViewController {
             }
         } else {
             if !MyDB.toDoList.isEmpty {
-                let recentToDoDate: Date = MyDB.toDoList[sortedList.endIndex - 1].startDate
-                for data in sortedList {
+                let recentToDoDate: Date = MyDB.toDoList[startDateList.endIndex - 1].startDate
+                for data in startDateList {
                     if recentToDoDate == data.startDate {
                         todayToDoList.append(data)
                         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.startDate, type: dateFormatType)
