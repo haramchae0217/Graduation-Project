@@ -1142,11 +1142,11 @@
             </objects>
             <point key="canvasLocation" x="7453.6231884057979" y="432.58928571428572"/>
         </scene>
-        <!--Diary-->
+        <!--다이어리-->
         <scene sceneID="qq5-Do-iWa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dm2-2z-JGG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Diary" image="calendar" catalog="system" id="pjj-6G-5Ye">
+                    <tabBarItem key="tabBarItem" title="다이어리" image="calendar" catalog="system" id="pjj-6G-5Ye">
                         <color key="badgeColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1164,11 +1164,11 @@
             </objects>
             <point key="canvasLocation" x="3280" y="-1039"/>
         </scene>
-        <!--ToDo-->
+        <!--투두-->
         <scene sceneID="w7m-VB-Rho">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cg4-Qe-7d2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ToDo" image="checklist" catalog="system" id="xsj-Df-PtZ">
+                    <tabBarItem key="tabBarItem" title="투두" image="checklist" catalog="system" id="xsj-Df-PtZ">
                         <color key="badgeColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1186,11 +1186,11 @@
             </objects>
             <point key="canvasLocation" x="3279.7101449275365" y="-320.08928571428572"/>
         </scene>
-        <!--Setting-->
+        <!--설정-->
         <scene sceneID="CIC-k1-czX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Xl-1R-vmL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="gearshape" catalog="system" id="pai-8p-Wqo">
+                    <tabBarItem key="tabBarItem" title="설정" image="gearshape" catalog="system" id="pai-8p-Wqo">
                         <color key="badgeColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <toolbarItems/>
