@@ -112,18 +112,10 @@ class ToDoViewController: UIViewController {
             guard let selectToDo = selectToDo else { return }
             
             for data in startDateList {
-                print("--select--")
-                print(data.startDate)
-                print(selectToDo.startDate)
-                print(data.endDate)
-                print("----------")
                 if data.startDate != data.endDate {
-                    print("startDate!=endDate")
                     if data.isChecked == false {
                         if data.startDate <= selectToDo.startDate && selectToDo.startDate <= data.endDate {
-                            print("startDate < selectDate < endDate ")
                             todayToDoList.append(data)
-                            print("append")
                         }
                     } else {
                         if data.startDate == selectToDo.startDate {
@@ -131,33 +123,23 @@ class ToDoViewController: UIViewController {
                         }
                     }
                 } else {
-                    print("startDate == endDate")
                     if selectToDo.startDate == data.startDate {
-                        print("selectDate == startDate")
                         todayToDoList.append(data)
-                        print("append")
                     }
                 }
             }
+            
+            todayToDoList = todayToDoList.sorted(by: { $0.startDate < $1.startDate })
             selectedDate = selectToDo.startDate
             todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectToDo.startDate, type: dateFormatType)
         } else {
             if !MyDB.toDoList.isEmpty {
                 let recentToDoDate: Date = MyDB.toDoList[startDateList.endIndex - 1].startDate
-                print(recentToDoDate)
                 for data in startDateList {
-                    print("--!isEmpty--")
-                    print(data.startDate)
-                    print(recentToDoDate)
-                    print(data.endDate)
-                    print("-------------")
                     if data.startDate != data.endDate {
-                        print("startDate!=endDate")
                         if data.isChecked == false {
                             if data.startDate <= recentToDoDate && recentToDoDate <= data.endDate {
-                                print("startDate < recentDate < endDate")
                                 todayToDoList.append(data)
-                                print("append")
                             }
                         } else {
                             if data.startDate == recentToDoDate {
@@ -165,14 +147,13 @@ class ToDoViewController: UIViewController {
                             }
                         }
                     } else {
-                        print("startDate == endDate")
                         if recentToDoDate == data.startDate {
-                            print("recentDate == startDate")
                             todayToDoList.append(data)
-                            print("append")
                         }
                     }
                 }
+                
+                todayToDoList = todayToDoList.sorted(by: { $0.startDate < $1.startDate })
                 todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentToDoDate, type: dateFormatType)
             } else {
                 todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
@@ -190,24 +171,23 @@ class ToDoViewController: UIViewController {
     
     func toggleAndReload(index: Int) {
         let todo = todayToDoList[index]
-        todayToDoList[index].isChecked.toggle()
         var toDoListIndex = 0
+        todayToDoList[index].isChecked.toggle()
+        
         for data in MyDB.toDoList {
             toDoListIndex += 1
-            print(toDoListIndex)
             if (data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate ) {
-                print(MyDB.toDoList[toDoListIndex - 1])
                 MyDB.toDoList[toDoListIndex - 1].isChecked.toggle()
-                print(MyDB.toDoList[toDoListIndex - 1])
                 break
             }
         }
+        
+        todayToDoList = todayToDoList.sorted(by: { $0.startDate < $1.startDate })
         toDoTableView.reloadData()
     }
     
     @IBAction func previousToDoButton(_ sender: UIButton) {
         let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
-        
         var previousDate: Date = selectedDate
         todayToDoList = []
         
@@ -219,18 +199,10 @@ class ToDoViewController: UIViewController {
         }
         
         for data in sortedList {
-            print("--previous--")
-            print(data.startDate)
-            print(previousDate)
-            print(data.endDate)
-            print("------------")
             if data.startDate != data.endDate {
-                print("startDate!=endDate")
                 if data.isChecked == false {
                     if data.startDate <= previousDate && previousDate <= data.endDate {
-                        print("startDate < recentDate < endDate")
                         todayToDoList.append(data)
-                        print("append")
                     }
                 } else {
                     if data.startDate == previousDate {
@@ -238,15 +210,13 @@ class ToDoViewController: UIViewController {
                     }
                 }
             } else {
-                print("startDate == endDate")
                 if previousDate == data.startDate {
-                    print("previousDate == startDate")
                     todayToDoList.append(data)
-                    print("append")
                 }
             }
         }
         
+        todayToDoList = todayToDoList.sorted(by: { $0.startDate < $1.startDate })
         toDoTableView.reloadData()
         selectedDate = previousDate
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate, type: dateFormatType)
@@ -254,7 +224,6 @@ class ToDoViewController: UIViewController {
     
     @IBAction func nextToDoButton(_ sender: UIButton) {
         let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
-        
         var nextDate: Date = selectedDate
         todayToDoList = []
         
@@ -266,18 +235,10 @@ class ToDoViewController: UIViewController {
         }
         
         for data in sortedList {
-            print("--next--")
-            print(data.startDate)
-            print(nextDate)
-            print(data.endDate)
-            print("--------")
             if data.startDate != data.endDate {
-                print("startDate!=endDate")
                 if data.isChecked == false {
                     if data.startDate <= nextDate && nextDate <= data.endDate {
-                        print("startDate < nextDate < endDate")
                         todayToDoList.append(data)
-                        print("append")
                     }
                 } else {
                     if data.startDate == nextDate {
@@ -285,15 +246,13 @@ class ToDoViewController: UIViewController {
                     }
                 }
             } else {
-                print("startDate == endDate")
                 if nextDate == data.startDate {
-                    print("nextDate == startDate")
                     todayToDoList.append(data)
-                    print("append")
                 }
             }
         }
         
+        todayToDoList = todayToDoList.sorted(by: { $0.startDate < $1.startDate })
         toDoTableView.reloadData()
         selectedDate = nextDate
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectedDate, type: dateFormatType)
