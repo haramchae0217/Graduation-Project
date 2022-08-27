@@ -20,6 +20,8 @@ class FontSizeSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "글씨 크기 설정"
+        
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
 
         configureTableView()

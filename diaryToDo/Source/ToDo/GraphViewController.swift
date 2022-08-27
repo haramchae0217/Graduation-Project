@@ -41,6 +41,8 @@ class GraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "투두 그래프"
+        
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
         appendDate(date: todayDate)
         configureCalendar()

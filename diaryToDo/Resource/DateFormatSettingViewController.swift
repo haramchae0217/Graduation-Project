@@ -21,6 +21,8 @@ class DateFormatSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "날짜 형식 설정"
+        
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
         
         configureTableView()

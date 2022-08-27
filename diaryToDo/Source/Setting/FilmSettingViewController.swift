@@ -19,6 +19,8 @@ class FilmSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "필름 설정"
 
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
         
