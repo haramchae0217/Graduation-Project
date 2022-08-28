@@ -64,8 +64,8 @@ class DiaryViewController: UIViewController {
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
-        diaryCalendarView.reloadData()
         diaryViewType()
+        diaryCalendarView.reloadData()
     }
     
     //MARK: Configure
