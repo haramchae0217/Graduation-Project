@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import RealmSwift
 
 class ToDoViewController: UIViewController {
 
@@ -19,6 +20,8 @@ class ToDoViewController: UIViewController {
     let label = UILabel()
     
     //MARK: Property
+    let localRealm = try! Realm()
+    var todoDbList: [ToDoDB] = []
     let sectionList: [String] = ["미완료", "완료"]
     var toDoList = MyDB.toDoList
     var todayToDoList: [ToDo] = []
@@ -36,6 +39,7 @@ class ToDoViewController: UIViewController {
         super.viewDidLoad()
     
         title = "투두"
+        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         
 //        configureEmptyView()
         configureTableView()
@@ -58,6 +62,14 @@ class ToDoViewController: UIViewController {
         print("todoList count : \(MyDB.toDoList.count)")
         print("checkedList count: \(checkedList.count)")
         print("notCheckedList count : \(notCheckedList.count)")
+    }
+    
+    func getToDoList() {
+        let todoList = localRealm.objects(ToDoDB.self)
+        
+        for todo in todoList {
+            todoDbList.append(todo)
+        }
     }
     
     func configureDateFormat() {
@@ -167,6 +179,7 @@ class ToDoViewController: UIViewController {
     
     func toggleAndReload(index: Int) {
         let todo = todayToDoList[index]
+        
         var toDoListIndex = 0
         todayToDoList[index].isChecked.toggle()
         
@@ -178,7 +191,6 @@ class ToDoViewController: UIViewController {
             }
         }
         
-        todayToDoList = todayToDoList.sorted(by: { $0.startDate < $1.startDate })
         toDoTableView.reloadData()
     }
     

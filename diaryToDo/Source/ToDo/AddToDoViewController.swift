@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddToDoViewController: UIViewController {
     
@@ -29,6 +30,8 @@ class AddToDoViewController: UIViewController {
     @IBOutlet weak var addEndDatePicker: UIDatePicker!
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var mySwitch: UISwitch!
+    
+    let localRealm = try! Realm()
     
     var editToDo: ToDo?
     var editRow: Int?
@@ -75,6 +78,7 @@ class AddToDoViewController: UIViewController {
         
         configureFontAndFontSize()
     }
+    
     
     func configureFontAndFontSize() {
         for data in MyDB.fontSizeList {

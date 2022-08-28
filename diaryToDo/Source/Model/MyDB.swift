@@ -6,6 +6,42 @@
 //
 
 import UIKit
+import RealmSwift
+
+class DiaryDB: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var content: String
+    @Persisted var hashTag: List<String>
+    @Persisted var date: Date
+    @Persisted var picture: String
+    
+    convenience init(content: String, hashTag: List<String>, date: Date, picture: String) {
+        self.init()
+        self.content = content
+        self.hashTag = hashTag
+        self.date = date
+        self.picture = picture
+    }
+}
+
+class ToDoDB: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var title: String
+    @Persisted var memo: String
+    @Persisted var startDate: Date
+    @Persisted var endDate: Date
+    @Persisted var isChecked: Bool
+    
+    convenience init(title: String, memo: String, startDate: Date, endDate: Date, isChecked: Bool) {
+        self.init()
+        self.title = title
+        self.memo = memo
+        self.startDate = startDate
+        self.endDate = endDate
+        self.isChecked = isChecked
+    }
+}
+
 
 struct MyDB {
     
