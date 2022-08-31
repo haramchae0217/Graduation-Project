@@ -64,12 +64,8 @@ class ToDoViewController: UIViewController {
         print("notCheckedList count : \(notCheckedList.count)")
     }
     
-    func getToDoList() {
-        let todoList = localRealm.objects(ToDoDB.self)
-        
-        for todo in todoList {
-            todoDbList.append(todo)
-        }
+    func getToDo() -> [ToDoDB] {
+        return localRealm.objects(ToDoDB.self).map { $0 }
     }
     
     func configureDateFormat() {
