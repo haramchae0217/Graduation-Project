@@ -72,9 +72,12 @@ class SearchDiaryViewController: UIViewController {
     func configureSearchBar() {
         let searchHashTag = UISearchController(searchResultsController: nil)
         searchHashTag.searchBar.delegate = self
+        searchHashTag.searchResultsUpdater = self
         searchHashTag.searchBar.placeholder = "다이어리 검색"
+        searchHashTag.obscuresBackgroundDuringPresentation = false // 같은 뷰컨에 검색 결과를 표시하는것이므로 화면이 흐려지는걸 원치 않음.
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchHashTag
+        definesPresentationContext = true // 다른 뷰컨으로 이동시 search bar가 화면에 남아있지 않게 함.
     }
     
 }
@@ -121,13 +124,26 @@ extension SearchDiaryViewController: UITableViewDelegate {
 }
 
 extension SearchDiaryViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let text = searchBar.text {
-            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.contains(text)}
-        }
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        if let text = searchBar.text {
+//            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.contains(text)}
+//        }
+//    }
+    
+    
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchDiary = []
+    }
+}
+
+extension SearchDiaryViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text {
+            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.contains(text) }
+            print("검색창 : \(text)")
+            print("검색결과 : \(searchDiary)")
+            searchTableView.reloadData()
+        }
     }
 }
