@@ -124,26 +124,25 @@ extension SearchDiaryViewController: UITableViewDelegate {
 }
 
 extension SearchDiaryViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        if let text = searchBar.text {
-//            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.contains(text)}
-//        }
-//    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchTableView.reloadData()
+    }
     
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchDiary = []
+        searchTableView.reloadData()
     }
 }
 
 extension SearchDiaryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
-            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.contains(text) }
+            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
+//            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(text) }
             print("검색창 : \(text)")
             print("검색결과 : \(searchDiary)")
-            searchTableView.reloadData()
         }
     }
 }
