@@ -59,45 +59,43 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film1" translatesAutoresizingMaskIntoConstraints="NO" id="h16-SV-UY5">
                                         <rect key="frame" x="10" y="0.0" width="394" height="508"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-io-IFh">
-                                        <rect key="frame" x="50" y="100" width="314" height="200"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-io-IFh">
+                                        <rect key="frame" x="45" y="100" width="324" height="250"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="IKD-7p-Yd2"/>
+                                            <constraint firstAttribute="height" constant="250" id="IKD-7p-Yd2"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Ownglyph_ssojji-Rg" family="Ownglyph ssojji" pointSize="20"/>
-                                        <nil key="textColor"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="content">
+                                                <attributes>
+                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="20" name="Ownglyph_ssojji-Rg"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="10" defaultTabInterval="10" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6ch-RI-PRm">
-                                        <rect key="frame" x="221.5" y="320" width="152.5" height="68"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6ch-RI-PRm">
+                                        <rect key="frame" x="272" y="360" width="102" height="74"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpt-qf-qw5" userLabel="showPictureButton">
-                                                <rect key="frame" x="0.0" y="0.0" width="42.5" height="42.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Lpt-qf-qw5" secondAttribute="height" multiplier="1:1" id="x5V-Ta-QOJ"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise" catalog="system"/>
-                                                <connections>
-                                                    <action selector="showPictureButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d73-vb-kWE"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Htl-qH-isa" userLabel="editDiaryButton">
-                                                <rect key="frame" x="52.5" y="0.0" width="46" height="46"/>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Htl-qH-isa" userLabel="editDiaryButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Htl-qH-isa" secondAttribute="height" multiplier="1:1" id="mNb-1f-ux5"/>
                                                 </constraints>
+                                                <color key="tintColor" name="diaryColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system"/>
                                                 <connections>
                                                     <action selector="editDiaryButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TP0-an-rhi"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCP-gw-oIH" userLabel="deleteDiaryButton">
-                                                <rect key="frame" x="108.5" y="0.0" width="44" height="44"/>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCP-gw-oIH" userLabel="deleteDiaryButton">
+                                                <rect key="frame" x="56" y="0.0" width="46" height="46"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="QCP-gw-oIH" secondAttribute="height" multiplier="1:1" id="PaL-6m-iVU"/>
                                                 </constraints>
+                                                <color key="tintColor" name="diaryColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
                                                 <connections>
@@ -130,18 +128,18 @@
                                     <constraint firstAttribute="trailing" secondItem="6ch-RI-PRm" secondAttribute="trailing" constant="40" id="256-e0-KId"/>
                                     <constraint firstItem="k6h-io-IFh" firstAttribute="top" secondItem="Bu6-v5-RPH" secondAttribute="top" constant="100" id="4QQ-AE-5vC"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="leading" secondItem="h16-SV-UY5" secondAttribute="leading" constant="32" id="EQA-LE-5ZJ"/>
-                                    <constraint firstItem="k6h-io-IFh" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="50" id="Lxi-dP-d4m"/>
+                                    <constraint firstItem="k6h-io-IFh" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="45" id="Lxi-dP-d4m"/>
                                     <constraint firstItem="h16-SV-UY5" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="10" id="PyO-B1-qKc"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="top" secondItem="h16-SV-UY5" secondAttribute="top" constant="84" id="Uop-Yf-ytT"/>
                                     <constraint firstAttribute="bottom" secondItem="h16-SV-UY5" secondAttribute="bottom" id="VCA-lr-6c6"/>
                                     <constraint firstAttribute="trailing" secondItem="h16-SV-UY5" secondAttribute="trailing" constant="10" id="aLv-vl-eCe"/>
-                                    <constraint firstAttribute="bottom" secondItem="6ch-RI-PRm" secondAttribute="bottom" constant="120" id="aag-Lx-elI"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="trailing" secondItem="h16-SV-UY5" secondAttribute="trailing" constant="-29" id="b1h-Gv-kz3"/>
                                     <constraint firstItem="h16-SV-UY5" firstAttribute="top" secondItem="Bu6-v5-RPH" secondAttribute="top" id="bPj-Uq-Uwj"/>
                                     <constraint firstItem="5lj-sM-W27" firstAttribute="leading" secondItem="Bu6-v5-RPH" secondAttribute="leading" constant="30" id="c2E-UU-WHh"/>
-                                    <constraint firstItem="6ch-RI-PRm" firstAttribute="top" secondItem="k6h-io-IFh" secondAttribute="bottom" constant="20" id="n7K-Zm-5hm"/>
+                                    <constraint firstItem="6ch-RI-PRm" firstAttribute="top" secondItem="k6h-io-IFh" secondAttribute="bottom" constant="10" id="n7K-Zm-5hm"/>
                                     <constraint firstItem="f0F-OA-l5p" firstAttribute="bottom" secondItem="h16-SV-UY5" secondAttribute="bottom" constant="-91" id="o1X-3J-3uP"/>
-                                    <constraint firstAttribute="trailing" secondItem="k6h-io-IFh" secondAttribute="trailing" constant="50" id="x3h-zr-Fmp"/>
+                                    <constraint firstItem="5lj-sM-W27" firstAttribute="top" secondItem="6ch-RI-PRm" secondAttribute="bottom" constant="10" id="tbW-Sx-BCO"/>
+                                    <constraint firstAttribute="trailing" secondItem="k6h-io-IFh" secondAttribute="trailing" constant="45" id="x3h-zr-Fmp"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="om5-Uj-axe" customClass="FSCalendar">
@@ -199,7 +197,6 @@
                         <outlet property="diaryHashTagLabel" destination="lkK-cD-frG" id="z29-kT-R8e"/>
                         <outlet property="diaryPictureUIImage" destination="f0F-OA-l5p" id="G7A-6g-3Ia"/>
                         <outlet property="editDiaryButton" destination="Htl-qH-isa" id="RDy-9d-wPI"/>
-                        <outlet property="showPictureButton" destination="Lpt-qf-qw5" id="jgl-hB-VQY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -724,8 +721,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM5-Sc-AdU">
-                                <rect key="frame" x="40" y="162" width="334" height="38"/>
+                                <rect key="frame" x="50" y="162" width="314" height="50"/>
                                 <color key="backgroundColor" red="0.96088236570358276" green="0.9528082013130188" blue="0.95675784349441528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jhr-zd-VgR"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="날짜 형식">
@@ -737,8 +737,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eU-zj-pmd">
-                                <rect key="frame" x="40" y="230" width="334" height="38"/>
+                                <rect key="frame" x="50" y="242" width="314" height="50"/>
                                 <color key="backgroundColor" red="0.96088236570358276" green="0.9528082013130188" blue="0.95675784349441528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Qg5-32-iHw"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="글씨 크기">
@@ -750,8 +753,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPO-ub-h76">
-                                <rect key="frame" x="40" y="298" width="334" height="38"/>
+                                <rect key="frame" x="50" y="322" width="314" height="50"/>
                                 <color key="backgroundColor" red="0.96088236570358276" green="0.9528082013130188" blue="0.95675784349441528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="lXv-xo-Nkk"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="글꼴 설정">
                                     <fontDescription key="titleFontDescription" name="Ownglyph_ssojji-Rg" family="Ownglyph ssojji" pointSize="20"/>
@@ -762,8 +768,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14P-ef-JDG">
-                                <rect key="frame" x="40" y="366" width="334" height="38"/>
+                                <rect key="frame" x="50" y="402" width="314" height="50"/>
                                 <color key="backgroundColor" red="0.96088236570358276" green="0.9528082013130188" blue="0.95675784349441528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Rt0-GU-GLy"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="필름 설정">
@@ -781,18 +790,18 @@
                             <constraint firstItem="CdO-Np-ZD3" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="20" id="6Vm-W3-rVv"/>
                             <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="CdO-Np-ZD3" secondAttribute="trailing" constant="20" id="8dR-lh-VDU"/>
                             <constraint firstItem="6eU-zj-pmd" firstAttribute="top" secondItem="dM5-Sc-AdU" secondAttribute="bottom" constant="30" id="8jk-OL-hec"/>
-                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="6eU-zj-pmd" secondAttribute="trailing" constant="40" id="DM8-ug-4oj"/>
+                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="6eU-zj-pmd" secondAttribute="trailing" constant="50" id="DM8-ug-4oj"/>
                             <constraint firstItem="CPO-ub-h76" firstAttribute="top" secondItem="6eU-zj-pmd" secondAttribute="bottom" constant="30" id="Fu7-bU-Xj5"/>
-                            <constraint firstItem="6eU-zj-pmd" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="40" id="Hwg-Eh-PvQ"/>
+                            <constraint firstItem="6eU-zj-pmd" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="50" id="Hwg-Eh-PvQ"/>
                             <constraint firstItem="14P-ef-JDG" firstAttribute="top" secondItem="CPO-ub-h76" secondAttribute="bottom" constant="30" id="JPK-31-NQ0"/>
-                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="CPO-ub-h76" secondAttribute="trailing" constant="40" id="RFZ-cI-obe"/>
-                            <constraint firstItem="CPO-ub-h76" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="40" id="XQA-dh-iRD"/>
-                            <constraint firstItem="dM5-Sc-AdU" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="40" id="eKv-3V-ZFo"/>
+                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="CPO-ub-h76" secondAttribute="trailing" constant="50" id="RFZ-cI-obe"/>
+                            <constraint firstItem="CPO-ub-h76" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="50" id="XQA-dh-iRD"/>
+                            <constraint firstItem="dM5-Sc-AdU" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="50" id="eKv-3V-ZFo"/>
                             <constraint firstItem="CdO-Np-ZD3" firstAttribute="top" secondItem="C5K-HC-c4C" secondAttribute="top" constant="20" id="iK7-Fc-Rif"/>
                             <constraint firstItem="dM5-Sc-AdU" firstAttribute="top" secondItem="CdO-Np-ZD3" secondAttribute="bottom" constant="30" id="juE-L1-uSg"/>
-                            <constraint firstItem="14P-ef-JDG" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="40" id="mrN-mn-egL"/>
-                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="dM5-Sc-AdU" secondAttribute="trailing" constant="40" id="oxc-VZ-4ec"/>
-                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="14P-ef-JDG" secondAttribute="trailing" constant="40" id="szN-4W-hX9"/>
+                            <constraint firstItem="14P-ef-JDG" firstAttribute="leading" secondItem="C5K-HC-c4C" secondAttribute="leading" constant="50" id="mrN-mn-egL"/>
+                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="dM5-Sc-AdU" secondAttribute="trailing" constant="50" id="oxc-VZ-4ec"/>
+                            <constraint firstItem="C5K-HC-c4C" firstAttribute="trailing" secondItem="14P-ef-JDG" secondAttribute="trailing" constant="50" id="szN-4W-hX9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Setting" id="9Qq-sB-ZAC"/>
@@ -1231,7 +1240,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="cafe" width="3019" height="3019"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="101"/>

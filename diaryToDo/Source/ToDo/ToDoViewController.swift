@@ -58,10 +58,6 @@ class ToDoViewController: UIViewController {
         configureFontAndFontSize()
         getTodayList(today: selectedDate)
         toDoTableView.reloadData()
-        
-        print("todoList count : \(MyDB.toDoList.count)")
-        print("checkedList count: \(checkedList.count)")
-        print("notCheckedList count : \(notCheckedList.count)")
     }
     
     func getToDo() -> [ToDoDB] {
@@ -290,12 +286,24 @@ extension ToDoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        var todo: ToDo
+        var row: IndexPath
+        if indexPath.section == 0 {
+            todo = notCheckedList[indexPath.row]
+            row = indexPath
+        } else {
+            todo = checkedList[indexPath.row]
+            row = indexPath
+        }
+        print(todo)
+        print(indexPath.row)
+        
         if editingStyle == .delete {
             MyDB.toDoList.removeAll { data in
-                data.title == todayToDoList[indexPath.row].title && data.memo == todayToDoList[indexPath.row].memo && data.startDate == todayToDoList[indexPath.row].startDate && data.endDate == todayToDoList[indexPath.row].endDate
+                data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate
             }
-            todayToDoList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            getTodayList()
+            tableView.deleteRows(at: [row], with: .fade)
         }
     }
 }
@@ -311,16 +319,27 @@ extension ToDoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let todo = todayToDoList[indexPath.row]
         guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: "AddToDoVC") as? AddToDoViewController else { return }
+        
+        var todo: ToDo
+        var row: Int
+        
+        if indexPath.section == 0 {
+            todo = notCheckedList[indexPath.row]
+            row = indexPath.row
+        } else {
+            todo = checkedList[indexPath.row]
+            row = indexPath.row
+        }
+        
         editToDoVC.viewType = .edit
         editToDoVC.editToDo = todo
+        editToDoVC.editRow = row
         if todo.startDate == todo.endDate {
             editToDoVC.allDayType = .yes
         } else {
             editToDoVC.allDayType = .no
         }
-        editToDoVC.editRow = indexPath.row
         self.navigationController?.pushViewController(editToDoVC, animated: true)
     }
 }

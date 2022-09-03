@@ -23,7 +23,6 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryContentLabel: UILabel!
     @IBOutlet weak var diaryCalendarView: FSCalendar!
     @IBOutlet weak var diaryFilmImage: UIImageView!
-    @IBOutlet weak var showPictureButton: UIButton!
     @IBOutlet weak var editDiaryButton: UIButton!
     @IBOutlet weak var deleteDiaryButton: UIButton!
     
@@ -46,12 +45,9 @@ class DiaryViewController: UIViewController {
         
         title = "다이어리"
         
+        configureUILabel()
         configureTapGesture()
         configureCalendarView()
-
-        if !MyDB.diaryItem.isEmpty {
-            selectedDate = diaryList[diaryList.endIndex - 1].date
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +65,12 @@ class DiaryViewController: UIViewController {
     }
     
     //MARK: Configure
+    
+    func configureUILabel() {
+        diaryContentLabel.layer.cornerRadius = 10
+        diaryContentLabel.layer.borderWidth = 1
+        diaryContentLabel.layer.borderColor = UIColor.lightGray.cgColor
+    }
     
     func configureDateFormat() {
         for data in MyDB.dateFormatList {
@@ -132,44 +134,44 @@ class DiaryViewController: UIViewController {
         imageTapGesture.delegate = self
         diaryPictureUIImage.addGestureRecognizer(imageTapGesture)
         diaryPictureUIImage.isUserInteractionEnabled = true
+        
+        let contentTapGesture = UITapGestureRecognizer(target: self, action: #selector(contentTapped))
+        diaryContentLabel.addGestureRecognizer(contentTapGesture)
+        diaryContentLabel.isUserInteractionEnabled = true
+    }
+    
+    func showDiary(diary: Diary) {
+        hashTagList = ""
+        
+        for i in 0..<diary.hashTag.count {
+            if i == diary.hashTag.count - 1 {
+                hashTagList.append("#\(diary.hashTag[i])")
+                break
+            }
+            hashTagList.append("#\(diary.hashTag[i]), ")
+        }
+        diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
+        diaryHashTagLabel.text = hashTagList
+        diaryPictureUIImage.image = diary.picture
+        diaryContentLabel.text = diary.content
+        
     }
     
     //MARK: ETC
     func diaryViewType() {
-        hashTagList = ""
         diaryList = MyDB.diaryItem
         if diaryType == .search {
             selectDiary = MyDB.selectDiary
             guard let selectDiary = selectDiary else { return }
-
-            for i in 0..<selectDiary.hashTag.count {
-                if i == selectDiary.hashTag.count - 1 {
-                    hashTagList.append("#\(selectDiary.hashTag[i])")
-                    break
-                }
-                hashTagList.append("#\(selectDiary.hashTag[i]), ")
-            }
-            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date, type: dateFormatType)
-            diaryHashTagLabel.text = hashTagList
-            diaryPictureUIImage.image = selectDiary.picture
-            diaryContentLabel.text = selectDiary.content
+            showDiary(diary: selectDiary)
             selectedDate = selectDiary.date
             editDiary = selectDiary
             deleteDiary = selectDiary
         } else {
             if !MyDB.diaryItem.isEmpty {
                 let recentDiary = diaryList[diaryList.endIndex - 1]
-                for i in 0..<recentDiary.hashTag.count {
-                    if i == recentDiary.hashTag.count - 1 {
-                        hashTagList.append("#\(recentDiary.hashTag[i])")
-                        break
-                    }
-                    hashTagList.append("#\(recentDiary.hashTag[i]), ")
-                }
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: recentDiary.date, type: dateFormatType)
-                diaryHashTagLabel.text = hashTagList
-                diaryPictureUIImage.image = recentDiary.picture
-                diaryContentLabel.text = recentDiary.content
+                selectedDate = recentDiary.date
+                showDiary(diary: recentDiary)
                 editDiary = recentDiary
                 deleteDiary = recentDiary
             } else {
@@ -178,7 +180,6 @@ class DiaryViewController: UIViewController {
                 diaryPictureUIImage.image = UIImage(named: "noImage")
                 diaryHashTagLabel.text = "작성된 다이어리가 없습니다. 다이어리를 작성해주세요."
                 diaryContentLabel.isHidden = true
-                showPictureButton.isHidden = true
                 editDiaryButton.isHidden = true
                 deleteDiaryButton.isHidden = true
             }
@@ -186,15 +187,18 @@ class DiaryViewController: UIViewController {
     }
     
     //MARK: Actions
-    @objc func imageViewTapped(_ sender: UIImageView){
+    @objc func imageViewTapped(_ sender: UIImageView) {
         diaryPictureUIImage.isHidden = true
+    }
+    
+    @objc func contentTapped(_ sender: UILabel) {
+        diaryPictureUIImage.isHidden = false
     }
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
         let sortedList = diaryList.sorted(by: { $0.date > $1.date })
-        hashTagList = ""
-        
         var previousDate: Date = selectedDate
+        
         for data in sortedList {
             if selectedDate > data.date {
                 previousDate = data.date
@@ -204,17 +208,7 @@ class DiaryViewController: UIViewController {
         
         for data in sortedList {
             if previousDate == data.date {
-                for i in 0..<data.hashTag.count {
-                    if i == data.hashTag.count - 1 {
-                        hashTagList.append("#\(data.hashTag[i])")
-                        break
-                    }
-                    hashTagList.append("#\(data.hashTag[i]), ")
-                }
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date, type: dateFormatType)
-                diaryHashTagLabel.text = "\(hashTagList)"
-                diaryPictureUIImage.image = data.picture
-                diaryContentLabel.text = data.content
+                showDiary(diary: data)
                 editDiary = data
                 deleteDiary = data
                 break
@@ -225,8 +219,6 @@ class DiaryViewController: UIViewController {
     }
     
     @IBAction func nextDiaryButton(_ sender: UIButton) {
-        hashTagList = ""
-        
         var nextDate: Date = selectedDate
         
         for data in diaryList {
@@ -238,17 +230,7 @@ class DiaryViewController: UIViewController {
         
         for data in diaryList {
             if nextDate == data.date {
-                for i in 0..<data.hashTag.count {
-                    if i == data.hashTag.count - 1 {
-                        hashTagList.append("#\(data.hashTag[i])")
-                        break
-                    }
-                    hashTagList.append("#\(data.hashTag[i]), ")
-                }
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: data.date, type: dateFormatType)
-                diaryHashTagLabel.text = "\(hashTagList)"
-                diaryPictureUIImage.image = data.picture
-                diaryContentLabel.text = data.content
+                showDiary(diary: data)
                 editDiary = data
                 deleteDiary = data
                 break
@@ -271,10 +253,6 @@ class DiaryViewController: UIViewController {
         guard let addVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
         addVC.viewType = .add
         self.navigationController?.pushViewController(addVC, animated: true)
-    }
-    
-    @IBAction func showPictureButton(_ sender: UIButton) {
-        diaryPictureUIImage.isHidden = false
     }
     
     @IBAction func editDiaryButton(_ sender: UIButton) {
