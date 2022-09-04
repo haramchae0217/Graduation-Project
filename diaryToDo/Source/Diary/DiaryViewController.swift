@@ -57,6 +57,8 @@ class DiaryViewController: UIViewController {
             diaryType = .search
         }
         diaryList = MyDB.diaryItem
+        print(diaryList.count)
+        print(MyDB.diaryItem.count)
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
@@ -126,7 +128,6 @@ class DiaryViewController: UIViewController {
         diaryCalendarView.appearance.titleDefaultColor = UIColor(named: "diaryColor3")
         diaryCalendarView.appearance.selectionColor = .systemBlue
         diaryCalendarView.layer.cornerRadius = 16
-        diaryCalendarView.reloadData()
     }
     
     func configureTapGesture() {
@@ -198,9 +199,15 @@ class DiaryViewController: UIViewController {
     @IBAction func previousDiaryButton(_ sender: UIButton) {
         let sortedList = diaryList.sorted(by: { $0.date > $1.date })
         var previousDate: Date = selectedDate
+        var count = 0
         
         for data in sortedList {
             if selectedDate > data.date {
+                count += 1
+                if count == sortedList.count {
+                    print("이전 다이어리가 없습니다.")
+                    break
+                }
                 previousDate = data.date
                 break
             }
@@ -279,11 +286,11 @@ class DiaryViewController: UIViewController {
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for diary in MyDB.diaryItem {
+        for diary in diaryList {
             let diaryEvent = diary.date
             
             if diaryEvent == date {
-                let count = MyDB.diaryItem.filter { diary in
+                let count = diaryList.filter { diary in
                     diary.date == date
                 }.count
                 return count
@@ -294,30 +301,18 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         diaryCalendarView.isHidden.toggle()
-        
-        let diaryList = MyDB.diaryItem.filter { diary in
+        let diaryList = diaryList.filter { diary in
             diary.date == date
         }
         
         if diaryList.count > 0 {
-            var hashTagList = ""
-            var image: UIImage = UIImage(named: "cafe1")!
-            
             for data in diaryList {
-                for i in 0..<data.hashTag.count {
-                    if i == data.hashTag.count - 1 {
-                        hashTagList.append("#\(data.hashTag[i])")
-                        break
-                    }
-                    hashTagList.append("#\(data.hashTag[i]), ")
+                if data.date == date {
+                    showDiary(diary: data)
                 }
-                image = data.picture
             }
-            
             selectedDate = date
-            diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: date, type: dateFormatType)
-            diaryPictureUIImage.image = image
-            diaryHashTagLabel.text = "\(hashTagList)"
+            
         } else {
             UIAlertController.warningAlert(message: "등록된 다이어리가 없습니다.", viewController: self)
         }
