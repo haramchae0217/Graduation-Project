@@ -302,8 +302,8 @@ extension ToDoViewController: UITableViewDataSource {
             MyDB.toDoList.removeAll { data in
                 data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate
             }
-            getTodayList()
             tableView.deleteRows(at: [row], with: .fade)
+            getTodayList()
         }
     }
 }
