@@ -58,6 +58,7 @@ class ToDoViewController: UIViewController {
         configureFontAndFontSize()
         getTodayList(today: selectedDate)
         toDoTableView.reloadData()
+        toDoCalendarView.reloadData()
     }
     
     func getToDo() -> [ToDoDB] {
