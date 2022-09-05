@@ -57,8 +57,6 @@ class DiaryViewController: UIViewController {
             diaryType = .search
         }
         diaryList = MyDB.diaryItem
-        print(diaryList.count)
-        print(MyDB.diaryItem.count)
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
