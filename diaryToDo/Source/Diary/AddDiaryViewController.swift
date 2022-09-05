@@ -160,30 +160,20 @@ class AddDiaryViewController: UIViewController {
         
         if viewType == .add {
             MyDB.diaryItem.append(diary)
-            MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
-            MyDB.selectDiary = diary
-            self.navigationController?.popViewController(animated: true)
         } else {
-            let diaryEdit = UIAlertController(title: "⚠️", message: "정말 수정하시겠습니까?", preferredStyle: .alert)
-            let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-            let editButton = UIAlertAction(title: "수정", style: .destructive) { _ in
-                if let editDiary = self.editDiary {
-                    var index = 0
-                    for data in MyDB.diaryItem {
-                        index += 1
-                        if (data.content == editDiary.content && data.hashTag == editDiary.hashTag && data.date == editDiary.date && data.picture == editDiary.picture) {
-                            MyDB.diaryItem[index - 1] = diary
-                        }
+            if let editDiary = editDiary {
+                var index = 0
+                for data in MyDB.diaryItem {
+                    index += 1
+                    if (data.content == editDiary.content && data.hashTag == editDiary.hashTag && data.date == editDiary.date && data.picture == editDiary.picture) {
+                        MyDB.diaryItem[index - 1] = diary
                     }
                 }
-                MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
-                MyDB.selectDiary = diary
-                self.navigationController?.popViewController(animated: true)
             }
-            diaryEdit.addAction(cancelButton)
-            diaryEdit.addAction(editButton)
-            present(diaryEdit, animated: true, completion: nil)
         }
+        MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
+        MyDB.selectDiary = diary
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
