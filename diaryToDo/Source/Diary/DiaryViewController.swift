@@ -190,10 +190,16 @@ class DiaryViewController: UIViewController {
     //MARK: Actions
     @objc func imageViewTapped(_ sender: UIImageView) {
         diaryPictureUIImage.isHidden = true
+        editDiaryButton.isHidden = false
+        deleteDiaryButton.isHidden = false
+        diaryContentLabel.isHidden = false
     }
     
     @objc func contentTapped(_ sender: UILabel) {
         diaryPictureUIImage.isHidden = false
+        editDiaryButton.isHidden = true
+        deleteDiaryButton.isHidden = true
+        diaryContentLabel.isHidden = true
     }
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
@@ -286,22 +292,29 @@ class DiaryViewController: UIViewController {
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for diary in diaryList {
+        for diary in MyDB.diaryItem {
             let diaryEvent = diary.date
             
             if diaryEvent == date {
-                let count = diaryList.filter { diary in
+                let count = MyDB.diaryItem.filter { diary in
                     diary.date == date
                 }.count
-                return count
+                
+                if count >= 3 {
+                    return 3
+                } else {
+                    return count
+                }
             }
         }
+        
         return 0
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         diaryCalendarView.isHidden.toggle()
-        let diaryList = diaryList.filter { diary in
+        
+        let diaryList = MyDB.diaryItem.filter { diary in
             diary.date == date
         }
         
