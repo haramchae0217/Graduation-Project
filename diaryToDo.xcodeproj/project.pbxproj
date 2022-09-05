@@ -131,7 +131,7 @@
 		83D512D527F5EE98009B3A23 /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilmTableViewCell.swift; path = diaryToDo/Resource/FilmTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		83D512D727F5EF26009B3A23 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Film.swift; path = diaryToDo/Source/Setting/Film.swift; sourceTree = SOURCE_ROOT; };
 		83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extension.swift"; sourceTree = "<group>"; };
-		83E7EC7028B87394004EBB03 /* Polaroid Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polaroid Diary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E7EC7028B87394004EBB03 /* diaryToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diaryToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83FDF01D27F2EA33008E45E3 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController++Extension.swift"; sourceTree = "<group>"; };
 		83FDF02127F317AD008E45E3 /* AddDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryViewController.swift; sourceTree = "<group>"; };
@@ -156,19 +156,19 @@
 		83354D8D27DB51AE0096C7B5 = {
 			isa = PBXGroup;
 			children = (
-				83354D9827DB51AE0096C7B5 /* Polaroid Diary */,
-				83E7EC7028B87394004EBB03 /* Polaroid Diary.app */,
+				83354D9827DB51AE0096C7B5 /* diaryToDo */,
+				83E7EC7028B87394004EBB03 /* diaryToDo.app */,
 			);
 			sourceTree = "<group>";
 		};
-		83354D9827DB51AE0096C7B5 /* Polaroid Diary */ = {
+		83354D9827DB51AE0096C7B5 /* diaryToDo */ = {
 			isa = PBXGroup;
 			children = (
 				83FDF01427F2D7A8008E45E3 /* Source */,
 				83FDF01527F2D7AE008E45E3 /* Resource */,
 				83354DA727DB51AF0096C7B5 /* Info.plist */,
 			);
-			path = "Polaroid Diary";
+			path = diaryToDo;
 			sourceTree = "<group>";
 		};
 		83608C3728B7C8CE00D79202 /* Font */ = {
@@ -296,9 +296,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		83354D9527DB51AE0096C7B5 /* Polaroid Diary */ = {
+		83354D9527DB51AE0096C7B5 /* diaryToDo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "Polaroid Diary" */;
+			buildConfigurationList = 83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "diaryToDo" */;
 			buildPhases = (
 				83354D9227DB51AE0096C7B5 /* Sources */,
 				83354D9327DB51AE0096C7B5 /* Frameworks */,
@@ -308,7 +308,7 @@
 			);
 			dependencies = (
 			);
-			name = "Polaroid Diary";
+			name = diaryToDo;
 			packageProductDependencies = (
 				83D512BB27F5B120009B3A23 /* FSCalendar */,
 				8390C3112829660200E8D57A /* Charts */,
@@ -316,7 +316,7 @@
 				8313331528BB665D00FFEF73 /* RealmSwift */,
 			);
 			productName = diaryToDo;
-			productReference = 83E7EC7028B87394004EBB03 /* Polaroid Diary.app */;
+			productReference = 83E7EC7028B87394004EBB03 /* diaryToDo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -334,7 +334,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83354D9127DB51AE0096C7B5 /* Build configuration list for PBXProject "Polaroid Diary" */;
+			buildConfigurationList = 83354D9127DB51AE0096C7B5 /* Build configuration list for PBXProject "diaryToDo" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -352,7 +352,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				83354D9527DB51AE0096C7B5 /* Polaroid Diary */,
+				83354D9527DB51AE0096C7B5 /* diaryToDo */,
 			);
 		};
 /* End PBXProject section */
@@ -582,8 +582,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D289277BWD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Ploaroid Diary/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Polaroid Diary";
+				INFOPLIST_FILE = diaryToDo/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "사진 및 동영상 촬영을 위한 카메라 사용 권한";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영 및 음성인식을 위한 권한 필요";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 및 동영상 첨부를 위한 앨범 사용 권한";
@@ -598,7 +597,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jcw.Polaroid-Diary";
+				PRODUCT_BUNDLE_IDENTIFIER = jcw.diaryToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -615,8 +614,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D289277BWD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Ploaroid Diary/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Polaroid Diary";
+				INFOPLIST_FILE = diaryToDo/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "사진 및 동영상 촬영을 위한 카메라 사용 권한";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영 및 음성인식을 위한 권한 필요";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 및 동영상 첨부를 위한 앨범 사용 권한";
@@ -631,7 +629,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jcw.Polaroid-Diary";
+				PRODUCT_BUNDLE_IDENTIFIER = jcw.diaryToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -642,7 +640,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		83354D9127DB51AE0096C7B5 /* Build configuration list for PBXProject "Polaroid Diary" */ = {
+		83354D9127DB51AE0096C7B5 /* Build configuration list for PBXProject "diaryToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83354DA827DB51AF0096C7B5 /* Debug */,
@@ -651,7 +649,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "Polaroid Diary" */ = {
+		83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "diaryToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83354DAB27DB51AF0096C7B5 /* Debug */,
