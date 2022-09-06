@@ -149,6 +149,7 @@ class DiaryViewController: UIViewController {
             }
             hashTagList.append("#\(diary.hashTag[i]), ")
         }
+        
         diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
         diaryHashTagLabel.text = hashTagList
         diaryPictureUIImage.image = diary.picture
@@ -169,8 +170,8 @@ class DiaryViewController: UIViewController {
         } else {
             if !MyDB.diaryItem.isEmpty {
                 let recentDiary = diaryList[diaryList.endIndex - 1]
-                selectedDate = recentDiary.date
                 showDiary(diary: recentDiary)
+                selectedDate = recentDiary.date
                 editDiary = recentDiary
                 deleteDiary = recentDiary
             } else {
@@ -203,15 +204,9 @@ class DiaryViewController: UIViewController {
     @IBAction func previousDiaryButton(_ sender: UIButton) {
         let sortedList = diaryList.sorted(by: { $0.date > $1.date })
         var previousDate: Date = selectedDate
-        var count = 0
         
         for data in sortedList {
             if selectedDate > data.date {
-                count += 1
-                if count == sortedList.count {
-                    print("이전 다이어리가 없습니다.")
-                    break
-                }
                 previousDate = data.date
                 break
             }

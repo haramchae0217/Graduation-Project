@@ -141,10 +141,19 @@ class ToDoViewController: UIViewController {
         notCheckedList = []
         
         for todo in toDoList {
-            if todo.startDate <= today && today <= todo.endDate {
+            if todo.startDate == today {
                 todayToDoList.append(todo)
+            } else {
+                if todo.startDate != todo.endDate {
+                    if todo.isChecked == false {
+                        if todo.startDate <= today && today <= todo.endDate {
+                            todayToDoList.append(todo)
+                        }
+                    }
+                }
             }
         }
+        
         distributeToDo()
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: today, type: dateFormatType)
         toDoTableView.reloadData()
