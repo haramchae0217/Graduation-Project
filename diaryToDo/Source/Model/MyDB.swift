@@ -30,15 +30,14 @@ class ToDoDB: Object {
     @Persisted var memo: String
     @Persisted var startDate: Date
     @Persisted var endDate: Date
-    @Persisted var isChecked: Bool
+    @Persisted var isChecked: Bool = false
     
-    convenience init(title: String, memo: String, startDate: Date, endDate: Date, isChecked: Bool) {
+    convenience init(title: String, memo: String, startDate: Date, endDate: Date) {
         self.init()
         self.title = title
         self.memo = memo
         self.startDate = startDate
         self.endDate = endDate
-        self.isChecked = isChecked
     }
 }
 
