@@ -24,15 +24,15 @@ class ToDoViewController: UIViewController {
     var todoDBList: [ToDoDB] = []
     let sectionList: [String] = ["미완료", "완료"]
     var toDoList = MyDB.toDoList
-    var todayToDoList: [ToDo] = []
-    var selectToDo: ToDo?
+    var todayToDoList: [ToDoDB] = []
+    var selectToDo: ToDoDB?
     var selectedDate: Date = Date()
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
     var dateFormatType: DateFormatType = .type1
     
-    var checkedList: [ToDo] = []
-    var notCheckedList: [ToDo] = []
+    var checkedList: [ToDoDB] = []
+    var notCheckedList: [ToDoDB] = []
     
     //MARK: ViewLifeCycle
     override func viewDidLoad() {
@@ -44,19 +44,14 @@ class ToDoViewController: UIViewController {
 //        configureEmptyView()
         configureTableView()
         configureCalendar()
-        
-        if !MyDB.toDoList.isEmpty {
-            selectedDate = toDoList[toDoList.endIndex - 1].startDate
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        toDoList = MyDB.toDoList
-        todoDBList = getToDo()
         configureDateFormat()
         configureFontAndFontSize()
+        todoDBList = getToDo()
         getTodayList(today: selectedDate)
         toDoTableView.reloadData()
         toDoCalendarView.reloadData()
@@ -136,21 +131,22 @@ class ToDoViewController: UIViewController {
         return localRealm.objects(ToDoDB.self).map { $0 }
     }
     
-    
-    
     func getTodayList(today: Date = Date()) {
         todayToDoList = []
         checkedList = []
         notCheckedList = []
         
+        let todayToString = DateFormatter.customDateFormatter.dateToString(date: today)
+        let todayToDate = DateFormatter.customDateFormatter.strToDate(str: todayToString)
+        
         for todo in todoDBList {
-            if todo.startDate == today {
-                
+            if todo.startDate == todayToDate {
+                todayToDoList.append(todo)
             } else {
                 if todo.startDate != todo.endDate {
                     if todo.isChecked == false {
-                        if todo.startDate <= today && today <= todo.endDate {
-                            
+                        if todo.startDate <= todayToDate && todayToDate <= todo.endDate {
+                            todayToDoList.append(todo)
                         }
                     }
                 }
@@ -158,7 +154,7 @@ class ToDoViewController: UIViewController {
         }
         
         distributeToDo()
-        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: today, type: dateFormatType)
+        todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todayToDate, type: dateFormatType)
         toDoTableView.reloadData()
     }
     
@@ -268,7 +264,7 @@ extension ToDoViewController: UITableViewDataSource {
             containerView.isHidden = true
         }
         
-        var todo: ToDo
+        var todo: ToDoDB
         
         if indexPath.section == 0 { // 미완료 항목
             todo = notCheckedList[indexPath.row]
@@ -299,7 +295,7 @@ extension ToDoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        var todo: ToDo
+        var todo: ToDoDB
         var row: IndexPath
         if indexPath.section == 0 {
             todo = notCheckedList[indexPath.row]
@@ -332,7 +328,7 @@ extension ToDoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let editToDoVC = self.storyboard?.instantiateViewController(withIdentifier: "AddToDoVC") as? AddToDoViewController else { return }
         
-        var todo: ToDo
+        var todo: ToDoDB
         var row: Int
         
         if indexPath.section == 0 {
@@ -357,11 +353,11 @@ extension ToDoViewController: UITableViewDelegate {
 
 extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for todo in MyDB.toDoList {
+        for todo in todoDBList {
             let toDoEvent = todo.startDate
             
             if toDoEvent == date {
-                let count = MyDB.toDoList.filter { todo in
+                let count = todoDBList.filter { todo in
                     todo.startDate == date
                 }.count
                 
@@ -379,7 +375,7 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         toDoCalendarView.isHidden.toggle()
         
-        todayToDoList = MyDB.toDoList.filter { toDo in
+        todayToDoList = todoDBList.filter { toDo in
             toDo.startDate == date
         }
         selectedDate = date

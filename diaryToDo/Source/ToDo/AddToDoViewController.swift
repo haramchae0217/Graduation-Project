@@ -33,7 +33,7 @@ class AddToDoViewController: UIViewController {
     
     let localRealm = try! Realm()
     
-    var editToDo: ToDo?
+    var editToDo: ToDoDB?
     var editRow: Int?
     var viewType: ToDoViewType = .add
     var allDayType: AllDayType = .yes
