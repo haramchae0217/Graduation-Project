@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import RealmSwift
 
 class DiaryViewController: UIViewController {
     
@@ -27,12 +28,13 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var deleteDiaryButton: UIButton!
     
     //MARK: Property
-    var filterHashTag: [Diary] = []
-    var editDiary: Diary?
-    var selectDiary: Diary?
-    var deleteDiary: Diary?
+    let localRealm = try! Realm()
+    var diaryDBList: [DiaryDB] = []
+    var filterHashTag: [DiaryDB] = []
+    var editDiary: DiaryDB?
+    var selectDiary: DiaryDB?
+    var deleteDiary: DiaryDB?
     var diaryType: DiaryType = .basic
-    var diaryList = MyDB.diaryItem
     var hashTagList: String = ""
     var selectedDate: Date = Date()
     var font: String = "Ownglyph ssojji"
@@ -53,13 +55,13 @@ class DiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if MyDB.selectDiary != nil {
+        if selectDiary != nil {
             diaryType = .search
         }
-        diaryList = MyDB.diaryItem
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
+        diaryDBList = getDiary()
         diaryViewType()
         diaryCalendarView.reloadData()
     }
@@ -139,9 +141,12 @@ class DiaryViewController: UIViewController {
         diaryContentLabel.isUserInteractionEnabled = true
     }
     
-    func showDiary(diary: Diary) {
+    func getDiary() -> [DiaryDB] {
+        return localRealm.objects(DiaryDB.self).map { $0 }
+    }
+    
+    func showDiary(diary: DiaryDB) {
         hashTagList = ""
-        
         for i in 0..<diary.hashTag.count {
             if i == diary.hashTag.count - 1 {
                 hashTagList.append("#\(diary.hashTag[i])")
@@ -149,17 +154,15 @@ class DiaryViewController: UIViewController {
             }
             hashTagList.append("#\(diary.hashTag[i]), ")
         }
-        
         diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
         diaryHashTagLabel.text = hashTagList
         diaryPictureUIImage.image = diary.picture
         diaryContentLabel.text = diary.content
-        
     }
     
     //MARK: ETC
     func diaryViewType() {
-        diaryList = MyDB.diaryItem
+        diaryDBList = getDiary()
         if diaryType == .search {
             selectDiary = MyDB.selectDiary
             guard let selectDiary = selectDiary else { return }
@@ -168,8 +171,8 @@ class DiaryViewController: UIViewController {
             editDiary = selectDiary
             deleteDiary = selectDiary
         } else {
-            if !MyDB.diaryItem.isEmpty {
-                let recentDiary = diaryList[diaryList.endIndex - 1]
+            if !diaryDBList.isEmpty {
+                let recentDiary = diaryDBList[diaryDBList.endIndex - 1]
                 showDiary(diary: recentDiary)
                 selectedDate = recentDiary.date
                 editDiary = recentDiary
@@ -202,7 +205,7 @@ class DiaryViewController: UIViewController {
     }
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
-        let sortedList = diaryList.sorted(by: { $0.date > $1.date })
+        let sortedList = diaryDBList.sorted(by: { $0.date > $1.date })
         var previousDate: Date = selectedDate
         
         for data in sortedList {
@@ -227,14 +230,14 @@ class DiaryViewController: UIViewController {
     @IBAction func nextDiaryButton(_ sender: UIButton) {
         var nextDate: Date = selectedDate
         
-        for data in diaryList {
+        for data in diaryDBList {
             if selectedDate < data.date {
                 nextDate = data.date
                 break
             }
         }
         
-        for data in diaryList {
+        for data in diaryDBList {
             if nextDate == data.date {
                 showDiary(diary: data)
                 editDiary = data
@@ -285,11 +288,11 @@ class DiaryViewController: UIViewController {
 
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for diary in MyDB.diaryItem {
+        for diary in diaryDBList {
             let diaryEvent = diary.date
             
             if diaryEvent == date {
-                let count = MyDB.diaryItem.filter { diary in
+                let count = diaryDBList.filter { diary in
                     diary.date == date
                 }.count
                 
@@ -307,7 +310,7 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         diaryCalendarView.isHidden.toggle()
         
-        let diaryList = MyDB.diaryItem.filter { diary in
+        let diaryList = diaryDBList.filter { diary in
             diary.date == date
         }
         

@@ -6,18 +6,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchDiaryViewController: UIViewController {
 
     @IBOutlet weak var searchTableView: UITableView!
     
-    var searchDiary: [Diary] = [] {
+    var searchDiary: [DiaryDB] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.searchTableView.reloadData()
             }
         }
     }
+    let localRealm = try! Realm()
+    var diaryDBList: [DiaryDB] = []
     var dateFormatType: DateFormatType = .type1
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
@@ -80,6 +83,10 @@ class SearchDiaryViewController: UIViewController {
         definesPresentationContext = true // 다른 뷰컨으로 이동시 search bar가 화면에 남아있지 않게 함.
     }
     
+    func getDiary() -> [DiaryDB] {
+        return localRealm.objects(DiaryDB.self).map { $0 }
+    }
+    
 }
 
 extension SearchDiaryViewController: UITableViewDataSource {
@@ -139,7 +146,7 @@ extension SearchDiaryViewController: UISearchBarDelegate {
 extension SearchDiaryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
-            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
+            searchDiary = DiaryDB.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
 //            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(text) }
             print("검색창 : \(text)")
             print("검색결과 : \(searchDiary)")

@@ -135,23 +135,17 @@ class AddToDoViewController: UIViewController {
             }
         }
         
-        let toDo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
+        let todo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
         
         if viewType == .add {
-            addToDo(todo: toDo)
+            addToDo(todo: todo)
         } else {
             if let editToDo = editToDo {
-                var index = 0
-                for data in MyDB.toDoList {
-                    index += 1
-                    if (data.title == editToDo.title && data.memo == editToDo.memo && data.startDate == editToDo.startDate && data.endDate == editToDo.endDate) {
-                        
-                    }
-                }
+                
             }
         }
         MyDB.toDoList = MyDB.toDoList.sorted(by: { $0.startDate < $1.startDate })
-//        MyDB.selectToDo = ToDoDB
+        MyDB.selectToDo = todo
         self.navigationController?.popViewController(animated: true)
     }
     
