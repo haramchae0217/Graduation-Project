@@ -21,7 +21,7 @@ class ToDoViewController: UIViewController {
     
     //MARK: Property
     let localRealm = try! Realm()
-    var todoDbList: [ToDoDB] = []
+    var todoDBList: [ToDoDB] = []
     let sectionList: [String] = ["미완료", "완료"]
     var toDoList = MyDB.toDoList
     var todayToDoList: [ToDo] = []
@@ -54,15 +54,12 @@ class ToDoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         toDoList = MyDB.toDoList
+        todoDBList = getToDo()
         configureDateFormat()
         configureFontAndFontSize()
         getTodayList(today: selectedDate)
         toDoTableView.reloadData()
         toDoCalendarView.reloadData()
-    }
-    
-    func getToDo() -> [ToDoDB] {
-        return localRealm.objects(ToDoDB.self).map { $0 }
     }
     
     func configureDateFormat() {
@@ -135,19 +132,25 @@ class ToDoViewController: UIViewController {
         toDoCalendarView.appearance.selectionColor = .systemBlue
     }
     
+    func getToDo() -> [ToDoDB] {
+        return localRealm.objects(ToDoDB.self).map { $0 }
+    }
+    
+    
+    
     func getTodayList(today: Date = Date()) {
         todayToDoList = []
         checkedList = []
         notCheckedList = []
         
-        for todo in toDoList {
+        for todo in todoDBList {
             if todo.startDate == today {
-                todayToDoList.append(todo)
+                
             } else {
                 if todo.startDate != todo.endDate {
                     if todo.isChecked == false {
                         if todo.startDate <= today && today <= todo.endDate {
-                            todayToDoList.append(todo)
+                            
                         }
                     }
                 }
@@ -197,7 +200,7 @@ class ToDoViewController: UIViewController {
     }
     
     @IBAction func previousToDoButton(_ sender: UIButton) {
-        let sortedList = MyDB.toDoList.sorted(by: { $0.startDate > $1.startDate })
+        let sortedList = todoDBList.sorted(by: { $0.startDate > $1.startDate })
         
         // 현재 selectedDate를 기준으로 가장 가까운 이전 날짜 가져오기
         for data in sortedList {
@@ -212,7 +215,7 @@ class ToDoViewController: UIViewController {
     
     @IBAction func nextToDoButton(_ sender: UIButton) {
         // 현재 selectedDate를 기준으로 가장 가까운 다음 날짜 가져오기
-        for data in toDoList {
+        for data in todoDBList {
             if selectedDate < data.startDate {
                 selectedDate = data.startDate
                 break
@@ -259,7 +262,7 @@ extension ToDoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
         
-        if toDoList.isEmpty {
+        if todoDBList.isEmpty {
             containerView.isHidden = false
         } else {
             containerView.isHidden = true
@@ -305,8 +308,6 @@ extension ToDoViewController: UITableViewDataSource {
             todo = checkedList[indexPath.row]
             row = indexPath
         }
-        print(todo)
-        print(indexPath.row)
         
         if editingStyle == .delete {
             MyDB.toDoList.removeAll { data in

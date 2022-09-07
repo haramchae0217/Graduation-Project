@@ -79,7 +79,6 @@ class AddToDoViewController: UIViewController {
         configureFontAndFontSize()
     }
     
-    
     func configureFontAndFontSize() {
         for data in MyDB.fontSizeList {
             if data.isSelected {
@@ -106,6 +105,12 @@ class AddToDoViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
+    func addToDo(todo: ToDoDB) {
+        try! localRealm.write {
+            localRealm.add(todo)
+        }
+    }
+    
     @objc func addToDoButton() {
         let title = addTitleTextField.text!
         let memo = addMemoTextField.text!
@@ -130,23 +135,23 @@ class AddToDoViewController: UIViewController {
             }
         }
         
-        let toDo = ToDo(title: title, memo: memo, startDate: startDate, endDate: endDate)
+        let toDo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
         
         if viewType == .add {
-            MyDB.toDoList.append(toDo)
+            addToDo(todo: toDo)
         } else {
             if let editToDo = editToDo {
                 var index = 0
                 for data in MyDB.toDoList {
                     index += 1
                     if (data.title == editToDo.title && data.memo == editToDo.memo && data.startDate == editToDo.startDate && data.endDate == editToDo.endDate) {
-                        MyDB.toDoList[index - 1] = toDo
+                        
                     }
                 }
             }
         }
         MyDB.toDoList = MyDB.toDoList.sorted(by: { $0.startDate < $1.startDate })
-        MyDB.selectToDo = toDo
+//        MyDB.selectToDo = ToDoDB
         self.navigationController?.popViewController(animated: true)
     }
     
