@@ -22,10 +22,9 @@ class ToDoViewController: UIViewController {
     //MARK: Property
     let localRealm = try! Realm()
     var todoDBList: [ToDoDB] = []
-    let sectionList: [String] = ["미완료", "완료"]
-    var toDoList = MyDB.toDoList
     var todayToDoList: [ToDoDB] = []
     var selectToDo: ToDoDB?
+    let sectionList: [String] = ["미완료", "완료"]
     var selectedDate: Date = Date()
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
@@ -184,7 +183,7 @@ class ToDoViewController: UIViewController {
         var toDoListIndex = 0
         todayToDoList[index].isChecked.toggle()
         
-        for data in MyDB.toDoList {
+        for data in todoDBList {
             toDoListIndex += 1
             if (data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate ) {
                 MyDB.toDoList[toDoListIndex - 1].isChecked.toggle()
@@ -306,11 +305,7 @@ extension ToDoViewController: UITableViewDataSource {
         }
         
         if editingStyle == .delete {
-            MyDB.toDoList.removeAll { data in
-                data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate
-            }
-            tableView.deleteRows(at: [row], with: .fade)
-            getTodayList()
+            
         }
     }
 }
