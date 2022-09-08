@@ -50,6 +50,7 @@
 		837C4F1027DC360000FC46A7 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0F27DC360000FC46A7 /* ToDo.swift */; };
 		8390C3122829660200E8D57A /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 8390C3112829660200E8D57A /* Charts */; };
 		8390C3142829663A00E8D57A /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8390C3132829663A00E8D57A /* GraphViewController.swift */; };
+		83BB1C2328C98F0700376429 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BB1C2228C98F0700376429 /* UserDefaults.swift */; };
 		83C0269E28424BFB00511B7F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C0269D28424BFB00511B7F /* SearchTableViewCell.swift */; };
 		83C026A028424C2B00511B7F /* SearchDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C0269F28424C2B00511B7F /* SearchDiaryViewController.swift */; };
 		83D512BC27F5B120009B3A23 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 83D512BB27F5B120009B3A23 /* FSCalendar */; };
@@ -115,6 +116,7 @@
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837C4F0F27DC360000FC46A7 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		8390C3132829663A00E8D57A /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = diaryToDo/Source/ToDo/GraphViewController.swift; sourceTree = SOURCE_ROOT; };
+		83BB1C2228C98F0700376429 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		83C0269D28424BFB00511B7F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		83C0269F28424C2B00511B7F /* SearchDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDiaryViewController.swift; sourceTree = "<group>"; };
 		83D512BF27F5C368009B3A23 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = diaryToDo/Resource/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -282,6 +284,7 @@
 		83FDF01A27F2D7EE008E45E3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				83BB1C2228C98F0700376429 /* UserDefaults.swift */,
 				8300692927F9F16400BDD784 /* MyDB.swift */,
 				83FDF01D27F2EA33008E45E3 /* Diary.swift */,
 				837C4F0F27DC360000FC46A7 /* ToDo.swift */,
@@ -404,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83BB1C2328C98F0700376429 /* UserDefaults.swift in Sources */,
 				83D512D827F5EF26009B3A23 /* Film.swift in Sources */,
 				837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */,
 				83D512C427F5C3E7009B3A23 /* FontSizeSettingViewController.swift in Sources */,

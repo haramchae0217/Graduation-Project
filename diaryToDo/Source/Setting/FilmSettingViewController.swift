@@ -6,14 +6,14 @@
 //
 
 import UIKit
+import UniformTypeIdentifiers
 
 class FilmSettingViewController: UIViewController {
     
     @IBOutlet weak var filmTableView: UITableView!
     @IBOutlet weak var filmLabel: UILabel!
     
-    var filmList = MyDB.filmList
-    var selectedFilm: FilmType = .film1
+    var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.film1, false), (.film2, false), (.film3, false), (.film4, false)]
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
     
@@ -26,12 +26,26 @@ class FilmSettingViewController: UIViewController {
         
         configureTableView()
         configureRightBarButton()
+        configureFilmType()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configureFontAndFontSize()
+    }
+    
+    func configureFilmType() {
+        // UserDefault에 'film'이라는 키 값에 저장된 값을 꺼내와 filmType에 저장
+        let filmType = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "film1"
+        
+        // 위에 선언한 filmList에 filmType과 일치하는 것만 true로 변경
+        for i in 0..<filmList.count {
+            if  filmList[i].filmName.rawValue == filmType {
+                filmList[i].isSelected = true
+                break
+            }
+        }
     }
     
     func configureFontAndFontSize() {
@@ -88,13 +102,8 @@ class FilmSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        var dbData = ""
+        let dbData = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "film1"
         var selectData = ""
-        for data in MyDB.filmList {
-            if data.isSelected {
-                dbData = data.filmName.rawValue
-            }
-        }
         
         for data in filmList {
             if data.isSelected {
@@ -108,6 +117,12 @@ class FilmSettingViewController: UIViewController {
             let cancelButton = UIAlertAction(title: "취소", style: .cancel)
             let editButton = UIAlertAction(title: "변경", style: .destructive) { _ in
                 MyDB.filmList = self.filmList
+                
+                for film in self.filmList {
+                    if film.isSelected {
+                        UserDefaults.standard.set(film.filmName.rawValue, forKey: SettingType.film.rawValue)
+                    }
+                }
                 self.navigationController?.popViewController(animated: true)
             }
             settingEdit.addAction(cancelButton)

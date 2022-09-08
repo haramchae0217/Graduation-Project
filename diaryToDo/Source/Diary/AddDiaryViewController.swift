@@ -156,19 +156,13 @@ class AddDiaryViewController: UIViewController {
                 return
             }
         }
-        let diary = Diary(content: content, hashTag: filterHashTag, date: date, picture: picture)
+        let diary = DiaryDB(content: content, hashTag: filterHashTag, date: date, picture: picture)
         
         if viewType == .add {
-            MyDB.diaryItem.append(diary)
+            
         } else {
             if let editDiary = editDiary {
-                var index = 0
-                for data in MyDB.diaryItem {
-                    index += 1
-                    if (data.content == editDiary.content && data.hashTag == editDiary.hashTag && data.date == editDiary.date && data.picture == editDiary.picture) {
-                        MyDB.diaryItem[index - 1] = diary
-                    }
-                }
+                
             }
         }
         MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })

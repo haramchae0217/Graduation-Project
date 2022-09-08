@@ -84,13 +84,8 @@ class DiaryViewController: UIViewController {
     }
     
     func configureFilmImage() {
-        for data in MyDB.filmList {
-            if data.isSelected {
-                let filmName = data.filmName.rawValue
-                diaryFilmImage.image = UIImage(named: filmName)
-                break
-            }
-        }
+        let filmName = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "film1"
+        diaryFilmImage.image = UIImage(named: filmName)
     }
     
     func configureFontAndFontSize() {
