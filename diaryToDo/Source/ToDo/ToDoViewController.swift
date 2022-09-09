@@ -26,8 +26,8 @@ class ToDoViewController: UIViewController {
     var selectToDo: ToDoDB?
     let sectionList: [String] = ["미완료", "완료"]
     var selectedDate: Date = Date()
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     var dateFormatType: String = ""
     
     var checkedList: [ToDoDB] = []
@@ -36,13 +36,10 @@ class ToDoViewController: UIViewController {
     //MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        title = "투두"
-        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         
 //        configureEmptyView()
+        configureNavigationController()
         configureTableView()
-        configureCalendar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,10 +47,18 @@ class ToDoViewController: UIViewController {
         
         configureDateFormat()
         configureFontAndFontSize()
+        configureCalendar()
+        
         todoDBList = getToDo()
         getTodayList(today: selectedDate)
+        
         toDoTableView.reloadData()
         toDoCalendarView.reloadData()
+    }
+    
+    func configureNavigationController() {
+        title = "투두"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
     }
     
     func configureDateFormat() {
@@ -62,20 +67,10 @@ class ToDoViewController: UIViewController {
     }
     
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                todoDateLabel.font = UIFont(name: font, size: fontSize)
-                break
-            }
-        }
+        todoDateLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureEmptyView() {
@@ -123,6 +118,7 @@ class ToDoViewController: UIViewController {
     }
     
     func getToDo() -> [ToDoDB] {
+        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         return localRealm.objects(ToDoDB.self).map { $0 }
     }
     
@@ -180,11 +176,7 @@ class ToDoViewController: UIViewController {
         todayToDoList[index].isChecked.toggle()
         
         for data in todoDBList {
-            toDoListIndex += 1
-            if (data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate ) {
-                todoDBList[toDoListIndex - 1].isChecked.toggle()
-                break
-            }
+            // isChecked bool값 변경
         }
         
         toDoTableView.reloadData()
@@ -226,7 +218,6 @@ class ToDoViewController: UIViewController {
         guard let graphVC = self.storyboard?.instantiateViewController(withIdentifier: "GraphVC") as? GraphViewController else { return }
         self.navigationController?.pushViewController(graphVC, animated: true)
     }
-    
     
     @objc func checkToDoButton(_ sender: UIButton) {
         toggleAndReload(index: sender.tag)
