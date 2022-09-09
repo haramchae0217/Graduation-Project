@@ -12,18 +12,14 @@ class FontSizeSettingViewController: UIViewController {
     @IBOutlet weak var fontSizeTableView: UITableView!
     @IBOutlet weak var fontSizeLabel: UILabel!
     
-    var fontSizeList = MyDB.fontSizeList
-    var selectedFontSize: FontSize = .작게
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
-    
+    var fontSizeList: [(fontSize: FontSize, isSelected: Bool)] = [(.아주작게, false), (.작게, false), (.중간, false), (.크게, false), (.아주크게, false)]
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "글씨 크기 설정"
-        
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
 
+        configureNavigationController()
         configureTableView()
         configureRightBarButton()
     }
@@ -34,21 +30,24 @@ class FontSizeSettingViewController: UIViewController {
         configureFontAndFontSize()
     }
     
+    func configureNavigationController() {
+        title = "글씨 크기 설정"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+    }
+    
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        
+        for i in 0..<fontSizeList.count {
+            if fontSizeList[i].fontSize.rawValue == fontSize {
+                fontSizeList[i].isSelected = true
                 break
             }
         }
         
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                fontSizeLabel.font = UIFont(name: font, size: fontSize)
-                break
-            }
-        }
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+        
+        fontSizeLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureTableView() {
@@ -83,26 +82,28 @@ class FontSizeSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        var dbData = ""
-        var selectData = ""
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                dbData = "\(data.fontSize)"
-            }
-        }
+        let dbData = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        var selectData: CGFloat = 0
         
         for data in fontSizeList {
             if data.isSelected {
-                selectData = "\(data.fontSize)"
+                selectData = data.fontSize.rawValue
             }
         }
+        
         if dbData == selectData {
             UIAlertController.warningAlert(message: "변동사항이 없습니다.", viewController: self)
         } else {
             let settingEdit = UIAlertController(title: "⚠️", message: "설정을 변경하시겠습니까?", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "취소", style: .cancel)
             let editButton = UIAlertAction(title: "변경", style: .destructive) { _ in
-                MyDB.fontSizeList = self.fontSizeList
+                
+                for fontSize in self.fontSizeList {
+                    if fontSize.isSelected {
+                        UserDefaults.standard.set(fontSize.fontSize.rawValue, forKey: SettingType.fontSize.rawValue)
+                    }
+                }
+                
                 self.navigationController?.popViewController(animated: true)
             }
             settingEdit.addAction(cancelButton)
