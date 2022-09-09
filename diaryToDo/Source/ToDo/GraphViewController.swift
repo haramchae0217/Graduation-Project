@@ -36,17 +36,15 @@ class GraphViewController: UIViewController {
     var todayDate: Date = Date()
     var monthInfo: Int = 0
     var weekInfo: Int = 0
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     var dateFormatType: String = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "투두 그래프"
-        
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+        configureNavigationController()
         appendDate(date: todayDate)
         configureCalendar()
     }
@@ -56,8 +54,15 @@ class GraphViewController: UIViewController {
         
         configureDateFormat()
         configureFontAndFontSize()
+        
         todoDBList = getToDo()
+        
         calendarView.reloadData()
+    }
+    
+    func configureNavigationController() {
+        title = "투두 그래프"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
     }
     
     func configureDateFormat() {
@@ -66,19 +71,8 @@ class GraphViewController: UIViewController {
     }
     
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
-        
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     }
     
     func getToDo() -> [ToDoDB] {
