@@ -23,5 +23,3 @@ class Settings {
     
     private init() { }
 }
-
-//let ud = UserDefaults
