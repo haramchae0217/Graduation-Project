@@ -12,21 +12,16 @@ class FontSettingViewController: UIViewController {
     @IBOutlet weak var fontTableView: UITableView!
     @IBOutlet weak var fontLabel: UILabel!
     
-    var fontList = MyDB.fontList
-    var selectedFont: FontName = .name1
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var fontList: [(fontName: FontName, isSelected: Bool)] = [(.name1, false), (.name2, false), (.name3, false), (.name4, false), (.name5, false), (.name6, false), (.name7, false), (.name8, false), (.name9, false), (.name10, false), (.name11, false), (.name12, false), (.name13, false), (.name14, false), (.name15, false), (.name16, false), (.name17, false), (.name18, false), (.name19, false), (.name20, false), (.name21, false), (.name22, false), (.name23, false), (.name24, false), (.name25, false)]
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "글꼴 설정"
-        
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
-        
+        configureNavigationController()
         configureTableView()
         configureRightBarButton()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,21 +30,22 @@ class FontSettingViewController: UIViewController {
         configureFontAndFontSize()
     }
     
+    func configureNavigationController() {
+        title = "글꼴 설정"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+    }
+    
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                fontLabel.font = UIFont(name: font, size: fontSize)
+        for i in 0..<fontList.count {
+            if fontList[i].fontName.rawValue == font {
+                fontList[i].isSelected = true
                 break
             }
         }
+        fontLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureTableView() {
@@ -84,26 +80,28 @@ class FontSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        var dbData = ""
+        let dbData = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         var selectData = ""
-        for data in MyDB.fontList {
-            if data.isSelected {
-                dbData = data.fontName.rawValue
-            }
-        }
         
         for data in fontList {
             if data.isSelected {
                 selectData = data.fontName.rawValue
             }
         }
+        
         if dbData == selectData {
             UIAlertController.warningAlert(message: "변동사항이 없습니다.", viewController: self)
         } else {
             let settingEdit = UIAlertController(title: "⚠️", message: "설정을 변경하시겠습니까?", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "취소", style: .cancel)
             let editButton = UIAlertAction(title: "변경", style: .destructive) { _ in
-                MyDB.fontList = self.fontList
+                
+                for font in self.fontList {
+                    if font.isSelected {
+                        UserDefaults.standard.set(font.fontName.rawValue, forKey: SettingType.font.rawValue)
+                    }
+                }
+                
                 self.navigationController?.popViewController(animated: true)
             }
             settingEdit.addAction(cancelButton)
