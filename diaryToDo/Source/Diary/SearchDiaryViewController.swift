@@ -22,15 +22,13 @@ class SearchDiaryViewController: UIViewController {
     let localRealm = try! Realm()
     var diaryDBList: [DiaryDB] = []
     var dateFormatType: String = ""
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "다이어리 검색"
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
-
+        configureNavigationController()
         configureTableView()
         configureSearchBar()
     }
@@ -42,25 +40,19 @@ class SearchDiaryViewController: UIViewController {
         configureFontAndFontSize()
     }
     
+    func configureNavigationController() {
+        title = "다이어리 검색"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+    }
+    
     func configureDateFormat() {
         let dateType = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
         dateFormatType = dateType
     }
     
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
-        
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     }
     
     func configureTableView() {
@@ -127,15 +119,8 @@ extension SearchDiaryViewController: UITableViewDelegate {
 }
 
 extension SearchDiaryViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchTableView.reloadData()
-    }
-    
-    
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchDiary = []
-        searchTableView.reloadData()
     }
 }
 
