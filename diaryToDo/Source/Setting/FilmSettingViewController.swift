@@ -14,25 +14,22 @@ class FilmSettingViewController: UIViewController {
     @IBOutlet weak var filmLabel: UILabel!
     
     var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.film1, false), (.film2, false), (.film3, false), (.film4, false)]
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "필름 설정"
-
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
-        
+        configureNavigationController()
         configureTableView()
         configureRightBarButton()
         configureFilmType()
+        configureFontAndFontSize()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        configureFontAndFontSize()
+    func configureNavigationController() {
+        title = "필름 설정"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
     }
     
     func configureFilmType() {
@@ -41,7 +38,7 @@ class FilmSettingViewController: UIViewController {
         
         // 위에 선언한 filmList에 filmType과 일치하는 것만 true로 변경
         for i in 0..<filmList.count {
-            if  filmList[i].filmName.rawValue == filmType {
+            if filmList[i].filmName.rawValue == filmType {
                 filmList[i].isSelected = true
                 break
             }
@@ -49,20 +46,10 @@ class FilmSettingViewController: UIViewController {
     }
     
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                filmLabel.font = UIFont(name: font, size: fontSize)
-                break
-            }
-        }
+        filmLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureTableView() {
@@ -123,6 +110,7 @@ class FilmSettingViewController: UIViewController {
                         UserDefaults.standard.set(film.filmName.rawValue, forKey: SettingType.film.rawValue)
                     }
                 }
+                
                 self.navigationController?.popViewController(animated: true)
             }
             settingEdit.addAction(cancelButton)
