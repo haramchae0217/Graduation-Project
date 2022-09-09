@@ -22,9 +22,9 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
     @IBOutlet weak var plusLabel: UILabel!
     
-    var diaryList = MyDB.diaryItem
+//    var diaryList = MyDB.diaryItem
     let imagePicker = UIImagePickerController()
-    var editDiary: Diary?
+    var editDiary: DiaryDB?
     var viewType: DiaryViewType = .add
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
@@ -42,7 +42,7 @@ class AddDiaryViewController: UIViewController {
             if let editDiary = editDiary {
                 var hashtag: String = ""
                 plusLabel.isHidden = true
-                addDiaryImageView.image = editDiary.picture
+//                addDiaryImageView.image = editDiary.picture
                 addDiaryDatePicker.date = editDiary.date
                 addDiaryContentTextView.text = editDiary.content
                 addDiaryContentTextView.textColor = .label
@@ -151,12 +151,12 @@ class AddDiaryViewController: UIViewController {
         }
         
         if let editDiary = editDiary {
-            if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.picture == picture && editDiary.date == date {
-                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
-                return
-            }
+//            if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.date == date {
+//                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+//                return
+//            }
         }
-        let diary = DiaryDB(content: content, hashTag: filterHashTag, date: date, picture: picture)
+//        let diary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
         
         if viewType == .add {
             
@@ -165,8 +165,8 @@ class AddDiaryViewController: UIViewController {
                 
             }
         }
-        MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
-        MyDB.selectDiary = diary
+//        MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
+//        MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }
     

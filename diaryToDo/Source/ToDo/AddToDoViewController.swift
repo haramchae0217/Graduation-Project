@@ -144,7 +144,7 @@ class AddToDoViewController: UIViewController {
                 
             }
         }
-        MyDB.toDoList = MyDB.toDoList.sorted(by: { $0.startDate < $1.startDate })
+//        MyDB.toDoList = MyDB.toDoList.sorted(by: { $0.startDate < $1.startDate })
         MyDB.selectToDo = todo
         self.navigationController?.popViewController(animated: true)
     }

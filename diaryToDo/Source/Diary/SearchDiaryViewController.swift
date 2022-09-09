@@ -21,7 +21,7 @@ class SearchDiaryViewController: UIViewController {
     }
     let localRealm = try! Realm()
     var diaryDBList: [DiaryDB] = []
-    var dateFormatType: DateFormatType = .type1
+    var dateFormatType: String = ""
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
     
@@ -43,12 +43,8 @@ class SearchDiaryViewController: UIViewController {
     }
     
     func configureDateFormat() {
-        for data in MyDB.dateFormatList {
-            if data.isSelected {
-                dateFormatType = data.dateformatType
-                break
-            }
-        }
+        let dateType = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
+        dateFormatType = dateType
     }
     
     func configureFontAndFontSize() {
@@ -108,7 +104,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
             hashtags.append("#\(searchData.hashTag[i]), ")
         }
         
-        cell.diaryImage.image = searchData.picture
+//        cell.diaryImage.image = searchData.picture
         cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date, type: dateFormatType)
         cell.diaryDate.font = UIFont(name: font, size: fontSize)
         cell.diaryHashTag.text = "\(hashtags)"
@@ -146,7 +142,7 @@ extension SearchDiaryViewController: UISearchBarDelegate {
 extension SearchDiaryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
-            searchDiary = DiaryDB.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
+//            searchDiary = DiaryDB.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
 //            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(text) }
             print("검색창 : \(text)")
             print("검색결과 : \(searchDiary)")

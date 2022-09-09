@@ -8,6 +8,7 @@
 import UIKit
 import Charts
 import FSCalendar
+import RealmSwift
 
 enum Weekday: Int {
     case monday = 1
@@ -25,8 +26,10 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var calendarInfo: UILabel!
     
-    var calendarList: [ToDo] = []
-    var weekTodoList: [ToDo] = []
+    let localRealm = try! Realm()
+    var todoDBList: [ToDoDB] = []
+    var calendarList: [ToDoDB] = []
+    var weekTodoList: [ToDoDB] = []
     var checkCount: [Double] = []
     var dates: [Date] = []
     var strDates: [String] = []
@@ -35,7 +38,7 @@ class GraphViewController: UIViewController {
     var weekInfo: Int = 0
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
-    var dateFormatType: DateFormatType = .type1
+    var dateFormatType: String = ""
     
     
     override func viewDidLoad() {
@@ -53,16 +56,13 @@ class GraphViewController: UIViewController {
         
         configureDateFormat()
         configureFontAndFontSize()
+        todoDBList = getToDo()
         calendarView.reloadData()
     }
     
     func configureDateFormat() {
-        for data in MyDB.dateFormatList {
-            if data.isSelected {
-                dateFormatType = data.dateformatType
-                break
-            }
-        }
+        let dateType = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
+        dateFormatType = dateType
     }
     
     func configureFontAndFontSize() {
@@ -79,6 +79,10 @@ class GraphViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    func getToDo() -> [ToDoDB] {
+        return localRealm.objects(ToDoDB.self).map { $0 }
     }
     
     func appendDate(date: Date) {
@@ -123,7 +127,7 @@ class GraphViewController: UIViewController {
         weekTodoList = []
         
         for weekday in datas {
-            for everydate in MyDB.toDoList {
+            for everydate in todoDBList {
                 print(weekday,everydate.startDate)
                 if DateFormatter.customDateFormatter.dateToStr(date: weekday, type: dateFormatType) == DateFormatter.customDateFormatter.dateToStr(date: everydate.startDate, type: dateFormatType) {
                     weekTodoList.append(everydate)
@@ -193,11 +197,11 @@ class GraphViewController: UIViewController {
 
 extension GraphViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        for todo in MyDB.toDoList {
+        for todo in todoDBList {
             let toDoEvent = todo.startDate
             
             if toDoEvent == date {
-                let count = MyDB.toDoList.filter { todo in
+                let count = todoDBList.filter { todo in
                     todo.startDate == date
                 }.count
                 
@@ -213,7 +217,7 @@ extension GraphViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        calendarList = MyDB.toDoList.filter { toDo in toDo.startDate == date }
+        calendarList = todoDBList.filter { toDo in toDo.startDate == date }
         
         if Calendar.current.component(.weekOfMonth, from: date) != weekInfo {
             appendDate(date: date)

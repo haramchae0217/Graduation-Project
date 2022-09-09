@@ -28,7 +28,7 @@ class ToDoViewController: UIViewController {
     var selectedDate: Date = Date()
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
-    var dateFormatType: DateFormatType = .type1
+    var dateFormatType: String = ""
     
     var checkedList: [ToDoDB] = []
     var notCheckedList: [ToDoDB] = []
@@ -57,12 +57,8 @@ class ToDoViewController: UIViewController {
     }
     
     func configureDateFormat() {
-        for data in MyDB.dateFormatList {
-            if data.isSelected {
-                dateFormatType = data.dateformatType
-                break
-            }
-        }
+        let dateType = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
+        dateFormatType = dateType
     }
     
     func configureFontAndFontSize() {
@@ -186,7 +182,7 @@ class ToDoViewController: UIViewController {
         for data in todoDBList {
             toDoListIndex += 1
             if (data.title == todo.title && data.memo == todo.memo && data.startDate == todo.startDate && data.endDate == todo.endDate ) {
-                MyDB.toDoList[toDoListIndex - 1].isChecked.toggle()
+                todoDBList[toDoListIndex - 1].isChecked.toggle()
                 break
             }
         }

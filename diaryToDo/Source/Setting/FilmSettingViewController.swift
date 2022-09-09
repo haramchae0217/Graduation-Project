@@ -110,13 +110,13 @@ class FilmSettingViewController: UIViewController {
                 selectData = data.filmName.rawValue
             }
         }
+        
         if dbData == selectData {
             UIAlertController.warningAlert(message: "변동사항이 없습니다.", viewController: self)
         } else {
             let settingEdit = UIAlertController(title: "⚠️", message: "설정을 변경하시겠습니까?", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "취소", style: .cancel)
             let editButton = UIAlertAction(title: "변경", style: .destructive) { _ in
-                MyDB.filmList = self.filmList
                 
                 for film in self.filmList {
                     if film.isSelected {

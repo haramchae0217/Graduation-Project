@@ -12,11 +12,9 @@ class DateFormatSettingViewController: UIViewController {
     @IBOutlet weak var dateFormatTableView: UITableView!
     @IBOutlet weak var dateFormatLabel: UILabel!
     
-    var dateList = MyDB.dateFormatList
-    var selectedDateFormat: DateFormatType = .type1
+    var dateTypeList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, false), (.type2, false), (.type3, true), (.type4, false), (.type5, false)]
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
-    var dateFormatType: DateFormatType = .type1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +36,11 @@ class DateFormatSettingViewController: UIViewController {
     }
     
     func configureDateFormat() {
-        for data in MyDB.dateFormatList {
-            if data.isSelected {
-                dateFormatType = data.dateformatType
+        let dateFormatType = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
+        
+        for i in 0..<dateTypeList.count {
+            if dateTypeList[i].dateformatType.rawValue == dateFormatType {
+                dateTypeList[i].isSelected = true
                 break
             }
         }
@@ -74,13 +74,13 @@ class DateFormatSettingViewController: UIViewController {
     }
     
     func toggleAndReload(index: Int) {
-        for i in 0..<dateList.count {
+        for i in 0..<dateTypeList.count {
             if index == i {
-                if !dateList[i].isSelected {
-                    dateList[i].isSelected.toggle()
+                if !dateTypeList[i].isSelected {
+                    dateTypeList[i].isSelected.toggle()
                 }
             } else {
-                dateList[i].isSelected = false
+                dateTypeList[i].isSelected = false
             }
         }
         dateFormatTableView.reloadData()
@@ -95,26 +95,27 @@ class DateFormatSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        var dbData = ""
+        var dbData = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
         var selectData = ""
-        for data in MyDB.dateFormatList {
-            if data.isSelected {
-                dbData = data.dateformatType.rawValue
-            }
-        }
         
-        for data in dateList {
+        for data in dateTypeList {
             if data.isSelected {
                 selectData = data.dateformatType.rawValue
             }
         }
+        
         if dbData == selectData {
             UIAlertController.warningAlert(message: "변동사항이 없습니다.", viewController: self)
         } else {
             let settingEdit = UIAlertController(title: "⚠️", message: "설정을 변경하시겠습니까?", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "취소", style: .cancel)
             let editButton = UIAlertAction(title: "변경", style: .destructive) { _ in
-                MyDB.dateFormatList = self.dateList
+                
+                for dateType in self.dateTypeList {
+                    if dateType.isSelected {
+                        UserDefaults.standard.set(dateType.dateformatType.rawValue, forKey: SettingType.dateFormat.rawValue)
+                    }
+                }
                 self.navigationController?.popViewController(animated: true)
             }
             settingEdit.addAction(cancelButton)
@@ -130,12 +131,12 @@ class DateFormatSettingViewController: UIViewController {
 
 extension DateFormatSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dateList.count
+        return dateTypeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = dateFormatTableView.dequeueReusableCell(withIdentifier: "dateCell", for: indexPath) as? DateFormatTableViewCell else { return UITableViewCell() }
-        let dateFormat = dateList[indexPath.row]
+        let dateFormat = dateTypeList[indexPath.row]
         
         if dateFormat.isSelected {
             setDateStyleSelect(cell.selectedDateFormat)
@@ -143,7 +144,7 @@ extension DateFormatSettingViewController: UITableViewDataSource {
             setDateStyleNotSelect(cell.selectedDateFormat)
         }
         
-        cell.typeDateFormat.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormat.dateformatType)
+        cell.typeDateFormat.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormat.dateformatType.rawValue)
         cell.typeDateFormat.font = UIFont(name: font, size: fontSize)
         cell.selectedDateFormat.tag = indexPath.row
         cell.selectedDateFormat.addTarget(self, action: #selector(isSelectDateFormat), for: .touchUpInside)

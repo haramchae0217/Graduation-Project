@@ -39,13 +39,14 @@ class DiaryViewController: UIViewController {
     var selectedDate: Date = Date()
     var font: String = "Ownglyph ssojji"
     var fontSize: CGFloat = 20
-    var dateFormatType: DateFormatType = .type1
+    var dateFormatType: String = ""
     
     //MARK: Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "다이어리"
+        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         
         configureUILabel()
         configureTapGesture()
@@ -61,7 +62,7 @@ class DiaryViewController: UIViewController {
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
-        diaryDBList = getDiary()
+//        diaryDBList = getDiary()
         diaryViewType()
         diaryCalendarView.reloadData()
     }
@@ -75,12 +76,8 @@ class DiaryViewController: UIViewController {
     }
     
     func configureDateFormat() {
-        for data in MyDB.dateFormatList {
-            if data.isSelected {
-                dateFormatType = data.dateformatType
-                break
-            }
-        }
+        let dateType = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
+        dateFormatType = dateType
     }
     
     func configureFilmImage() {
@@ -136,9 +133,9 @@ class DiaryViewController: UIViewController {
         diaryContentLabel.isUserInteractionEnabled = true
     }
     
-    func getDiary() -> [DiaryDB] {
-        return localRealm.objects(DiaryDB.self).map { $0 }
-    }
+//    func getDiary() -> [DiaryDB] {
+////        return localRealm.objects(DiaryDB.self).map { $0 }
+//    }
     
     func showDiary(diary: DiaryDB) {
         hashTagList = ""
@@ -151,13 +148,13 @@ class DiaryViewController: UIViewController {
         }
         diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
         diaryHashTagLabel.text = hashTagList
-        diaryPictureUIImage.image = diary.picture
+//        diaryPictureUIImage.image = diary.picture
         diaryContentLabel.text = diary.content
     }
     
     //MARK: ETC
     func diaryViewType() {
-        diaryDBList = getDiary()
+//        diaryDBList = getDiary()
         if diaryType == .search {
             selectDiary = MyDB.selectDiary
             guard let selectDiary = selectDiary else { return }
@@ -270,9 +267,7 @@ class DiaryViewController: UIViewController {
         let diaryDelete = UIAlertController(title: "⚠️", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         let deleteButton = UIAlertAction(title: "삭제", style: .destructive) { _ in
-            MyDB.diaryItem.removeAll { data in
-                data.content == self.deleteDiary?.content && data.picture == self.deleteDiary?.picture && data.hashTag == self.deleteDiary?.hashTag && data.date == self.deleteDiary?.date
-            }
+            //삭제
             self.diaryViewType()
         }
         diaryDelete.addAction(cancelButton)
