@@ -26,35 +26,17 @@ class AddDiaryViewController: UIViewController {
     let imagePicker = UIImagePickerController()
     var editDiary: DiaryDB?
     var viewType: DiaryViewType = .add
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addDiaryContentTextView.delegate = self
-        imagePicker.delegate = self
+        configureNavigationController()
+        configureTextView()
+        configureImagePicker()
         configureRightBarButton()
         configureTapGesture()
-        
-        if viewType == .edit {
-            title = "다이어리 수정"
-            if let editDiary = editDiary {
-                var hashtag: String = ""
-                plusLabel.isHidden = true
-//                addDiaryImageView.image = editDiary.picture
-                addDiaryDatePicker.date = editDiary.date
-                addDiaryContentTextView.text = editDiary.content
-                addDiaryContentTextView.textColor = .label
-                for data in editDiary.hashTag {
-                    hashtag += "\(data) "
-                }
-                hashtag.removeLast()
-                addDiaryHashTagTextField.text = hashtag
-            }
-        } else {
-            title = "다이어리 추가"
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,28 +48,52 @@ class AddDiaryViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    func configureEditTypeView() {
+        if let editDiary = editDiary {
+            var hashtag: String = ""
+            plusLabel.isHidden = true
+//                addDiaryImageView.image = editDiary.picture
+            addDiaryDatePicker.date = editDiary.date
+            addDiaryContentTextView.text = editDiary.content
+            addDiaryContentTextView.textColor = .label
+            for data in editDiary.hashTag {
+                hashtag += "\(data) "
+            }
+            hashtag.removeLast()
+            addDiaryHashTagTextField.text = hashtag
+        }
+    }
+    
+    func configureNavigationController() {
+        if viewType == .edit {
+            title = "다이어리 수정"
+            configureEditTypeView()
+        } else {
+            title = "다이어리 추가"
+        }
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+    }
+    
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                insertContentLabel.font = UIFont(name: font, size: fontSize)
-                insertHashTagLabel.font = UIFont(name: font, size: fontSize)
-                break
-            }
-        }
+        insertContentLabel.font = UIFont(name: font, size: fontSize)
+        insertHashTagLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureRightBarButton() {
         let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addDiaryButton))
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
         self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func configureTextView() {
+        addDiaryContentTextView.delegate = self
+    }
+    
+    func configureImagePicker() {
+        imagePicker.delegate = self
     }
     
     func configureTapGesture() {
