@@ -37,20 +37,17 @@ class DiaryViewController: UIViewController {
     var diaryType: DiaryType = .basic
     var hashTagList: String = ""
     var selectedDate: Date = Date()
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     var dateFormatType: String = ""
     
     //MARK: Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "다이어리"
-        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
-        
+        configureNavigationController()
         configureUILabel()
         configureTapGesture()
-        configureCalendarView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,12 +59,20 @@ class DiaryViewController: UIViewController {
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
+        configureCalendarView()
+        
 //        diaryDBList = getDiary()
         diaryViewType()
+        
         diaryCalendarView.reloadData()
     }
     
     //MARK: Configure
+    
+    func configureNavigationController() {
+        title = "다이어리"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+    }
     
     func configureUILabel() {
         diaryContentLabel.layer.cornerRadius = 10
@@ -86,22 +91,12 @@ class DiaryViewController: UIViewController {
     }
     
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                diaryDateLabel.font = UIFont(name: font, size: fontSize)
-                diaryContentLabel.font = UIFont(name: font, size: fontSize)
-                diaryHashTagLabel.font = UIFont(name: font, size: fontSize)
-                break
-            }
-        }
+        diaryDateLabel.font = UIFont(name: font, size: fontSize)
+        diaryContentLabel.font = UIFont(name: font, size: fontSize)
+        diaryHashTagLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureCalendarView() {
@@ -173,7 +168,7 @@ class DiaryViewController: UIViewController {
                 diaryPictureUIImage.isHidden = false
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
                 diaryPictureUIImage.image = UIImage(named: "noImage")
-                diaryHashTagLabel.text = "작성된 다이어리가 없습니다. 다이어리를 작성해주세요."
+                diaryHashTagLabel.text = "작성된 다이어리가 없습니다."
                 diaryContentLabel.isHidden = true
                 editDiaryButton.isHidden = true
                 deleteDiaryButton.isHidden = true
