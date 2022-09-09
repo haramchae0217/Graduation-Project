@@ -12,20 +12,16 @@ class DateFormatSettingViewController: UIViewController {
     @IBOutlet weak var dateFormatTableView: UITableView!
     @IBOutlet weak var dateFormatLabel: UILabel!
     
-    var dateTypeList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, false), (.type2, false), (.type3, true), (.type4, false), (.type5, false)]
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var dateTypeList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, false), (.type2, false), (.type3, false), (.type4, false), (.type5, false)]
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "날짜 형식 설정"
-        
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
-        
+        configureNavigationController()
         configureTableView()
         configureRightBarButton()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +29,11 @@ class DateFormatSettingViewController: UIViewController {
         
         configureFontAndFontSize()
         configureDateFormat()
+    }
+    
+    func configureNavigationController() {
+        title = "날짜 형식 설정"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
     }
     
     func configureDateFormat() {
@@ -47,20 +48,10 @@ class DateFormatSettingViewController: UIViewController {
     }
     
     func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                dateFormatLabel.font = UIFont(name: font, size: fontSize)
-                break
-            }
-        }
+        dateFormatLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureTableView() {
@@ -95,7 +86,7 @@ class DateFormatSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        var dbData = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
+        let dbData = UserDefaults.standard.string(forKey: SettingType.dateFormat.rawValue) ?? "type3"
         var selectData = ""
         
         for data in dateTypeList {
@@ -116,6 +107,7 @@ class DateFormatSettingViewController: UIViewController {
                         UserDefaults.standard.set(dateType.dateformatType.rawValue, forKey: SettingType.dateFormat.rawValue)
                     }
                 }
+                
                 self.navigationController?.popViewController(animated: true)
             }
             settingEdit.addAction(cancelButton)
