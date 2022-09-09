@@ -37,15 +37,60 @@ class AddToDoViewController: UIViewController {
     var editRow: Int?
     var viewType: ToDoViewType = .add
     var allDayType: AllDayType = .yes
-    var font: String = "Ownglyph ssojji"
-    var fontSize: CGFloat = 20
+    var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+    var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+        configureNavigationController()
         configureRightBarButton()
+        configureAllDayType()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        configureFontAndFontSize()
+    }
+    
+    func configureEditTypeView() {
+        if let editToDo = editToDo {
+            addTitleTextField.text = editToDo.title
+            addMemoTextField.text = editToDo.memo
+            addStartDatePicker.date = editToDo.startDate
+            addEndDatePicker.date = editToDo.endDate
+        }
+    }
+    
+    func configureNavigationController() {
+        if viewType == .edit {
+            title = "투두 수정"
+            configureEditTypeView()
+        } else {
+            title = "투두 추가"
+        }
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+    }
+    
+    func configureFontAndFontSize() {
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+        
+        startDateLabel.font = UIFont(name: font, size: fontSize)
+        endDateLabel.font = UIFont(name: font, size: fontSize)
+        toDoTitleLabel.font = UIFont(name: font, size: fontSize)
+        toDoMemoLabel.font = UIFont(name: font, size: fontSize)
+        allDayLabel.font = UIFont(name: font, size: fontSize)
+    }
+    
+    func configureRightBarButton() {
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+        let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addToDoButton))
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func configureAllDayType() {
         if allDayType == .yes {
             mySwitch.setOn(true, animated: true)
             startDateLabel.isHidden = true
@@ -59,50 +104,6 @@ class AddToDoViewController: UIViewController {
             addStartDatePicker.isHidden = false
             addEndDatePicker.isHidden = false
         }
-        
-        if viewType == .edit {
-            title = "투두 수정"
-            if let editToDo = editToDo {
-                addTitleTextField.text = editToDo.title
-                addMemoTextField.text = editToDo.memo
-                addStartDatePicker.date = editToDo.startDate
-                addEndDatePicker.date = editToDo.endDate
-            }
-        } else {
-            title = "투두 추가"
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        configureFontAndFontSize()
-    }
-    
-    func configureFontAndFontSize() {
-        for data in MyDB.fontSizeList {
-            if data.isSelected {
-                fontSize = data.fontSize.rawValue
-                break
-            }
-        }
-        
-        for data in MyDB.fontList {
-            if data.isSelected {
-                font = data.fontName.rawValue
-                startDateLabel.font = UIFont(name: font, size: fontSize)
-                endDateLabel.font = UIFont(name: font, size: fontSize)
-                toDoTitleLabel.font = UIFont(name: font, size: fontSize)
-                toDoMemoLabel.font = UIFont(name: font, size: fontSize)
-                allDayLabel.font = UIFont(name: font, size: fontSize)
-                break
-            }
-        }
-    }
-    
-    func configureRightBarButton() {
-        let rightBarButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(addToDoButton))
-        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     func addToDo(todo: ToDoDB) {
