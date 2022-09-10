@@ -282,18 +282,21 @@ extension ToDoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         var todo: ToDoDB
-        var row: IndexPath
         if indexPath.section == 0 {
             todo = notCheckedList[indexPath.row]
-            row = indexPath
         } else {
             todo = checkedList[indexPath.row]
-            row = indexPath
         }
         
         if editingStyle == .delete {
-            
+            try! localRealm.write {
+                localRealm.delete(todo)
+            }
         }
+        todoDBList = getToDo()
+        getTodayList(today: selectedDate)
+        tableView.reloadData()
+//        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
 
