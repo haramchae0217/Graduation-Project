@@ -112,6 +112,23 @@ class AddToDoViewController: UIViewController {
         }
     }
     
+    func editToDo(todo: ToDoDB) {
+        print("--정보--")
+        print(todo)
+        print(todo._id)
+        if let todoInfo = localRealm.objects(ToDoDB.self).filter(NSPredicate(format: "_id = %@", todo._id)).first {
+            try! localRealm.write {
+                todoInfo.title = todo.title
+                todoInfo.memo = todo.memo
+                todoInfo.startDate = todo.startDate
+                todoInfo.endDate = todo.endDate
+                print("--정보--")
+                print(todoInfo)
+                print(todo)
+            }
+        }
+    }
+    
     @objc func addToDoButton() {
         let title = addTitleTextField.text!
         let memo = addMemoTextField.text!
@@ -141,11 +158,9 @@ class AddToDoViewController: UIViewController {
         if viewType == .add {
             addToDo(todo: todo)
         } else {
-            if let editToDo = editToDo {
-                
-            }
+            editToDo(todo: todo)
         }
-//        MyDB.toDoList = MyDB.toDoList.sorted(by: { $0.startDate < $1.startDate })
+        
         MyDB.selectToDo = todo
         self.navigationController?.popViewController(animated: true)
     }
