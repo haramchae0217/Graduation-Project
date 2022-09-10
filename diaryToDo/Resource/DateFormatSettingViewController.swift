@@ -20,15 +20,10 @@ class DateFormatSettingViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationController()
-        configureTableView()
-        configureRightBarButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         configureFontAndFontSize()
         configureDateFormat()
+        configureTableView()
+        configureRightBarButton()
     }
     
     func configureNavigationController() {

@@ -22,11 +22,6 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationController()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         configureFontAndFontSize()
     }
     

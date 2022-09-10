@@ -22,11 +22,6 @@ class FontSettingViewController: UIViewController {
         configureNavigationController()
         configureTableView()
         configureRightBarButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         configureFontAndFontSize()
     }
     

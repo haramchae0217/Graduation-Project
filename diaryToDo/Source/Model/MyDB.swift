@@ -48,10 +48,6 @@ struct MyDB {
     
     static var selectToDo: ToDoDB?
     
-    static var fontSizeList: [(fontSize: FontSize, isSelected: Bool)] = [(.아주작게, false), (.작게, true), (.중간, false), (.크게, false), (.아주크게, false)]
-    
-    static var fontList: [(fontName: FontName, isSelected: Bool)] = [(.name1, true), (.name2, false), (.name3, false), (.name4, false), (.name5, false), (.name6, false), (.name7, false), (.name8, false), (.name9, false), (.name10, false), (.name11, false), (.name12, false), (.name13, false), (.name14, false), (.name15, false), (.name16, false), (.name17, false), (.name18, false), (.name19, false), (.name20, false), (.name21, false), (.name22, false), (.name23, false), (.name24, false), (.name25, false)]
-    
 //    static var diaryItem: [Diary] = [
 //        Diary(content: "8년지기 친구들과 함께 강화도 여행중 간 카페! 고구마 케잌이 시그니처 메뉴였는데 맛있었다.", hashTag: ["카페","강화도","여행"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/08/11"), picture: UIImage(named: "cafe1")!),
 //        Diary(content: "집앞에 좋은 카페가 있어서 다녀왔다 맛도 있고 사장님도 친절하셨다. 칼모양도 도끼처럼 신기했다.", hashTag: ["카페","운정"], date: DateFormatter.customDateFormatter.strToDate(str: "2022/08/16"), picture: UIImage(named: "cafe2")!),

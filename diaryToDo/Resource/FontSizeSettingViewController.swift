@@ -22,14 +22,9 @@ class FontSizeSettingViewController: UIViewController {
         configureNavigationController()
         configureTableView()
         configureRightBarButton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         configureFontAndFontSize()
     }
-    
+
     func configureNavigationController() {
         title = "글씨 크기 설정"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
