@@ -61,7 +61,7 @@ class DiaryViewController: UIViewController {
         configureFontAndFontSize()
         configureCalendarView()
         
-//        diaryDBList = getDiary()
+        diaryDBList = getDiary()
         diaryViewType()
         
         diaryCalendarView.reloadData()
@@ -128,9 +128,15 @@ class DiaryViewController: UIViewController {
         diaryContentLabel.isUserInteractionEnabled = true
     }
     
-//    func getDiary() -> [DiaryDB] {
-////        return localRealm.objects(DiaryDB.self).map { $0 }
-//    }
+    func getDiary() -> [DiaryDB] {
+        return localRealm.objects(DiaryDB.self).map { $0 }
+    }
+    
+    func deleteDiaryDB(diary: DiaryDB) {
+        try! localRealm.write {
+            localRealm.delete(diary)
+        }
+    }
     
     func showDiary(diary: DiaryDB) {
         hashTagList = ""
@@ -263,7 +269,11 @@ class DiaryViewController: UIViewController {
         let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         let deleteButton = UIAlertAction(title: "삭제", style: .destructive) { _ in
             //삭제
-            self.diaryViewType()
+            if let deleteDiary = self.deleteDiary {
+                let diary = deleteDiary
+                self.deleteDiaryDB(diary: diary)
+                self.diaryViewType()
+            }
         }
         diaryDelete.addAction(cancelButton)
         diaryDelete.addAction(deleteButton)
