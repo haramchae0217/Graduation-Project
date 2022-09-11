@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddDiaryViewController: UIViewController {
     
@@ -22,8 +23,9 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
     @IBOutlet weak var plusLabel: UILabel!
     
-//    var diaryList = MyDB.diaryItem
+    let localRealm = try! Realm()
     let imagePicker = UIImagePickerController()
+    
     var editDiary: DiaryDB?
     var viewType: DiaryViewType = .add
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
@@ -41,6 +43,7 @@ class AddDiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         configureFontAndFontSize()
     }
     
@@ -103,6 +106,16 @@ class AddDiaryViewController: UIViewController {
         addDiaryImageView.isUserInteractionEnabled = true
     }
     
+    func addDiary(diary: DiaryDB) {
+        try! localRealm.write {
+            localRealm.add(diary)
+        }
+    }
+    
+    func editDiary(diary: DiaryDB) {
+        
+    }
+    
     func showAlertSheet() {
         let alertAction = UIAlertController(title: "사진 추가하기", message: "어떤방식으로 추가하시겠습니까?", preferredStyle: .actionSheet)
         
@@ -156,22 +169,20 @@ class AddDiaryViewController: UIViewController {
             }
         }
         
-        if let editDiary = editDiary {
+//        if let editDiary = editDiary {
 //            if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.date == date {
 //                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
 //                return
 //            }
-        }
+//        }
 //        let diary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
         
         if viewType == .add {
-            
+//            addDiary(diary: diary)
         } else {
-            if let editDiary = editDiary {
-                
-            }
+//            editDiary(diary: diary)
         }
-//        MyDB.diaryItem = MyDB.diaryItem.sorted(by: { $0.date < $1.date })
+
 //        MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }
