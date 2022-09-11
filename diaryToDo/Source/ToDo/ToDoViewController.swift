@@ -40,6 +40,8 @@ class ToDoViewController: UIViewController {
 //        configureEmptyView()
         configureNavigationController()
         configureTableView()
+        
+        selectedDate = todoDBList[todoDBList.endIndex - 1].startDate
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +124,12 @@ class ToDoViewController: UIViewController {
         return localRealm.objects(ToDoDB.self).map { $0 }
     }
     
+    func deleteToDoDB(todo: ToDoDB) {
+        try! localRealm.write {
+            localRealm.delete(todo)
+        }
+    }
+    
     func getTodayList(today: Date = Date()) {
         todayToDoList = []
         checkedList = []
@@ -171,8 +179,6 @@ class ToDoViewController: UIViewController {
     
     func toggleAndReload(index: Int) {
         let todo = todayToDoList[index]
-        
-        var toDoListIndex = 0
         todayToDoList[index].isChecked.toggle()
         
         for data in todoDBList {
@@ -289,9 +295,7 @@ extension ToDoViewController: UITableViewDataSource {
         }
         
         if editingStyle == .delete {
-            try! localRealm.write {
-                localRealm.delete(todo)
-            }
+            deleteToDoDB(todo: todo)
         }
         todoDBList = getToDo()
         getTodayList(today: selectedDate)
