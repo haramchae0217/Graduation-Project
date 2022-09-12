@@ -106,26 +106,25 @@ class AddToDoViewController: UIViewController {
         }
     }
     
-    func addToDo(todo: ToDoDB) {
+    func addToDoDB(todo: ToDoDB) {
         try! localRealm.write {
             localRealm.add(todo)
         }
     }
     
-    func editToDo(todo: ToDoDB) {
-        print("--정보--")
-        print(todo)
-        print(todo._id)
-        if let todoInfo = localRealm.objects(ToDoDB.self).filter(NSPredicate(format: "_id = %@", todo._id)).first {
-            try! localRealm.write {
-                todoInfo.title = todo.title
-                todoInfo.memo = todo.memo
-                todoInfo.startDate = todo.startDate
-                todoInfo.endDate = todo.endDate
-                print("--정보--")
-                print(todoInfo)
-                print(todo)
-            }
+    func editToDoDB(oldData: ToDoDB, newData: ToDoDB) {
+        try! localRealm.write {
+            localRealm.create(
+                ToDoDB.self,
+                value: [
+                    "_id": oldData._id,
+                    "title": newData.title,
+                    "memo": newData.memo,
+                    "startDate": newData.startDate,
+                    "endDate": newData.endDate,
+                    "isChecked": newData.isChecked
+                ],
+                update: .modified)
         }
     }
     
@@ -146,22 +145,20 @@ class AddToDoViewController: UIViewController {
             return
         }
         
-        if let editToDo = editToDo {
-            if editToDo.title == title && editToDo.memo == memo && editToDo.startDate == startDate && editToDo.endDate == endDate {
-                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
-                return
+        if viewType == .add {
+            let todo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
+            addToDoDB(todo: todo)
+        } else {
+            if let oldToDo = editToDo {
+                if oldToDo.title == title && oldToDo.memo == memo && oldToDo.startDate == startDate && oldToDo.endDate == endDate {
+                    UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+                    return
+                }
+                let todo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
+                editToDoDB(oldData: oldToDo, newData: todo)
             }
         }
         
-        let todo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
-        
-        if viewType == .add {
-            addToDo(todo: todo)
-        } else {
-            editToDo(todo: todo)
-        }
-        
-        MyDB.selectToDo = todo
         self.navigationController?.popViewController(animated: true)
     }
     
