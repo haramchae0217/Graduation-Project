@@ -18,6 +18,7 @@
 		83354DA127DB51AE0096C7B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83354D9F27DB51AE0096C7B5 /* Main.storyboard */; };
 		83354DA327DB51AF0096C7B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83354DA227DB51AF0096C7B5 /* Assets.xcassets */; };
 		83354DA627DB51AF0096C7B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */; };
+		83486BBE28CECA630025554E /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83486BBD28CECA630025554E /* ImageManager.swift */; };
 		83516C5128B8E74B0047E06C /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 83516C5028B8E74B0047E06C /* LaunchScreen.png */; };
 		83608C1D28B7C7F700D79202 /* HSSantokki-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0328B7C7F000D79202 /* HSSantokki-Regular.otf */; };
 		83608C1E28B7C7F700D79202 /* 온글잎 의연체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0428B7C7F000D79202 /* 온글잎 의연체.ttf */; };
@@ -85,6 +86,7 @@
 		83354DA227DB51AF0096C7B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83354DA527DB51AF0096C7B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83354DA727DB51AF0096C7B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83486BBD28CECA630025554E /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		83516C5028B8E74B0047E06C /* LaunchScreen.png */ = {isa = PBXFileReference; explicitFileType = image.png; name = LaunchScreen.png; path = Assets/LaunchScreen.png; sourceTree = SOURCE_ROOT; };
 		83608C0328B7C7F000D79202 /* HSSantokki-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HSSantokki-Regular.otf"; sourceTree = "<group>"; };
 		83608C0428B7C7F000D79202 /* 온글잎 의연체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 의연체.ttf"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				83BB1C2228C98F0700376429 /* UserDefaults.swift */,
+				83486BBD28CECA630025554E /* ImageManager.swift */,
 				8300692927F9F16400BDD784 /* MyDB.swift */,
 				83F3ECFD28CE3070002A2B88 /* DiaryDB.swift */,
 				83F3ECFF28CE3098002A2B88 /* ToDoDB.swift */,
@@ -428,6 +431,7 @@
 				8300692A27F9F16400BDD784 /* MyDB.swift in Sources */,
 				83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */,
 				83FDF02427F3547F008E45E3 /* AddToDoViewController.swift in Sources */,
+				83486BBE28CECA630025554E /* ImageManager.swift in Sources */,
 				83D512C827F5CB18009B3A23 /* DateFormatTableViewCell.swift in Sources */,
 				83C026A028424C2B00511B7F /* SearchDiaryViewController.swift in Sources */,
 				83354D9C27DB51AE0096C7B5 /* SceneDelegate.swift in Sources */,
