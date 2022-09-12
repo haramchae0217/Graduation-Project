@@ -41,7 +41,9 @@ class ToDoViewController: UIViewController {
         configureNavigationController()
         configureTableView()
         
-        selectedDate = todoDBList[todoDBList.endIndex - 1].startDate
+        if !todoDBList.isEmpty {
+            selectedDate = todoDBList[todoDBList.endIndex - 1].startDate
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -290,17 +292,21 @@ extension ToDoViewController: UITableViewDataSource {
         var todo: ToDoDB
         if indexPath.section == 0 {
             todo = notCheckedList[indexPath.row]
+            if editingStyle == .delete {
+                deleteToDoDB(todo: todo)
+            }
+            todoDBList = getToDo()
+            getTodayList(today: selectedDate)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         } else {
             todo = checkedList[indexPath.row]
+            if editingStyle == .delete {
+                deleteToDoDB(todo: todo)
+            }
+            todoDBList = getToDo()
+            getTodayList(today: selectedDate)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        
-        if editingStyle == .delete {
-            deleteToDoDB(todo: todo)
-        }
-        todoDBList = getToDo()
-        getTodayList(today: selectedDate)
-        tableView.reloadData()
-//        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
 
