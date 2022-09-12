@@ -129,6 +129,7 @@ class DiaryViewController: UIViewController {
     }
     
     func getDiary() -> [DiaryDB] {
+        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         return localRealm.objects(DiaryDB.self).map { $0 }
     }
     
