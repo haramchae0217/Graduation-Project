@@ -106,13 +106,13 @@ class AddDiaryViewController: UIViewController {
         addDiaryImageView.isUserInteractionEnabled = true
     }
     
-    func addDiary(diary: DiaryDB) {
+    func addDiaryDB(diary: DiaryDB) {
         try! localRealm.write {
             localRealm.add(diary)
         }
     }
     
-    func editDiary(diary: DiaryDB) {
+    func editDiaryDB(diary: DiaryDB) {
         
     }
     
