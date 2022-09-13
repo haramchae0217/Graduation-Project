@@ -110,8 +110,18 @@ class AddDiaryViewController: UIViewController {
         }
     }
     
-    func editDiaryDB(diary: DiaryDB) {
-        
+    func editDiaryDB(oldDiary: DiaryDB, newDiary: DiaryDB) {
+        try! localRealm.write {
+            localRealm.create(
+                DiaryDB.self,
+                value: [
+                    "_id": oldDiary._id,
+                    "content": newDiary.content,
+                    "hashTag": newDiary.hashTag,
+                    "date": newDiary.date
+                ],
+                update: .modified)
+        }
     }
     
     func configureUD() {
@@ -188,22 +198,21 @@ class AddDiaryViewController: UIViewController {
             }
         }
         
-        if let editDiary = editDiary {
-            if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.date == date {
-                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
-                return
-            }
-        }
-        let diary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
-        
         if viewType == .add {
-            addDiaryDB(diary: diary)
+            let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
+            addDiaryDB(diary: newDiary)
             addDiaryImage()
         } else {
-            editDiaryDB(diary: diary)
+            if let oldDiary = editDiary {
+                if oldDiary.content == content && oldDiary.hashTag == filterHashTag && oldDiary.date == date {
+                    UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+                    return
+                }
+                let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
+                editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
+            }
         }
 
-        MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }
     
