@@ -26,6 +26,8 @@ class AddDiaryViewController: UIViewController {
     let localRealm = try! Realm()
     let imagePicker = UIImagePickerController()
     
+    var imageCount: Int = 0
+    var editImage: UIImage?
     var editDiary: DiaryDB?
     var viewType: DiaryViewType = .add
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
@@ -35,16 +37,12 @@ class AddDiaryViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationController()
+        configureFontAndFontSize()
         configureTextView()
         configureImagePicker()
         configureRightBarButton()
         configureTapGesture()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        configureFontAndFontSize()
+        configureUD()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -55,7 +53,7 @@ class AddDiaryViewController: UIViewController {
         if let editDiary = editDiary {
             var hashtag: String = ""
             plusLabel.isHidden = true
-//                addDiaryImageView.image = editDiary.picture
+            addDiaryImageView.image = editImage
             addDiaryDatePicker.date = editDiary.date
             addDiaryContentTextView.text = editDiary.content
             addDiaryContentTextView.textColor = .label
@@ -116,6 +114,28 @@ class AddDiaryViewController: UIViewController {
         
     }
     
+    func configureUD() {
+        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
+            imageCount = count
+        } else {
+            UserDefaults.standard.set("0", forKey: "")
+        }
+    }
+    
+    func addDiaryImage() {
+        guard let image = addDiaryImageView.image else { return }
+        
+        ImageManager.shared.saveImage(image: image, pathName: "\(imageCount).jpg") { onSuccess in
+            if onSuccess {
+                print("저장완료")
+                self.imageCount += 1
+                UserDefaults.standard.set("\(self.imageCount)", forKey: "imageNumber")
+            } else {
+                print("저장실패")
+            }
+        }
+    }
+    
     func showAlertSheet() {
         let alertAction = UIAlertController(title: "사진 추가하기", message: "어떤방식으로 추가하시겠습니까?", preferredStyle: .actionSheet)
         
@@ -147,21 +167,20 @@ class AddDiaryViewController: UIViewController {
         let date = addDiaryDatePicker.date
         let content = addDiaryContentTextView.text!
         let hashTag = addDiaryHashTagTextField.text!
-        var filterHashTag: [String] = []
-        var picture = UIImage(named: "noImage")!
+        let filterHashTag = List<String>()
         
         if addDiaryImageView.image == nil {
             UIAlertController.warningAlert(message: "사진을 첨부해주세요.", viewController: self)
             return
-        } else {
-            picture = addDiaryImageView.image!
         }
         
         if content.isEmpty || hashTag.isEmpty {
             UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
             return
         } else {
-            filterHashTag = hashTag.components(separatedBy: " ")
+            hashTag.components(separatedBy: " ").forEach { str in
+                filterHashTag.append(str)
+            }
             
             if filterHashTag.count > 3 {
                 UIAlertController.warningAlert(message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
@@ -169,21 +188,22 @@ class AddDiaryViewController: UIViewController {
             }
         }
         
-//        if let editDiary = editDiary {
-//            if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.date == date {
-//                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
-//                return
-//            }
-//        }
-//        let diary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
+        if let editDiary = editDiary {
+            if editDiary.content == content && editDiary.hashTag == filterHashTag && editDiary.date == date {
+                UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+                return
+            }
+        }
+        let diary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
         
         if viewType == .add {
-//            addDiary(diary: diary)
+            addDiaryDB(diary: diary)
+            addDiaryImage()
         } else {
-//            editDiary(diary: diary)
+            editDiaryDB(diary: diary)
         }
 
-//        MyDB.selectDiary = diary
+        MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }
     

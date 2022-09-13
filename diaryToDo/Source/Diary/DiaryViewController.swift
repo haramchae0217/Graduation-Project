@@ -31,6 +31,7 @@ class DiaryViewController: UIViewController {
     let localRealm = try! Realm()
     var diaryDBList: [DiaryDB] = []
     var filterHashTag: [DiaryDB] = []
+    var imageList: [UIImage] = []
     var editDiary: DiaryDB?
     var selectDiary: DiaryDB?
     var deleteDiary: DiaryDB?
@@ -60,6 +61,9 @@ class DiaryViewController: UIViewController {
         configureFilmImage()
         configureFontAndFontSize()
         configureCalendarView()
+        
+        getDiaryImage()
+        print(imageList)
         
         diaryDBList = getDiary()
         diaryViewType()
@@ -139,6 +143,18 @@ class DiaryViewController: UIViewController {
         }
     }
     
+    func getDiaryImage() {
+        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
+            for i in 0..<count {
+                if let image = ImageManager.shared.getImage(name: "\(i).jpg") {
+                    imageList.append(image)
+                }
+            }
+        } else {
+            UserDefaults.standard.set("0", forKey: "imageNumber")
+        }
+    }
+    
     func showDiary(diary: DiaryDB) {
         hashTagList = ""
         for i in 0..<diary.hashTag.count {
@@ -150,13 +166,13 @@ class DiaryViewController: UIViewController {
         }
         diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
         diaryHashTagLabel.text = hashTagList
-//        diaryPictureUIImage.image = diary.picture
+        diaryPictureUIImage.image = imageList[0]
         diaryContentLabel.text = diary.content
     }
     
     //MARK: ETC
     func diaryViewType() {
-//        diaryDBList = getDiary()
+        diaryDBList = getDiary()
         if diaryType == .search {
             selectDiary = MyDB.selectDiary
             guard let selectDiary = selectDiary else { return }
@@ -260,6 +276,7 @@ class DiaryViewController: UIViewController {
     
     @IBAction func editDiaryButton(_ sender: UIButton) {
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
+        
         editVC.viewType = .edit
         editVC.editDiary = editDiary
         self.navigationController?.pushViewController(editVC, animated: true)
@@ -269,7 +286,6 @@ class DiaryViewController: UIViewController {
         let diaryDelete = UIAlertController(title: "⚠️", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         let deleteButton = UIAlertAction(title: "삭제", style: .destructive) { _ in
-            //삭제
             if let deleteDiary = self.deleteDiary {
                 let diary = deleteDiary
                 self.deleteDiaryDB(diary: diary)
