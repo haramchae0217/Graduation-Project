@@ -146,6 +146,12 @@ class AddDiaryViewController: UIViewController {
         }
     }
     
+    func editDiaryImage() {
+        
+        
+        
+    }
+    
     func showAlertSheet() {
         let alertAction = UIAlertController(title: "사진 추가하기", message: "어떤방식으로 추가하시겠습니까?", preferredStyle: .actionSheet)
         
@@ -198,8 +204,8 @@ class AddDiaryViewController: UIViewController {
             }
         }
         
+        let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
         if viewType == .add {
-            let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
             addDiaryDB(diary: newDiary)
             addDiaryImage()
         } else {
@@ -208,11 +214,11 @@ class AddDiaryViewController: UIViewController {
                     UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
                     return
                 }
-                let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
                 editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
             }
         }
 
+        MyDB.selectDiary = newDiary
         self.navigationController?.popViewController(animated: true)
     }
     
