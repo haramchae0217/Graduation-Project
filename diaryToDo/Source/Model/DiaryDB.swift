@@ -22,6 +22,3 @@ class DiaryDB: Object {
     }
 }
 
-class SelectDiary: DiaryDB {
-    
-}
