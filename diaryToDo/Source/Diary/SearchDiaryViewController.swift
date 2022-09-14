@@ -21,6 +21,7 @@ class SearchDiaryViewController: UIViewController {
     }
     let localRealm = try! Realm()
     var diaryDBList: [DiaryDB] = []
+    var imageList: [UIImage] = []
     var dateFormatType: String = ""
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
@@ -38,6 +39,9 @@ class SearchDiaryViewController: UIViewController {
         
         configureDateFormat()
         configureFontAndFontSize()
+        
+        getDiaryImage()
+        diaryDBList = getDiary()
     }
     
     func configureNavigationController() {
@@ -75,6 +79,18 @@ class SearchDiaryViewController: UIViewController {
         return localRealm.objects(DiaryDB.self).map { $0 }
     }
     
+    func getDiaryImage() {
+        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
+            for i in 0..<count {
+                if let image = ImageManager.shared.getImage(name: "\(i).jpg") {
+                    imageList.append(image)
+                }
+            }
+        } else {
+            UserDefaults.standard.set("0", forKey: "imageNumber")
+        }
+    }
+    
 }
 
 extension SearchDiaryViewController: UITableViewDataSource {
@@ -85,6 +101,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         let searchData = searchDiary[indexPath.row]
+        let image = imageList[indexPath.row]
         
         var hashtags: String = ""
         for i in 0..<searchData.hashTag.count {
@@ -96,7 +113,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
             hashtags.append("#\(searchData.hashTag[i]), ")
         }
         
-//        cell.diaryImage.image = searchData.picture
+        cell.diaryImage.image = image
         cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date, type: dateFormatType)
         cell.diaryDate.font = UIFont(name: font, size: fontSize)
         cell.diaryHashTag.text = "\(hashtags)"
@@ -113,7 +130,9 @@ extension SearchDiaryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let diary = searchDiary[indexPath.row]
+        let image = imageList[indexPath.row]
         MyDB.selectDiary = diary
+        MyDB.selectImage = image
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -127,8 +146,7 @@ extension SearchDiaryViewController: UISearchBarDelegate {
 extension SearchDiaryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
-//            searchDiary = DiaryDB.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
-//            searchDiary = MyDB.diaryItem.filter{ $0.hashTag.map { String($0) }.contains(text) }
+            searchDiary = diaryDBList.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
             print("검색창 : \(text)")
             print("검색결과 : \(searchDiary)")
         }
