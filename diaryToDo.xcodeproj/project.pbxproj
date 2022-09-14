@@ -682,7 +682,7 @@
 			repositoryURL = "https://github.com/danielgindi/Charts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				minimumVersion = 4.1.0;
 			};
 		};
 		83D512BA27F5B120009B3A23 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
