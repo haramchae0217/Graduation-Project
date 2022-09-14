@@ -122,7 +122,6 @@ class GraphViewController: UIViewController {
         
         for weekday in datas {
             for everydate in todoDBList {
-                print(weekday,everydate.startDate)
                 if DateFormatter.customDateFormatter.dateToStr(date: weekday, type: dateFormatType) == DateFormatter.customDateFormatter.dateToStr(date: everydate.startDate, type: dateFormatType) {
                     weekTodoList.append(everydate)
                 }
@@ -176,7 +175,8 @@ class GraphViewController: UIViewController {
         barGraph.colors = [.systemPink]
         
         let data = BarChartData()
-        data.addDataSet(barGraph)
+    
+        data.append(barGraph)
         barChart.data = data
         
         barChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: strDates)
