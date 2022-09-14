@@ -24,7 +24,3 @@ class ToDoDB: Object {
         self.endDate = endDate
     }
 }
-
-class SelectToDo: ToDoDB {
-    
-}
