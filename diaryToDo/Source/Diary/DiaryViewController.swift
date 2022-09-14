@@ -32,9 +32,10 @@ class DiaryViewController: UIViewController {
     var diaryDBList: [DiaryDB] = []
     var filterHashTag: [DiaryDB] = []
     var imageList: [UIImage] = []
-    var editDiary: DiaryDB?
+    var editOrDeleteDiary: DiaryDB?
+    var editOrDeleteImage: UIImage?
     var selectDiary: DiaryDB?
-    var deleteDiary: DiaryDB?
+    var selectImage: UIImage?
     var diaryType: DiaryType = .basic
     var hashTagList: String = ""
     var selectedDate: Date = Date()
@@ -65,7 +66,6 @@ class DiaryViewController: UIViewController {
         getDiaryImage()
         print(imageList)
         
-        diaryDBList = getDiary()
         diaryViewType()
         
         diaryCalendarView.reloadData()
@@ -166,8 +166,16 @@ class DiaryViewController: UIViewController {
         }
         diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
         diaryHashTagLabel.text = hashTagList
-        diaryPictureUIImage.image = imageList[0]
         diaryContentLabel.text = diary.content
+    }
+    
+    func showImage(image: UIImage) {
+        diaryPictureUIImage.image = image
+    }
+    
+    func editOrDeleteDiary(diary: DiaryDB, image: UIImage) {
+        editOrDeleteDiary = diary
+        editOrDeleteImage = image
     }
     
     //MARK: ETC
@@ -175,18 +183,21 @@ class DiaryViewController: UIViewController {
         diaryDBList = getDiary()
         if diaryType == .search {
             selectDiary = MyDB.selectDiary
+            selectImage = MyDB.selectImage
             guard let selectDiary = selectDiary else { return }
+            guard let selectImage = selectImage else { return }
             showDiary(diary: selectDiary)
+            showImage(image: selectImage)
+            editOrDeleteDiary(diary: selectDiary, image: selectImage)
             selectedDate = selectDiary.date
-            editDiary = selectDiary
-            deleteDiary = selectDiary
         } else {
             if !diaryDBList.isEmpty {
                 let recentDiary = diaryDBList[diaryDBList.endIndex - 1]
+                let recentImage = imageList[imageList.endIndex - 1]
                 showDiary(diary: recentDiary)
+                showImage(image: recentImage)
+                editOrDeleteDiary(diary: recentDiary, image: recentImage)
                 selectedDate = recentDiary.date
-                editDiary = recentDiary
-                deleteDiary = recentDiary
             } else {
                 diaryPictureUIImage.isHidden = false
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
@@ -228,8 +239,7 @@ class DiaryViewController: UIViewController {
         for data in sortedList {
             if previousDate == data.date {
                 showDiary(diary: data)
-                editDiary = data
-                deleteDiary = data
+//                editOrDeleteDiary(diary: data, image: <#T##UIImage#>)
                 break
             }
         }
@@ -250,8 +260,7 @@ class DiaryViewController: UIViewController {
         for data in diaryDBList {
             if nextDate == data.date {
                 showDiary(diary: data)
-                editDiary = data
-                deleteDiary = data
+//                editOrDeleteDiary(diary: data, image: <#T##UIImage#>)
                 break
             }
         }
@@ -278,7 +287,8 @@ class DiaryViewController: UIViewController {
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
         
         editVC.viewType = .edit
-        editVC.editDiary = editDiary
+        editVC.editDiary = editOrDeleteDiary
+        editVC.editImage = editOrDeleteImage
         self.navigationController?.pushViewController(editVC, animated: true)
     }
     
@@ -286,8 +296,8 @@ class DiaryViewController: UIViewController {
         let diaryDelete = UIAlertController(title: "⚠️", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         let deleteButton = UIAlertAction(title: "삭제", style: .destructive) { _ in
-            if let deleteDiary = self.deleteDiary {
-                let diary = deleteDiary
+            if let editOrDeleteDiary = self.editOrDeleteDiary {
+                let diary = editOrDeleteDiary
                 self.deleteDiaryDB(diary: diary)
                 self.diaryViewType()
             }
