@@ -20,8 +20,11 @@ class SearchDiaryViewController: UIViewController {
         }
     }
     let localRealm = try! Realm()
+    
     var diaryDBList: [DiaryDB] = []
-    var imageList: [(UIImage, Int)] = []
+    var searchImage: [UIImage] = []
+    var imageList: [(UIImage, ObjectId)] = []
+    var imageCount: Int = 0
     var dateFormatType: String = ""
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
@@ -40,8 +43,8 @@ class SearchDiaryViewController: UIViewController {
         configureDateFormat()
         configureFontAndFontSize()
         
-        getDiaryImage()
         diaryDBList = getDiary()
+        getDiaryImage()
     }
     
     func configureNavigationController() {
@@ -75,19 +78,25 @@ class SearchDiaryViewController: UIViewController {
         definesPresentationContext = true // 다른 뷰컨으로 이동시 search bar가 화면에 남아있지 않게 함.
     }
     
+    func configureUD() {
+        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
+            imageCount = count
+        } else {
+            UserDefaults.standard.set("0", forKey: "")
+        }
+    }
+    
     func getDiary() -> [DiaryDB] {
         return localRealm.objects(DiaryDB.self).map { $0 }
     }
     
     func getDiaryImage() {
-        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
-            for i in 0..<count {
-                if let image = ImageManager.shared.getImage(name: "\(i).jpg") {
-                    imageList.append((image, i))
-                }
+        for data in diaryDBList {
+            if let image = ImageManager.shared.getImage(name: "\(data._id).jpg") {
+                imageList.append((image, data._id))
+            } else {
+                UserDefaults.standard.set("0", forKey: "imageNumber")
             }
-        } else {
-            UserDefaults.standard.set("0", forKey: "imageNumber")
         }
     }
     
@@ -101,7 +110,13 @@ extension SearchDiaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         let searchData = searchDiary[indexPath.row]
-        let image = imageList[indexPath.row]
+        
+        for data in imageList {
+            if searchData._id == data.1 {
+                searchImage.append(data.0)
+            }
+        }
+        let image = searchImage[indexPath.row]
         
         var hashtags: String = ""
         for i in 0..<searchData.hashTag.count {
@@ -113,7 +128,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
             hashtags.append("#\(searchData.hashTag[i]), ")
         }
         
-        cell.diaryImage.image = image.0
+        cell.diaryImage.image = image
         cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date, type: dateFormatType)
         cell.diaryDate.font = UIFont(name: font, size: fontSize)
         cell.diaryHashTag.text = "\(hashtags)"
@@ -130,9 +145,8 @@ extension SearchDiaryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let diary = searchDiary[indexPath.row]
-        let image = imageList[indexPath.row]
+        let image = searchImage[indexPath.row]
         MyDB.selectDiary = diary
-        MyDB.selectImage = image
         self.navigationController?.popViewController(animated: true)
     }
 }

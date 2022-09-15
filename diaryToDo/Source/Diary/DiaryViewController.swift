@@ -29,14 +29,13 @@ class DiaryViewController: UIViewController {
     
     //MARK: Property
     let localRealm = try! Realm()
+    
     var diaryDBList: [DiaryDB] = []
     var filterHashTag: [DiaryDB] = []
-    var imageList: [(UIImage, Int)] = []
-    var moveImage: Int = 0
+    var imageList: [(UIImage, ObjectId)] = []
+    var imageCount: Int = 0
     var editOrDeleteDiary: DiaryDB?
-    var editOrDeleteImage: UIImage?
     var selectDiary: DiaryDB?
-    var selectImage: UIImage?
     var diaryType: DiaryType = .basic
     var hashTagList: String = ""
     var selectedDate: Date = Date()
@@ -56,14 +55,15 @@ class DiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if selectDiary != nil {
+        if MyDB.selectDiary != nil {
             diaryType = .select
+            print("diray type select")
         }
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
         
-        getDiaryImage()
+        configureUD()
         
         configureCalendarView()
         
@@ -133,6 +133,14 @@ class DiaryViewController: UIViewController {
         diaryContentLabel.isUserInteractionEnabled = true
     }
     
+    func configureUD() {
+        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
+            imageCount = count
+        } else {
+            UserDefaults.standard.set("0", forKey: "")
+        }
+    }
+    
     func getDiary() -> [DiaryDB] {
         print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         return localRealm.objects(DiaryDB.self).map { $0 }
@@ -145,19 +153,19 @@ class DiaryViewController: UIViewController {
     }
     
     func getDiaryImage() {
-        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
-            for i in 0..<count {
-                if let image = ImageManager.shared.getImage(name: "\(i).jpg") {
-                    imageList.append((image, i))
-                }
+        for data in diaryDBList {
+            if let image = ImageManager.shared.getImage(name: "\(data._id).jpg") {
+                imageList.append((image, data._id))
+            } else {
+                UserDefaults.standard.set("0", forKey: "imageNumber")
             }
-        } else {
-            UserDefaults.standard.set("0", forKey: "imageNumber")
         }
     }
     
     func showDiary(diary: DiaryDB) {
         hashTagList = ""
+        let id = diary._id
+        print(id)
         for i in 0..<diary.hashTag.count {
             if i == diary.hashTag.count - 1 {
                 hashTagList.append("#\(diary.hashTag[i])")
@@ -165,41 +173,43 @@ class DiaryViewController: UIViewController {
             }
             hashTagList.append("#\(diary.hashTag[i]), ")
         }
+        showImage(id: id)
         diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
         diaryHashTagLabel.text = hashTagList
         diaryContentLabel.text = diary.content
     }
     
-    func showImage(image: UIImage) {
-        diaryPictureUIImage.image = image
+    func showImage(id: ObjectId) {
+        for data in imageList {
+            if data.1 == id {
+                diaryPictureUIImage.image = data.0
+            }
+        }
     }
     
-    func editOrDeleteDiary(diary: DiaryDB, image: UIImage) {
-        editOrDeleteDiary = diary
-        editOrDeleteImage = image
+    func deleteImage(id: ObjectId) {
+        ImageManager.shared.deleteImage(name: "\(id).jpg") { onSuccess in
+            if onSuccess {
+                UIAlertController.warningAlert(message: "삭제가 완료되었습니다.", viewController: self)
+            }
+        }
     }
     
     //MARK: ETC
     func diaryViewType() {
         diaryDBList = getDiary()
+        getDiaryImage()
         if diaryType == .select {
             selectDiary = MyDB.selectDiary
-            selectImage = MyDB.selectImage?.0
-            moveImage = MyDB.selectImage?.1 ?? 0
             guard let selectDiary = selectDiary else { return }
-            guard let selectImage = selectImage else { return }
             showDiary(diary: selectDiary)
-            showImage(image: selectImage)
-            editOrDeleteDiary(diary: selectDiary, image: selectImage)
+            editOrDeleteDiary = selectDiary
             selectedDate = selectDiary.date
         } else {
             if !diaryDBList.isEmpty {
                 let lastDiary = diaryDBList[diaryDBList.endIndex - 1]
-                let lastImage = imageList[imageList.endIndex - 1]
                 showDiary(diary: lastDiary)
-                showImage(image: lastImage.0)
-                editOrDeleteDiary(diary: lastDiary, image: lastImage.0)
-                moveImage = lastImage.1
+                editOrDeleteDiary = lastDiary
                 selectedDate = lastDiary.date
             } else {
                 diaryPictureUIImage.isHidden = false
@@ -230,9 +240,7 @@ class DiaryViewController: UIViewController {
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
         let sortedList = diaryDBList.sorted(by: { $0.date > $1.date })
-        let sortedImageList = imageList.sorted(by: { $0.1 > $1.1 })
         var previousDate: Date = selectedDate
-        var previousImage: Int = moveImage
         
         for data in sortedList {
             if selectedDate > data.date {
@@ -248,27 +256,11 @@ class DiaryViewController: UIViewController {
             }
         }
         
-        for data in sortedImageList {
-            if moveImage > data.1 {
-                previousImage = data.1
-                break
-            }
-        }
-        
-        for data in sortedImageList {
-            if previousImage == data.1 {
-                showImage(image: data.0)
-                break
-            }
-        }
-        
-        moveImage = previousImage
         selectedDate = previousDate
     }
     
     @IBAction func nextDiaryButton(_ sender: UIButton) {
         var nextDate: Date = selectedDate
-        var nextImage: Int = moveImage
         
         for data in diaryDBList {
             if selectedDate < data.date {
@@ -283,21 +275,7 @@ class DiaryViewController: UIViewController {
                 break
             }
         }
-        
-        for data in imageList {
-            if moveImage < data.1 {
-                nextImage = data.1
-                break
-            }
-        }
-        
-        for data in imageList {
-            if nextImage == data.1 {
-                showImage(image: data.0)
-            }
-        }
-        
-        moveImage = nextImage
+
         selectedDate = nextDate
     }
     
@@ -321,8 +299,6 @@ class DiaryViewController: UIViewController {
         
         editVC.viewType = .edit
         editVC.editDiary = editOrDeleteDiary
-        editVC.editImage = editOrDeleteImage
-        editVC.editImageIndex = moveImage
         self.navigationController?.pushViewController(editVC, animated: true)
     }
     
@@ -332,14 +308,10 @@ class DiaryViewController: UIViewController {
         let deleteButton = UIAlertAction(title: "삭제", style: .destructive) { _ in
             if let editOrDeleteDiary = self.editOrDeleteDiary {
                 let diary = editOrDeleteDiary
+                self.deleteImage(id: diary._id)
                 self.deleteDiaryDB(diary: diary)
+                self.diaryViewType()
             }
-            ImageManager.shared.deleteImage(name: "\(self.moveImage).jpg") { onSuccess in
-                if onSuccess {
-                    self.imageList.remove(at: self.moveImage)
-                }
-            }
-            self.diaryViewType()
         }
         diaryDelete.addAction(cancelButton)
         diaryDelete.addAction(deleteButton)
@@ -371,14 +343,12 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         diaryCalendarView.isHidden.toggle()
         
-        var index: Int = 0
         let diaryList = diaryDBList.filter { diary in
             diary.date == date
         }
         
         if diaryList.count > 0 {
             for data in diaryList {
-                index += 1
                 if data.date == date {
                     showDiary(diary: data)
                     break

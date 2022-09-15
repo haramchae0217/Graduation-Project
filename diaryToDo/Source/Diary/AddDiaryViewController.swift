@@ -26,9 +26,8 @@ class AddDiaryViewController: UIViewController {
     let localRealm = try! Realm()
     let imagePicker = UIImagePickerController()
     
+    var imageList: (UIImage, ObjectId)?
     var imageCount: Int = 0
-    var editImage: UIImage?
-    var editImageIndex: Int = 0
     var editDiary: DiaryDB?
     var viewType: DiaryViewType = .add
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
@@ -53,8 +52,11 @@ class AddDiaryViewController: UIViewController {
     func configureEditTypeView() {
         if let editDiary = editDiary {
             var hashtag: String = ""
+            getDiaryImage(diary: editDiary)
+            if let imageList = imageList {
+                addDiaryImageView.image = imageList.0
+            }
             plusLabel.isHidden = true
-            addDiaryImageView.image = editImage
             addDiaryDatePicker.date = editDiary.date
             addDiaryContentTextView.text = editDiary.content
             addDiaryContentTextView.textColor = .label
@@ -105,6 +107,22 @@ class AddDiaryViewController: UIViewController {
         addDiaryImageView.isUserInteractionEnabled = true
     }
     
+    func configureUD() {
+        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
+            imageCount = count
+        } else {
+            UserDefaults.standard.set("0", forKey: "")
+        }
+    }
+    
+    func getDiaryImage(diary: DiaryDB) {
+        if let image = ImageManager.shared.getImage(name: "\(diary._id).jpg") {
+            imageList = (image, diary._id)
+        } else {
+            UserDefaults.standard.set("0", forKey: "imageNumber")
+        }
+    }
+    
     func addDiaryDB(diary: DiaryDB) {
         try! localRealm.write {
             localRealm.add(diary)
@@ -124,19 +142,13 @@ class AddDiaryViewController: UIViewController {
                 update: .modified)
         }
     }
+
     
-    func configureUD() {
-        if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
-            imageCount = count
-        } else {
-            UserDefaults.standard.set("0", forKey: "")
-        }
-    }
-    
-    func addDiaryImage() {
+    func addDiaryImage(diary: DiaryDB) {
         guard let image = addDiaryImageView.image else { return }
+        let id = diary._id
         
-        ImageManager.shared.saveImage(image: image, pathName: "\(imageCount).jpg") { onSuccess in
+        ImageManager.shared.saveImage(image: image, pathName: "\(id).jpg") { onSuccess in
             if onSuccess {
                 print("저장완료")
                 self.imageCount += 1
@@ -147,13 +159,14 @@ class AddDiaryViewController: UIViewController {
         }
     }
     
-    func editDiaryImage() {
+    func editDiaryImage(diary: DiaryDB) {
         guard let image = addDiaryImageView.image else { return }
+        let id = diary._id
         
-        ImageManager.shared.saveImage(image: image, pathName: "\(editImageIndex).jpg") { onSuccess in
+        ImageManager.shared.saveImage(image: image, pathName: "\(id).jpg") { onSuccess in
             if onSuccess {
                 print("수정완료")
-                UserDefaults.standard.set("\(self.editImageIndex)", forKey: "imageNumber")
+//                UserDefaults.standard.set("\(self.imageCount)", forKey: "imageNumber")
             } else {
                 print("수정실패")
             }
@@ -215,7 +228,7 @@ class AddDiaryViewController: UIViewController {
         let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
         if viewType == .add {
             addDiaryDB(diary: newDiary)
-            addDiaryImage()
+            addDiaryImage(diary: newDiary)
         } else {
             if let oldDiary = editDiary {
                 if oldDiary.content == content && oldDiary.hashTag == filterHashTag && oldDiary.date == date {
@@ -223,10 +236,10 @@ class AddDiaryViewController: UIViewController {
                     return
                 }
                 editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
-                editDiaryImage()
+                editDiaryImage(diary: oldDiary)
             }
         }
-
+        
         MyDB.selectDiary = newDiary
         self.navigationController?.popViewController(animated: true)
     }
