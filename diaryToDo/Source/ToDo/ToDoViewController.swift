@@ -373,11 +373,12 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
         todayToDoList = todoDBList.filter { toDo in
             toDo.startDate == date
         }
-        selectedDate = date
-        getTodayList(today: selectedDate)
         
         if todayToDoList.count == 0 {
             UIAlertController.warningAlert(message: "등록된 투두가 없습니다.", viewController: self)
+        } else {
+            selectedDate = date
+            getTodayList(today: selectedDate)
         }
     }
 }

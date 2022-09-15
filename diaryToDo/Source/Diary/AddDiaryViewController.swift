@@ -28,6 +28,7 @@ class AddDiaryViewController: UIViewController {
     
     var imageCount: Int = 0
     var editImage: UIImage?
+    var editImageIndex: Int = 0
     var editDiary: DiaryDB?
     var viewType: DiaryViewType = .add
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
@@ -147,9 +148,16 @@ class AddDiaryViewController: UIViewController {
     }
     
     func editDiaryImage() {
+        guard let image = addDiaryImageView.image else { return }
         
-        
-        
+        ImageManager.shared.saveImage(image: image, pathName: "\(editImageIndex).jpg") { onSuccess in
+            if onSuccess {
+                print("수정완료")
+                UserDefaults.standard.set("\(self.editImageIndex)", forKey: "imageNumber")
+            } else {
+                print("수정실패")
+            }
+        }
     }
     
     func showAlertSheet() {
@@ -215,6 +223,7 @@ class AddDiaryViewController: UIViewController {
                     return
                 }
                 editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
+                editDiaryImage()
             }
         }
 

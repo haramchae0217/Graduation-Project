@@ -21,7 +21,7 @@ class SearchDiaryViewController: UIViewController {
     }
     let localRealm = try! Realm()
     var diaryDBList: [DiaryDB] = []
-    var imageList: [UIImage] = []
+    var imageList: [(UIImage, Int)] = []
     var dateFormatType: String = ""
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
@@ -83,7 +83,7 @@ class SearchDiaryViewController: UIViewController {
         if let imageNumber = UserDefaults.standard.string(forKey: "imageNumber"), let count = Int(imageNumber) {
             for i in 0..<count {
                 if let image = ImageManager.shared.getImage(name: "\(i).jpg") {
-                    imageList.append(image)
+                    imageList.append((image, i))
                 }
             }
         } else {
@@ -113,7 +113,7 @@ extension SearchDiaryViewController: UITableViewDataSource {
             hashtags.append("#\(searchData.hashTag[i]), ")
         }
         
-        cell.diaryImage.image = image
+        cell.diaryImage.image = image.0
         cell.diaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: searchData.date, type: dateFormatType)
         cell.diaryDate.font = UIFont(name: font, size: fontSize)
         cell.diaryHashTag.text = "\(hashtags)"
