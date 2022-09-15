@@ -12,5 +12,4 @@ struct MyDB {
     
     static var selectDiary: DiaryDB?
     static var selectToDo: ToDoDB?
-    static var selectImage: (UIImage, Int)?
 }
