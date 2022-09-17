@@ -40,10 +40,6 @@ class ToDoViewController: UIViewController {
 //        configureEmptyView()
         configureNavigationController()
         configureTableView()
-        
-        if !todoDBList.isEmpty {
-            selectedDate = todoDBList[todoDBList.endIndex - 1].startDate
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,8 +48,8 @@ class ToDoViewController: UIViewController {
         configureDateFormat()
         configureFontAndFontSize()
         configureCalendar()
-        
         todoDBList = getToDo()
+        configureDate()
         getTodayList(today: selectedDate)
         
         toDoTableView.reloadData()
@@ -82,7 +78,8 @@ class ToDoViewController: UIViewController {
         containerView.addSubview(label)
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.translatesAutoresizingMaskIntoConstraints = false
     
         containerView.leadingAnchor.constraint(equalTo: toDoTableView.leadingAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: toDoTableView.trailingAnchor).isActive = true
@@ -121,6 +118,18 @@ class ToDoViewController: UIViewController {
         toDoCalendarView.appearance.selectionColor = .systemBlue
     }
     
+    func configureDate() {
+        if MyDB.selectToDo != nil {
+            selectToDo = MyDB.selectToDo
+            guard let selectToDo = selectToDo else { return }
+            selectedDate = selectToDo.startDate
+        } else {
+            if !todoDBList.isEmpty {
+                selectedDate = todoDBList[todoDBList.endIndex - 1].startDate
+            }
+        }
+    }
+    
     func getToDo() -> [ToDoDB] {
         print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         return localRealm.objects(ToDoDB.self).map { $0 }
@@ -137,8 +146,7 @@ class ToDoViewController: UIViewController {
         checkedList = []
         notCheckedList = []
         
-        let todayToString = DateFormatter.customDateFormatter.dateToString(date: today)
-        let todayToDate = DateFormatter.customDateFormatter.strToDate(str: todayToString)
+        let todayToDate = DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: today))
         
         for todo in todoDBList {
             if todo.startDate == todayToDate {
@@ -153,7 +161,7 @@ class ToDoViewController: UIViewController {
                 }
             }
         }
-        
+        print("todayList : \(todayToDoList)")
         distributeToDo()
         todoDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: todayToDate, type: dateFormatType)
         toDoTableView.reloadData()
@@ -169,6 +177,8 @@ class ToDoViewController: UIViewController {
         }
         checkedList = checkedList.sorted(by: { $0.startDate > $1.startDate })
         notCheckedList = notCheckedList.sorted(by: { $0.startDate > $1.startDate })
+        print("checkList : \(checkedList)")
+        print("notCheckList : \(notCheckedList)")
     }
     
     func setToDoComplete(_ sender: UIButton) {
@@ -179,15 +189,61 @@ class ToDoViewController: UIViewController {
         sender.setImage(UIImage(systemName: "circle"), for: .normal)
     }
     
-    func toggleAndReload(index: Int) {
-        let todo = todayToDoList[index]
-        todayToDoList[index].isChecked.toggle()
-        
-        for data in todoDBList {
-            // isChecked bool값 변경
+    func editToDoChecking(todo: ToDoDB) {
+        try! localRealm.write {
+            localRealm.create(
+                ToDoDB.self,
+                value: [
+                    "_id": todo._id,
+                    "title": todo.title,
+                    "memo": todo.memo,
+                    "startDate": todo.startDate,
+                    "endDate": todo.endDate,
+                    "isChecked": 1
+                ],
+                update: .modified
+            )
         }
+    }
+    
+    func editNotToDoChecking(todo: ToDoDB) {
+        try! localRealm.write {
+            localRealm.create(
+                ToDoDB.self,
+                value: [
+                    "_id": todo._id,
+                    "title": todo.title,
+                    "memo": todo.memo,
+                    "startDate": todo.startDate,
+                    "endDate": todo.endDate,
+                    "isChecked": 0
+                ],
+                update: .modified
+            )
+        }
+    }
+    
+    func toggleTrueToFalse(index: Int) {
+        let todo = checkedList[index]
+        print("true to false todo : \(todo)")
+        editNotToDoChecking(todo: todo)
+        print("after toggle todo : \(todo)")
+        todoDBList = getToDo()
+        print("data reset \(todoDBList)")
+        getTodayList(today: todo.startDate)
+        print("getTodayList")
+    }
+    
+    func toggleFalseToTrue(index: Int) {
+        let todo = notCheckedList[index]
+        print("false to true todo : \(todo)")
+        editToDoChecking(todo: todo)
+        print("after toggle todo : \(todo)")
+        todoDBList = getToDo()
+        print("data reset \(todoDBList)")
+        getTodayList(today: todo.startDate)
+        print("getTodayList")
         
-        toDoTableView.reloadData()
     }
     
     @IBAction func previousToDoButton(_ sender: UIButton) {
@@ -228,7 +284,13 @@ class ToDoViewController: UIViewController {
     }
     
     @objc func checkToDoButton(_ sender: UIButton) {
-        toggleAndReload(index: sender.tag)
+        toggleTrueToFalse(index: sender.tag)
+        print("true to false index : \(sender.tag)")
+    }
+    
+    @objc func notCheckToDoButton(_ sender: UIButton) {
+        toggleFalseToTrue(index: sender.tag)
+        print("false to true index : \(sender.tag)")
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
@@ -265,18 +327,19 @@ extension ToDoViewController: UITableViewDataSource {
             setToDoNotComplete(cell.toDoCheckButton)
             cell.toDoTitleLabel.textColor = .label
             cell.toDoExpireDateLabel.textColor = .label
+            cell.toDoCheckButton.tag = indexPath.row
+            cell.toDoCheckButton.addTarget(self, action: #selector(notCheckToDoButton), for: .touchUpInside)
         } else { // 완료 항목
             todo = checkedList[indexPath.row]
             setToDoComplete(cell.toDoCheckButton)
             cell.toDoTitleLabel.textColor = .lightGray
             cell.toDoExpireDateLabel.textColor = .lightGray
+            cell.toDoCheckButton.tag = indexPath.row
+            cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         }
         
         cell.toDoTitleLabel.text = todo.title
         cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
-    
-        cell.toDoCheckButton.tag = indexPath.row
-        cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         
         if todo.startDate == todo.endDate {
             cell.toDoExpireDateLabel.text = "오늘"
@@ -295,6 +358,7 @@ extension ToDoViewController: UITableViewDataSource {
             if editingStyle == .delete {
                 deleteToDoDB(todo: todo)
             }
+            
             todoDBList = getToDo()
             getTodayList(today: selectedDate)
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -303,6 +367,7 @@ extension ToDoViewController: UITableViewDataSource {
             if editingStyle == .delete {
                 deleteToDoDB(todo: todo)
             }
+            
             todoDBList = getToDo()
             getTodayList(today: selectedDate)
             tableView.deleteRows(at: [indexPath], with: .fade)
