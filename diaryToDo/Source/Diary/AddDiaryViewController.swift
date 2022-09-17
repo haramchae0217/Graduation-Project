@@ -150,11 +150,11 @@ class AddDiaryViewController: UIViewController {
         
         ImageManager.shared.saveImage(image: image, pathName: "\(id).jpg") { onSuccess in
             if onSuccess {
-                print("저장완료")
                 self.imageCount += 1
                 UserDefaults.standard.set("\(self.imageCount)", forKey: "imageNumber")
+                UIAlertController.warningAlert(title: "☑️", message: "저장이 완료되었습니다.", viewController: self)
             } else {
-                print("저장실패")
+                UIAlertController.warningAlert(title: "🚫", message: "저장에 실패하였습니다.", viewController: self)
             }
         }
     }
@@ -165,10 +165,9 @@ class AddDiaryViewController: UIViewController {
         
         ImageManager.shared.saveImage(image: image, pathName: "\(id).jpg") { onSuccess in
             if onSuccess {
-                print("수정완료")
-//                UserDefaults.standard.set("\(self.imageCount)", forKey: "imageNumber")
+                UIAlertController.warningAlert(title: "☑️", message: "수정이 완료되었습니다.", viewController: self)
             } else {
-                print("수정실패")
+                UIAlertController.warningAlert(title: "🚫", message: "수정에 실패하였습니다.", viewController: self)
             }
         }
     }
@@ -207,12 +206,12 @@ class AddDiaryViewController: UIViewController {
         let filterHashTag = List<String>()
         
         if addDiaryImageView.image == nil {
-            UIAlertController.warningAlert(message: "사진을 첨부해주세요.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "사진을 첨부해주세요.", viewController: self)
             return
         }
         
         if content.isEmpty || hashTag.isEmpty {
-            UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "내용을 입력해주세요.", viewController: self)
             return
         } else {
             hashTag.components(separatedBy: " ").forEach { str in
@@ -220,7 +219,7 @@ class AddDiaryViewController: UIViewController {
             }
             
             if filterHashTag.count > 3 {
-                UIAlertController.warningAlert(message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
+                UIAlertController.warningAlert(title: "🚫", message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
                 return
             }
         }
@@ -232,7 +231,7 @@ class AddDiaryViewController: UIViewController {
         } else {
             if let oldDiary = editDiary {
                 if oldDiary.content == content && oldDiary.hashTag == filterHashTag && oldDiary.date == date {
-                    UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+                    UIAlertController.warningAlert(title: "🚫", message: "변경 후 다시 시도해주세요.", viewController: self)
                     return
                 }
                 editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
@@ -267,7 +266,7 @@ extension AddDiaryViewController: UIImagePickerControllerDelegate & UINavigation
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             addDiaryImageView.image = image
         } else {
-            UIAlertController.warningAlert(message: "이미지 선택 실패", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "이미지 선택 실패", viewController: self)
         }
         
         self.dismiss(animated: true, completion: nil)

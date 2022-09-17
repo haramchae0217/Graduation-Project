@@ -85,7 +85,7 @@ class FontSettingViewController: UIViewController {
         }
         
         if dbData == selectData {
-            UIAlertController.warningAlert(message: "변동사항이 없습니다.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "변동사항이 없습니다.", viewController: self)
         } else {
             let settingEdit = UIAlertController(title: "⚠️", message: "설정을 변경하시겠습니까?", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "취소", style: .cancel)

@@ -141,7 +141,7 @@ class AddToDoViewController: UIViewController {
         endDate = DateFormatter.customDateFormatter.strToDate(str: endStringDate)
         
         if title.isEmpty || memo.isEmpty {
-            UIAlertController.warningAlert(message: "내용을 입력해주세요.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "내용을 입력해주세요.", viewController: self)
             return
         }
         
@@ -151,7 +151,7 @@ class AddToDoViewController: UIViewController {
         } else {
             if let oldToDo = editToDo {
                 if oldToDo.title == title && oldToDo.memo == memo && oldToDo.startDate == startDate && oldToDo.endDate == endDate {
-                    UIAlertController.warningAlert(message: "변경 후 다시 시도해주세요.", viewController: self)
+                    UIAlertController.warningAlert(title: "🚫", message: "변경 후 다시 시도해주세요.", viewController: self)
                     return
                 }
                 let todo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)

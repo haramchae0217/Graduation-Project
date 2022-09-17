@@ -337,11 +337,13 @@ extension ToDoViewController: UITableViewDelegate {
         editToDoVC.viewType = .edit
         editToDoVC.editToDo = todo
         editToDoVC.editRow = row
+        
         if todo.startDate == todo.endDate {
             editToDoVC.allDayType = .yes
         } else {
             editToDoVC.allDayType = .no
         }
+        
         self.navigationController?.pushViewController(editToDoVC, animated: true)
     }
 }
@@ -375,7 +377,7 @@ extension ToDoViewController: FSCalendarDelegate, FSCalendarDataSource {
         }
         
         if todayToDoList.count == 0 {
-            UIAlertController.warningAlert(message: "등록된 투두가 없습니다.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "등록된 투두가 없습니다.", viewController: self)
         } else {
             selectedDate = date
             getTodayList(today: selectedDate)

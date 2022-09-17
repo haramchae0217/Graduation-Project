@@ -57,7 +57,6 @@ class DiaryViewController: UIViewController {
         
         if MyDB.selectDiary != nil {
             diaryType = .select
-            print("diray type select")
         }
         configureDateFormat()
         configureFilmImage()
@@ -165,7 +164,6 @@ class DiaryViewController: UIViewController {
     func showDiary(diary: DiaryDB) {
         hashTagList = ""
         let id = diary._id
-        print(id)
         for i in 0..<diary.hashTag.count {
             if i == diary.hashTag.count - 1 {
                 hashTagList.append("#\(diary.hashTag[i])")
@@ -190,7 +188,7 @@ class DiaryViewController: UIViewController {
     func deleteImage(id: ObjectId) {
         ImageManager.shared.deleteImage(name: "\(id).jpg") { onSuccess in
             if onSuccess {
-                UIAlertController.warningAlert(message: "삭제가 완료되었습니다.", viewController: self)
+                UIAlertController.warningAlert(title: "☑️", message: "삭제가 완료되었습니다.", viewController: self)
             }
         }
     }
@@ -357,7 +355,7 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
             
             selectedDate = date
         } else {
-            UIAlertController.warningAlert(message: "등록된 다이어리가 없습니다.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "등록된 다이어리가 없습니다.", viewController: self)
         }
     }
 }
