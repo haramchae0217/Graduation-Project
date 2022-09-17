@@ -45,17 +45,17 @@ class GraphViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationController()
-        appendDate(date: todayDate)
+        configureDateFormat()
+        configureFontAndFontSize()
         configureCalendar()
+        
+        todoDBList = getToDo()
+        appendDate(date: todayDate)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        configureDateFormat()
-        configureFontAndFontSize()
-        
-        todoDBList = getToDo()
         
         calendarView.reloadData()
     }
