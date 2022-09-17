@@ -172,6 +172,8 @@ class DiaryViewController: UIViewController {
             hashTagList.append("#\(diary.hashTag[i]), ")
         }
         showImage(id: id)
+        editOrDeleteDiary = diary
+        selectedDate = diary.date
         diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: diary.date, type: dateFormatType)
         diaryHashTagLabel.text = hashTagList
         diaryContentLabel.text = diary.content
@@ -196,19 +198,16 @@ class DiaryViewController: UIViewController {
     //MARK: ETC
     func diaryViewType() {
         diaryDBList = getDiary()
+        diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
         getDiaryImage()
         if diaryType == .select {
             selectDiary = MyDB.selectDiary
             guard let selectDiary = selectDiary else { return }
             showDiary(diary: selectDiary)
-            editOrDeleteDiary = selectDiary
-            selectedDate = selectDiary.date
         } else {
             if !diaryDBList.isEmpty {
                 let lastDiary = diaryDBList[diaryDBList.endIndex - 1]
                 showDiary(diary: lastDiary)
-                editOrDeleteDiary = lastDiary
-                selectedDate = lastDiary.date
             } else {
                 diaryPictureUIImage.isHidden = false
                 diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
