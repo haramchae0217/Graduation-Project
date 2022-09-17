@@ -44,6 +44,7 @@ class SearchDiaryViewController: UIViewController {
         configureFontAndFontSize()
         
         diaryDBList = getDiary()
+        diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
         getDiaryImage()
     }
     
