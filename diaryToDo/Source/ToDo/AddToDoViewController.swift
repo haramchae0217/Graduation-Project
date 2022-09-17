@@ -145,20 +145,21 @@ class AddToDoViewController: UIViewController {
             return
         }
         
+        let newToDo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
+        
         if viewType == .add {
-            let todo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
-            addToDoDB(todo: todo)
+            addToDoDB(todo: newToDo)
         } else {
             if let oldToDo = editToDo {
                 if oldToDo.title == title && oldToDo.memo == memo && oldToDo.startDate == startDate && oldToDo.endDate == endDate {
                     UIAlertController.warningAlert(title: "🚫", message: "변경 후 다시 시도해주세요.", viewController: self)
                     return
                 }
-                let todo = ToDoDB(title: title, memo: memo, startDate: startDate, endDate: endDate)
-                editToDoDB(oldData: oldToDo, newData: todo)
+                editToDoDB(oldData: oldToDo, newData: newToDo)
             }
         }
         
+        MyDB.selectToDo = newToDo
         self.navigationController?.popViewController(animated: true)
     }
     
