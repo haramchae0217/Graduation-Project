@@ -13,12 +13,14 @@ class DiaryDB: Object {
     @Persisted var content: String
     @Persisted var hashTag: List<String>
     @Persisted var date: Date
+    @Persisted var textCount: Int
 
-    convenience init(content: String, hashTag: List<String>, date: Date) {
+    convenience init(content: String, hashTag: List<String>, date: Date, textCount: Int) {
         self.init()
         self.content = content
         self.hashTag = hashTag
         self.date = date
+        self.textCount = textCount
     }
 }
 

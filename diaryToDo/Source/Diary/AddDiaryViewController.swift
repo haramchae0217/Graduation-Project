@@ -20,6 +20,7 @@ class AddDiaryViewController: UIViewController {
     @IBOutlet weak var addDiaryImageView: UIImageView!
     @IBOutlet weak var addDiaryDatePicker: UIDatePicker!
     @IBOutlet weak var addDiaryContentTextView: UITextView!
+    @IBOutlet weak var addDiaryContentTextCountLabel: UILabel!
     @IBOutlet weak var addDiaryHashTagTextField: UITextField!
     @IBOutlet weak var plusLabel: UILabel!
     
@@ -28,6 +29,7 @@ class AddDiaryViewController: UIViewController {
     
     var imageList: (UIImage, ObjectId)?
     var imageCount: Int = 0
+    var textCount: Int = 0
     var editDiary: DiaryDB?
     var viewType: DiaryViewType = .add
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
@@ -59,6 +61,7 @@ class AddDiaryViewController: UIViewController {
             plusLabel.isHidden = true
             addDiaryDatePicker.date = editDiary.date
             addDiaryContentTextView.text = editDiary.content
+            addDiaryContentTextCountLabel.text = "\(editDiary.textCount)/80"
             addDiaryContentTextView.textColor = .label
             for data in editDiary.hashTag {
                 hashtag += "\(data) "
@@ -82,6 +85,7 @@ class AddDiaryViewController: UIViewController {
         fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
         font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
+        addDiaryContentTextCountLabel.font = UIFont(name: font, size: fontSize)
         insertContentLabel.font = UIFont(name: font, size: fontSize)
         insertHashTagLabel.font = UIFont(name: font, size: fontSize)
     }
@@ -94,6 +98,9 @@ class AddDiaryViewController: UIViewController {
     
     func configureTextView() {
         addDiaryContentTextView.delegate = self
+        addDiaryContentTextView.layer.cornerRadius = 10
+        addDiaryContentTextView.layer.borderWidth = 1
+        addDiaryContentTextView.layer.borderColor = UIColor.black.cgColor
     }
     
     func configureImagePicker() {
@@ -152,9 +159,9 @@ class AddDiaryViewController: UIViewController {
             if onSuccess {
                 self.imageCount += 1
                 UserDefaults.standard.set("\(self.imageCount)", forKey: "imageNumber")
-                UIAlertController.warningAlert(title: "☑️", message: "저장이 완료되었습니다.", viewController: self)
+//                UIAlertController.warningAlert(title: "☑️", message: "저장이 완료되었습니다.", viewController: self)
             } else {
-                UIAlertController.warningAlert(title: "🚫", message: "저장에 실패하였습니다.", viewController: self)
+//                UIAlertController.warningAlert(title: "🚫", message: "저장에 실패하였습니다.", viewController: self)
             }
         }
     }
@@ -165,9 +172,9 @@ class AddDiaryViewController: UIViewController {
         
         ImageManager.shared.saveImage(image: image, pathName: "\(id).jpg") { onSuccess in
             if onSuccess {
-                UIAlertController.warningAlert(title: "☑️", message: "수정이 완료되었습니다.", viewController: self)
+//                UIAlertController.warningAlert(title: "☑️", message: "수정이 완료되었습니다.", viewController: self)
             } else {
-                UIAlertController.warningAlert(title: "🚫", message: "수정에 실패하였습니다.", viewController: self)
+//                UIAlertController.warningAlert(title: "🚫", message: "수정에 실패하였습니다.", viewController: self)
             }
         }
     }
@@ -204,6 +211,14 @@ class AddDiaryViewController: UIViewController {
         let content = addDiaryContentTextView.text!
         let hashTag = addDiaryHashTagTextField.text!
         let filterHashTag = List<String>()
+        var contentTextCount: Int = 0
+        
+        if textCount > 80 {
+            UIAlertController.warningAlert(title: "🚫", message: "50자 이내로 작성해주세요.", viewController: self)
+            return
+        } else {
+            contentTextCount = textCount
+        }
         
         if addDiaryImageView.image == nil {
             UIAlertController.warningAlert(title: "🚫", message: "사진을 첨부해주세요.", viewController: self)
@@ -215,7 +230,9 @@ class AddDiaryViewController: UIViewController {
             return
         } else {
             hashTag.components(separatedBy: " ").forEach { str in
-                filterHashTag.append(str)
+                if str != "" {
+                    filterHashTag.append(str)
+                }
             }
             
             if filterHashTag.count > 3 {
@@ -224,7 +241,8 @@ class AddDiaryViewController: UIViewController {
             }
         }
         
-        let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
+        let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date, textCount: contentTextCount)
+        
         if viewType == .add {
             addDiaryDB(diary: newDiary)
             addDiaryImage(diary: newDiary)
@@ -258,6 +276,23 @@ extension AddDiaryViewController: UITextViewDelegate {
             textView.text = "내용을 입력해주세요."
             textView.textColor = .lightGray
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text!
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let changeText = currentText.replacingCharacters(in: stringRange, with: text)
+        
+        addDiaryContentTextCountLabel.text = "\(changeText.count)/50"
+        if changeText.count > 80 {
+            textView.textColor = .systemRed
+            addDiaryContentTextCountLabel.textColor = .systemRed
+        } else {
+            textView.textColor = .label
+            addDiaryContentTextCountLabel.textColor = .label
+        }
+        textCount = changeText.count
+        return changeText.count <= 100000
     }
 }
 
