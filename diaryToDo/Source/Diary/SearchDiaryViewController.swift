@@ -145,7 +145,6 @@ extension SearchDiaryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let diary = searchDiary[indexPath.row]
-        let image = searchImage[indexPath.row]
         MyDB.selectDiary = diary
         self.navigationController?.popViewController(animated: true)
     }
