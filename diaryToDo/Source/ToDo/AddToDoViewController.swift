@@ -34,7 +34,6 @@ class AddToDoViewController: UIViewController {
     let localRealm = try! Realm()
     
     var editToDo: ToDoDB?
-    var editRow: Int?
     var viewType: ToDoViewType = .add
     var allDayType: AllDayType = .yes
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
@@ -70,6 +69,7 @@ class AddToDoViewController: UIViewController {
         } else {
             title = "투두 추가"
         }
+        
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
     }
     
