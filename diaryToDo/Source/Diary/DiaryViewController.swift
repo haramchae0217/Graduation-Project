@@ -319,11 +319,11 @@ class DiaryViewController: UIViewController {
 extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         for diary in diaryDBList {
-            let diaryEvent = diary.date
+            let diaryEvent = DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: diary.date))
             
             if diaryEvent == date {
                 let count = diaryDBList.filter { diary in
-                    diary.date == date
+                    DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: diary.date)) == date
                 }.count
                 
                 if count >= 3 {
@@ -341,18 +341,17 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
         diaryCalendarView.isHidden.toggle()
         
         let diaryList = diaryDBList.filter { diary in
-            diary.date == date
+            DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: diary.date)) == date
         }
         
         if diaryList.count > 0 {
             for data in diaryList {
-                if data.date == date {
+                if DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: data.date)) == date {
                     showDiary(diary: data)
+                    selectedDate = data.date
                     break
                 }
             }
-            
-            selectedDate = date
         } else {
             UIAlertController.warningAlert(title: "🚫", message: "등록된 다이어리가 없습니다.", viewController: self)
         }
