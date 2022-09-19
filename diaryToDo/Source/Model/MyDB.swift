@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-struct MyDB {
+struct SelectItem {
     
     static var selectDiary: DiaryDB?
     static var selectToDo: ToDoDB?
