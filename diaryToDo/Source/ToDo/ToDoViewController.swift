@@ -23,6 +23,7 @@ class ToDoViewController: UIViewController {
     let localRealm = try! Realm()
     var todoDBList: [ToDoDB] = []
     var todayToDoList: [ToDoDB] = []
+    var checkToDoSection: Int = 0
     var selectToDo: ToDoDB?
     let sectionList: [String] = ["미완료", "완료"]
     var selectedDate: Date = Date()
@@ -119,8 +120,8 @@ class ToDoViewController: UIViewController {
     }
     
     func configureDate() {
-        if MyDB.selectToDo != nil {
-            selectToDo = MyDB.selectToDo
+        if SelectItem.selectToDo != nil {
+            selectToDo = SelectItem.selectToDo
             guard let selectToDo = selectToDo else { return }
             selectedDate = selectToDo.startDate
         } else {
@@ -236,6 +237,24 @@ class ToDoViewController: UIViewController {
         getTodayList(today: todo.startDate)
     }
     
+    func takeIndexPath(indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let todo = notCheckedList[indexPath.row]
+            editNotToDoChecking(todo: todo)
+            todoDBList = getToDo()
+            getTodayList(today: todo.startDate)
+        } else {
+            let todo = checkedList[indexPath.row]
+            editNotToDoChecking(todo: todo)
+            todoDBList = getToDo()
+            getTodayList(today: todo.startDate)
+        }
+    }
+    
+    @objc func checkToDoButton(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func previousToDoButton(_ sender: UIButton) {
         let sortedList = todoDBList.sorted(by: { $0.startDate > $1.startDate })
         
@@ -273,14 +292,6 @@ class ToDoViewController: UIViewController {
         self.navigationController?.pushViewController(graphVC, animated: true)
     }
     
-    @objc func checkToDoButton(_ sender: UIButton) {
-        toggleFalseToTrue(index: sender.tag)
-    }
-    
-    @objc func notCheckToDoButton(_ sender: UIButton) {
-        toggleTrueToFalse(index: sender.tag)
-    }
-    
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
         toDoCalendarView.isHidden.toggle()
     }
@@ -315,6 +326,7 @@ extension ToDoViewController: UITableViewDataSource {
             setToDoNotComplete(cell.toDoCheckButton)
             cell.toDoTitleLabel.textColor = .label
             cell.toDoExpireDateLabel.textColor = .label
+            takeIndexPath(indexPath: indexPath)
             cell.toDoCheckButton.tag = indexPath.row
             cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         } else { // 완료 항목
@@ -322,10 +334,10 @@ extension ToDoViewController: UITableViewDataSource {
             setToDoComplete(cell.toDoCheckButton)
             cell.toDoTitleLabel.textColor = .lightGray
             cell.toDoExpireDateLabel.textColor = .lightGray
+            
             cell.toDoCheckButton.tag = indexPath.row
-            cell.toDoCheckButton.addTarget(self, action: #selector(notCheckToDoButton), for: .touchUpInside)
+            cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
         }
-        
         
         cell.toDoTitleLabel.text = todo.title
         cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
