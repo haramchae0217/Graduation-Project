@@ -55,7 +55,7 @@ class DiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if MyDB.selectDiary != nil {
+        if SelectItem.selectDiary != nil {
             diaryType = .select
         }
         configureDateFormat()
@@ -201,7 +201,7 @@ class DiaryViewController: UIViewController {
         diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
         getDiaryImage()
         if diaryType == .select {
-            selectDiary = MyDB.selectDiary
+            selectDiary = SelectItem.selectDiary
             guard let selectDiary = selectDiary else { return }
             showDiary(diary: selectDiary)
         } else {
