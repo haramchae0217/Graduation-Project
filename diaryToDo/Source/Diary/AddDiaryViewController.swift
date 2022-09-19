@@ -257,7 +257,7 @@ class AddDiaryViewController: UIViewController {
             }
         }
         
-        MyDB.selectDiary = newDiary
+        SelectItem.selectDiary = newDiary
         self.navigationController?.popViewController(animated: true)
     }
     
