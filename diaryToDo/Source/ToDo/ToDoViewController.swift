@@ -326,6 +326,7 @@ extension ToDoViewController: UITableViewDataSource {
             setToDoNotComplete(cell.toDoCheckButton)
             cell.toDoTitleLabel.textColor = .label
             cell.toDoExpireDateLabel.textColor = .label
+            
             takeIndexPath(indexPath: indexPath)
             cell.toDoCheckButton.tag = indexPath.row
             cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
