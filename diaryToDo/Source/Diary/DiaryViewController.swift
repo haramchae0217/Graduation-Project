@@ -18,6 +18,8 @@ class DiaryViewController: UIViewController {
     }
     
     //MARK: UI
+    @IBOutlet weak var diaryUIView: UIView!
+    @IBOutlet weak var diarySelectTableView: UITableView!
     @IBOutlet weak var diaryDateLabel: UILabel!
     @IBOutlet weak var diaryPictureUIImage: UIImageView!
     @IBOutlet weak var diaryHashTagLabel: UILabel!
@@ -32,6 +34,8 @@ class DiaryViewController: UIViewController {
     
     var diaryDBList: [DiaryDB] = []
     var filterHashTag: [DiaryDB] = []
+    var sameDateDiary: [DiaryDB] = []
+    var sameDateImage: [UIImage] = []
     var imageList: [(UIImage, ObjectId)] = []
     var imageCount: Int = 0
     var editOrDeleteDiary: DiaryDB?
@@ -48,6 +52,7 @@ class DiaryViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationController()
+        configureTableView()
         configureUILabel()
         configureTapGesture()
     }
@@ -76,6 +81,12 @@ class DiaryViewController: UIViewController {
     func configureNavigationController() {
         title = "다이어리"
         self.navigationController?.navigationBar.tintColor = UIColor(named: "diaryColor")
+    }
+    
+    func configureTableView() {
+        diarySelectTableView.delegate = self
+        diarySelectTableView.dataSource = self
+        diaryUIView.isHidden = true
     }
     
     func configureUILabel() {
@@ -344,17 +355,75 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
             DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: diary.date)) == date
         }
         
-        if diaryList.count > 0 {
+        if diaryList.count > 1 {
+            for data in diaryList {
+                if DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: data.date)) == date {
+                    sameDateDiary.append(data)
+                }
+            }
+            
+            diaryUIView.isHidden = false
+            diarySelectTableView.reloadData()
+        } else if diaryList.count == 1 {
             for data in diaryList {
                 if DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: data.date)) == date {
                     showDiary(diary: data)
-                    selectedDate = data.date
                     break
                 }
             }
         } else {
             UIAlertController.warningAlert(title: "🚫", message: "등록된 다이어리가 없습니다.", viewController: self)
         }
+    }
+}
+
+extension DiaryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let diary = sameDateDiary[indexPath.row]
+        showDiary(diary: diary)
+        sameDateDiary = []
+        sameDateImage = []
+        diaryUIView.isHidden = true
+    }
+}
+
+extension DiaryViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DiarySelectTableViewCell.identifier, for: indexPath) as? DiarySelectTableViewCell else { return UITableViewCell() }
+        let selectDiary = sameDateDiary[indexPath.row]
+        
+        for data in imageList {
+            if selectDiary._id == data.1 {
+                sameDateImage.append(data.0)
+            }
+        }
+        let selectImage = sameDateImage[indexPath.row]
+        
+        var hashTags: String = ""
+        for i in 0..<selectDiary.hashTag.count {
+            if i == selectDiary.hashTag.count - 1 {
+                hashTags.append("#\(selectDiary.hashTag[i])")
+                break
+            }
+            
+            hashTags.append("#\(selectDiary.hashTag[i]), ")
+        }
+        
+        cell.selectDiaryUIImage.image = selectImage
+        cell.selectDiaryHashTag.text = "\(hashTags)"
+        cell.selectDiaryHashTag.font = UIFont(name: font, size: fontSize)
+        cell.selectDiaryDate.text = DateFormatter.customDateFormatter.dateToStr(date: selectDiary.date, type: dateFormatType)
+        cell.selectDiaryDate.font = UIFont(name: font, size: fontSize)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sameDateDiary.count
     }
 }
 
