@@ -48,6 +48,7 @@
 		83608C3628B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1C28B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf */; };
 		837C4F0C27DC349B00FC46A7 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */; };
 		837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */; };
+		837DDC3B28D9A5F700AF1903 /* DiarySelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DDC3A28D9A5F700AF1903 /* DiarySelectTableViewCell.swift */; };
 		8390C3122829660200E8D57A /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 8390C3112829660200E8D57A /* Charts */; };
 		8390C3142829663A00E8D57A /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8390C3132829663A00E8D57A /* GraphViewController.swift */; };
 		83BB1C2328C98F0700376429 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BB1C2228C98F0700376429 /* UserDefaults.swift */; };
@@ -116,6 +117,7 @@
 		83608C1C28B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HSGyeoulNoonkott2.0-Regular.ttf"; sourceTree = "<group>"; };
 		837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
+		837DDC3A28D9A5F700AF1903 /* DiarySelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySelectTableViewCell.swift; sourceTree = "<group>"; };
 		8390C3132829663A00E8D57A /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = diaryToDo/Source/ToDo/GraphViewController.swift; sourceTree = SOURCE_ROOT; };
 		83BB1C2228C98F0700376429 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		83C0269D28424BFB00511B7F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */,
 				83FDF02127F317AD008E45E3 /* AddDiaryViewController.swift */,
 				83C0269F28424C2B00511B7F /* SearchDiaryViewController.swift */,
+				837DDC3A28D9A5F700AF1903 /* DiarySelectTableViewCell.swift */,
 				83C0269D28424BFB00511B7F /* SearchTableViewCell.swift */,
 			);
 			path = Diary;
@@ -416,6 +419,7 @@
 				83D512C427F5C3E7009B3A23 /* FontSizeSettingViewController.swift in Sources */,
 				83D512D427F5E461009B3A23 /* Font.swift in Sources */,
 				83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */,
+				837DDC3B28D9A5F700AF1903 /* DiarySelectTableViewCell.swift in Sources */,
 				83D512CC27F5D998009B3A23 /* FontSizeTableViewCell.swift in Sources */,
 				83D512CE27F5DABD009B3A23 /* FontSize.swift in Sources */,
 				8390C3142829663A00E8D57A /* GraphViewController.swift in Sources */,
