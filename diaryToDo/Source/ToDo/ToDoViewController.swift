@@ -258,27 +258,35 @@ class ToDoViewController: UIViewController {
     @IBAction func previousToDoButton(_ sender: UIButton) {
         let sortedList = todoDBList.sorted(by: { $0.startDate > $1.startDate })
         
-        // 현재 selectedDate를 기준으로 가장 가까운 이전 날짜 가져오기
-        for data in sortedList {
-            if selectedDate > data.startDate {
-                selectedDate = data.startDate
-                break
+        if todoDBList[0].startDate == selectedDate {
+            UIAlertController.warningAlert(title: "🚫", message: "이전 투두가 없습니다.", viewController: self)
+        } else {
+            // 현재 selectedDate를 기준으로 가장 가까운 이전 날짜 가져오기
+            for data in sortedList {
+                if selectedDate > data.startDate {
+                    selectedDate = data.startDate
+                    break
+                }
             }
+            
+            getTodayList(today: selectedDate)
         }
-        
-        getTodayList(today: selectedDate)
     }
     
     @IBAction func nextToDoButton(_ sender: UIButton) {
         // 현재 selectedDate를 기준으로 가장 가까운 다음 날짜 가져오기
-        for data in todoDBList {
-            if selectedDate < data.startDate {
-                selectedDate = data.startDate
-                break
+        if todoDBList[todoDBList.count - 1].startDate == selectedDate {
+            UIAlertController.warningAlert(title: "🚫", message: "다음 투두가 없습니다.", viewController: self)
+        } else {
+            for data in todoDBList {
+                if selectedDate < data.startDate {
+                    selectedDate = data.startDate
+                    break
+                }
             }
+            
+            getTodayList(today: selectedDate)
         }
-        
-        getTodayList(today: selectedDate)
     }
     
     @IBAction func addToDoButton(_ sender: UIBarButtonItem) {
