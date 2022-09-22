@@ -283,7 +283,7 @@ extension AddDiaryViewController: UITextViewDelegate {
         guard let stringRange = Range(range, in: currentText) else { return false }
         let changeText = currentText.replacingCharacters(in: stringRange, with: text)
         
-        addDiaryContentTextCountLabel.text = "\(changeText.count)/50"
+        addDiaryContentTextCountLabel.text = "\(changeText.count)/80"
         if changeText.count > 80 {
             textView.textColor = .systemRed
             addDiaryContentTextCountLabel.textColor = .systemRed

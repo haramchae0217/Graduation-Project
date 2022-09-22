@@ -172,6 +172,14 @@ class DiaryViewController: UIViewController {
         }
     }
     
+    func deleteImage(diary: DiaryDB) {
+        ImageManager.shared.deleteImage(name: "\(diary._id).jpg") { onSuccess in
+            if onSuccess {
+                UIAlertController.warningAlert(title: "☑️", message: "삭제가 완료되었습니다.", viewController: self)
+            }
+        }
+    }
+    
     func showDiary(diary: DiaryDB) {
         hashTagList = ""
         let id = diary._id
@@ -194,14 +202,6 @@ class DiaryViewController: UIViewController {
         for data in imageList {
             if data.1 == id {
                 diaryPictureUIImage.image = data.0
-            }
-        }
-    }
-    
-    func deleteImage(id: ObjectId) {
-        ImageManager.shared.deleteImage(name: "\(id).jpg") { onSuccess in
-            if onSuccess {
-                UIAlertController.warningAlert(title: "☑️", message: "삭제가 완료되었습니다.", viewController: self)
             }
         }
     }
@@ -247,51 +247,59 @@ class DiaryViewController: UIViewController {
     }
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
-        let sortedList = diaryDBList.sorted(by: { $0.date > $1.date })
-        var previousDate: Date = selectedDate
-        
-        if diaryDBList[0].date == selectedDate {
-            UIAlertController.warningAlert(title: "🚫", message: "이전 다이어리가 없습니다.", viewController: self)
+        if !diaryDBList.isEmpty {
+            let sortedList = diaryDBList.sorted(by: { $0.date > $1.date })
+            var previousDate: Date = selectedDate
+            
+            if diaryDBList[0].date == selectedDate {
+                UIAlertController.warningAlert(title: "🚫", message: "이전 다이어리가 없습니다.", viewController: self)
+            } else {
+                for data in sortedList {
+                    if selectedDate > data.date {
+                        previousDate = data.date
+                        break
+                    }
+                }
+                
+                for data in sortedList {
+                    if previousDate == data.date {
+                        showDiary(diary: data)
+                        break
+                    }
+                }
+                
+                selectedDate = previousDate
+            }
         } else {
-            for data in sortedList {
-                if selectedDate > data.date {
-                    previousDate = data.date
-                    break
-                }
-            }
-            
-            for data in sortedList {
-                if previousDate == data.date {
-                    showDiary(diary: data)
-                    break
-                }
-            }
-            
-            selectedDate = previousDate
+            UIAlertController.warningAlert(title: "🚫", message: "이전 다이어리가 없습니다.", viewController: self)
         }
     }
     
     @IBAction func nextDiaryButton(_ sender: UIButton) {
-        var nextDate: Date = selectedDate
-        
-        if diaryDBList[diaryDBList.count - 1].date == selectedDate {
-            UIAlertController.warningAlert(title: "🚫", message: "다음 다이어리가 없습니다.", viewController: self)
-        } else {
-            for data in diaryDBList {
-                if selectedDate < data.date {
-                    nextDate = data.date
-                    break
-                }
-            }
+        if !diaryDBList.isEmpty {
+            var nextDate: Date = selectedDate
             
-            for data in diaryDBList {
-                if nextDate == data.date {
-                    showDiary(diary: data)
-                    break
+            if diaryDBList[diaryDBList.count - 1].date == selectedDate {
+                UIAlertController.warningAlert(title: "🚫", message: "다음 다이어리가 없습니다.", viewController: self)
+            } else {
+                for data in diaryDBList {
+                    if selectedDate < data.date {
+                        nextDate = data.date
+                        break
+                    }
                 }
-            }
+                
+                for data in diaryDBList {
+                    if nextDate == data.date {
+                        showDiary(diary: data)
+                        break
+                    }
+                }
 
-            selectedDate = nextDate
+                selectedDate = nextDate
+            }
+        } else {
+            UIAlertController.warningAlert(title: "🚫", message: "다음 다이어리가 없습니다.", viewController: self)
         }
     }
     
@@ -324,8 +332,9 @@ class DiaryViewController: UIViewController {
         let deleteButton = UIAlertAction(title: "삭제", style: .destructive) { _ in
             if let editOrDeleteDiary = self.editOrDeleteDiary {
                 let diary = editOrDeleteDiary
-                self.deleteImage(id: diary._id)
+                self.deleteImage(diary: diary)
                 self.deleteDiaryDB(diary: diary)
+                self.diaryType = .basic
                 self.diaryViewType()
             }
         }
