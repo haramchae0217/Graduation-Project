@@ -250,41 +250,49 @@ class DiaryViewController: UIViewController {
         let sortedList = diaryDBList.sorted(by: { $0.date > $1.date })
         var previousDate: Date = selectedDate
         
-        for data in sortedList {
-            if selectedDate > data.date {
-                previousDate = data.date
-                break
+        if diaryDBList[0].date == selectedDate {
+            UIAlertController.warningAlert(title: "🚫", message: "이전 다이어리가 없습니다.", viewController: self)
+        } else {
+            for data in sortedList {
+                if selectedDate > data.date {
+                    previousDate = data.date
+                    break
+                }
             }
-        }
-        
-        for data in sortedList {
-            if previousDate == data.date {
-                showDiary(diary: data)
-                break
+            
+            for data in sortedList {
+                if previousDate == data.date {
+                    showDiary(diary: data)
+                    break
+                }
             }
+            
+            selectedDate = previousDate
         }
-        
-        selectedDate = previousDate
     }
     
     @IBAction func nextDiaryButton(_ sender: UIButton) {
         var nextDate: Date = selectedDate
         
-        for data in diaryDBList {
-            if selectedDate < data.date {
-                nextDate = data.date
-                break
+        if diaryDBList[diaryDBList.count - 1].date == selectedDate {
+            UIAlertController.warningAlert(title: "🚫", message: "다음 다이어리가 없습니다.", viewController: self)
+        } else {
+            for data in diaryDBList {
+                if selectedDate < data.date {
+                    nextDate = data.date
+                    break
+                }
             }
-        }
-        
-        for data in diaryDBList {
-            if nextDate == data.date {
-                showDiary(diary: data)
-                break
+            
+            for data in diaryDBList {
+                if nextDate == data.date {
+                    showDiary(diary: data)
+                    break
+                }
             }
-        }
 
-        selectedDate = nextDate
+            selectedDate = nextDate
+        }
     }
     
     @IBAction func calendarButton(_ sender: UIBarButtonItem) {
