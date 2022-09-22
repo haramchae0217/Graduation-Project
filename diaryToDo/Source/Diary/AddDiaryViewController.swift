@@ -229,11 +229,8 @@ class AddDiaryViewController: UIViewController {
             UIAlertController.warningAlert(title: "🚫", message: "내용을 입력해주세요.", viewController: self)
             return
         } else {
-            hashTag.components(separatedBy: " ").forEach { str in
-                if str != "" {
-                    filterHashTag.append(str)
-                }
-            }
+            let arr = hashTag.split(separator: " ").map { String($0) }
+            filterHashTag.append(objectsIn: arr)
             
             if filterHashTag.count > 3 {
                 UIAlertController.warningAlert(title: "🚫", message: "해시태그는 세개까지 설정 가능합니다.", viewController: self)
