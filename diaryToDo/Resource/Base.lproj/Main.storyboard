@@ -506,26 +506,50 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-8b-t60">
-                                                    <rect key="frame" x="10" y="28.5" width="354" height="50"/>
+                                                    <rect key="frame" x="10" y="3.5" width="354" height="100"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqe-OO-HzM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75U-mj-zNv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                            <subviews>
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqe-OO-HzM">
+                                                                    <rect key="frame" x="17" y="17" width="66" height="66"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="Lqe-OO-HzM" secondAttribute="height" multiplier="1:1" id="eWW-4F-P3t"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system" buttonSize="large">
+                                                                        <color key="baseForegroundColor" name="diaryColor"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foI-IU-EIp">
+                                                                    <rect key="frame" x="17" y="17" width="66" height="66"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="foI-IU-EIp" secondAttribute="height" multiplier="1:1" id="Cw3-QZ-XbU"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system" buttonSize="large">
+                                                                        <color key="baseForegroundColor" name="diaryColor"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Lqe-OO-HzM" secondAttribute="height" multiplier="1:1" id="eWW-4F-P3t"/>
+                                                                <constraint firstItem="foI-IU-EIp" firstAttribute="centerX" secondItem="75U-mj-zNv" secondAttribute="centerX" id="ITm-Rw-xii"/>
+                                                                <constraint firstItem="foI-IU-EIp" firstAttribute="centerY" secondItem="75U-mj-zNv" secondAttribute="centerY" id="Mk6-ZG-uZM"/>
+                                                                <constraint firstItem="Lqe-OO-HzM" firstAttribute="centerY" secondItem="75U-mj-zNv" secondAttribute="centerY" id="Mxd-gc-pK1"/>
+                                                                <constraint firstAttribute="width" secondItem="75U-mj-zNv" secondAttribute="height" multiplier="1:1" id="P9e-qF-DDh"/>
+                                                                <constraint firstItem="Lqe-OO-HzM" firstAttribute="centerX" secondItem="75U-mj-zNv" secondAttribute="centerX" id="VpY-JV-zq9"/>
+                                                                <constraint firstAttribute="height" constant="100" id="m17-Rr-CwL"/>
                                                             </constraints>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system">
-                                                                <color key="baseForegroundColor" red="0.93545049430000005" green="0.61726331710000004" blue="0.51370078330000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </buttonConfiguration>
-                                                        </button>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="토익" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXn-2T-KfM">
-                                                            <rect key="frame" x="60" y="0.0" width="199" height="50"/>
+                                                            <rect key="frame" x="110" y="0.0" width="149" height="100"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022.03.12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqa-kT-3hR">
-                                                            <rect key="frame" x="269" y="0.0" width="85" height="50"/>
+                                                            <rect key="frame" x="269" y="0.0" width="85" height="100"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -533,6 +557,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="oXn-2T-KfM" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="4xg-54-bl8"/>
+                                                        <constraint firstItem="75U-mj-zNv" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="8ME-gi-tUO"/>
                                                         <constraint firstItem="Tqa-kT-3hR" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="GDa-xF-XkP"/>
                                                     </constraints>
                                                 </stackView>
@@ -546,6 +571,7 @@
                                         <connections>
                                             <outlet property="toDoCheckButton" destination="Lqe-OO-HzM" id="wmV-SW-PKG"/>
                                             <outlet property="toDoExpireDateLabel" destination="Tqa-kT-3hR" id="JHx-BS-cVN"/>
+                                            <outlet property="toDoNotCheckButton" destination="foI-IU-EIp" id="bKf-fN-xxP"/>
                                             <outlet property="toDoTitleLabel" destination="oXn-2T-KfM" id="Ing-GL-GQ8"/>
                                         </connections>
                                     </tableViewCell>
@@ -1330,6 +1356,7 @@
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="chevron.forward" catalog="system" width="97" height="128"/>
         <image name="circle" catalog="system" width="128" height="123"/>
+        <image name="circle.fill" catalog="system" width="128" height="123"/>
         <image name="film1" width="1179" height="1835"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="trash" catalog="system" width="117" height="128"/>

@@ -181,14 +181,6 @@ class ToDoViewController: UIViewController {
         notCheckedList = notCheckedList.sorted(by: { $0.startDate > $1.startDate })
     }
     
-    func setToDoComplete(_ sender: UIButton) {
-        sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-    }
-    
-    func setToDoNotComplete(_ sender: UIButton) {
-        sender.setImage(UIImage(systemName: "circle"), for: .normal)
-    }
-    
     func editToDoChecking(todo: ToDoDB) {
         try! localRealm.write {
             localRealm.create(
@@ -223,36 +215,26 @@ class ToDoViewController: UIViewController {
         }
     }
     
-    func toggleTrueToFalse(index: Int) {
-        let todo = checkedList[index]
-        editToDoChecking(todo: todo)
-        todoDBList = getToDo()
-        getTodayList(today: todo.startDate)
-    }
-    
-    func toggleFalseToTrue(index: Int) {
-        let todo = notCheckedList[index]
-        editNotToDoChecking(todo: todo)
-        todoDBList = getToDo()
-        getTodayList(today: todo.startDate)
-    }
-    
-    func takeIndexPath(indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let todo = notCheckedList[indexPath.row]
+    @objc func notcheckedButton(_ sender: UIButton) {
+        if !notCheckedList.isEmpty {
+            guard let cell = tableView(toDoTableView, cellForRowAt: IndexPath(row: sender.tag, section: 0)) as? ToDoTableViewCell else { return }
+            cell.toDoCheckButton.isHidden = false
+            
+            let todo = notCheckedList[sender.tag]
             editNotToDoChecking(todo: todo)
-            todoDBList = getToDo()
-            getTodayList(today: todo.startDate)
-        } else {
-            let todo = checkedList[indexPath.row]
-            editNotToDoChecking(todo: todo)
-            todoDBList = getToDo()
-            getTodayList(today: todo.startDate)
+            getTodayList()
         }
     }
     
-    @objc func checkToDoButton(_ sender: UIButton) {
-        
+    @objc func checkedButton(_ sender: UIButton) {
+        if !checkedList.isEmpty {
+            guard let cell = tableView(toDoTableView, cellForRowAt: IndexPath(row: sender.tag, section: 1)) as? ToDoTableViewCell else { return }
+            cell.toDoCheckButton.isHidden = true
+            
+            let todo = checkedList[sender.tag]
+            editToDoChecking(todo: todo)
+            getTodayList()
+        }
     }
     
     @IBAction func previousToDoButton(_ sender: UIButton) {
@@ -339,20 +321,20 @@ extension ToDoViewController: UITableViewDataSource {
         
         if indexPath.section == 0 { // 미완료 항목
             todo = notCheckedList[indexPath.row]
-            setToDoNotComplete(cell.toDoCheckButton)
+            cell.toDoCheckButton.isHidden = true
             cell.toDoTitleLabel.textColor = .label
             cell.toDoExpireDateLabel.textColor = .label
             
-            cell.toDoCheckButton.tag = indexPath.row
-            cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
+            cell.toDoNotCheckButton.tag = indexPath.row
+            cell.toDoNotCheckButton.addTarget(self, action: #selector(notcheckedButton), for: .touchUpInside)
         } else { // 완료 항목
             todo = checkedList[indexPath.row]
-            setToDoComplete(cell.toDoCheckButton)
+            cell.toDoCheckButton.isHidden = false
             cell.toDoTitleLabel.textColor = .lightGray
             cell.toDoExpireDateLabel.textColor = .lightGray
             
             cell.toDoCheckButton.tag = indexPath.row
-            cell.toDoCheckButton.addTarget(self, action: #selector(checkToDoButton), for: .touchUpInside)
+            cell.toDoCheckButton.addTarget(self, action: #selector(checkedButton), for: .touchUpInside)
         }
         
         cell.toDoTitleLabel.text = todo.title
