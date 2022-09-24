@@ -140,6 +140,11 @@ class AddToDoViewController: UIViewController {
         startDate = DateFormatter.customDateFormatter.strToDate(str: startStringDate)
         endDate = DateFormatter.customDateFormatter.strToDate(str: endStringDate)
         
+        if startDate > endDate {
+            UIAlertController.warningAlert(title: "🚫", message: "종료날짜를 알맞게 설정해주세요.", viewController: self)
+            return
+        }
+        
         if title.isEmpty || memo.isEmpty {
             UIAlertController.warningAlert(title: "🚫", message: "내용을 입력해주세요.", viewController: self)
             return
