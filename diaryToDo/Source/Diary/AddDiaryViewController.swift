@@ -150,6 +150,17 @@ class AddDiaryViewController: UIViewController {
         }
     }
 
+    func reloadDiaryData(diary: DiaryDB) -> DiaryDB {
+        let diaryDB = localRealm.objects(DiaryDB.self).map { $0 }
+        var returnDiary: DiaryDB = diary
+        
+        for data in diaryDB {
+            if diary._id == data._id {
+                returnDiary = data
+            }
+        }
+        return returnDiary
+    }
     
     func addDiaryImage(diary: DiaryDB) {
         guard let image = addDiaryImageView.image else { return }
@@ -243,6 +254,7 @@ class AddDiaryViewController: UIViewController {
         if viewType == .add {
             addDiaryDB(diary: newDiary)
             addDiaryImage(diary: newDiary)
+            SelectItem.selectDiary = newDiary
         } else {
             if let oldDiary = editDiary {
                 if oldDiary.content == content && oldDiary.hashTag == filterHashTag && oldDiary.date == date {
@@ -251,10 +263,11 @@ class AddDiaryViewController: UIViewController {
                 }
                 editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
                 editDiaryImage(diary: oldDiary)
+                
+                let diary = reloadDiaryData(diary: oldDiary)
+                SelectItem.selectDiary = diary
             }
         }
-        
-        SelectItem.selectDiary = newDiary
         self.navigationController?.popViewController(animated: true)
     }
     
