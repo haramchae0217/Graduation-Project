@@ -43,6 +43,8 @@ class SearchDiaryViewController: UIViewController {
         configureDateFormat()
         configureFontAndFontSize()
         
+        diaryDBList = []
+        imageList = []
         diaryDBList = getDiary()
         diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
         getDiaryImage()
@@ -111,15 +113,16 @@ extension SearchDiaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         let searchData = searchDiary[indexPath.row]
+        var hashtags: String = ""
         
         for data in imageList {
             if searchData._id == data.1 {
                 searchImage.append(data.0)
             }
         }
+        
         let image = searchImage[indexPath.row]
         
-        var hashtags: String = ""
         for i in 0..<searchData.hashTag.count {
             if i == searchData.hashTag.count - 1 {
                 hashtags.append("#\(searchData.hashTag[i])")
@@ -147,6 +150,8 @@ extension SearchDiaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let diary = searchDiary[indexPath.row]
         SelectItem.selectDiary = diary
+        searchDiary = []
+        searchImage = []
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -154,6 +159,7 @@ extension SearchDiaryViewController: UITableViewDelegate {
 extension SearchDiaryViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchDiary = []
+        searchImage = []
     }
 }
 
