@@ -182,36 +182,36 @@ class ToDoViewController: UIViewController {
     }
     
     func editToDoChecking(todo: ToDoDB) {
-        try! localRealm.write {
-            localRealm.create(
-                ToDoDB.self,
-                value: [
-                    "_id": todo._id,
-                    "title": todo.title,
-                    "memo": todo.memo,
-                    "startDate": todo.startDate,
-                    "endDate": todo.endDate,
-                    "isChecked": 0
-                ],
-                update: .modified
-            )
-        }
-    }
-    
-    func editNotToDoChecking(todo: ToDoDB) {
-        try! localRealm.write {
-            localRealm.create(
-                ToDoDB.self,
-                value: [
-                    "_id": todo._id,
-                    "title": todo.title,
-                    "memo": todo.memo,
-                    "startDate": todo.startDate,
-                    "endDate": todo.endDate,
-                    "isChecked": 1
-                ],
-                update: .modified
-            )
+        if todo.isChecked {
+            try! localRealm.write {
+                localRealm.create(
+                    ToDoDB.self,
+                    value: [
+                        "_id": todo._id,
+                        "title": todo.title,
+                        "memo": todo.memo,
+                        "startDate": todo.startDate,
+                        "endDate": todo.endDate,
+                        "isChecked": 0
+                    ],
+                    update: .modified
+                )
+            }
+        } else {
+            try! localRealm.write {
+                localRealm.create(
+                    ToDoDB.self,
+                    value: [
+                        "_id": todo._id,
+                        "title": todo.title,
+                        "memo": todo.memo,
+                        "startDate": todo.startDate,
+                        "endDate": todo.endDate,
+                        "isChecked": 1
+                    ],
+                    update: .modified
+                )
+            }
         }
     }
     
@@ -221,8 +221,8 @@ class ToDoViewController: UIViewController {
             cell.toDoCheckButton.isHidden = false
             
             let todo = notCheckedList[sender.tag]
-            editNotToDoChecking(todo: todo)
-            getTodayList()
+            editToDoChecking(todo: todo)
+            getTodayList(today: todo.startDate)
         }
     }
     
@@ -233,7 +233,7 @@ class ToDoViewController: UIViewController {
             
             let todo = checkedList[sender.tag]
             editToDoChecking(todo: todo)
-            getTodayList()
+            getTodayList(today: todo.startDate)
         }
     }
     
@@ -363,7 +363,16 @@ extension ToDoViewController: UITableViewDataSource {
             selectedDate = todo.startDate
             deleteToDoDB(todo: todo)
             todoDBList = getToDo()
-            getTodayList(today: selectedDate)
+            if !todoDBList.isEmpty {
+                let sortedList = todoDBList.sorted(by: { $0.startDate > $1.startDate })
+                for data in sortedList {
+                    if selectedDate > data.startDate {
+                        selectedDate = data.startDate
+                        break
+                    }
+                }
+                getTodayList(today: selectedDate)
+            }
 //            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
