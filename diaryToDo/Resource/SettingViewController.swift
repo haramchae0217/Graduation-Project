@@ -35,14 +35,10 @@ class SettingViewController: UIViewController {
     font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
         basicSettingLabel.font = UIFont(name: font, size: fontSize)
-        dateFormatButton.setTitle("날짜 형식", for: .normal)
-        dateFormatButton.titleLabel?.font = UIFont(name: font, size: fontSize)
-        fontSizeButton.setTitle("글씨 크기", for: .normal)
-        fontSizeButton.titleLabel?.font = UIFont(name: font, size: fontSize)
-        fontSettingButton.setTitle("글꼴 설정", for: .normal)
-        fontSettingButton.titleLabel?.font = UIFont(name: font, size: fontSize)
-        filmSettingButton.setTitle("필름 설정", for: .normal)
-        filmSettingButton.titleLabel?.font = UIFont(name: font, size: fontSize)
+        dateFormatButton.layer.cornerRadius = 16
+        fontSizeButton.layer.cornerRadius = 16
+        fontSettingButton.layer.cornerRadius = 16
+        filmSettingButton.layer.cornerRadius = 16
     }
     
     @IBAction func MoveDateFormatVC(_ sender: UIButton) {
