@@ -28,6 +28,7 @@ class DiaryViewController: UIViewController {
     @IBOutlet weak var diaryFilmImage: UIImageView!
     @IBOutlet weak var editDiaryButton: UIButton!
     @IBOutlet weak var deleteDiaryButton: UIButton!
+    @IBOutlet weak var tableViewCancelButton: UIButton!
     
     //MARK: Property
     let localRealm = try! Realm()
@@ -52,27 +53,26 @@ class DiaryViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationController()
-        configureTableView()
         configureUILabel()
         configureTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if SelectItem.selectDiary != nil {
             diaryType = .select
         }
+        
         configureDateFormat()
         configureFilmImage()
         configureFontAndFontSize()
-        
         configureUD()
-        
+        configureTableView()
         configureCalendarView()
         
         diaryViewType()
         
+        diarySelectTableView.reloadData()
         diaryCalendarView.reloadData()
     }
     
@@ -87,6 +87,7 @@ class DiaryViewController: UIViewController {
         diarySelectTableView.delegate = self
         diarySelectTableView.dataSource = self
         diaryUIView.isHidden = true
+        
     }
     
     func configureUILabel() {
@@ -208,6 +209,8 @@ class DiaryViewController: UIViewController {
     
     //MARK: ETC
     func diaryViewType() {
+        diaryDBList = []
+        imageList = []
         diaryDBList = getDiary()
         diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
         getDiaryImage()
@@ -335,12 +338,17 @@ class DiaryViewController: UIViewController {
                 self.deleteImage(diary: diary)
                 self.deleteDiaryDB(diary: diary)
                 self.diaryType = .basic
+                self.diaryCalendarView.reloadData()
                 self.diaryViewType()
             }
         }
         diaryDelete.addAction(cancelButton)
         diaryDelete.addAction(deleteButton)
         present(diaryDelete, animated: true, completion: nil)
+    }
+    
+    @IBAction func tableViewHiddenButton(_ sender: UIButton) {
+        diaryUIView.isHidden = true
     }
 }
 
@@ -367,6 +375,8 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         diaryCalendarView.isHidden.toggle()
+        sameDateDiary = []
+        sameDateImage = []
         
         let diaryList = diaryDBList.filter { diary in
             DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: diary.date)) == date
@@ -402,8 +412,6 @@ extension DiaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let diary = sameDateDiary[indexPath.row]
         showDiary(diary: diary)
-        sameDateDiary = []
-        sameDateImage = []
         diaryUIView.isHidden = true
     }
 }
@@ -412,15 +420,16 @@ extension DiaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DiarySelectTableViewCell.identifier, for: indexPath) as? DiarySelectTableViewCell else { return UITableViewCell() }
         let selectDiary = sameDateDiary[indexPath.row]
+        var hashTags: String = ""
         
         for data in imageList {
             if selectDiary._id == data.1 {
                 sameDateImage.append(data.0)
             }
         }
+        
         let selectImage = sameDateImage[indexPath.row]
         
-        var hashTags: String = ""
         for i in 0..<selectDiary.hashTag.count {
             if i == selectDiary.hashTag.count - 1 {
                 hashTags.append("#\(selectDiary.hashTag[i])")
