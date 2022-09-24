@@ -21,18 +21,18 @@ class ToDoViewController: UIViewController {
     
     //MARK: Property
     let localRealm = try! Realm()
+    let sectionList: [String] = ["미완료", "완료"]
+    
     var todoDBList: [ToDoDB] = []
     var todayToDoList: [ToDoDB] = []
+    var checkedList: [ToDoDB] = []
+    var notCheckedList: [ToDoDB] = []
     var checkToDoSection: Int = 0
     var selectToDo: ToDoDB?
-    let sectionList: [String] = ["미완료", "완료"]
     var selectedDate: Date = Date()
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     var dateFormatType: String = ""
-    
-    var checkedList: [ToDoDB] = []
-    var notCheckedList: [ToDoDB] = []
     
     //MARK: ViewLifeCycle
     override func viewDidLoad() {
@@ -126,6 +126,7 @@ class ToDoViewController: UIViewController {
             selectedDate = selectToDo.startDate
         } else {
             if !todoDBList.isEmpty {
+                todoDBList = todoDBList.sorted(by: { $0.startDate < $1.startDate })
                 selectedDate = todoDBList[todoDBList.endIndex - 1].startDate
             }
         }
@@ -262,7 +263,7 @@ class ToDoViewController: UIViewController {
     @IBAction func nextToDoButton(_ sender: UIButton) {
         if !todoDBList.isEmpty {
             // 현재 selectedDate를 기준으로 가장 가까운 다음 날짜 가져오기
-            if todoDBList[todoDBList.count - 1].startDate == selectedDate {
+            if todoDBList[todoDBList.endIndex - 1].startDate == selectedDate {
                 UIAlertController.warningAlert(title: "🚫", message: "다음 투두가 없습니다.", viewController: self)
             } else {
                 for data in todoDBList {
@@ -369,9 +370,14 @@ extension ToDoViewController: UITableViewDataSource {
                     if selectedDate > data.startDate {
                         selectedDate = data.startDate
                         break
+                    } else if selectedDate < data.startDate {
+                        selectedDate = data.startDate
+                        break
                     }
                 }
                 getTodayList(today: selectedDate)
+            } else {
+                getTodayList()
             }
 //            tableView.deleteRows(at: [indexPath], with: .fade)
         }
