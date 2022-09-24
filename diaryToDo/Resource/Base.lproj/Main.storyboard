@@ -149,10 +149,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBz-Df-h8Q">
-                                <rect key="frame" x="10" y="142" width="394" height="571"/>
+                                <rect key="frame" x="10" y="92" width="394" height="721"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JIH-Vf-9BY">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="571"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="666.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDiaryCell" rowHeight="152" id="ECF-To-gmx" customClass="DiarySelectTableViewCell" customModule="diaryToDo" customModuleProvider="target">
@@ -204,12 +204,22 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhh-qt-LNp">
+                                        <rect key="frame" x="170.5" y="676.5" width="53.5" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="취소"/>
+                                        <connections>
+                                            <action selector="tableViewHiddenButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sbr-7x-kL5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Xhh-qt-LNp" secondAttribute="bottom" constant="10" id="CFK-b2-9UR"/>
                                     <constraint firstItem="JIH-Vf-9BY" firstAttribute="top" secondItem="nBz-Df-h8Q" secondAttribute="top" id="Hwj-yo-uGn"/>
                                     <constraint firstItem="JIH-Vf-9BY" firstAttribute="leading" secondItem="nBz-Df-h8Q" secondAttribute="leading" id="SAZ-TI-fp2"/>
-                                    <constraint firstAttribute="bottom" secondItem="JIH-Vf-9BY" secondAttribute="bottom" id="kB9-Uy-9ya"/>
+                                    <constraint firstItem="Xhh-qt-LNp" firstAttribute="centerX" secondItem="nBz-Df-h8Q" secondAttribute="centerX" id="YOS-Pv-NWn"/>
+                                    <constraint firstItem="Xhh-qt-LNp" firstAttribute="top" secondItem="JIH-Vf-9BY" secondAttribute="bottom" constant="10" id="nDF-lX-RxQ"/>
                                     <constraint firstAttribute="trailing" secondItem="JIH-Vf-9BY" secondAttribute="trailing" id="yHT-5U-8xl"/>
                                 </constraints>
                             </view>
@@ -221,7 +231,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m3e-PU-yoe" secondAttribute="trailing" constant="50" id="5wt-zZ-3Q5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="om5-Uj-axe" secondAttribute="top" id="6Si-z3-NSW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bu6-v5-RPH" secondAttribute="trailing" id="CFC-nu-Ki6"/>
-                            <constraint firstItem="nBz-Df-h8Q" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="F8D-56-tvh"/>
+                            <constraint firstItem="nBz-Df-h8Q" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="F8D-56-tvh"/>
                             <constraint firstItem="Bu6-v5-RPH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jmu-Ry-4cO"/>
                             <constraint firstItem="m3e-PU-yoe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="RaT-sm-TXM"/>
                             <constraint firstItem="om5-Uj-axe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="ULC-Fv-NcC"/>
@@ -229,7 +239,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="om5-Uj-axe" secondAttribute="trailing" constant="20" id="gtL-ca-YXF"/>
                             <constraint firstItem="m3e-PU-yoe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="uzd-Sf-qik"/>
                             <constraint firstItem="Bu6-v5-RPH" firstAttribute="top" secondItem="m3e-PU-yoe" secondAttribute="bottom" constant="20" id="vBv-Fj-ojT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nBz-Df-h8Q" secondAttribute="bottom" constant="100" id="wkr-vT-ovL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nBz-Df-h8Q" secondAttribute="bottom" id="wkr-vT-ovL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bu6-v5-RPH" secondAttribute="bottom" constant="100" id="xSH-Zm-e37"/>
                         </constraints>
                     </view>
@@ -267,6 +277,7 @@
                         <outlet property="diarySelectTableView" destination="JIH-Vf-9BY" id="qqr-2c-g3S"/>
                         <outlet property="diaryUIView" destination="nBz-Df-h8Q" id="6dv-yE-zV9"/>
                         <outlet property="editDiaryButton" destination="Htl-qH-isa" id="RDy-9d-wPI"/>
+                        <outlet property="tableViewCancelButton" destination="Xhh-qt-LNp" id="KlP-ha-Gjd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -511,16 +522,6 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75U-mj-zNv">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                             <subviews>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqe-OO-HzM">
-                                                                    <rect key="frame" x="17" y="17" width="66" height="66"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="Lqe-OO-HzM" secondAttribute="height" multiplier="1:1" id="eWW-4F-P3t"/>
-                                                                    </constraints>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system" buttonSize="large">
-                                                                        <color key="baseForegroundColor" name="diaryColor"/>
-                                                                    </buttonConfiguration>
-                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foI-IU-EIp">
                                                                     <rect key="frame" x="17" y="17" width="66" height="66"/>
                                                                     <constraints>
@@ -528,6 +529,16 @@
                                                                     </constraints>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system" buttonSize="large">
+                                                                        <color key="baseForegroundColor" name="diaryColor"/>
+                                                                    </buttonConfiguration>
+                                                                </button>
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqe-OO-HzM">
+                                                                    <rect key="frame" x="17" y="17" width="66" height="66"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="Lqe-OO-HzM" secondAttribute="height" multiplier="1:1" id="eWW-4F-P3t"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system" buttonSize="large">
                                                                         <color key="baseForegroundColor" name="diaryColor"/>
                                                                     </buttonConfiguration>
                                                                 </button>
@@ -539,7 +550,6 @@
                                                                 <constraint firstItem="Lqe-OO-HzM" firstAttribute="centerY" secondItem="75U-mj-zNv" secondAttribute="centerY" id="Mxd-gc-pK1"/>
                                                                 <constraint firstAttribute="width" secondItem="75U-mj-zNv" secondAttribute="height" multiplier="1:1" id="P9e-qF-DDh"/>
                                                                 <constraint firstItem="Lqe-OO-HzM" firstAttribute="centerX" secondItem="75U-mj-zNv" secondAttribute="centerX" id="VpY-JV-zq9"/>
-                                                                <constraint firstAttribute="height" constant="100" id="m17-Rr-CwL"/>
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="토익" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXn-2T-KfM">
