@@ -45,11 +45,6 @@ class AddToDoViewController: UIViewController {
         configureNavigationController()
         configureRightBarButton()
         configureAllDayType()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         configureFontAndFontSize()
     }
     
@@ -146,7 +141,7 @@ class AddToDoViewController: UIViewController {
         }
         
         if title.isEmpty || memo.isEmpty {
-            UIAlertController.warningAlert(title: "🚫", message: "내용을 입력해주세요.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "빈칸을 입력해주세요.", viewController: self)
             return
         }
         
