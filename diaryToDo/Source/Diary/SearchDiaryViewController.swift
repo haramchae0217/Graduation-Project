@@ -15,10 +15,16 @@ class SearchDiaryViewController: UIViewController {
     var searchDiary: [DiaryDB] = [] {
         didSet {
             DispatchQueue.main.async {
+                for data in self.searchDiary {
+                    self.getSearchImage(diary: data)
+                }
+                print(self.searchDiary)
+                print(self.searchImage)
                 self.searchTableView.reloadData()
             }
         }
     }
+    
     let localRealm = try! Realm()
     
     var diaryDBList: [DiaryDB] = []
@@ -43,8 +49,6 @@ class SearchDiaryViewController: UIViewController {
         configureDateFormat()
         configureFontAndFontSize()
         
-        diaryDBList = []
-        imageList = []
         diaryDBList = getDiary()
         diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
         getDiaryImage()
@@ -90,6 +94,8 @@ class SearchDiaryViewController: UIViewController {
     }
     
     func getDiary() -> [DiaryDB] {
+        diaryDBList = []
+        imageList = []
         return localRealm.objects(DiaryDB.self).map { $0 }
     }
     
@@ -103,6 +109,14 @@ class SearchDiaryViewController: UIViewController {
         }
     }
     
+    func getSearchImage(diary: DiaryDB) {
+        searchImage = []
+        if let image = ImageManager.shared.getImage(name: "\(diary._id).jpg") {
+            searchImage.append(image)
+        } else {
+            UserDefaults.standard.set("0", forKey: "imageNumber")
+        }
+    }
 }
 
 extension SearchDiaryViewController: UITableViewDataSource {
@@ -113,15 +127,14 @@ extension SearchDiaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
         let searchData = searchDiary[indexPath.row]
+        var imageList: [UIImage] = []
         var hashtags: String = ""
         
-        for data in imageList {
-            if searchData._id == data.1 {
-                searchImage.append(data.0)
-            }
+        for data in searchImage {
+            imageList.append(data)
         }
-        
-        let image = searchImage[indexPath.row]
+    
+        let image = imageList[indexPath.row]
         
         for i in 0..<searchData.hashTag.count {
             if i == searchData.hashTag.count - 1 {
@@ -150,8 +163,6 @@ extension SearchDiaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let diary = searchDiary[indexPath.row]
         SelectItem.selectDiary = diary
-        searchDiary = []
-        searchImage = []
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -166,9 +177,15 @@ extension SearchDiaryViewController: UISearchBarDelegate {
 extension SearchDiaryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
-            searchDiary = diaryDBList.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
-            print("검색창 : \(text)")
-            print("검색결과 : \(searchDiary)")
+            if text != "" {
+                searchDiary = diaryDBList.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
+            } else {
+                searchDiary = []
+                searchImage = []
+            }
+//            print("검색창 : \(text)")
+//            print("검색결과 : \(searchDiary)")
+//            print("검색결과 : \(searchImage)")
         }
     }
 }
