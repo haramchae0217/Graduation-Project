@@ -25,6 +25,7 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var calendarInfo: UILabel!
+    @IBOutlet weak var weekCountInfo: UILabel!
     
     let localRealm = try! Realm()
     var todoDBList: [ToDoDB] = []
@@ -117,6 +118,9 @@ class GraphViewController: UIViewController {
     
     func appendData(datas: [Date]) -> [Double] {
         var count: Double = 0
+        var weekToDoCount: Int = 0
+        var weekToDoCompleteCount: Int = 0
+        var weekToDoPercent: Int = 0
         checkCount = []
         weekTodoList = []
         
@@ -131,6 +135,7 @@ class GraphViewController: UIViewController {
         for weekday in datas {
             for data in weekTodoList {
                 if DateFormatter.customDateFormatter.dateToStr(date: weekday, type: dateFormatType) == DateFormatter.customDateFormatter.dateToStr(date: data.startDate, type: dateFormatType) {
+                    weekToDoCount += 1
                     if data.isChecked == true {
                         count += 1
                     } else {
@@ -138,10 +143,18 @@ class GraphViewController: UIViewController {
                     }
                 }
             }
-            
             checkCount.append(count)
             count = 0
         }
+        
+        for data in checkCount {
+            weekToDoCompleteCount += Int(data)
+        }
+        
+        weekToDoPercent = Int((Double(weekToDoCompleteCount) / Double(weekToDoCount)) * 100)
+        
+        weekCountInfo.text = "\(weekToDoCompleteCount) / \(weekToDoCount) \(weekToDoPercent)%"
+        weekCountInfo.font = UIFont(name: font, size: fontSize)
         
         return checkCount
     }
