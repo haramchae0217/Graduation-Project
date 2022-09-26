@@ -61,7 +61,7 @@ class AddDiaryViewController: UIViewController {
             plusLabel.isHidden = true
             addDiaryDatePicker.date = editDiary.date
             addDiaryContentTextView.text = editDiary.content
-            addDiaryContentTextCountLabel.text = "\(editDiary.textCount)/80"
+            addDiaryContentTextCountLabel.text = "\(editDiary.textCount)/100"
             addDiaryContentTextView.textColor = .label
             for data in editDiary.hashTag {
                 hashtag += "\(data) "
@@ -162,30 +162,16 @@ class AddDiaryViewController: UIViewController {
         return returnDiary
     }
     
-    func addDiaryImage(diary: DiaryDB) {
+    func addOrEditDiaryImage(diary: DiaryDB, viewtype: DiaryViewType) {
         guard let image = addDiaryImageView.image else { return }
         let id = diary._id
         
         ImageManager.shared.saveImage(image: image, pathName: "\(id).jpg") { onSuccess in
             if onSuccess {
-                self.imageCount += 1
-                UserDefaults.standard.set("\(self.imageCount)", forKey: "imageNumber")
-//                UIAlertController.warningAlert(title: "☑️", message: "저장이 완료되었습니다.", viewController: self)
-            } else {
-//                UIAlertController.warningAlert(title: "🚫", message: "저장에 실패하였습니다.", viewController: self)
-            }
-        }
-    }
-    
-    func editDiaryImage(diary: DiaryDB) {
-        guard let image = addDiaryImageView.image else { return }
-        let id = diary._id
-        
-        ImageManager.shared.saveImage(image: image, pathName: "\(id).jpg") { onSuccess in
-            if onSuccess {
-//                UIAlertController.warningAlert(title: "☑️", message: "수정이 완료되었습니다.", viewController: self)
-            } else {
-//                UIAlertController.warningAlert(title: "🚫", message: "수정에 실패하였습니다.", viewController: self)
+                if viewtype == .add {
+                    self.imageCount += 1
+                    UserDefaults.standard.set("\(self.imageCount)", forKey: "imageNumber")
+                }
             }
         }
     }
@@ -224,8 +210,8 @@ class AddDiaryViewController: UIViewController {
         let filterHashTag = List<String>()
         var contentTextCount: Int = 0
         
-        if textCount > 80 {
-            UIAlertController.warningAlert(title: "🚫", message: "50자 이내로 작성해주세요.", viewController: self)
+        if textCount > 100 {
+            UIAlertController.warningAlert(title: "🚫", message: "100자 이내로 작성해주세요.", viewController: self)
             return
         } else {
             contentTextCount = textCount
@@ -237,7 +223,7 @@ class AddDiaryViewController: UIViewController {
         }
         
         if content.isEmpty || hashTag.isEmpty {
-            UIAlertController.warningAlert(title: "🚫", message: "내용을 입력해주세요.", viewController: self)
+            UIAlertController.warningAlert(title: "🚫", message: "빈칸을 입력해주세요.", viewController: self)
             return
         } else {
             let arr = hashTag.split(separator: " ").map { String($0) }
@@ -253,7 +239,7 @@ class AddDiaryViewController: UIViewController {
         
         if viewType == .add {
             addDiaryDB(diary: newDiary)
-            addDiaryImage(diary: newDiary)
+            addOrEditDiaryImage(diary: newDiary, viewtype: .add)
             SelectItem.selectDiary = newDiary
         } else {
             if let oldDiary = editDiary {
@@ -262,7 +248,7 @@ class AddDiaryViewController: UIViewController {
                     return
                 }
                 editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
-                editDiaryImage(diary: oldDiary)
+                addOrEditDiaryImage(diary: oldDiary, viewtype: .edit)
                 
                 let diary = reloadDiaryData(diary: oldDiary)
                 SelectItem.selectDiary = diary
@@ -293,8 +279,8 @@ extension AddDiaryViewController: UITextViewDelegate {
         guard let stringRange = Range(range, in: currentText) else { return false }
         let changeText = currentText.replacingCharacters(in: stringRange, with: text)
         
-        addDiaryContentTextCountLabel.text = "\(changeText.count)/80"
-        if changeText.count > 80 {
+        addDiaryContentTextCountLabel.text = "\(changeText.count)/100"
+        if changeText.count > 100 {
             textView.textColor = .systemRed
             addDiaryContentTextCountLabel.textColor = .systemRed
         } else {
