@@ -53,6 +53,8 @@ class DiaryViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationController()
+        configureTableView()
+        configureCalendarView()
         configureUILabel()
         configureTapGesture()
     }
@@ -67,8 +69,6 @@ class DiaryViewController: UIViewController {
         configureFilmImage()
         configureFontAndFontSize()
         configureUD()
-        configureTableView()
-        configureCalendarView()
         
         diaryViewType()
         
@@ -87,7 +87,6 @@ class DiaryViewController: UIViewController {
         diarySelectTableView.delegate = self
         diarySelectTableView.dataSource = self
         diaryUIView.isHidden = true
-        
     }
     
     func configureUILabel() {
@@ -153,8 +152,9 @@ class DiaryViewController: UIViewController {
     }
     
     func getDiary() -> [DiaryDB] {
+        diaryDBList = []
         print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
-        return localRealm.objects(DiaryDB.self).map { $0 }
+        return localRealm.objects(DiaryDB.self).map { $0 }.sorted(by: { $0.date < $1.date })
     }
     
     func deleteDiaryDB(diary: DiaryDB) {
@@ -164,6 +164,7 @@ class DiaryViewController: UIViewController {
     }
     
     func getDiaryImage() {
+        imageList = []
         for data in diaryDBList {
             if let image = ImageManager.shared.getImage(name: "\(data._id).jpg") {
                 imageList.append((image, data._id))
@@ -209,10 +210,7 @@ class DiaryViewController: UIViewController {
     
     //MARK: ETC
     func diaryViewType() {
-        diaryDBList = []
-        imageList = []
         diaryDBList = getDiary()
-        diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
         getDiaryImage()
         if diaryType == .select {
             selectDiary = SelectItem.selectDiary
@@ -282,7 +280,7 @@ class DiaryViewController: UIViewController {
         if !diaryDBList.isEmpty {
             var nextDate: Date = selectedDate
             
-            if diaryDBList[diaryDBList.count - 1].date == selectedDate {
+            if diaryDBList[diaryDBList.endIndex - 1].date == selectedDate {
                 UIAlertController.warningAlert(title: "🚫", message: "다음 다이어리가 없습니다.", viewController: self)
             } else {
                 for data in diaryDBList {
@@ -323,7 +321,6 @@ class DiaryViewController: UIViewController {
     
     @IBAction func editDiaryButton(_ sender: UIButton) {
         guard let editVC = self.storyboard?.instantiateViewController(withIdentifier: "AddDiaryVC") as? AddDiaryViewController else { return }
-        
         editVC.viewType = .edit
         editVC.editDiary = editOrDeleteDiary
         self.navigationController?.pushViewController(editVC, animated: true)
