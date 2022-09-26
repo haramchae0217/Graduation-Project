@@ -15,11 +15,6 @@ class SearchDiaryViewController: UIViewController {
     var searchDiary: [DiaryDB] = [] {
         didSet {
             DispatchQueue.main.async {
-                for data in self.searchDiary {
-                    self.getSearchImage(diary: data)
-                }
-                print(self.searchDiary)
-                print(self.searchImage)
                 self.searchTableView.reloadData()
             }
         }
@@ -29,7 +24,6 @@ class SearchDiaryViewController: UIViewController {
     
     var diaryDBList: [DiaryDB] = []
     var searchImage: [UIImage] = []
-    var imageList: [(UIImage, ObjectId)] = []
     var imageCount: Int = 0
     var dateFormatType: String = ""
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
@@ -50,8 +44,6 @@ class SearchDiaryViewController: UIViewController {
         configureFontAndFontSize()
         
         diaryDBList = getDiary()
-        diaryDBList = diaryDBList.sorted(by: { $0.date < $1.date })
-        getDiaryImage()
     }
     
     func configureNavigationController() {
@@ -95,22 +87,10 @@ class SearchDiaryViewController: UIViewController {
     
     func getDiary() -> [DiaryDB] {
         diaryDBList = []
-        imageList = []
-        return localRealm.objects(DiaryDB.self).map { $0 }
-    }
-    
-    func getDiaryImage() {
-        for data in diaryDBList {
-            if let image = ImageManager.shared.getImage(name: "\(data._id).jpg") {
-                imageList.append((image, data._id))
-            } else {
-                UserDefaults.standard.set("0", forKey: "imageNumber")
-            }
-        }
+        return localRealm.objects(DiaryDB.self).map { $0 }.sorted(by: { $0.date < $1.date })
     }
     
     func getSearchImage(diary: DiaryDB) {
-        searchImage = []
         if let image = ImageManager.shared.getImage(name: "\(diary._id).jpg") {
             searchImage.append(image)
         } else {
@@ -178,14 +158,13 @@ extension SearchDiaryViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text {
             if text != "" {
-                searchDiary = diaryDBList.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
-            } else {
                 searchDiary = []
                 searchImage = []
+                searchDiary = diaryDBList.filter{ $0.hashTag.map { String($0).lowercased() }.contains(text) }
+                for data in self.searchDiary {
+                    self.getSearchImage(diary: data)
+                }
             }
-//            print("검색창 : \(text)")
-//            print("검색결과 : \(searchDiary)")
-//            print("검색결과 : \(searchImage)")
         }
     }
 }
