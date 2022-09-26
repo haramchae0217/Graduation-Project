@@ -365,16 +365,6 @@ extension ToDoViewController: UITableViewDataSource {
             deleteToDoDB(todo: todo)
             todoDBList = getToDo()
             if !todoDBList.isEmpty {
-                let sortedList = todoDBList.sorted(by: { $0.startDate > $1.startDate })
-                for data in sortedList {
-                    if selectedDate > data.startDate {
-                        selectedDate = data.startDate
-                        break
-                    } else if selectedDate < data.startDate {
-                        selectedDate = data.startDate
-                        break
-                    }
-                }
                 getTodayList(today: selectedDate)
             } else {
                 getTodayList()
