@@ -41,6 +41,7 @@ class ToDoViewController: UIViewController {
 //        configureEmptyView()
         configureNavigationController()
         configureTableView()
+        configureCalendar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +49,6 @@ class ToDoViewController: UIViewController {
         
         configureDateFormat()
         configureFontAndFontSize()
-        configureCalendar()
         todoDBList = getToDo()
         configureDate()
         getTodayList(today: selectedDate)
@@ -126,15 +126,15 @@ class ToDoViewController: UIViewController {
             selectedDate = selectToDo.startDate
         } else {
             if !todoDBList.isEmpty {
-                todoDBList = todoDBList.sorted(by: { $0.startDate < $1.startDate })
                 selectedDate = todoDBList[todoDBList.endIndex - 1].startDate
             }
         }
     }
     
     func getToDo() -> [ToDoDB] {
+        todoDBList = []
         print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
-        return localRealm.objects(ToDoDB.self).map { $0 }
+        return localRealm.objects(ToDoDB.self).map { $0 }.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func deleteToDoDB(todo: ToDoDB) {
@@ -178,8 +178,8 @@ class ToDoViewController: UIViewController {
             }
         }
         
-        checkedList = checkedList.sorted(by: { $0.startDate > $1.startDate })
-        notCheckedList = notCheckedList.sorted(by: { $0.startDate > $1.startDate })
+        checkedList = checkedList.sorted(by: { $0.startDate < $1.startDate })
+        notCheckedList = notCheckedList.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func editToDoChecking(todo: ToDoDB) {
@@ -245,7 +245,7 @@ class ToDoViewController: UIViewController {
             if todoDBList[0].startDate == selectedDate {
                 UIAlertController.warningAlert(title: "🚫", message: "이전 투두가 없습니다.", viewController: self)
             } else {
-                // 현재 selectedDate를 기준으로 가장 가까운 이전 날짜 가져오기
+    
                 for data in sortedList {
                     if selectedDate > data.startDate {
                         selectedDate = data.startDate
@@ -262,7 +262,6 @@ class ToDoViewController: UIViewController {
     
     @IBAction func nextToDoButton(_ sender: UIButton) {
         if !todoDBList.isEmpty {
-            // 현재 selectedDate를 기준으로 가장 가까운 다음 날짜 가져오기
             if todoDBList[todoDBList.endIndex - 1].startDate == selectedDate {
                 UIAlertController.warningAlert(title: "🚫", message: "다음 투두가 없습니다.", viewController: self)
             } else {
