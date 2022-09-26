@@ -787,12 +787,23 @@
                                     <constraint firstAttribute="width" secondItem="7D2-OQ-2FL" secondAttribute="height" multiplier="1:1" id="xdP-1Z-Xd2"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0월 0째주 그래프" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynG-Ql-Mhw">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ncs-1F-eeL">
                                 <rect key="frame" x="20" y="462" width="374" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0월 0째주 그래프" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynG-Ql-Mhw">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="0 / 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKs-UC-uZa">
+                                        <rect key="frame" x="148" y="0.0" width="226" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RkC-q0-9dO" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="20" y="506" width="374" height="199.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -806,11 +817,11 @@
                         <constraints>
                             <constraint firstItem="7D2-OQ-2FL" firstAttribute="top" secondItem="sUp-NZ-nb6" secondAttribute="top" constant="20" id="6ji-QU-dc8"/>
                             <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="7D2-OQ-2FL" secondAttribute="trailing" constant="20" id="FB4-YN-YWj"/>
-                            <constraint firstItem="RkC-q0-9dO" firstAttribute="top" secondItem="ynG-Ql-Mhw" secondAttribute="bottom" constant="20" id="RGv-zQ-jDv"/>
+                            <constraint firstItem="ncs-1F-eeL" firstAttribute="top" secondItem="7D2-OQ-2FL" secondAttribute="bottom" constant="20" id="Rsl-Hl-dFG"/>
+                            <constraint firstItem="RkC-q0-9dO" firstAttribute="top" secondItem="ncs-1F-eeL" secondAttribute="bottom" constant="20" id="Ww9-AO-b4Y"/>
                             <constraint firstItem="7D2-OQ-2FL" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="Y2W-Dc-bDF"/>
-                            <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="ynG-Ql-Mhw" secondAttribute="trailing" constant="20" id="b2o-7y-6oZ"/>
-                            <constraint firstItem="ynG-Ql-Mhw" firstAttribute="top" secondItem="7D2-OQ-2FL" secondAttribute="bottom" constant="20" id="kQK-sE-2TE"/>
-                            <constraint firstItem="ynG-Ql-Mhw" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="mTu-Da-odg"/>
+                            <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="ncs-1F-eeL" secondAttribute="trailing" constant="20" id="YtV-xX-gsZ"/>
+                            <constraint firstItem="ncs-1F-eeL" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="cf4-aY-iTp"/>
                             <constraint firstItem="RkC-q0-9dO" firstAttribute="leading" secondItem="sUp-NZ-nb6" secondAttribute="leading" constant="20" id="vMP-Ik-oI4"/>
                             <constraint firstItem="sUp-NZ-nb6" firstAttribute="trailing" secondItem="RkC-q0-9dO" secondAttribute="trailing" constant="20" id="xM5-4Y-glf"/>
                         </constraints>
@@ -819,6 +830,7 @@
                         <outlet property="barChart" destination="RkC-q0-9dO" id="ghF-pg-dxV"/>
                         <outlet property="calendarInfo" destination="ynG-Ql-Mhw" id="Id8-qF-2dM"/>
                         <outlet property="calendarView" destination="7D2-OQ-2FL" id="l2g-Xx-v0L"/>
+                        <outlet property="weekCountInfo" destination="eKs-UC-uZa" id="Ejs-eA-9bo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwp-sl-3lj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -970,6 +982,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="7hS-7P-K2U" secondAttribute="height" multiplier="1:1" id="cj2-Wa-7Ja"/>
                                                             </constraints>
+                                                            <color key="tintColor" name="diaryColor"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system"/>
                                                         </button>
@@ -1050,6 +1063,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Fd5-T0-ZVf" secondAttribute="height" multiplier="1:1" id="hbi-mQ-zGt"/>
                                                             </constraints>
+                                                            <color key="tintColor" name="diaryColor"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system"/>
                                                         </button>
@@ -1130,6 +1144,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="90c-UE-VBX" secondAttribute="height" multiplier="1:1" id="9p4-Oq-FGL"/>
                                                             </constraints>
+                                                            <color key="tintColor" name="diaryColor"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system"/>
                                                         </button>
@@ -1210,6 +1225,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="YLW-ev-BXI" secondAttribute="height" multiplier="1:1" id="PFX-Dc-lw5"/>
                                                             </constraints>
+                                                            <color key="tintColor" name="diaryColor"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system"/>
                                                         </button>
