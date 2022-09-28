@@ -11,10 +11,17 @@ import RealmSwift
 class SearchDiaryViewController: UIViewController {
 
     @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var noSearchResultView: UIView!
+    @IBOutlet weak var nosearchResultLabel: UILabel!
     
     var searchDiary: [DiaryDB] = [] {
         didSet {
             DispatchQueue.main.async {
+                if !self.searchDiary.isEmpty {
+                    self.noSearchResultView.isHidden = true
+                } else {
+                    self.noSearchResultView.isHidden = false
+                }
                 self.searchTableView.reloadData()
             }
         }
@@ -59,6 +66,8 @@ class SearchDiaryViewController: UIViewController {
     func configureFontAndFontSize() {
         fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
         font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+        
+        nosearchResultLabel.font = UIFont(name: font, size: fontSize)
     }
     
     func configureTableView() {
@@ -149,6 +158,7 @@ extension SearchDiaryViewController: UITableViewDelegate {
 
 extension SearchDiaryViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        noSearchResultView.isHidden = true
         searchDiary = []
         searchImage = []
     }
