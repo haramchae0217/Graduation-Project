@@ -153,7 +153,6 @@ class DiaryViewController: UIViewController {
     
     func getDiary() -> [DiaryDB] {
         diaryDBList = []
-        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         return localRealm.objects(DiaryDB.self).map { $0 }.sorted(by: { $0.date < $1.date })
     }
     
@@ -221,23 +220,21 @@ class DiaryViewController: UIViewController {
                 let lastDiary = diaryDBList[diaryDBList.endIndex - 1]
                 showDiary(diary: lastDiary)
             } else {
-                diaryPictureUIImage.isHidden = false
-                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
                 diaryPictureUIImage.image = UIImage(named: "noImage")
+                diaryDateLabel.text = DateFormatter.customDateFormatter.dateToStr(date: Date(), type: dateFormatType)
                 diaryHashTagLabel.text = "작성된 다이어리가 없습니다."
-                diaryContentLabel.isHidden = true
-                editDiaryButton.isHidden = true
-                deleteDiaryButton.isHidden = true
             }
         }
     }
     
     //MARK: Actions
     @objc func imageViewTapped(_ sender: UIImageView) {
-        diaryPictureUIImage.isHidden = true
-        editDiaryButton.isHidden = false
-        deleteDiaryButton.isHidden = false
-        diaryContentLabel.isHidden = false
+        if !diaryDBList.isEmpty {
+            diaryPictureUIImage.isHidden = true
+            editDiaryButton.isHidden = false
+            deleteDiaryButton.isHidden = false
+            diaryContentLabel.isHidden = false
+        }
     }
     
     @objc func contentTapped(_ sender: UILabel) {
