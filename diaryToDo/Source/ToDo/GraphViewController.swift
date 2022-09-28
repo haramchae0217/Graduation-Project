@@ -151,7 +151,11 @@ class GraphViewController: UIViewController {
             weekToDoCompleteCount += Int(data)
         }
         
-        weekToDoPercent = Int((Double(weekToDoCompleteCount) / Double(weekToDoCount)) * 100)
+        if weekToDoCount != 0 {
+            weekToDoPercent = Int((Double(weekToDoCompleteCount) / Double(weekToDoCount)) * 100)
+        } else {
+            weekToDoPercent = 0
+        }
         
         weekCountInfo.text = "\(weekToDoCompleteCount) / \(weekToDoCount) \(weekToDoPercent)%"
         weekCountInfo.font = UIFont(name: font, size: fontSize)
@@ -180,7 +184,7 @@ class GraphViewController: UIViewController {
         var chartEntry: [ChartDataEntry] = []
         
         for i in 0..<checkCount.count {
-            let value = BarChartDataEntry(x: Double(i), y: data[i])
+            let value = BarChartDataEntry(x: Double(i), y: Double(data[i]))
             chartEntry.append(value)
         }
         
@@ -195,7 +199,19 @@ class GraphViewController: UIViewController {
         barChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: strDates)
         barChart.xAxis.labelPosition = .bottom
         
+        let maxValue = checkCount.max() ?? 0
+        
+        let leftYAxis: [String] = Array<Int>(0...Int(maxValue)).map { String($0) }
+        
+        barChart.leftYAxisRenderer.axis.valueFormatter = IndexAxisValueFormatter(values: leftYAxis)
+        barChart.leftAxis.setLabelCount(leftYAxis.count, force: true)
+        barChart.leftAxis.axisMinimum = 0
+        barChart.leftAxis.axisMaximum = maxValue
+        barChart.leftYAxisRenderer.axis.labelPosition = .outsideChart
+        
         barChart.rightAxis.enabled = false
+        barChart.doubleTapToZoomEnabled = false
+        barGraph.highlightEnabled = false
         
         barChart.animate(xAxisDuration: 2, yAxisDuration: 2)
         
