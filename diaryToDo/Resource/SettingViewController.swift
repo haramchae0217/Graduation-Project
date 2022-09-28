@@ -31,10 +31,9 @@ class SettingViewController: UIViewController {
     }
     
     func configureFontAndFontSize() {
-    fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
-    font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
+        fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
+        font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
-        basicSettingLabel.font = UIFont(name: font, size: fontSize)
         dateFormatButton.layer.cornerRadius = 16
         fontSizeButton.layer.cornerRadius = 16
         fontSettingButton.layer.cornerRadius = 16
