@@ -15,9 +15,8 @@ class ToDoViewController: UIViewController {
     @IBOutlet weak var toDoCalendarView: FSCalendar!
     @IBOutlet weak var toDoTableView: UITableView!
     @IBOutlet weak var todoDateLabel: UILabel!
-    
-    let containerView = UIView()
-    let label = UILabel()
+    @IBOutlet weak var toDoEmptyView: UIView!
+    @IBOutlet weak var toDoEmptyLabel: UILabel!
     
     //MARK: Property
     let localRealm = try! Realm()
@@ -38,7 +37,6 @@ class ToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        configureEmptyView()
         configureNavigationController()
         configureTableView()
         configureCalendar()
@@ -71,29 +69,8 @@ class ToDoViewController: UIViewController {
         fontSize = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
         font = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
         
+        toDoEmptyLabel.font = UIFont(name: font, size: fontSize)
         todoDateLabel.font = UIFont(name: font, size: fontSize)
-    }
-    
-    func configureEmptyView() {
-        view.addSubview(containerView)
-        containerView.addSubview(label)
-        
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.translatesAutoresizingMaskIntoConstraints = false
-    
-        containerView.leadingAnchor.constraint(equalTo: toDoTableView.leadingAnchor).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: toDoTableView.trailingAnchor).isActive = true
-        containerView.topAnchor.constraint(equalTo: toDoTableView.topAnchor).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: toDoTableView.bottomAnchor).isActive = true
-        
-        label.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        label.text = "등록된 투두가 없습니다. \n투두를 추가해주세요."
-        
-        containerView.isHidden = true
     }
     
     func configureTableView() {
@@ -302,6 +279,12 @@ extension ToDoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if checkedList.count + notCheckedList.count <= 0 {
+            toDoEmptyView.isHidden = false
+        } else {
+            toDoEmptyView.isHidden = true
+        }
+        
         if section == 0 {
             return notCheckedList.count
         }
@@ -310,13 +293,6 @@ extension ToDoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else { return UITableViewCell() }
-        
-        if todoDBList.isEmpty {
-            containerView.isHidden = false
-        } else {
-            containerView.isHidden = true
-        }
-        
         var todo: ToDoDB
         
         if indexPath.section == 0 { // 미완료 항목
