@@ -212,6 +212,7 @@ class GraphViewController: UIViewController {
         barChart.rightAxis.enabled = false
         barChart.doubleTapToZoomEnabled = false
         barGraph.highlightEnabled = false
+        barGraph.drawValuesEnabled = false
         
         barChart.animate(xAxisDuration: 2, yAxisDuration: 2)
         
