@@ -311,7 +311,7 @@ class AddDiaryViewController: UIViewController {
 
 extension AddDiaryViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "내용을 입력해주세요." {
+        if textView.text == "내용을 입력하세요." {
             textView.text = ""
             textView.textColor = .label
         }
@@ -319,7 +319,7 @@ extension AddDiaryViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "내용을 입력해주세요."
+            textView.text = "내용을 입력하세요."
             textView.textColor = .lightGray
         }
     }
