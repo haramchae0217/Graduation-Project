@@ -151,8 +151,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBz-Df-h8Q">
                                 <rect key="frame" x="10" y="92" width="394" height="721"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhh-qt-LNp">
+                                        <rect key="frame" x="161" y="10" width="72.5" height="31"/>
+                                        <color key="tintColor" name="diaryColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="돌아가기">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="tableViewHiddenButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sbr-7x-kL5"/>
+                                        </connections>
+                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JIH-Vf-9BY">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="666.5"/>
+                                        <rect key="frame" x="0.0" y="51" width="394" height="670"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDiaryCell" rowHeight="152" id="ECF-To-gmx" customClass="DiarySelectTableViewCell" customModule="diaryToDo" customModuleProvider="target">
@@ -204,22 +215,14 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhh-qt-LNp">
-                                        <rect key="frame" x="170.5" y="676.5" width="53.5" height="34.5"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="취소"/>
-                                        <connections>
-                                            <action selector="tableViewHiddenButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sbr-7x-kL5"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Xhh-qt-LNp" secondAttribute="bottom" constant="10" id="CFK-b2-9UR"/>
-                                    <constraint firstItem="JIH-Vf-9BY" firstAttribute="top" secondItem="nBz-Df-h8Q" secondAttribute="top" id="Hwj-yo-uGn"/>
                                     <constraint firstItem="JIH-Vf-9BY" firstAttribute="leading" secondItem="nBz-Df-h8Q" secondAttribute="leading" id="SAZ-TI-fp2"/>
                                     <constraint firstItem="Xhh-qt-LNp" firstAttribute="centerX" secondItem="nBz-Df-h8Q" secondAttribute="centerX" id="YOS-Pv-NWn"/>
-                                    <constraint firstItem="Xhh-qt-LNp" firstAttribute="top" secondItem="JIH-Vf-9BY" secondAttribute="bottom" constant="10" id="nDF-lX-RxQ"/>
+                                    <constraint firstItem="JIH-Vf-9BY" firstAttribute="top" secondItem="Xhh-qt-LNp" secondAttribute="bottom" constant="10" id="drd-Eg-ZvF"/>
+                                    <constraint firstItem="Xhh-qt-LNp" firstAttribute="top" secondItem="nBz-Df-h8Q" secondAttribute="top" constant="10" id="gAl-0J-doU"/>
+                                    <constraint firstAttribute="bottom" secondItem="JIH-Vf-9BY" secondAttribute="bottom" id="j5e-sq-rrT"/>
                                     <constraint firstAttribute="trailing" secondItem="JIH-Vf-9BY" secondAttribute="trailing" id="yHT-5U-8xl"/>
                                 </constraints>
                             </view>
