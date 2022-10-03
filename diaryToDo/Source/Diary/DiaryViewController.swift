@@ -207,10 +207,18 @@ class DiaryViewController: UIViewController {
         }
     }
     
+    func basicView() {
+        diaryPictureUIImage.isHidden = false
+        editDiaryButton.isHidden = true
+        deleteDiaryButton.isHidden = true
+        diaryContentLabel.isHidden = true
+    }
+    
     //MARK: ETC
     func diaryViewType() {
         diaryDBList = getDiary()
         getDiaryImage()
+        basicView()
         if diaryType == .select {
             selectDiary = SelectItem.selectDiary
             guard let selectDiary = selectDiary else { return }
@@ -238,10 +246,7 @@ class DiaryViewController: UIViewController {
     }
     
     @objc func contentTapped(_ sender: UILabel) {
-        diaryPictureUIImage.isHidden = false
-        editDiaryButton.isHidden = true
-        deleteDiaryButton.isHidden = true
-        diaryContentLabel.isHidden = true
+        basicView()
     }
         
     @IBAction func previousDiaryButton(_ sender: UIButton) {
