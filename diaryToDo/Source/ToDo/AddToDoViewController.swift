@@ -129,11 +129,8 @@ class AddToDoViewController: UIViewController {
         var startDate = addStartDatePicker.date
         var endDate = addEndDatePicker.date
         
-        let startStringDate = DateFormatter.customDateFormatter.dateToString(date: startDate)
-        let endStringDate = DateFormatter.customDateFormatter.dateToString(date: endDate)
-        
-        startDate = DateFormatter.customDateFormatter.strToDate(str: startStringDate)
-        endDate = DateFormatter.customDateFormatter.strToDate(str: endStringDate)
+        startDate = DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: startDate))
+        endDate = DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: endDate))
         
         if startDate > endDate {
             UIAlertController.warningAlert(title: "🚫", message: "종료날짜를 알맞게 설정해주세요.", viewController: self)
