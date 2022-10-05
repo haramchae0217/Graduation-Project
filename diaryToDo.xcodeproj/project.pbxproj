@@ -10,8 +10,6 @@
 		8300692A27F9F16400BDD784 /* MyDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300692927F9F16400BDD784 /* MyDB.swift */; };
 		8313331428BB665D00FFEF73 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8313331328BB665D00FFEF73 /* Realm */; };
 		8313331628BB665D00FFEF73 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8313331528BB665D00FFEF73 /* RealmSwift */; };
-		8314013C28B8F92C003EE5B3 /* LaunchScreen2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314013B28B8F92C003EE5B3 /* LaunchScreen2.png */; };
-		8314013E28B8F937003EE5B3 /* LaunchScreen3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8314013D28B8F937003EE5B3 /* LaunchScreen3.png */; };
 		83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9927DB51AE0096C7B5 /* AppDelegate.swift */; };
 		83354D9C27DB51AE0096C7B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */; };
 		83354D9E27DB51AE0096C7B5 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */; };
@@ -78,8 +76,6 @@
 
 /* Begin PBXFileReference section */
 		8300692927F9F16400BDD784 /* MyDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDB.swift; sourceTree = "<group>"; };
-		8314013B28B8F92C003EE5B3 /* LaunchScreen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen2.png; path = Assets/LaunchScreen2.png; sourceTree = SOURCE_ROOT; };
-		8314013D28B8F937003EE5B3 /* LaunchScreen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen3.png; path = Assets/LaunchScreen3.png; sourceTree = SOURCE_ROOT; };
 		83354D9927DB51AE0096C7B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +132,7 @@
 		83D512D527F5EE98009B3A23 /* FilmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilmTableViewCell.swift; path = diaryToDo/Resource/FilmTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		83D512D727F5EF26009B3A23 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Film.swift; path = diaryToDo/Source/Setting/Film.swift; sourceTree = SOURCE_ROOT; };
 		83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extension.swift"; sourceTree = "<group>"; };
-		83E7EC7028B87394004EBB03 /* diaryToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diaryToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E7EC7028B87394004EBB03 /* PolaroidDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolaroidDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F3ECFD28CE3070002A2B88 /* DiaryDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDB.swift; sourceTree = "<group>"; };
 		83F3ECFF28CE3098002A2B88 /* ToDoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDB.swift; sourceTree = "<group>"; };
 		83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController++Extension.swift"; sourceTree = "<group>"; };
@@ -163,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				83354D9827DB51AE0096C7B5 /* diaryToDo */,
-				83E7EC7028B87394004EBB03 /* diaryToDo.app */,
+				83E7EC7028B87394004EBB03 /* PolaroidDiary.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,8 +244,6 @@
 				83354DA227DB51AF0096C7B5 /* Assets.xcassets */,
 				83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */,
 				83516C5028B8E74B0047E06C /* LaunchScreen.png */,
-				8314013B28B8F92C003EE5B3 /* LaunchScreen2.png */,
-				8314013D28B8F937003EE5B3 /* LaunchScreen3.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -305,9 +299,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		83354D9527DB51AE0096C7B5 /* diaryToDo */ = {
+		83354D9527DB51AE0096C7B5 /* PolaroidDiary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "diaryToDo" */;
+			buildConfigurationList = 83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "PolaroidDiary" */;
 			buildPhases = (
 				83354D9227DB51AE0096C7B5 /* Sources */,
 				83354D9327DB51AE0096C7B5 /* Frameworks */,
@@ -317,7 +311,7 @@
 			);
 			dependencies = (
 			);
-			name = diaryToDo;
+			name = PolaroidDiary;
 			packageProductDependencies = (
 				83D512BB27F5B120009B3A23 /* FSCalendar */,
 				8390C3112829660200E8D57A /* Charts */,
@@ -325,7 +319,7 @@
 				8313331528BB665D00FFEF73 /* RealmSwift */,
 			);
 			productName = diaryToDo;
-			productReference = 83E7EC7028B87394004EBB03 /* diaryToDo.app */;
+			productReference = 83E7EC7028B87394004EBB03 /* PolaroidDiary.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -361,7 +355,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				83354D9527DB51AE0096C7B5 /* diaryToDo */,
+				83354D9527DB51AE0096C7B5 /* PolaroidDiary */,
 			);
 		};
 /* End PBXProject section */
@@ -389,7 +383,6 @@
 				83608C2828B7C7F700D79202 /* 온글잎 주녕 손글씨.ttf in Resources */,
 				83608C2728B7C7F700D79202 /* 온글잎 짜앙구.ttf in Resources */,
 				83608C2E28B7C7F700D79202 /* HSBombaram3.0_Regular.otf in Resources */,
-				8314013E28B8F937003EE5B3 /* LaunchScreen3.png in Resources */,
 				83608C3028B7C7F700D79202 /* 온글잎 청춘여정.ttf in Resources */,
 				83608C1E28B7C7F700D79202 /* 온글잎 의연체.ttf in Resources */,
 				83608C3628B7C7F700D79202 /* HSGyeoulNoonkott2.0-Regular.ttf in Resources */,
@@ -402,7 +395,6 @@
 				83608C3128B7C7F700D79202 /* 온글잎 쏘찌.ttf in Resources */,
 				83608C1D28B7C7F700D79202 /* HSSantokki-Regular.otf in Resources */,
 				83608C2C28B7C7F700D79202 /* Chilgok_Kaj.otf in Resources */,
-				8314013C28B8F92C003EE5B3 /* LaunchScreen2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,7 +653,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "diaryToDo" */ = {
+		83354DAA27DB51AF0096C7B5 /* Build configuration list for PBXNativeTarget "PolaroidDiary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83354DAB27DB51AF0096C7B5 /* Debug */,
