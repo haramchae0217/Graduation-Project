@@ -293,6 +293,8 @@ class AddDiaryViewController: UIViewController {
             SelectItem.selectDiary = newDiary
         } else {
             if let oldDiary = editDiary {
+                print(oldDiary.hashTag)
+                print(filterHashTag)
                 if oldDiary.content == content && oldDiary.hashTag == filterHashTag && oldDiary.date == date {
                     UIAlertController.warningAlert(title: "🚫", message: "변경 후 다시 시도해주세요.", viewController: self)
                     return
