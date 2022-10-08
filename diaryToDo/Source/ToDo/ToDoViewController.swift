@@ -110,7 +110,6 @@ class ToDoViewController: UIViewController {
     
     func getToDo() -> [ToDoDB] {
         todoDBList = []
-        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         return localRealm.objects(ToDoDB.self).map { $0 }.sorted(by: { $0.startDate < $1.startDate })
     }
     
@@ -344,7 +343,6 @@ extension ToDoViewController: UITableViewDataSource {
             } else {
                 getTodayList()
             }
-//            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
