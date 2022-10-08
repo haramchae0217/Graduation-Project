@@ -73,7 +73,7 @@ class AddDiaryViewController: UIViewController {
             plusLabel.isHidden = true
             addDiaryDatePicker.date = editDiary.date
             addDiaryContentTextView.text = editDiary.content
-            addDiaryContentTextCountLabel.text = "\(editDiary.textCount)/100"
+            addDiaryContentTextCountLabel.text = "\(addDiaryContentTextView.text.count)/100"
             addDiaryContentTextView.textColor = .label
             for data in editDiary.hashTag {
                 hashtag += "\(data) "
@@ -258,13 +258,10 @@ class AddDiaryViewController: UIViewController {
         let content = addDiaryContentTextView.text!
         let hashTag = addDiaryHashTagTextField.text!
         let filterHashTag = List<String>()
-        var contentTextCount: Int = 0
         
         if textCount > 100 {
             UIAlertController.warningAlert(title: "🚫", message: "100자 이내로 작성해주세요.", viewController: self)
             return
-        } else {
-            contentTextCount = textCount
         }
         
         if addDiaryImageView.image == nil {
@@ -285,7 +282,7 @@ class AddDiaryViewController: UIViewController {
             }
         }
         
-        let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date, textCount: contentTextCount)
+        let newDiary = DiaryDB(content: content, hashTag: filterHashTag, date: date)
         
         if viewType == .add {
             addDiaryDB(diary: newDiary)
