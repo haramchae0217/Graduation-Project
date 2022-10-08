@@ -50,13 +50,13 @@ class AddDiaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.addKeyboardNotifications()
+//        self.addKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.removeKeyboardNotifications()
+//        self.removeKeyboardNotifications()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -293,12 +293,18 @@ class AddDiaryViewController: UIViewController {
             SelectItem.selectDiary = newDiary
         } else {
             if let oldDiary = editDiary {
-                print(oldDiary.hashTag)
-                print(filterHashTag)
-                if oldDiary.content == content && oldDiary.hashTag == filterHashTag && oldDiary.date == date {
+                let recentHashTag: [String] = hashTag.split(separator: " ").map { String($0) }
+                var oldHashTag: [String] = []
+                
+                for data in oldDiary.hashTag {
+                    oldHashTag.append(data)
+                }
+                
+                if oldDiary.content == content && oldHashTag == recentHashTag && oldDiary.date == date {
                     UIAlertController.warningAlert(title: "🚫", message: "변경 후 다시 시도해주세요.", viewController: self)
                     return
                 }
+                
                 editDiaryDB(oldDiary: oldDiary, newDiary: newDiary)
                 addOrEditDiaryImage(diary: oldDiary, viewtype: .edit)
                 
