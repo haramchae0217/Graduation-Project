@@ -153,6 +153,7 @@ class DiaryViewController: UIViewController {
     
     func getDiary() -> [DiaryDB] {
         diaryDBList = []
+        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location")
         return localRealm.objects(DiaryDB.self).map { $0 }.sorted(by: { $0.date < $1.date })
     }
     
