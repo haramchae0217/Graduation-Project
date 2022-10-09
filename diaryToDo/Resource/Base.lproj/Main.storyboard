@@ -18,7 +18,7 @@
         <!--Diary-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="DiaryVC" id="BYZ-38-t0r" customClass="DiaryViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiaryVC" id="BYZ-38-t0r" customClass="DiaryViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -166,7 +166,7 @@
                                         <rect key="frame" x="0.0" y="51" width="394" height="670"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDiaryCell" rowHeight="152" id="ECF-To-gmx" customClass="DiarySelectTableViewCell" customModule="diaryToDo" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDiaryCell" rowHeight="152" id="ECF-To-gmx" customClass="DiarySelectTableViewCell" customModule="PolaroidDiary" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="50" width="394" height="152"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ECF-To-gmx" id="lZq-jb-96G">
@@ -290,7 +290,7 @@
         <!--Add Diary View Controller-->
         <scene sceneID="kKv-Zu-SIn">
             <objects>
-                <viewController storyboardIdentifier="AddDiaryVC" hidesBottomBarWhenPushed="YES" id="QxW-Wp-KaG" customClass="AddDiaryViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddDiaryVC" hidesBottomBarWhenPushed="YES" id="QxW-Wp-KaG" customClass="AddDiaryViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DYs-J9-SFs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -391,7 +391,7 @@
         <!--Search Diary View Controller-->
         <scene sceneID="r01-zZ-Q67">
             <objects>
-                <viewController storyboardIdentifier="SearchVC" id="ncK-aH-n09" customClass="SearchDiaryViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" id="ncK-aH-n09" customClass="SearchDiaryViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ChW-Wu-YqP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -400,7 +400,7 @@
                                 <rect key="frame" x="0.0" y="68" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="172" id="1pK-Zr-6ga" customClass="SearchTableViewCell" customModule="diaryToDo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="172" id="1pK-Zr-6ga" customClass="SearchTableViewCell" customModule="PolaroidDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="172"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1pK-Zr-6ga" id="SVb-G1-LEG">
@@ -494,7 +494,7 @@
         <!--ToDo-->
         <scene sceneID="2yG-eG-IN8">
             <objects>
-                <viewController storyboardIdentifier="ToDoVC" id="v9c-dq-c5l" customClass="ToDoViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToDoVC" id="v9c-dq-c5l" customClass="ToDoViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="14U-us-5KZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -534,7 +534,7 @@
                                 <rect key="frame" x="20" y="166" width="374" height="627"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ToDo" rowHeight="107" id="y3I-Pa-xab" customClass="ToDoTableViewCell" customModule="diaryToDo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ToDo" rowHeight="107" id="y3I-Pa-xab" customClass="ToDoTableViewCell" customModule="PolaroidDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="374" height="107"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y3I-Pa-xab" id="wfz-LR-nLv">
@@ -577,27 +577,38 @@
                                                                 <constraint firstItem="Lqe-OO-HzM" firstAttribute="centerX" secondItem="75U-mj-zNv" secondAttribute="centerX" id="VpY-JV-zq9"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="토익" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXn-2T-KfM">
-                                                            <rect key="frame" x="110" y="0.0" width="149" height="100"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022.03.12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqa-kT-3hR">
-                                                            <rect key="frame" x="269" y="0.0" width="85" height="100"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ECo-5i-tIo">
+                                                            <rect key="frame" x="110" y="0.0" width="152" height="100"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXn-2T-KfM">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="152" height="69.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="memo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCw-Gz-Sz6">
+                                                                    <rect key="frame" x="0.0" y="79.5" width="152" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="expireDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqa-kT-3hR">
+                                                            <rect key="frame" x="272" y="0.0" width="82" height="100"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="oXn-2T-KfM" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="4xg-54-bl8"/>
                                                         <constraint firstItem="75U-mj-zNv" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="8ME-gi-tUO"/>
                                                         <constraint firstItem="Tqa-kT-3hR" firstAttribute="centerY" secondItem="ziG-8b-t60" secondAttribute="centerY" id="GDa-xF-XkP"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ECo-5i-tIo" firstAttribute="centerY" secondItem="wfz-LR-nLv" secondAttribute="centerY" id="7Ms-W1-z3Z"/>
                                                 <constraint firstItem="ziG-8b-t60" firstAttribute="centerY" secondItem="wfz-LR-nLv" secondAttribute="centerY" id="Ade-jf-znS"/>
                                                 <constraint firstItem="ziG-8b-t60" firstAttribute="leading" secondItem="wfz-LR-nLv" secondAttribute="leading" constant="10" id="CEM-cs-7XV"/>
                                                 <constraint firstAttribute="trailing" secondItem="ziG-8b-t60" secondAttribute="trailing" constant="10" id="qd9-Kj-jYC"/>
@@ -606,6 +617,7 @@
                                         <connections>
                                             <outlet property="toDoCheckButton" destination="Lqe-OO-HzM" id="wmV-SW-PKG"/>
                                             <outlet property="toDoExpireDateLabel" destination="Tqa-kT-3hR" id="JHx-BS-cVN"/>
+                                            <outlet property="toDoMemoLabel" destination="tCw-Gz-Sz6" id="5XH-2F-qhh"/>
                                             <outlet property="toDoNotCheckButton" destination="foI-IU-EIp" id="bKf-fN-xxP"/>
                                             <outlet property="toDoTitleLabel" destination="oXn-2T-KfM" id="Ing-GL-GQ8"/>
                                         </connections>
@@ -695,7 +707,7 @@
         <!--Add To Do View Controller-->
         <scene sceneID="PAu-9E-mhc">
             <objects>
-                <viewController storyboardIdentifier="AddToDoVC" hidesBottomBarWhenPushed="YES" id="jFj-Kl-H69" customClass="AddToDoViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddToDoVC" hidesBottomBarWhenPushed="YES" id="jFj-Kl-H69" customClass="AddToDoViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XNq-PW-UYe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -824,7 +836,7 @@
         <!--Graph View Controller-->
         <scene sceneID="Sho-f8-dYi">
             <objects>
-                <viewController storyboardIdentifier="GraphVC" id="0Xs-N9-MZW" customClass="GraphViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GraphVC" id="0Xs-N9-MZW" customClass="GraphViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GpR-0I-HrH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -889,7 +901,7 @@
         <!--Setting-->
         <scene sceneID="pC0-zX-TXr">
             <objects>
-                <viewController storyboardIdentifier="SettingVC" id="YTg-fq-yOD" customClass="SettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingVC" id="YTg-fq-yOD" customClass="SettingViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cVd-QJ-nkD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -991,7 +1003,7 @@
         <!--Date Format Setting View Controller-->
         <scene sceneID="y3G-7V-NOI">
             <objects>
-                <viewController storyboardIdentifier="DateVC" hidesBottomBarWhenPushed="YES" id="9Gb-j3-ujA" customClass="DateFormatSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DateVC" hidesBottomBarWhenPushed="YES" id="9Gb-j3-ujA" customClass="DateFormatSettingViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BuO-Ky-SIb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1006,7 +1018,7 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dateCell" rowHeight="60" id="ZAT-hQ-x5t" customClass="DateFormatTableViewCell" customModule="diaryToDo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dateCell" rowHeight="60" id="ZAT-hQ-x5t" customClass="DateFormatTableViewCell" customModule="PolaroidDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZAT-hQ-x5t" id="Hif-Xn-8iI">
@@ -1072,7 +1084,7 @@
         <!--Font Size Setting View Controller-->
         <scene sceneID="aQe-cJ-Dyi">
             <objects>
-                <viewController storyboardIdentifier="FontSizeVC" hidesBottomBarWhenPushed="YES" id="zBx-8A-HBx" customClass="FontSizeSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FontSizeVC" hidesBottomBarWhenPushed="YES" id="zBx-8A-HBx" customClass="FontSizeSettingViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ooM-8d-Exo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1087,7 +1099,7 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fontSizeCell" rowHeight="71" id="MG8-He-YFt" customClass="FontSizeTableViewCell" customModule="diaryToDo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fontSizeCell" rowHeight="71" id="MG8-He-YFt" customClass="FontSizeTableViewCell" customModule="PolaroidDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MG8-He-YFt" id="UUF-wC-5Wi">
@@ -1153,7 +1165,7 @@
         <!--Font Setting View Controller-->
         <scene sceneID="aqs-fv-VwR">
             <objects>
-                <viewController storyboardIdentifier="FontVC" id="x18-81-jbv" customClass="FontSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FontVC" id="x18-81-jbv" customClass="FontSettingViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ba1-v2-tkB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1168,7 +1180,7 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fontCell" rowHeight="68" id="SBK-QI-QBW" customClass="FontSettingTableViewCell" customModule="diaryToDo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fontCell" rowHeight="68" id="SBK-QI-QBW" customClass="FontSettingTableViewCell" customModule="PolaroidDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SBK-QI-QBW" id="zRc-K1-qF9">
@@ -1234,7 +1246,7 @@
         <!--Film Setting View Controller-->
         <scene sceneID="9eZ-p0-hQb">
             <objects>
-                <viewController storyboardIdentifier="FilmVC" id="bAK-Ay-4N7" customClass="FilmSettingViewController" customModule="diaryToDo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilmVC" id="bAK-Ay-4N7" customClass="FilmSettingViewController" customModule="PolaroidDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hXJ-s2-JWG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1249,7 +1261,7 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filmCell" rowHeight="127" id="ahk-Jf-gYM" customClass="FilmTableViewCell" customModule="diaryToDo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filmCell" rowHeight="127" id="ahk-Jf-gYM" customClass="FilmTableViewCell" customModule="PolaroidDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="127"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ahk-Jf-gYM" id="8ii-CG-rIA">
