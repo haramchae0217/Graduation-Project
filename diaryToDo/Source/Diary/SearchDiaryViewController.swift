@@ -158,7 +158,7 @@ extension SearchDiaryViewController: UITableViewDelegate {
 
 extension SearchDiaryViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        noSearchResultView.isHidden = true
+        nosearchResultLabel.text = "검색어를 입력해주세요."
         searchDiary = []
         searchImage = []
     }
