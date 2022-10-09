@@ -28,17 +28,15 @@ extension DateFormatter {
     func dateToStr(date: Date, type: DateFormatType.RawValue) -> String {
         switch type {
         case "type1":
-            self.dateFormat = "dd MMM, yyyy"
+            self.dateFormat = "yyyy/MM/dd"
         case "type2":
             self.dateFormat = "yyyy.MM.dd"
         case "type3":
-            self.dateFormat = "yyyy년 MM월 dd일"
-        case "type4":
             self.dateFormat = "yyyy-MM-dd"
-        case "type5":
-            self.dateFormat = "yyyy/MM/dd"
+        case "type4":
+            self.dateFormat = "dd MMM, yyyy"
         default:
-            self.dateFormat = "yyyy년 MM월 dd일"
+            self.dateFormat = "yyyy/MM/dd"
         }
         return self.string(from: date)
     }

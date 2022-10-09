@@ -12,7 +12,7 @@ class DateFormatSettingViewController: UIViewController {
     @IBOutlet weak var dateFormatTableView: UITableView!
     @IBOutlet weak var dateFormatLabel: UILabel!
     
-    var dateTypeList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, false), (.type2, false), (.type3, false), (.type4, false), (.type5, false)]
+    var dateTypeList: [(dateformatType: DateFormatType, isSelected: Bool)] = [(.type1, false), (.type2, false), (.type3, false), (.type4, false)]
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     

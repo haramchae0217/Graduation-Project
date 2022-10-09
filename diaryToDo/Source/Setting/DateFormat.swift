@@ -12,5 +12,4 @@ enum DateFormatType: String {
     case type2
     case type3
     case type4
-    case type5
 }
