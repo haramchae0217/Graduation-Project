@@ -12,6 +12,7 @@ class ToDoTableViewCell: UITableViewCell {
     static let identifier = "ToDo"
     
     @IBOutlet weak var toDoTitleLabel: UILabel!
+    @IBOutlet weak var toDoMemoLabel: UILabel!
     @IBOutlet weak var toDoExpireDateLabel: UILabel!
     @IBOutlet weak var toDoCheckButton: UIButton!
     @IBOutlet weak var toDoNotCheckButton: UIButton!

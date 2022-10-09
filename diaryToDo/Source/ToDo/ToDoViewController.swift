@@ -299,6 +299,7 @@ extension ToDoViewController: UITableViewDataSource {
             cell.toDoCheckButton.isHidden = true
             cell.toDoTitleLabel.textColor = .label
             cell.toDoExpireDateLabel.textColor = .label
+            cell.toDoMemoLabel.textColor = .label
             
             cell.toDoNotCheckButton.tag = indexPath.row
             cell.toDoNotCheckButton.addTarget(self, action: #selector(notcheckedButton), for: .touchUpInside)
@@ -307,6 +308,7 @@ extension ToDoViewController: UITableViewDataSource {
             cell.toDoCheckButton.isHidden = false
             cell.toDoTitleLabel.textColor = .lightGray
             cell.toDoExpireDateLabel.textColor = .lightGray
+            cell.toDoMemoLabel.textColor = .lightGray
             
             cell.toDoCheckButton.tag = indexPath.row
             cell.toDoCheckButton.addTarget(self, action: #selector(checkedButton), for: .touchUpInside)
@@ -314,13 +316,15 @@ extension ToDoViewController: UITableViewDataSource {
         
         cell.toDoTitleLabel.text = todo.title
         cell.toDoTitleLabel.font = UIFont(name: font, size: fontSize)
+        cell.toDoMemoLabel.text = todo.memo
+        cell.toDoMemoLabel.font = UIFont(name: font, size: fontSize - 8)
         
         if todo.startDate == todo.endDate {
             cell.toDoExpireDateLabel.text = "오늘"
         } else {
             cell.toDoExpireDateLabel.text = "마감일 : \(DateFormatter.customDateFormatter.dateToStr(date: todo.endDate, type: dateFormatType))"
         }
-        cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize - 6)
+        cell.toDoExpireDateLabel.font = UIFont(name: font, size: fontSize - 8)
         
         return cell
     }
