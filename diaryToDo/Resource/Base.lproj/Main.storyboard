@@ -57,7 +57,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bu6-v5-RPH">
                                 <rect key="frame" x="0.0" y="207" width="414" height="506"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film1" translatesAutoresizingMaskIntoConstraints="NO" id="h16-SV-UY5">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h16-SV-UY5">
                                         <rect key="frame" x="10" y="0.0" width="394" height="506"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-io-IFh">
@@ -103,7 +103,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe" translatesAutoresizingMaskIntoConstraints="NO" id="f0F-OA-l5p">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f0F-OA-l5p">
                                         <rect key="frame" x="42" y="83" width="333" height="333"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="f0F-OA-l5p" secondAttribute="height" multiplier="1:1" id="S4C-hZ-FEF"/>
@@ -1426,7 +1426,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cafe" width="3019" height="3019"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="102"/>
         <image name="checklist" catalog="system" width="128" height="107"/>
