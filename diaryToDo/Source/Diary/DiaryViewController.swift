@@ -101,7 +101,7 @@ class DiaryViewController: UIViewController {
     }
     
     func configureFilmImage() {
-        let filmName = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "film1"
+        let filmName = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "Orange"
         diaryFilmImage.image = UIImage(named: filmName)
     }
     

@@ -34,7 +34,7 @@ class FilmSettingViewController: UIViewController {
     
     func configureFilmType() {
         // UserDefault에 'film'이라는 키 값에 저장된 값을 꺼내와 filmType에 저장
-        let filmType = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "film1"
+        let filmType = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "Orange"
         
         // 위에 선언한 filmList에 filmType과 일치하는 것만 true로 변경
         for i in 0..<filmList.count {
