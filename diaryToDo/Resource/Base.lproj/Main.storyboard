@@ -1286,7 +1286,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="film1" translatesAutoresizingMaskIntoConstraints="NO" id="D3e-25-anC">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D3e-25-anC">
                                                             <rect key="frame" x="159" y="0.0" width="235" height="107"/>
                                                         </imageView>
                                                     </subviews>
@@ -1433,7 +1433,6 @@
         <image name="chevron.forward" catalog="system" width="97" height="128"/>
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
-        <image name="film1" width="1179" height="1835"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="diaryColor">
