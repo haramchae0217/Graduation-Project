@@ -8,8 +8,8 @@
 import UIKit
 
 enum FilmType: String {
-    case film1
-    case film2
-    case film3
-    case film4
+    case film1 = "Orange"
+    case film2 = "Gray"
+    case film3 = "Old"
+    case film4 = "Frame"
 }
