@@ -201,7 +201,9 @@ class AddDiaryViewController: UIViewController {
             self.present(self.imagePicker, animated: true, completion: nil)
         }
        
-        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel) { _ in
+            self.plusLabel.isHidden.toggle()
+        }
         
         alertAction.addAction(cameraButton)
         alertAction.addAction(photoLibraryButton)
