@@ -89,7 +89,7 @@ class FilmSettingViewController: UIViewController {
     }
     
     @objc func setDoneButton() {
-        let dbData = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "film1"
+        let dbData = UserDefaults.standard.string(forKey: SettingType.film.rawValue) ?? "Orange"
         var selectData = ""
         
         for data in filmList {
