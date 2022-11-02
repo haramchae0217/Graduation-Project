@@ -225,6 +225,7 @@ class ToDoViewController: UIViewController {
                 for data in sortedList {
                     if selectedDate > data.startDate {
                         selectedDate = data.startDate
+                        SelectItem.selectToDo = data
                         break
                     }
                 }
@@ -244,6 +245,7 @@ class ToDoViewController: UIViewController {
                 for data in todoDBList {
                     if selectedDate < data.startDate {
                         selectedDate = data.startDate
+                        SelectItem.selectToDo = data
                         break
                     }
                 }
@@ -342,6 +344,7 @@ extension ToDoViewController: UITableViewDataSource {
             selectedDate = todo.startDate
             deleteToDoDB(todo: todo)
             todoDBList = getToDo()
+            SelectItem.selectToDo = nil
             if !todoDBList.isEmpty {
                 getTodayList(today: selectedDate)
             } else {
