@@ -51,7 +51,7 @@ class DiaryViewController: UIViewController {
     //MARK: Life-Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureNavigationController()
         configureTableView()
         configureCalendarView()
@@ -61,6 +61,7 @@ class DiaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         if SelectItem.selectDiary != nil {
             diaryType = .select
         }
@@ -224,6 +225,7 @@ class DiaryViewController: UIViewController {
             selectDiary = SelectItem.selectDiary
             guard let selectDiary = selectDiary else { return }
             showDiary(diary: selectDiary)
+            diaryType = .basic
         } else {
             if !diaryDBList.isEmpty {
                 let lastDiary = diaryDBList[diaryDBList.endIndex - 1]
@@ -268,6 +270,7 @@ class DiaryViewController: UIViewController {
                 for data in sortedList {
                     if previousDate == data.date {
                         showDiary(diary: data)
+                        SelectItem.selectDiary = data
                         break
                     }
                 }
@@ -296,6 +299,7 @@ class DiaryViewController: UIViewController {
                 for data in diaryDBList {
                     if nextDate == data.date {
                         showDiary(diary: data)
+                        SelectItem.selectDiary = data
                         break
                     }
                 }
@@ -338,6 +342,7 @@ class DiaryViewController: UIViewController {
                 self.deleteImage(diary: diary)
                 self.deleteDiaryDB(diary: diary)
                 self.diaryType = .basic
+                SelectItem.selectDiary = nil
                 self.diaryCalendarView.reloadData()
                 self.diaryViewType()
             }
@@ -395,6 +400,7 @@ extension DiaryViewController: FSCalendarDelegate, FSCalendarDataSource {
             for data in diaryList {
                 if DateFormatter.customDateFormatter.strToDate(str: DateFormatter.customDateFormatter.dateToString(date: data.date)) == date {
                     showDiary(diary: data)
+                    SelectItem.selectDiary = data
                     break
                 }
             }
@@ -412,6 +418,7 @@ extension DiaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let diary = sameDateDiary[indexPath.row]
         showDiary(diary: diary)
+        SelectItem.selectDiary = diary
         diaryUIView.isHidden = true
     }
 }
