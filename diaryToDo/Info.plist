@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>온글잎 보현체.ttf</string>
@@ -32,8 +30,6 @@
 		<string>LeeSeoyun.otf</string>
 		<string>SimKyungha.otf</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

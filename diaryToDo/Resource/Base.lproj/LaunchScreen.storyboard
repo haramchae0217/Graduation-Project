@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="5zw-RD-vKW">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-6S-PJk">
                                 <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="5zw-RD-vKW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5Jd-bw-ayS"/>
-                            <constraint firstItem="5zw-RD-vKW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Fkj-TW-lQv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5zw-RD-vKW" secondAttribute="trailing" id="Kdk-t0-C30"/>
-                            <constraint firstItem="5zw-RD-vKW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jHP-fl-A90"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Md8-6S-PJk" secondAttribute="trailing" id="3kw-3C-1Yh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Md8-6S-PJk" secondAttribute="bottom" id="iUt-8e-4tx"/>
+                            <constraint firstItem="Md8-6S-PJk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sSD-JU-leQ"/>
+                            <constraint firstItem="Md8-6S-PJk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xbm-Md-Z8g"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,7 +37,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen.png" width="1125.1199951171875" height="2436"/>
+        <image name="Image" width="472" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

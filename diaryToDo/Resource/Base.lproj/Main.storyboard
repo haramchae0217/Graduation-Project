@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y1h-Qu-DaV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y1h-Qu-DaV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -593,6 +593,10 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="tCw-Gz-Sz6" firstAttribute="top" secondItem="oXn-2T-KfM" secondAttribute="bottom" constant="10" id="fNR-mh-ot5"/>
+                                                                <constraint firstItem="oXn-2T-KfM" firstAttribute="top" secondItem="ECo-5i-tIo" secondAttribute="top" id="i9R-kZ-NUQ"/>
+                                                            </constraints>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="expireDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqa-kT-3hR">
                                                             <rect key="frame" x="272" y="0.0" width="82" height="100"/>

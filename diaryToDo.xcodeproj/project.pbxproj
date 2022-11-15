@@ -68,7 +68,6 @@
 		83D86A8827E3532500B7E5DC /* DateFormatter++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */; };
 		83F3ECFE28CE3070002A2B88 /* DiaryDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3ECFD28CE3070002A2B88 /* DiaryDB.swift */; };
 		83F3ED0028CE3098002A2B88 /* ToDoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3ECFF28CE3098002A2B88 /* ToDoDB.swift */; };
-		83F5A40F292402360093639B /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F5A40E292402360093639B /* LaunchScreen.png */; };
 		83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */; };
 		83FDF02227F317AD008E45E3 /* AddDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF02127F317AD008E45E3 /* AddDiaryViewController.swift */; };
 		83FDF02427F3547F008E45E3 /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */; };
@@ -134,7 +133,6 @@
 		83E7EC7028B87394004EBB03 /* PolaroidDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolaroidDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F3ECFD28CE3070002A2B88 /* DiaryDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDB.swift; sourceTree = "<group>"; };
 		83F3ECFF28CE3098002A2B88 /* ToDoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDB.swift; sourceTree = "<group>"; };
-		83F5A40E292402360093639B /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreen.png; path = Assets/LaunchScreen.png; sourceTree = SOURCE_ROOT; };
 		83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController++Extension.swift"; sourceTree = "<group>"; };
 		83FDF02127F317AD008E45E3 /* AddDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiaryViewController.swift; sourceTree = "<group>"; };
 		83FDF02327F3547F008E45E3 /* AddToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToDoViewController.swift; path = diaryToDo/Source/ToDo/AddToDoViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -242,7 +240,6 @@
 				83608C3728B7C8CE00D79202 /* Font */,
 				83354D9F27DB51AE0096C7B5 /* Main.storyboard */,
 				83354DA227DB51AF0096C7B5 /* Assets.xcassets */,
-				83F5A40E292402360093639B /* LaunchScreen.png */,
 				83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */,
 			);
 			path = Resource;
@@ -391,7 +388,6 @@
 				83608C1F28B7C7F700D79202 /* HSBombaram3.0_Thin.otf in Resources */,
 				83608C2F28B7C7F700D79202 /* LeeSeoyun.otf in Resources */,
 				83608C3528B7C7F700D79202 /* Chilgok_ljh.otf in Resources */,
-				83F5A40F292402360093639B /* LaunchScreen.png in Resources */,
 				83608C3128B7C7F700D79202 /* 온글잎 쏘찌.ttf in Resources */,
 				83608C1D28B7C7F700D79202 /* HSSantokki-Regular.otf in Resources */,
 				83608C2C28B7C7F700D79202 /* Chilgok_Kaj.otf in Resources */,
@@ -587,12 +583,14 @@
 				DEVELOPMENT_TEAM = D289277BWD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = diaryToDo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "사진 및 동영상 촬영을 위한 카메라 사용 권한";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영 및 음성인식을 위한 권한 필요";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 및 동영상 첨부를 위한 앨범 사용 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
@@ -619,12 +617,14 @@
 				DEVELOPMENT_TEAM = D289277BWD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = diaryToDo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "사진 및 동영상 촬영을 위한 카메라 사용 권한";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영 및 음성인식을 위한 권한 필요";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 및 동영상 첨부를 위한 앨범 사용 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
