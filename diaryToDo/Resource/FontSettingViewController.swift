@@ -12,7 +12,7 @@ class FontSettingViewController: UIViewController {
     @IBOutlet weak var fontTableView: UITableView!
     @IBOutlet weak var fontLabel: UILabel!
     
-    var fontList: [(fontName: FontName, isSelected: Bool)] = [(.name1, false), (.name2, false), (.name3, false), (.name4, false), (.name5, false), (.name6, false), (.name7, false), (.name8, false), (.name9, false), (.name10, false), (.name11, false), (.name12, false), (.name13, false), (.name14, false), (.name15, false), (.name16, false), (.name17, false), (.name18, false), (.name19, false), (.name20, false), (.name21, false), (.name22, false), (.name23, false), (.name24, false), (.name25, false)]
+    var fontList: [(fontName: FontName, isSelected: Bool)] = [(.소찌체, false), (.아희체, false), (.위리체, false), (.따뜻한혜온체, false), (.밍댕손글씨체, false), (.정원체, false), (.정현모체, false), (.창이체, false)]
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
@@ -125,7 +125,7 @@ extension FontSettingViewController: UITableViewDataSource {
             setFontStyleNotSelect(cell.isSelectedFontButton)
         }
         
-        cell.fontSettingLabel.text = font.fontName.rawValue
+        cell.fontSettingLabel.text = "\(font.fontName)"
         cell.fontSettingLabel.font = UIFont(name: font.fontName.rawValue, size: fontSize)
         cell.isSelectedFontButton.tag = indexPath.row
         cell.isSelectedFontButton.addTarget(self, action: #selector(isSelectFont), for: .touchUpInside)
