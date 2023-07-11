@@ -4,31 +4,14 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>온글잎 보현체.ttf</string>
 		<string>온글잎 쏘찌.ttf</string>
 		<string>온글잎 아희.ttf</string>
 		<string>온글잎 위리체.ttf</string>
-		<string>온글잎 윤우체.ttf</string>
-		<string>온글잎 의연체.ttf</string>
-		<string>온글잎 주녕 손글씨.ttf</string>
-		<string>온글잎 짜앙구.ttf</string>
-		<string>온글잎 청춘여정.ttf</string>
-		<string>Chilgok_Cye.otf</string>
-		<string>Chilgok_Kaj.otf</string>
-		<string>Chilgok_kyb.otf</string>
-		<string>Chilgok_ljh.otf</string>
-		<string>Chilgok_lws.otf</string>
-		<string>ChosunCentennial_otf.otf</string>
-		<string>ChosunGu.TTF</string>
-		<string>HS가을생각체2.0.ttf</string>
-		<string>HS유지체.otf</string>
-		<string>HSBombaram3.0_Regular.otf</string>
-		<string>HSGyeoulNoonkott2.0-Regular.ttf</string>
-		<string>HSSaemaul-Regular.ttf</string>
-		<string>HSSantokki-Regular.otf</string>
-		<string>JeonHwaseon.otf</string>
-		<string>LeeSeoyun.otf</string>
-		<string>SimKyungha.otf</string>
+		<string>온글잎 따뜻한 혜온체.ttf</string>
+		<string>온글잎 밍댕손글씨.ttf</string>
+		<string>온글잎 정원체.ttf</string>
+		<string>온글잎 정현모체.ttf</string>
+		<string>온글잎 창이체.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
