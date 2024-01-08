@@ -13,7 +13,7 @@ class FilmSettingViewController: UIViewController {
     @IBOutlet weak var filmTableView: UITableView!
     @IBOutlet weak var filmLabel: UILabel!
     
-    var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.film1, false), (.film2, false), (.film3, false), (.film4, false)]
+    var filmList: [(filmName: FilmType, isSelected: Bool)] = [(.오렌지, false), (.핑크, false), (.그린, false), (.사선오렌지, false)]
     var font: String = UserDefaults.standard.string(forKey: SettingType.font.rawValue) ?? "Ownglyph ssojji"
     var fontSize: CGFloat = CGFloat(NSString(string: UserDefaults.standard.string(forKey: SettingType.fontSize.rawValue) ?? "20").floatValue)
     
