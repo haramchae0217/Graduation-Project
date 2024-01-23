@@ -8,11 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8300692A27F9F16400BDD784 /* MyDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8300692927F9F16400BDD784 /* MyDB.swift */; };
-		8303B3942A5CE69F00F1B60A /* 온글잎 정현모체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8303B38F2A5CE69F00F1B60A /* 온글잎 정현모체.ttf */; };
-		8303B3952A5CE69F00F1B60A /* 온글잎 따뜻한 혜온체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8303B3902A5CE69F00F1B60A /* 온글잎 따뜻한 혜온체.ttf */; };
-		8303B3962A5CE69F00F1B60A /* 온글잎 정원체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8303B3912A5CE69F00F1B60A /* 온글잎 정원체.ttf */; };
-		8303B3972A5CE69F00F1B60A /* 온글잎 창이체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8303B3922A5CE69F00F1B60A /* 온글잎 창이체.ttf */; };
-		8303B3982A5CE69F00F1B60A /* 온글잎 밍댕손글씨.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8303B3932A5CE69F00F1B60A /* 온글잎 밍댕손글씨.ttf */; };
 		8313331428BB665D00FFEF73 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8313331328BB665D00FFEF73 /* Realm */; };
 		8313331628BB665D00FFEF73 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8313331528BB665D00FFEF73 /* RealmSwift */; };
 		83354D9A27DB51AE0096C7B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83354D9927DB51AE0096C7B5 /* AppDelegate.swift */; };
@@ -22,9 +17,6 @@
 		83354DA327DB51AF0096C7B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83354DA227DB51AF0096C7B5 /* Assets.xcassets */; };
 		83354DA627DB51AF0096C7B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */; };
 		83486BBE28CECA630025554E /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83486BBD28CECA630025554E /* ImageManager.swift */; };
-		83608C2528B7C7F700D79202 /* 온글잎 위리체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C0B28B7C7F200D79202 /* 온글잎 위리체.ttf */; };
-		83608C2B28B7C7F700D79202 /* 온글잎 아희.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1128B7C7F400D79202 /* 온글잎 아희.ttf */; };
-		83608C3128B7C7F700D79202 /* 온글잎 쏘찌.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83608C1728B7C7F600D79202 /* 온글잎 쏘찌.ttf */; };
 		837C4F0C27DC349B00FC46A7 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */; };
 		837C4F0E27DC34FC00FC46A7 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */; };
 		837DDC3B28D9A5F700AF1903 /* DiarySelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DDC3A28D9A5F700AF1903 /* DiarySelectTableViewCell.swift */; };
@@ -48,6 +40,14 @@
 		83D512D627F5EE98009B3A23 /* FilmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512D527F5EE98009B3A23 /* FilmTableViewCell.swift */; };
 		83D512D827F5EF26009B3A23 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D512D727F5EF26009B3A23 /* Film.swift */; };
 		83D86A8827E3532500B7E5DC /* DateFormatter++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */; };
+		83EC45E02B555B1E00B7B716 /* 온글잎 밍댕손글씨.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45D82B555B1E00B7B716 /* 온글잎 밍댕손글씨.ttf */; };
+		83EC45E12B555B1E00B7B716 /* 온글잎 창이체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45D92B555B1E00B7B716 /* 온글잎 창이체.ttf */; };
+		83EC45E22B555B1E00B7B716 /* 온글잎 정현모체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45DA2B555B1E00B7B716 /* 온글잎 정현모체.ttf */; };
+		83EC45E32B555B1E00B7B716 /* 온글잎 따뜻한 혜온체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45DB2B555B1E00B7B716 /* 온글잎 따뜻한 혜온체.ttf */; };
+		83EC45E42B555B1E00B7B716 /* 온글잎 위리체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45DC2B555B1E00B7B716 /* 온글잎 위리체.ttf */; };
+		83EC45E52B555B1E00B7B716 /* 온글잎 정원체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45DD2B555B1E00B7B716 /* 온글잎 정원체.ttf */; };
+		83EC45E62B555B1E00B7B716 /* 온글잎 쏘찌.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45DE2B555B1E00B7B716 /* 온글잎 쏘찌.ttf */; };
+		83EC45E72B555B1E00B7B716 /* 온글잎 아희.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EC45DF2B555B1E00B7B716 /* 온글잎 아희.ttf */; };
 		83F3ECFE28CE3070002A2B88 /* DiaryDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3ECFD28CE3070002A2B88 /* DiaryDB.swift */; };
 		83F3ED0028CE3098002A2B88 /* ToDoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F3ECFF28CE3098002A2B88 /* ToDoDB.swift */; };
 		83FDF02027F2EB81008E45E3 /* UIAlertController++Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */; };
@@ -57,11 +57,6 @@
 
 /* Begin PBXFileReference section */
 		8300692927F9F16400BDD784 /* MyDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDB.swift; sourceTree = "<group>"; };
-		8303B38F2A5CE69F00F1B60A /* 온글잎 정현모체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "온글잎 정현모체.ttf"; path = "../../../../../Downloads/온글잎 정현모체.ttf"; sourceTree = "<group>"; };
-		8303B3902A5CE69F00F1B60A /* 온글잎 따뜻한 혜온체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "온글잎 따뜻한 혜온체.ttf"; path = "../../../../../Downloads/온글잎 따뜻한 혜온체.ttf"; sourceTree = "<group>"; };
-		8303B3912A5CE69F00F1B60A /* 온글잎 정원체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "온글잎 정원체.ttf"; path = "../../../../../Downloads/온글잎 정원체.ttf"; sourceTree = "<group>"; };
-		8303B3922A5CE69F00F1B60A /* 온글잎 창이체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "온글잎 창이체.ttf"; path = "../../../../../Downloads/온글잎 창이체.ttf"; sourceTree = "<group>"; };
-		8303B3932A5CE69F00F1B60A /* 온글잎 밍댕손글씨.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "온글잎 밍댕손글씨.ttf"; path = "../../../../../Downloads/온글잎 밍댕손글씨.ttf"; sourceTree = "<group>"; };
 		83354D9927DB51AE0096C7B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83354D9B27DB51AE0096C7B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83354D9D27DB51AE0096C7B5 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
@@ -70,9 +65,6 @@
 		83354DA527DB51AF0096C7B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83354DA727DB51AF0096C7B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83486BBD28CECA630025554E /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
-		83608C0B28B7C7F200D79202 /* 온글잎 위리체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 위리체.ttf"; sourceTree = "<group>"; };
-		83608C1128B7C7F400D79202 /* 온글잎 아희.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 아희.ttf"; sourceTree = "<group>"; };
-		83608C1728B7C7F600D79202 /* 온글잎 쏘찌.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 쏘찌.ttf"; sourceTree = "<group>"; };
 		837C4F0B27DC349B00FC46A7 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		837C4F0D27DC34FC00FC46A7 /* ToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 		837DDC3A28D9A5F700AF1903 /* DiarySelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySelectTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +87,14 @@
 		83D512D727F5EF26009B3A23 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Film.swift; path = diaryToDo/Source/Setting/Film.swift; sourceTree = SOURCE_ROOT; };
 		83D86A8727E3532500B7E5DC /* DateFormatter++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter++Extension.swift"; sourceTree = "<group>"; };
 		83E7EC7028B87394004EBB03 /* PolaroidDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolaroidDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83EC45D82B555B1E00B7B716 /* 온글잎 밍댕손글씨.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 밍댕손글씨.ttf"; sourceTree = "<group>"; };
+		83EC45D92B555B1E00B7B716 /* 온글잎 창이체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 창이체.ttf"; sourceTree = "<group>"; };
+		83EC45DA2B555B1E00B7B716 /* 온글잎 정현모체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 정현모체.ttf"; sourceTree = "<group>"; };
+		83EC45DB2B555B1E00B7B716 /* 온글잎 따뜻한 혜온체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 따뜻한 혜온체.ttf"; sourceTree = "<group>"; };
+		83EC45DC2B555B1E00B7B716 /* 온글잎 위리체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 위리체.ttf"; sourceTree = "<group>"; };
+		83EC45DD2B555B1E00B7B716 /* 온글잎 정원체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 정원체.ttf"; sourceTree = "<group>"; };
+		83EC45DE2B555B1E00B7B716 /* 온글잎 쏘찌.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 쏘찌.ttf"; sourceTree = "<group>"; };
+		83EC45DF2B555B1E00B7B716 /* 온글잎 아희.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "온글잎 아희.ttf"; sourceTree = "<group>"; };
 		83F3ECFD28CE3070002A2B88 /* DiaryDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDB.swift; sourceTree = "<group>"; };
 		83F3ECFF28CE3098002A2B88 /* ToDoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDB.swift; sourceTree = "<group>"; };
 		83FDF01F27F2EB81008E45E3 /* UIAlertController++Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController++Extension.swift"; sourceTree = "<group>"; };
@@ -135,21 +135,6 @@
 			path = diaryToDo;
 			sourceTree = "<group>";
 		};
-		83608C3728B7C8CE00D79202 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				83608C1728B7C7F600D79202 /* 온글잎 쏘찌.ttf */,
-				8303B3902A5CE69F00F1B60A /* 온글잎 따뜻한 혜온체.ttf */,
-				8303B3932A5CE69F00F1B60A /* 온글잎 밍댕손글씨.ttf */,
-				8303B3912A5CE69F00F1B60A /* 온글잎 정원체.ttf */,
-				8303B38F2A5CE69F00F1B60A /* 온글잎 정현모체.ttf */,
-				8303B3922A5CE69F00F1B60A /* 온글잎 창이체.ttf */,
-				83608C1128B7C7F400D79202 /* 온글잎 아희.ttf */,
-				83608C0B28B7C7F200D79202 /* 온글잎 위리체.ttf */,
-			);
-			path = Font;
-			sourceTree = "<group>";
-		};
 		83D5129627F5A64F009B3A23 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +149,21 @@
 				83D512D527F5EE98009B3A23 /* FilmTableViewCell.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		83EC45D72B555B1E00B7B716 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				83EC45D82B555B1E00B7B716 /* 온글잎 밍댕손글씨.ttf */,
+				83EC45D92B555B1E00B7B716 /* 온글잎 창이체.ttf */,
+				83EC45DA2B555B1E00B7B716 /* 온글잎 정현모체.ttf */,
+				83EC45DB2B555B1E00B7B716 /* 온글잎 따뜻한 혜온체.ttf */,
+				83EC45DC2B555B1E00B7B716 /* 온글잎 위리체.ttf */,
+				83EC45DD2B555B1E00B7B716 /* 온글잎 정원체.ttf */,
+				83EC45DE2B555B1E00B7B716 /* 온글잎 쏘찌.ttf */,
+				83EC45DF2B555B1E00B7B716 /* 온글잎 아희.ttf */,
+			);
+			path = font;
 			sourceTree = "<group>";
 		};
 		83FDF01427F2D7A8008E45E3 /* Source */ = {
@@ -183,7 +183,7 @@
 		83FDF01527F2D7AE008E45E3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				83608C3728B7C8CE00D79202 /* Font */,
+				83EC45D72B555B1E00B7B716 /* font */,
 				83354D9F27DB51AE0096C7B5 /* Main.storyboard */,
 				83354DA227DB51AF0096C7B5 /* Assets.xcassets */,
 				83354DA427DB51AF0096C7B5 /* LaunchScreen.storyboard */,
@@ -308,17 +308,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8303B3942A5CE69F00F1B60A /* 온글잎 정현모체.ttf in Resources */,
-				8303B3982A5CE69F00F1B60A /* 온글잎 밍댕손글씨.ttf in Resources */,
-				8303B3962A5CE69F00F1B60A /* 온글잎 정원체.ttf in Resources */,
-				8303B3972A5CE69F00F1B60A /* 온글잎 창이체.ttf in Resources */,
-				83608C2B28B7C7F700D79202 /* 온글잎 아희.ttf in Resources */,
+				83EC45E42B555B1E00B7B716 /* 온글잎 위리체.ttf in Resources */,
+				83EC45E52B555B1E00B7B716 /* 온글잎 정원체.ttf in Resources */,
+				83EC45E12B555B1E00B7B716 /* 온글잎 창이체.ttf in Resources */,
+				83EC45E72B555B1E00B7B716 /* 온글잎 아희.ttf in Resources */,
 				83354DA627DB51AF0096C7B5 /* LaunchScreen.storyboard in Resources */,
 				83354DA327DB51AF0096C7B5 /* Assets.xcassets in Resources */,
-				83608C2528B7C7F700D79202 /* 온글잎 위리체.ttf in Resources */,
+				83EC45E62B555B1E00B7B716 /* 온글잎 쏘찌.ttf in Resources */,
+				83EC45E22B555B1E00B7B716 /* 온글잎 정현모체.ttf in Resources */,
+				83EC45E02B555B1E00B7B716 /* 온글잎 밍댕손글씨.ttf in Resources */,
 				83354DA127DB51AE0096C7B5 /* Main.storyboard in Resources */,
-				8303B3952A5CE69F00F1B60A /* 온글잎 따뜻한 혜온체.ttf in Resources */,
-				83608C3128B7C7F700D79202 /* 온글잎 쏘찌.ttf in Resources */,
+				83EC45E32B555B1E00B7B716 /* 온글잎 따뜻한 혜온체.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
